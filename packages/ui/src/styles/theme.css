@@ -1,0 +1,252 @@
+/*
+ * Taksu Tech design tokens (Tailwind CSS v4).
+ *
+ * Palette, named after Balinese materials:
+ *   Paras   #eef0eb  carved volcanic stone, light background
+ *   Endek   #26338a  ikat-dyed indigo, primary in light mode
+ *   Malam   #0e1335  indigo night, dark background
+ *   Prada   #e6bd52  gold leaf on temple cloth, primary in dark mode, ornaments
+ *   Subak   #1d7466  irrigation water, education accents
+ *
+ * Import after `@import "tailwindcss";` and add `@source` for this package.
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #eef0eb;
+  --foreground: #14183a;
+  --surface: #ffffff;
+  --surface-muted: #e2e6df;
+  --primary: #26338a;
+  --primary-foreground: #ffffff;
+  --accent: #b5871a;
+  --accent-soft: #f3e7c4;
+  --muted-foreground: #4a5070;
+  --border: #cdd2c8;
+  --ring: #26338a;
+  --subak: #1d7466;
+  --danger: #b42318;
+  --ink: #14183a;
+  --ink-foreground: #f4f5fb;
+  --level-sd: #f2a33a;
+  --level-smp: #49b37a;
+  --level-sma: #9a7ee6;
+  --illus-body: #ffffff;
+  --illus-line: #14183a;
+  --poleng-dark: #14183a;
+  --poleng-light: #ffffff;
+}
+
+.dark {
+  --background: #0e1335;
+  --foreground: #eceef8;
+  --surface: #161c4a;
+  --surface-muted: #1d2458;
+  --primary: #e6bd52;
+  --primary-foreground: #0e1335;
+  --accent: #e6bd52;
+  --accent-soft: #2e2c3a;
+  --muted-foreground: #a9afcf;
+  --border: #2a3275;
+  --ring: #e6bd52;
+  --subak: #4fc1ad;
+  --danger: #f97066;
+  --ink: #070a20;
+  --ink-foreground: #eceef8;
+  --illus-body: #f4f5fb;
+  --illus-line: #0e1335;
+  --poleng-dark: #070a20;
+  --poleng-light: #d9dcec;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-subak: var(--subak);
+  --color-danger: var(--danger);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-level-sd: var(--level-sd);
+  --color-level-smp: var(--level-smp);
+  --color-level-sma: var(--level-sma);
+}
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    'Bricolage Grotesque Variable', 'Plus Jakarta Sans Variable', ui-sans-serif, sans-serif;
+  --font-aksara: 'Noto Serif Balinese', 'Noto Sans Balinese', serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --animate-fade-in: fade-in 160ms ease-out;
+  --animate-pop-in: pop-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  --animate-accordion-down: accordion-down 200ms ease-out;
+  --animate-accordion-up: accordion-up 200ms ease-out;
+  --animate-blink: blink 5.5s infinite;
+  --animate-talk: talk 0.32s ease-in-out infinite alternate;
+  --animate-listen: listen 1.4s ease-out infinite;
+  --animate-route: route 1.2s linear infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes blink {
+    0%,
+    92%,
+    100% {
+      transform: scaleY(1);
+    }
+    95% {
+      transform: scaleY(0.08);
+    }
+  }
+  @keyframes talk {
+    from {
+      transform: scaleY(0.35);
+    }
+    to {
+      transform: scaleY(1.15);
+    }
+  }
+  @keyframes listen {
+    from {
+      opacity: 0.7;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.35);
+    }
+  }
+  @keyframes route {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::after,
+    ::before {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Aksara Bali needs room above and below for vowel signs and stacked consonants. */
+  .aksara {
+    font-family: var(--font-aksara);
+    line-height: 2.3;
+    letter-spacing: 0;
+  }
+
+  /* Poleng: the black-and-white checked cloth that wraps shrines and guardian statues. */
+  .bg-poleng {
+    background: repeating-conic-gradient(var(--poleng-dark) 0 25%, var(--poleng-light) 0 50%) 0 0 /
+      12px 12px;
+  }
+
+  .robot-eye {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: var(--animate-blink);
+  }
+
+  .robot-mouth-talking {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: var(--animate-talk);
+  }
+
+  .robot-listen-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: var(--animate-listen);
+  }
+}
