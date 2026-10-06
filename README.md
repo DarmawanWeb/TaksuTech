@@ -71,7 +71,7 @@ Hook git (husky): `pre-commit` menjalankan Prettier pada file yang di-stage, `co
 | `AI_BASE_URL`   | Override endpoint, misalnya `http://localhost:11434/v1` untuk Ollama    |
 | `AI_TIMEOUT_MS` | Default 15000                                                           |
 
-Mode `offline` menjawab dari FAQ dan daftar ruangan venue tanpa internet. Mode model memakai system prompt yang hanya berisi data venue, dan otomatis jatuh ke `offline` kalau API gagal atau timeout, jadi robot tidak pernah diam di depan tamu. Endpoint `/api/assistant` memvalidasi input dengan zod dan membatasi panjang riwayat. Untuk produksi publik, tambahkan rate limiting di reverse proxy.
+Mode `offline` menjawab dari FAQ dan daftar ruangan venue tanpa internet. Mode model memakai system prompt yang hanya berisi data venue, dan otomatis jatuh ke `offline` kalau API gagal atau timeout, jadi robot tidak pernah diam di depan tamu. Endpoint `/api/assistant` memvalidasi input dengan zod dan membatasi panjang riwayat. Endpoint ini juga punya rate limit per IP dan batas panggilan model bersamaan, jadi aman dibuka lewat tunnel di server rumahan.
 
 ## Menambah sampel venue (use case kiosk)
 
@@ -110,6 +110,8 @@ Atur `SITE_URL`, `KIOSK_URL`, `PLAYGROUND_URL`, `WHATSAPP_NUMBER`, dan `AI_*` di
 
 - `ci.yml`: format check, lint, typecheck, test, build di setiap push/PR, plus commitlint untuk PR.
 - `docker.yml`: setiap push ke `main` atau tag `v*` mem-publish `ghcr.io/<owner>/taksu-{web,kiosk,playground}`. Isi repository variables `SITE_URL`, `KIOSK_URL`, `PLAYGROUND_URL`, `WHATSAPP_NUMBER`.
+
+**Mac mini (PM2 + Cloudflare Tunnel + Ollama)**: panduan lengkap di [deploy/macmini/README.md](deploy/macmini/README.md). Ketiga app jalan di `127.0.0.1:4300-4302` (tanpa port 80), asisten kiosk memakai model lokal `taksu-asisten`, dan deploy otomatis lewat self-hosted runner.
 
 **Vercel**: impor repo tiga kali dengan root directory `apps/web`, `apps/kiosk`, `apps/playground`. Turborepo terdeteksi otomatis.
 
