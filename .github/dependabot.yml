@@ -1,0 +1,30 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      next-react:
+        patterns: ['next', 'react', 'react-dom', '@types/react*', 'eslint-config-next', 'next-intl']
+      tooling:
+        patterns:
+          [
+            'eslint*',
+            '@eslint/*',
+            'typescript*',
+            'prettier*',
+            'vitest',
+            'vite',
+            'turbo',
+            '@commitlint/*',
+          ]
+    commit-message:
+      prefix: 'chore'
+      include: scope
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: 'ci'
