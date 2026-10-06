@@ -4,7 +4,7 @@
 
 1. Branch from `main`: `feat/kiosk-hospital-sample`, `fix/web-hero-spacing`, `docs/readme-deploy`.
 2. Commit with [Conventional Commits](https://www.conventionalcommits.org). The `commit-msg` hook runs commitlint.
-   Scopes: `web`, `kiosk`, `playground`, `ui`, `bali`, `content`, `config`, `deps`, `ci`, `docker`, `release`.
+   Scopes: `web`, `kiosk`, `sim`, `speech`, `infra`, `ui`, `bali`, `content`, `config`, `deps`, `ci`, `docker`, `release`.
    ```
    feat(kiosk): add hospital sample venue
    fix(ui): keep aksara lines from overlapping latin text
