@@ -1,0 +1,38 @@
+# Self-hosting: docker compose up --build -d
+# Public URLs are baked into the web build; set them in a .env file next to this one.
+x-build: &build
+  context: .
+  dockerfile: docker/Dockerfile
+
+x-public-urls: &public-urls
+  NEXT_PUBLIC_SITE_URL: ${SITE_URL:-http://localhost:3000}
+  NEXT_PUBLIC_KIOSK_URL: ${KIOSK_URL:-http://localhost:3001}
+  NEXT_PUBLIC_PLAYGROUND_URL: ${PLAYGROUND_URL:-http://localhost:3002}
+  NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-}
+
+services:
+  web:
+    build:
+      <<: *build
+      args: { APP: web, <<: *public-urls }
+    ports: ['3000:3000']
+    restart: unless-stopped
+
+  kiosk:
+    build:
+      <<: *build
+      args: { APP: kiosk, <<: *public-urls }
+    ports: ['3001:3000']
+    environment:
+      AI_PROVIDER: ${AI_PROVIDER:-offline}
+      AI_MODEL: ${AI_MODEL:-}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_BASE_URL: ${AI_BASE_URL:-}
+    restart: unless-stopped
+
+  playground:
+    build:
+      <<: *build
+      args: { APP: playground, <<: *public-urls }
+    ports: ['3002:3000']
+    restart: unless-stopped
