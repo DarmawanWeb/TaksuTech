@@ -16,6 +16,7 @@ const config = {
         'deps',
         'ci',
         'docker',
+        'deploy',
         'release',
       ],
     ],
