@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function illustrationFor(demo: DemoEntry): RobotIllustrationKind {
-  return demo.robot ?? demo.track ?? 'sd';
+  return demo.robot ?? demo.track ?? 'kiosk';
 }
 
 async function DemoList({ items, locale }: { items: DemoEntry[]; locale: Locale }) {
@@ -84,8 +84,8 @@ export default async function DemoPage({ params }: Props) {
 
       <section className="py-10">
         <Container>
-          <SectionHeading title={t('playgroundTitle')} intro={t('playgroundIntro')} />
-          <DemoList items={demos.filter((demo) => demo.app === 'playground')} locale={locale} />
+          <SectionHeading title={t('simTitle')} intro={t('simIntro')} />
+          <DemoList items={demos.filter((demo) => demo.app === 'sim')} locale={locale} />
           <p className="text-muted-foreground mt-10 text-sm">{t('tip')}</p>
         </Container>
       </section>

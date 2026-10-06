@@ -23,7 +23,7 @@ export async function DemoShowcase({ locale }: { locale: Locale }) {
                 variant={demo.app === 'kiosk' ? 'gold' : 'muted'}
                 className="self-start sm:self-center"
               >
-                {demo.app === 'kiosk' ? t('kiosk') : t('playground')}
+                {demo.app === 'kiosk' ? t('kiosk') : t('sim')}
               </Badge>
               <div>
                 <h3 className="text-lg font-semibold">{pick(demo.title, locale)}</h3>

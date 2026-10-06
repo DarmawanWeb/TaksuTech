@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 /** Today's Pawukon day, computed in the browser so a static page never shows a stale date. */
 export function PawukonToday() {
-  const t = useTranslations('Home.bali');
+  const t = useTranslations('Reception.bali');
   const cycleDay = usePawukonCycleDay();
 
   if (cycleDay === null) {

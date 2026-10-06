@@ -2,70 +2,96 @@ import { getRobot, getSite, pick, robots, specSourceNote } from '@taksu/content'
 import { RobotIllustration } from '@taksu/ui/brand/robot-illustration';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { priceKey } from '@/components/reception/robot-cards';
 import { Container } from '@/components/shared/container';
 import { CtaBand } from '@/components/shared/cta-band';
 import { ExternalButton } from '@/components/shared/external-button';
 import { SpecList } from '@/components/shared/spec-list';
 import { Link } from '@/i18n/navigation';
+import { images } from '@/lib/images';
 import { demoUrl } from '@/lib/links';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
 import { pageMetadata } from '@/lib/metadata';
 
-type Props = { params: Promise<{ locale: string; slug: string }> };
+type Props = { params: Promise<{ locale: string; robot: string }> };
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return robots.map((robot) => ({ slug: robot.slug }));
+  return robots.map((robot) => ({ robot: robot.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const [locale, { slug }] = await Promise.all([localeFromParams(params), params]);
+  const [locale, { robot: slug }] = await Promise.all([localeFromParams(params), params]);
   const robot = getRobot(slug);
   if (!robot) return {};
   return pageMetadata({
     locale,
-    path: `/robots/${robot.slug}`,
-    title: robot.name,
+    path: `/reception/${robot.slug}`,
+    title: `${robot.name} ${pick(robot.edition, locale)}`,
     description: pick(robot.summary, locale),
   });
 }
 
 export default async function RobotPage({ params }: Props) {
-  const [locale, { slug }] = await Promise.all([resolveLocale(params), params]);
+  const [locale, { robot: slug }] = await Promise.all([resolveLocale(params), params]);
   const robot = getRobot(slug);
   if (!robot) notFound();
   const site = getSite(robot.demoSite);
-  const [t, common] = await Promise.all([
-    getTranslations('RobotDetail'),
+  const [t, robotsT, common] = await Promise.all([
+    getTranslations('Reception.robot'),
+    getTranslations('Reception.robots'),
     getTranslations('Common'),
   ]);
+  const demo = demoUrl({ app: 'kiosk', path: `/${robot.slug}/${robot.demoSite}` }, locale);
 
   return (
     <>
-      <section className="pt-10 pb-16">
+      <section className="pt-10 pb-14">
         <Container>
           <Link
-            href="/robots"
+            href="/reception"
             className="text-muted-foreground hover:text-primary inline-flex items-center gap-2 text-sm font-semibold"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t('back')}
           </Link>
-          <div className="mt-8 grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="border-border bg-surface rounded-xl border p-10">
-              <RobotIllustration
-                kind={robot.slug}
-                label={robot.name}
-                className="mx-auto max-w-64"
-              />
+          <div className="mt-8 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="border-border bg-surface overflow-hidden rounded-xl border">
+              {robot.kind === 'mobile' ? (
+                <Image
+                  src={images.snowTimoBali}
+                  alt={`${robot.name} ${pick(robot.edition, locale)}`}
+                  placeholder="blur"
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="h-auto w-full"
+                />
+              ) : (
+                <div className="bg-surface-muted p-10">
+                  <RobotIllustration
+                    kind={robot.slug}
+                    label={robot.name}
+                    className="mx-auto max-w-64"
+                  />
+                </div>
+              )}
             </div>
             <div>
-              <h1 className="text-6xl font-bold tracking-tight [font-stretch:82%]">{robot.name}</h1>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="gold">{pick(robot.edition, locale)}</Badge>
+                <Badge variant="outline">
+                  {robot.kind === 'static' ? robotsT('static') : robotsT('mobile')}
+                </Badge>
+                <Badge variant="outline">{robotsT('price', { tier: priceKey(robot) })}</Badge>
+              </div>
+              <h1 className="mt-4 text-6xl font-bold tracking-tight [font-stretch:82%]">
+                {robot.name}
+              </h1>
               <p className="text-primary mt-3 text-2xl font-semibold">
                 {pick(robot.tagline, locale)}
               </p>
@@ -80,7 +106,7 @@ export default async function RobotPage({ params }: Props) {
                 <ExternalButton
                   size="lg"
                   variant="outline"
-                  href={demoUrl({ app: 'kiosk', path: `/${robot.slug}/${robot.demoSite}` }, locale)}
+                  href={demo}
                   newTabLabel={common('newTab')}
                 >
                   {common('tryDemo')}
@@ -96,10 +122,14 @@ export default async function RobotPage({ params }: Props) {
           <div>
             <h2 className="mb-4 text-3xl font-semibold">{t('specs')}</h2>
             <SpecList specs={robot.specs} locale={locale} />
-            <p className="text-muted-foreground mt-4 text-xs">
-              <span className="font-semibold">{t('sourceTitle')}: </span>
-              {pick(specSourceNote, locale)}
-            </p>
+            {robot.kind === 'mobile' ? (
+              <p className="text-muted-foreground mt-4 text-xs">
+                <span className="font-semibold">{t('sourceTitle')}: </span>
+                {pick(specSourceNote, locale)}
+              </p>
+            ) : null}
+            <h2 className="mt-10 mb-3 text-lg font-semibold">{t('localContent')}</h2>
+            <p className="text-muted-foreground">{pick(robot.localContent, locale)}</p>
           </div>
           <div>
             <h2 className="mb-4 text-3xl font-semibold">{t('features', { name: robot.name })}</h2>
@@ -110,6 +140,15 @@ export default async function RobotPage({ params }: Props) {
                   <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
                     {pick(feature.body, locale)}
                   </p>
+                </li>
+              ))}
+            </ul>
+            <h2 className="mt-10 mb-3 text-lg font-semibold">{t('balinese')}</h2>
+            <ul className="flex flex-col gap-2">
+              {robot.balinese.map((item) => (
+                <li key={item.en} className="flex gap-3 text-sm">
+                  <Check className="text-primary mt-0.5 size-4 shrink-0" aria-hidden />
+                  {pick(item, locale)}
                 </li>
               ))}
             </ul>
@@ -133,13 +172,14 @@ export default async function RobotPage({ params }: Props) {
               <p className="text-muted-foreground mt-3 max-w-2xl">
                 {t('demoBody', { name: robot.name, site: site.name })}
               </p>
-              <ExternalButton
-                className="mt-6"
-                href={demoUrl({ app: 'kiosk', path: `/${robot.slug}/${site.slug}` }, locale)}
-                newTabLabel={common('newTab')}
-              >
-                {common('openDemo')}
-              </ExternalButton>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <ExternalButton href={demo} newTabLabel={common('newTab')}>
+                  {common('openDemo')}
+                </ExternalButton>
+                <Button asChild variant="outline">
+                  <Link href="/reception/compare">{t('compareCta')}</Link>
+                </Button>
+              </div>
             </div>
           </Container>
         </section>

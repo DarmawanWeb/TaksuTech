@@ -12,6 +12,17 @@ const nextConfig: NextConfig = {
   transpilePackages: ['@taksu/ui', '@taksu/bali', '@taksu/content'],
   poweredByHeader: false,
   reactStrictMode: true,
+  images: { formats: ['image/avif', 'image/webp'] },
+  async redirects() {
+    return [
+      { source: '/:locale(id|en)/robots', destination: '/:locale/reception', permanent: true },
+      {
+        source: '/:locale(id|en)/robots/:slug',
+        destination: '/:locale/reception/:slug',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

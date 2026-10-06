@@ -10,7 +10,7 @@ import { NavLinks } from './nav-links';
 export async function SiteHeader() {
   const t = await getTranslations('Nav');
   const items = [
-    { href: '/robots', label: t('robots') },
+    { href: '/reception', label: t('reception') },
     { href: '/education', label: t('education') },
     { href: '/demo', label: t('demo') },
     { href: '/about', label: t('about') },

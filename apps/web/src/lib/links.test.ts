@@ -1,14 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { demoUrl, mailtoUrl, whatsappUrl } from './links';
+import { demoUrl, mailtoUrl, simulatorUrl, whatsappUrl } from './links';
 
 describe('links', () => {
   it('builds localized demo URLs for both demo apps', () => {
-    expect(demoUrl({ app: 'kiosk', path: '/timo/kantor-layanan' }, 'en')).toBe(
-      'http://localhost:3001/en/timo/kantor-layanan',
+    expect(demoUrl({ app: 'kiosk', path: '/kiosk/kantor-layanan' }, 'en')).toBe(
+      'http://localhost:3001/en/kiosk/kantor-layanan',
     );
-    expect(demoUrl({ app: 'playground', path: '?track=sd' }, 'id')).toBe(
-      'http://localhost:3002/id?track=sd',
+    expect(demoUrl({ app: 'sim', path: '?robot=sd' }, 'id')).toBe(
+      'http://localhost:3002/id?robot=sd',
     );
+  });
+
+  it('deep-links into simulator missions', () => {
+    expect(simulatorUrl('id', 'smp', 'smp-radar')).toBe(
+      'http://localhost:3002/id?robot=smp&mission=smp-radar',
+    );
+    expect(simulatorUrl('en')).toBe('http://localhost:3002/en');
   });
 
   it('only builds WhatsApp links when a number is configured', () => {

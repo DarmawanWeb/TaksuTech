@@ -1,4 +1,4 @@
-import { brand } from '@taksu/content';
+import { brand, divisions } from '@taksu/content';
 import { Logo } from '@taksu/ui/brand/logo';
 import { PolengBand } from '@taksu/ui/brand/ornaments';
 import { getLocale, getTranslations } from 'next-intl/server';
@@ -14,27 +14,47 @@ export async function SiteFooter() {
     getLocale(),
   ]);
   const whatsapp = whatsappUrl('Om Swastiastu, Taksu Tech');
-  const links = [
-    { href: '/robots', label: nav('robots') },
-    { href: '/education', label: nav('education') },
+  const explore = [
     { href: '/demo', label: nav('demo') },
     { href: '/about', label: nav('about') },
     { href: '/contact', label: nav('contact') },
+  ];
+  const lines = [
+    {
+      href: '/reception',
+      label: `${divisions.reception.name}: ${divisions.reception.title[locale]}`,
+    },
+    {
+      href: '/education',
+      label: `${divisions.education.name}: ${divisions.education.title[locale]}`,
+    },
   ];
 
   return (
     <footer className="bg-surface mt-24">
       <PolengBand />
-      <Container className="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <Container className="grid gap-10 py-14 md:grid-cols-[1.3fr_1.2fr_0.8fr_1fr]">
         <div className="flex flex-col gap-3">
           <Logo />
           <p className="text-muted-foreground max-w-sm text-sm">{t('tagline')}</p>
           <p className="text-sm font-semibold">{common('partOf')}</p>
         </div>
+        <nav aria-label={t('lines')}>
+          <h2 className="text-muted-foreground mb-3 text-sm font-semibold">{t('lines')}</h2>
+          <ul className="flex flex-col gap-2 text-sm">
+            {lines.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-primary hover:underline">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <nav aria-label={t('explore')}>
           <h2 className="text-muted-foreground mb-3 text-sm font-semibold">{t('explore')}</h2>
           <ul className="flex flex-col gap-2 text-sm">
-            {links.map((link) => (
+            {explore.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="hover:text-primary hover:underline">
                   {link.label}

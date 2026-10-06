@@ -4,13 +4,14 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Container } from './container';
 
-export async function CtaBand() {
+/** Closing call to action. Education pages drop the Balinese ornament. */
+export async function CtaBand({ ornament = true }: { ornament?: boolean }) {
   const t = await getTranslations('Home.cta');
   return (
     <section className="pt-12">
       <Container>
         <div className="dark border-border bg-background text-foreground overflow-hidden rounded-xl border">
-          <PolengBand />
+          {ornament ? <PolengBand /> : null}
           <div className="flex flex-col gap-6 p-8 sm:p-12 md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl">
               <h2 className="text-3xl font-semibold [font-stretch:90%] sm:text-4xl">

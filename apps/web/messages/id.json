@@ -1,13 +1,13 @@
 {
   "Meta": {
-    "title": "Taksu Tech: robot resepsionis dan robot edukasi di Bali",
-    "description": "Taksu Tech, bagian dari Ezra Robotics, menghadirkan robot resepsionis Timo dan Snow untuk hotel dan kantor pelayanan di Bali, serta kit robot edukasi untuk SD, SMP, dan SMA."
+    "title": "Taksu Tech: robotika karya anak Bali",
+    "description": "Taksu Tech, bagian dari Ezra Robotics: robot resepsionis Bali (Snow, Timo, dan Taksu Kiosk) serta kit robot edukasi SD sampai SMA dengan simulator dan kurikulum lengkap."
   },
   "Nav": {
     "skip": "Langsung ke konten",
     "home": "Beranda",
-    "robots": "Robot resepsionis",
-    "education": "Robot edukasi",
+    "education": "Edukasi",
+    "reception": "Resepsionis",
     "demo": "Demo",
     "about": "Tentang",
     "contact": "Kontak",
@@ -24,218 +24,319 @@
     "viewDetails": "Lihat detail",
     "backHome": "Kembali ke beranda",
     "newTab": "(terbuka di tab baru)",
-    "partOf": "Bagian dari Ezra Robotics"
+    "partOf": "Bagian dari Ezra Robotics",
+    "meetings": "{count} pertemuan",
+    "minutes": "{count} menit",
+    "viewAll": "Lihat semua"
   },
   "Home": {
     "hero": {
-      "title": "Robot yang menyapa tamu dengan Om Swastiastu",
-      "body": "Taksu Tech menghadirkan robot resepsionis Timo dan Snow untuk hotel dan kantor pelayanan di Bali, serta kit robot edukasi untuk SD sampai SMA.",
-      "primaryCta": "Lihat robot resepsionis",
-      "secondaryCta": "Jelajahi robot edukasi",
-      "faceLabel": "Wajah robot Timo sedang menyapa",
-      "panelCaption": "Cuplikan layar robot resepsionis kami",
-      "writerLabel": "Tulis nama Anda dalam Aksara Bali",
-      "writerPlaceholder": "Ketik nama, misalnya Made",
-      "writerHint": "Huruf e dibaca pepet seperti pada Ketut. Ketik é untuk bunyi seperti pada Madé.",
-      "writerEmpty": "Aksara Bali akan muncul di sini"
+      "title": "Robotika karya anak Bali",
+      "body": "Kami merancang robot resepsionis yang paham adat Bali dan kit robot edukasi untuk sekolah di seluruh Indonesia. Taksu Tech adalah bagian dari Ezra Robotics.",
+      "ctaReception": "Robot resepsionis Bali",
+      "ctaEducation": "Robot edukasi",
+      "imageAlt": "Robot Snow dan Timo edisi Bali berbusana adat di lobi hotel",
+      "caption": "Snow dan Timo edisi Bali, dimodifikasi oleh Taksu Tech"
     },
-    "lines": {
+    "divisions": {
       "title": "Dua lini produk",
-      "intro": "Satu tim di Bali yang memasang, mengajarkan, dan merawat robotnya.",
-      "commercialTitle": "Robot resepsionis",
-      "commercialBody": "Timo dan Snow, robot resepsionis Taksu Tech yang dikonfigurasi untuk Bali: antrean, petunjuk arah, struktur organisasi, asisten AI, dan Aksara Bali di layar.",
-      "commercialCta": "Lihat Timo dan Snow",
-      "educationTitle": "Robot edukasi",
-      "educationBody": "Kit untuk SD, SMP, dan SMA yang tumbuh bersama siswa: mulai dari blok, lanjut ke C++, sampai ROS 2 dan AI.",
-      "educationCta": "Lihat jenjang"
+      "intro": "Satu tim di Bali yang merancang, memasang, mengajarkan, dan merawat robotnya.",
+      "receptionCta": "Lihat lini resepsionis",
+      "educationCta": "Lihat lini edukasi",
+      "educationImageAlt": "Robot edukasi SD, SMP, dan SMA di meja kelas"
+    },
+    "proof": {
+      "title": "Kenapa Taksu Tech",
+      "items": {
+        "aksara": {
+          "title": "Sesuai Pergub Aksara Bali",
+          "body": "Layar dan cetakan menampilkan Aksara Bali di atas huruf Latin, sesuai Pergub Bali 80/2018."
+        },
+        "kiosk": {
+          "title": "Kios buatan Bali",
+          "body": "Taksu Kiosk dirakit di Bali dengan komponen lokal tinggi dan printer bawaan."
+        },
+        "kka": {
+          "title": "Selaras mapel KKA",
+          "body": "Kurikulum edukasi dipetakan ke mapel pilihan Koding dan Kecerdasan Artifisial."
+        },
+        "simulator": {
+          "title": "Coba gratis di browser",
+          "body": "Simulator robot dan demo kios bisa dicoba tanpa login."
+        }
+      }
     },
     "demos": {
       "title": "Coba dulu di browser",
-      "intro": "Semua demo berjalan di browser tanpa login. Buka di tablet untuk merasakan layar robot.",
+      "intro": "Bicara dengan robot resepsionis, cetak kartu tamu, atau program robot di simulator.",
       "kiosk": "Kios robot",
-      "playground": "Coding blok",
+      "sim": "Simulator",
       "launcher": "Pilih robot dan contoh tempat sendiri"
     },
-    "useCases": {
-      "title": "Di mana robot kami bekerja",
-      "intro": "Setiap tempat punya alur tamu yang berbeda. Kami menyesuaikan konten dan rute robot untuk masing-masing.",
-      "demoLink": "Lihat contohnya"
-    },
-    "bali": {
-      "title": "Dibuat untuk Bali",
-      "intro": "Perangkat lunak kios kami kami tulis sendiri, jadi kebiasaan setempat bisa menjadi bagian dari robotnya.",
-      "todayLabel": "Hari ini menurut kalender Pawukon",
-      "holyToday": "Rahajeng rahina {name}",
-      "nextHoly": "{name} dalam {days, plural, other {# hari}}",
-      "items": {
-        "aksara": {
-          "title": "Aksara Bali di layar",
-          "body": "Nama tempat ditulis dalam Aksara Bali di atas huruf Latin, mengikuti kebiasaan papan nama di Bali."
-        },
-        "pawukon": {
-          "title": "Paham kalender Pawukon",
-          "body": "Robot tahu kapan Galungan, Kuningan, atau Saraswati, lalu menyesuaikan salam dan informasinya."
-        },
-        "salam": {
-          "title": "Salam dan tata krama",
-          "body": "Om Swastiastu untuk membuka, suksma untuk berterima kasih, dan tips adat untuk tamu mancanegara."
-        },
-        "language": {
-          "title": "Dua bahasa, siap ditambah",
-          "body": "Bahasa Indonesia dan Inggris sudah tersedia. Bahasa lain untuk wisatawan bisa ditambahkan per lokasi."
-        }
-      }
-    },
-    "path": {
-      "title": "Alur belajar di setiap jenjang",
-      "intro": "Siswa selalu mencoba di simulator dulu, baru menjalankannya di robot sungguhan."
+    "values": {
+      "title": "Tri Hita Karana dalam cara kami bekerja",
+      "intro": "Tiga sumber harmoni dalam filosofi Bali, dan artinya bagi produk kami."
     },
     "cta": {
       "title": "Ingin melihat robotnya langsung?",
-      "body": "Kami bisa datang ke lokasi Anda di Bali untuk demo dan survei tempat.",
+      "body": "Kami bisa datang ke kantor, hotel, atau sekolah Anda untuk demo.",
       "button": "Jadwalkan demo"
     }
   },
-  "Robots": {
-    "metaTitle": "Robot resepsionis Timo dan Snow",
-    "metaDescription": "Robot resepsionis Taksu Tech untuk hotel, resor, dan kantor pelayanan di Bali: antrean, petunjuk arah, asisten AI, dan Aksara Bali.",
-    "title": "Robot resepsionis untuk Bali",
-    "intro": "Timo dan Snow datang lengkap dengan perangkat lunak kios buatan kami sendiri. Isi, bahasa, dan rutenya kami sesuaikan dengan tempat Anda.",
-    "specsTitle": "Spesifikasi utama",
-    "idealFor": "Cocok untuk",
+  "Reception": {
+    "metaTitle": "Robot resepsionis Bali: Snow, Timo, dan Taksu Kiosk",
+    "metaDescription": "Robot resepsionis edisi Bali dan kios buatan Bali yang mendukung Aksara Bali sesuai Pergub 80/2018, mencetak tiket dan kartu tamu, dan bisa diajak bicara.",
+    "subnav": {
+      "label": "Navigasi resepsionis",
+      "overview": "Ringkasan",
+      "compare": "Bandingkan",
+      "aksara": "Aksara Bali"
+    },
+    "hero": {
+      "title": "Robot resepsionis yang menyapa Om Swastiastu",
+      "body": "Snow dan Timo edisi Bali berbusana adat, ditambah Taksu Kiosk buatan kami sendiri. Semuanya menampilkan Aksara Bali, mencetak tiket dan kartu tamu, dan bisa diajak bicara dalam Bahasa Indonesia atau Inggris.",
+      "imageAlt": "Snow dan Timo edisi Bali berbusana adat Bali",
+      "ctaDemo": "Ajak robot bicara",
+      "ctaCompare": "Bandingkan ketiganya"
+    },
+    "robots": {
+      "title": "Pilih resepsionis Anda",
+      "intro": "Dua robot bergerak yang kami modifikasi untuk Bali, dan satu kios statis buatan kami.",
+      "mobile": "Bergerak",
+      "static": "Statis",
+      "escort": "Mengantar tamu",
+      "printerBuiltIn": "Printer bawaan",
+      "printerStation": "Stasiun printer",
+      "price": "{tier, select, low {Paling hemat} mid {Menengah} other {Premium}}"
+    },
+    "features": {
+      "title": "Satu aplikasi kios untuk ketiganya",
+      "intro": "Perangkat lunak kios Taksu kami kembangkan sendiri, jadi bisa disesuaikan dengan layanan Anda."
+    },
+    "voice": {
+      "title": "Bisa diajak bicara",
+      "body": "Pengenalan suara dan suara robot berjalan di server sendiri, bukan layanan luar. Tamu cukup bertanya, robot menjawab dari data tempat Anda.",
+      "cta": "Coba ajak bicara"
+    },
+    "bali": {
+      "title": "Paham kalender Bali",
+      "intro": "Salam dan informasi robot mengikuti rahinan dalam kalender Pawukon.",
+      "todayLabel": "Hari ini menurut kalender Pawukon",
+      "holyToday": "Rahajeng rahina {name}",
+      "nextHoly": "{name} dalam {days, plural, other {# hari}}"
+    },
+    "aksara": {
+      "metaTitle": "Aksara Bali pada robot dan kios",
+      "metaDescription": "Papan nama digital dan cetakan dengan Aksara Bali di atas huruf Latin, sesuai Pergub Bali 80/2018 dan Perda Bali 1/2018.",
+      "title": "Aksara Bali di setiap layar dan cetakan",
+      "intro": "Kios kami menulis nama tempat dengan Aksara Bali di atas huruf Latin, mengikuti aturan papan nama di Bali.",
+      "ruleTitle": "Dasar aturan",
+      "signageTitle": "Coba papan nama digital",
+      "signageLabel": "Nama instansi atau usaha",
+      "signagePlaceholder": "Misalnya Kantor Désa Taman Sari",
+      "signageHint": "Huruf e dibaca pepet; ketik é untuk bunyi taling.",
+      "writerLabel": "Tulis nama tamu dalam Aksara Bali",
+      "writerPlaceholder": "Ketik nama, misalnya Made",
+      "writerHint": "Fitur ini dipakai pada kartu tamu yang dicetak kios.",
+      "writerEmpty": "Aksara Bali akan muncul di sini",
+      "reviewNote": "Transliterasi otomatis. Untuk papan nama resmi, kami meninjaunya bersama penyuluh Bahasa Bali."
+    },
+    "useCases": {
+      "title": "Di mana robot kami bekerja",
+      "intro": "Setiap tempat punya alur tamu berbeda. Kami menyesuaikan konten dan robotnya.",
+      "demoLink": "Lihat contohnya",
+      "recommended": "Disarankan"
+    },
     "process": {
-      "title": "Cara kami memasang robot",
-      "intro": "Dari survei sampai robot bekerja di lobi Anda.",
-      "steps": {
-        "survey": {
-          "title": "Survei lokasi",
-          "body": "Kami memetakan alur tamu, titik layanan, dan jaringan di lokasi Anda."
-        },
-        "mapping": {
-          "title": "Pemetaan dan konten",
-          "body": "Robot memetakan gedung. Kami mengisi informasi, antrean, dan struktur organisasi."
-        },
-        "install": {
-          "title": "Pemasangan dan pelatihan",
-          "body": "Staf dilatih mengoperasikan robot dan memperbarui kontennya sendiri."
-        },
-        "support": {
-          "title": "Dukungan berkelanjutan",
-          "body": "Pemeliharaan dan pembaruan perangkat lunak dari tim kami di Bali."
-        }
-      }
+      "title": "Cara kami memasang",
+      "intro": "Dari survei sampai robot bekerja di lobi Anda."
     },
-    "software": {
-      "title": "Perangkat lunak kios Taksu",
-      "intro": "Berjalan di layar sentuh 13,3 inci kedua robot. Setiap fitur bisa diaktifkan sesuai kebutuhan tempat.",
-      "items": {
-        "queue": {
-          "title": "Ambil antrean",
-          "body": "Nomor antrean per layanan, lengkap dengan perkiraan waktu tunggu."
-        },
-        "wayfinding": {
-          "title": "Petunjuk arah",
-          "body": "Peta ruangan, rute terpendek, dan robot yang mengantar."
-        },
-        "organization": {
-          "title": "Struktur organisasi",
-          "body": "Siapa bertanggung jawab atas apa, dan di ruangan mana."
-        },
-        "assistant": {
-          "title": "Asisten AI",
-          "body": "Menjawab pertanyaan berdasarkan informasi tempat Anda, dengan suara."
-        },
-        "aksara": {
-          "title": "Aksara Bali",
-          "body": "Tulis nama tamu dalam Aksara Bali, kenang-kenangan yang disukai wisatawan."
-        },
-        "calendar": {
-          "title": "Kalender rahinan",
-          "body": "Salam dan informasi yang mengikuti hari suci Pawukon."
-        }
-      }
+    "compare": {
+      "metaTitle": "Bandingkan Snow, Timo, dan Taksu Kiosk",
+      "metaDescription": "Perbandingan robot resepsionis Snow dan Timo edisi Bali dengan Taksu Kiosk buatan Bali: mobilitas, printer, TKDN, dan harga.",
+      "title": "Bandingkan ketiganya",
+      "intro": "Robot bergerak untuk pengalaman yang hidup, kios statis untuk layanan cetak yang hemat dan komponen lokal tinggi.",
+      "feature": "Fitur",
+      "note": "Persentase TKDN Taksu Kiosk mengikuti hasil sertifikasi resmi."
     },
-    "softwareCta": "Coba demo kios"
+    "robot": {
+      "back": "Semua resepsionis",
+      "specs": "Spesifikasi",
+      "features": "Yang bisa dilakukan {name}",
+      "balinese": "Sentuhan Bali",
+      "idealFor": "Cocok untuk",
+      "localContent": "Komponen lokal",
+      "demoTitle": "Coba {name} di browser",
+      "demoBody": "Demo ini menampilkan layar {name} di {site}: sapaan, ajak bicara, antrean, buku tamu, dan cetak.",
+      "sourceTitle": "Catatan spesifikasi",
+      "compareCta": "Bandingkan dengan yang lain"
+    }
   },
-  "RobotDetail": {
-    "back": "Semua robot resepsionis",
-    "specs": "Spesifikasi",
-    "features": "Yang bisa dilakukan {name}",
-    "idealFor": "Cocok untuk",
-    "demoTitle": "Coba {name} di browser",
-    "demoBody": "Demo ini menampilkan layar {name} di {site}: sapaan, antrean, petunjuk arah, dan asisten AI.",
-    "sourceTitle": "Catatan spesifikasi"
-  },
-  "Education": {
-    "metaTitle": "Robot edukasi SD, SMP, dan SMA",
-    "metaDescription": "Kit robot edukasi modular dari Taksu Tech: pemrograman blok untuk SD, Arduino dan ESP32 untuk SMP, ROS 2 dan AI untuk SMA.",
-    "title": "Robot edukasi dari SD sampai SMA",
-    "intro": "Satu ekosistem yang tumbuh bersama siswa. Robot, modul, dan materi tiap jenjang saling terhubung, jadi sekolah tidak perlu mulai dari nol saat naik kelas.",
-    "levelsTitle": "Pilih jenjang",
-    "viewLevel": "Lihat jenjang {level}",
-    "pathTitle": "Alur belajar",
-    "pathIntro": "Empat langkah yang sama di setiap jenjang.",
-    "modularTitle": "Sistem modular",
-    "modularIntro": "Tinggal colok, program, atau baut sesuai ide siswa.",
-    "modular": {
-      "chassis": "Sasis dasar",
-      "sensor": "Modul sensor",
-      "actuator": "Modul aktuator",
-      "communication": "Modul komunikasi",
-      "result": "Robot sesuai kreasi siswa"
+  "Edu": {
+    "metaTitle": "Taksu Edu: robot edukasi SD, SMP, SMA",
+    "metaDescription": "Kit robot edukasi yang bisa dikustom, simulator gratis, kurikulum 32–36 pertemuan, dan panduan guru. Selaras mapel Koding dan Kecerdasan Artifisial.",
+    "subnav": {
+      "label": "Navigasi edukasi",
+      "overview": "Ringkasan",
+      "curriculum": "Kurikulum",
+      "guides": "Panduan",
+      "simulator": "Simulator",
+      "custom": "Kustom"
     },
-    "upgradeTitle": "Jalur upgrade",
-    "upgradeIntro": "Semua platform kompatibel dan bisa ditingkatkan kapan saja.",
-    "supportTitle": "Purnajual dan dukungan",
-    "supportIntro": "Kami mendampingi sekolah setelah pembelian, bukan hanya saat pengiriman.",
-    "syllabusTitle": "Kurikulum dan lomba",
-    "syllabusBody": "Silabus {meetings} pertemuan per jenjang, disiapkan untuk jalur lomba {competitions}."
-  },
-  "Level": {
-    "back": "Semua jenjang",
-    "highlights": "Keunggulan",
-    "modules": "Materi",
-    "programming": "Cara memprogram",
-    "simulation": "Simulasi",
-    "demoTitle": "Coba simulatornya",
-    "demoBody": "Susun blok, jalankan, dan lihat robot bergerak di simulator. Program yang sama bisa diunggah ke robot.",
-    "demoSoon": "Demo simulasi 3D untuk jenjang ini sedang disiapkan. Hubungi kami untuk demo langsung.",
-    "otherLevels": "Jenjang lain"
+    "hero": {
+      "title": "Belajar robotika dari simulasi sampai robot nyata",
+      "body": "Kit robot untuk SD, SMP, dan SMA yang bisa dikustom, dengan simulator gratis, kurikulum per pertemuan, dan panduan guru.",
+      "ctaSim": "Coba simulator gratis",
+      "ctaProposal": "Minta proposal sekolah",
+      "imageAlt": "Poster alur belajar robotika dari simulasi hingga robot nyata"
+    },
+    "advantages": {
+      "title": "Kenapa sekolah memilih Taksu Edu",
+      "intro": "Bukan sekadar menjual kit. Kami menyiapkan cara mengajarnya."
+    },
+    "levels": {
+      "title": "Satu jalur dari SD sampai SMA",
+      "intro": "Robot, modul, dan materi tiap jenjang saling terhubung.",
+      "view": "Lihat {level}",
+      "imageAlt": "Robot edukasi untuk SD, SMP, dan SMA"
+    },
+    "path": {
+      "title": "Alur belajar di setiap pertemuan",
+      "intro": "Siswa mencoba di simulator dulu, lalu menjalankannya di robot sungguhan."
+    },
+    "upgrade": {
+      "title": "Jalur upgrade",
+      "intro": "Semua platform kompatibel dan bisa ditingkatkan kapan saja."
+    },
+    "support": {
+      "title": "Purnajual dan dukungan",
+      "intro": "Kami mendampingi sekolah setelah pembelian."
+    },
+    "competitions": {
+      "title": "Siap lomba",
+      "body": "Materi lanjutan disiapkan untuk jalur {list}."
+    },
+    "level": {
+      "back": "Semua jenjang",
+      "build": "Cara dirakit",
+      "controller": "Pengendali",
+      "highlights": "Keunggulan",
+      "components": "Isi kit",
+      "programming": "Cara memprogram",
+      "simulator": "Simulator",
+      "curriculumCta": "Lihat kurikulum {count} pertemuan",
+      "simCta": "Coba di simulator",
+      "guides": "Panduan untuk jenjang ini",
+      "otherLevels": "Jenjang lain",
+      "imageAlt": "Ilustrasi produk {name}"
+    },
+    "curriculum": {
+      "metaTitle": "Kurikulum robotika per pertemuan",
+      "metaDescription": "Silabus robotika SD 32 pertemuan, SMP dan SMA 36 pertemuan, lengkap dengan tujuan, bukti belajar, rubrik, dan pemetaan KKA.",
+      "title": "Kurikulum dan silabus",
+      "intro": "Setiap jenjang punya modul, rincian per pertemuan, bukti belajar, dan rubrik penilaian.",
+      "perMeeting": "{count} menit per pertemuan",
+      "goal": "Tujuan",
+      "concepts": "Konsep",
+      "evidence": "Bukti belajar",
+      "simMission": "Misi simulator",
+      "meeting": "Pertemuan {n}",
+      "kkaTitle": "Pemetaan mapel KKA",
+      "kkaIntro": "Elemen Koding dan Kecerdasan Artifisial yang paling dikuatkan di jenjang ini.",
+      "tiersTitle": "Jenjang tantangan di dalam SD",
+      "tiersIntro": "Variasi aktivitas pada robot yang sama, bukan tiga perangkat berbeda.",
+      "approach": "Pendekatan",
+      "target": "Target",
+      "rubricTitle": "Rubrik penilaian",
+      "rubricIntro": "Nilai prosesnya, bukan hanya apakah program pertama langsung berhasil.",
+      "criteria": "Kriteria",
+      "viewLevel": "Silabus {level}",
+      "guideCta": "Panduan guru"
+    },
+    "guides": {
+      "metaTitle": "Panduan guru, perakitan, dan keselamatan",
+      "metaDescription": "Panduan memulai robot, mengelola kelas, merakit robot SMP, keselamatan baterai, dan memakai simulator.",
+      "title": "Panduan",
+      "intro": "Langkah praktis untuk guru, siswa, dan sekolah.",
+      "audience": {
+        "teacher": "Guru",
+        "student": "Siswa",
+        "school": "Sekolah"
+      },
+      "back": "Semua panduan",
+      "read": "Baca panduan",
+      "note": "Catatan"
+    },
+    "simulator": {
+      "metaTitle": "Simulator robot gratis",
+      "metaDescription": "Coba misi robot SD dan SMP di browser: gerak, sensor garis, sensor jarak, radar servo, suhu, dan suara, dengan pratinjau kode C++.",
+      "title": "Platform simulasi gratis",
+      "intro": "Sekolah bisa mencoba seluruh misi sebelum membeli robot. Simulator meniru sensor dan keluaran robot asli.",
+      "cta": "Buka simulator",
+      "featuresTitle": "Apa yang disimulasikan",
+      "features": {
+        "physics": "Gerak roda kiri-kanan, kecepatan, dan belokan",
+        "line": "Sensor garis 2 titik (SD) dan 5-in-1 (SMP)",
+        "distance": "Sensor jarak ultrasonik, termasuk di atas servo",
+        "outputs": "Wajah OLED, teks OLED, dan buzzer",
+        "env": "Suhu, kelembapan, dan tepuk tangan untuk SMP",
+        "code": "Pratinjau kode C++ dari blok yang disusun"
+      },
+      "missionsTitle": "Misi sesuai kurikulum",
+      "module": "Modul {n}",
+      "robotSd": "Robot Pintar SD",
+      "robotSmp": "Robot Modular SMP",
+      "trialTitle": "Akses uji coba untuk sekolah",
+      "trialBody": "Ingin memakai simulator di lab komputer dengan misi khusus? Kami siapkan akun dan pelatihan singkat.",
+      "trialCta": "Minta akses uji coba"
+    },
+    "custom": {
+      "metaTitle": "Robot edukasi kustom",
+      "metaDescription": "Kit robot dan kurikulum yang disesuaikan untuk sekolah, kampus, riset, industri, dan proyek khusus.",
+      "title": "Kustom sesuai kebutuhan",
+      "intro": "Dari warna casing sampai kurikulum dan robot riset, kami bantu wujudkan.",
+      "programsTitle": "Program kustom",
+      "optionsTitle": "Yang bisa disesuaikan",
+      "pcbAlt": "PCB kustom robot modular",
+      "pcbCaption": "PCB kustom kami: titik integrasi sensor, driver, daya, dan ESP32.",
+      "cta": "Diskusikan kebutuhan Anda"
+    }
   },
   "Demo": {
-    "metaTitle": "Demo robot resepsionis dan coding blok",
-    "metaDescription": "Coba layar robot resepsionis Timo dan Snow serta playground coding blok untuk SD dan SMP langsung di browser.",
+    "metaTitle": "Demo robot resepsionis dan simulator",
+    "metaDescription": "Ajak bicara robot resepsionis Bali, cetak kartu tamu, rakit kios sendiri di Studio, atau program robot di simulator.",
     "title": "Demo",
-    "intro": "Semua demo berjalan di browser. Data tempat di dalamnya adalah contoh dan bisa diganti dengan data lokasi Anda.",
+    "intro": "Semua demo berjalan di browser. Data tempat di dalamnya adalah contoh.",
     "kioskTitle": "Robot resepsionis",
-    "kioskIntro": "Layar sentuh robot lengkap dengan antrean, petunjuk arah, struktur organisasi, dan asisten AI.",
-    "playgroundTitle": "Robot edukasi",
-    "playgroundIntro": "Coding blok seperti di kelas, dengan simulator robot di sawah.",
+    "kioskIntro": "Layar sentuh robot dengan percakapan suara, antrean, buku tamu, petunjuk arah, dan cetak.",
+    "simTitle": "Simulator edukasi",
+    "simIntro": "Program Robot Pintar SD dan Robot Modular SMP dengan blok.",
     "launcherTitle": "Rakit demo sendiri",
-    "launcherBody": "Pilih robot dan contoh tempat yang ingin dicoba, lalu buka dalam layar penuh.",
+    "launcherBody": "Pilih robot dan contoh tempat, lalu buka dalam layar penuh.",
     "launcherCta": "Buka peluncur kios",
-    "tip": "Tips: buka di tablet dengan posisi mendatar untuk pengalaman paling mirip dengan robot."
+    "tip": "Tips: izinkan mikrofon untuk mengajak robot bicara, dan buka di tablet mendatar untuk rasa paling mirip robot."
   },
   "About": {
     "metaTitle": "Tentang Taksu Tech",
-    "metaDescription": "Taksu Tech adalah bagian dari Ezra Robotics yang berfokus pada robot layanan dan pendidikan robotika di Bali.",
+    "metaDescription": "Taksu Tech adalah robotika karya anak Bali di bawah Ezra Robotics: robot resepsionis Bali dan robot edukasi.",
     "title": "Tentang Taksu Tech",
     "meaningTitle": "Arti nama kami",
+    "storyTitle": "Cerita kami",
     "parentTitle": "Bagian dari Ezra Robotics",
-    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia. Taksu Tech adalah unitnya yang berfokus di Bali: robot layanan untuk pariwisata dan pelayanan publik, serta pendidikan robotika untuk sekolah.",
+    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia. Taksu Tech adalah unitnya yang berbasis di Bali.",
     "valuesTitle": "Tri Hita Karana dalam cara kami bekerja",
-    "valuesIntro": "Tiga sumber harmoni dalam filosofi Bali, dan apa artinya bagi produk kami.",
+    "valuesIntro": "Tiga sumber harmoni dalam filosofi Bali.",
     "aksaraTitle": "Tentang Aksara Bali di situs ini",
-    "aksaraBody": "Baris Aksara Bali di situs dan kios ini dihasilkan otomatis oleh pustaka transliterasi kami. Untuk papan nama dan konten resmi, hasilnya kami tinjau bersama penutur dan penyuluh Bahasa Bali."
+    "aksaraBody": "Baris Aksara Bali dihasilkan otomatis oleh pustaka transliterasi kami. Untuk papan nama dan konten resmi, hasilnya kami tinjau bersama penutur dan penyuluh Bahasa Bali."
   },
   "Contact": {
     "metaTitle": "Hubungi Taksu Tech",
-    "metaDescription": "Minta penawaran atau jadwalkan demo robot resepsionis dan robot edukasi Taksu Tech di Bali.",
+    "metaDescription": "Minta penawaran atau jadwalkan demo robot resepsionis dan robot edukasi Taksu Tech.",
     "title": "Hubungi kami",
-    "intro": "Ceritakan tempat atau sekolah Anda, dan apa yang ingin dicapai. Kami akan menghubungi kembali untuk menjadwalkan demo.",
+    "intro": "Ceritakan tempat atau sekolah Anda dan apa yang ingin dicapai. Kami akan menghubungi kembali.",
     "form": {
       "name": "Nama",
-      "organization": "Instansi atau usaha",
+      "organization": "Instansi, usaha, atau sekolah",
       "interest": "Saya tertarik dengan",
       "interestOptions": {
         "reception": "Robot resepsionis",
@@ -243,7 +344,7 @@
         "other": "Lainnya"
       },
       "message": "Pesan",
-      "messagePlaceholder": "Contoh: lobi hotel 40 kamar di Ubud, ingin demo Snow bulan depan.",
+      "messagePlaceholder": "Contoh: kantor desa, butuh Taksu Kiosk dengan printer antrean.",
       "sendWhatsapp": "Kirim lewat WhatsApp",
       "sendEmail": "Kirim lewat email",
       "whatsappMissing": "Nomor WhatsApp belum diatur. Gunakan email untuk sementara.",
@@ -260,8 +361,9 @@
     }
   },
   "Footer": {
-    "tagline": "Robot layanan dan pendidikan robotika dari Bali.",
+    "tagline": "Robotika karya anak Bali.",
     "explore": "Jelajahi",
+    "lines": "Lini produk",
     "contact": "Kontak",
     "rights": "© {year} Taksu Tech. Hak cipta dilindungi."
   },

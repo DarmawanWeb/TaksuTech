@@ -1,41 +1,38 @@
 import {
   afterSales,
   competitions,
+  curricula,
   educationLevels,
   learningPath,
+  meetingCount,
   pick,
-  syllabusMeetings,
+  simMissions,
   upgradePath,
-  type LevelSlug,
+  type Locale,
 } from '@taksu/content';
-import { RobotIllustration } from '@taksu/ui/brand/robot-illustration';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';
-import { cn } from '@taksu/ui/lib/utils';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { Fragment } from 'react';
+import { EduAdvantages } from '@/components/education/advantages';
+import { LevelCards } from '@/components/education/level-cards';
 import { Container } from '@/components/shared/container';
 import { CtaBand } from '@/components/shared/cta-band';
+import { ExternalButton } from '@/components/shared/external-button';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { Steps } from '@/components/shared/steps';
 import { Link } from '@/i18n/navigation';
+import { images } from '@/lib/images';
+import { simulatorUrl } from '@/lib/links';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
 import { pageMetadata } from '@/lib/metadata';
 
 type Props = { params: Promise<{ locale: string }> };
 
-const levelBand: Record<LevelSlug, string> = {
-  sd: 'bg-level-sd',
-  smp: 'bg-level-smp',
-  sma: 'bg-level-sma',
-};
-
-const modularParts = ['chassis', 'sensor', 'actuator', 'communication'] as const;
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await localeFromParams(params);
-  const t = await getTranslations({ locale, namespace: 'Education' });
+  const t = await getTranslations({ locale, namespace: 'Edu' });
   return pageMetadata({
     locale,
     path: '/education',
@@ -44,114 +41,139 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+const localize = (steps: typeof learningPath, locale: Locale) =>
+  steps.map((step) => ({
+    id: step.id,
+    title: pick(step.title, locale),
+    body: pick(step.body, locale),
+  }));
+
 export default async function EducationPage({ params }: Props) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations('Education');
-  const localizeSteps = (steps: typeof learningPath) =>
-    steps.map((step) => ({
-      id: step.id,
-      title: pick(step.title, locale),
-      body: pick(step.body, locale),
-    }));
+  const [t, common] = await Promise.all([getTranslations('Edu'), getTranslations('Common')]);
 
   return (
     <>
-      <section className="pt-16 pb-8">
-        <Container>
-          <SectionHeading as="h1" aksara="Robot édukasi" title={t('title')} intro={t('intro')} />
-        </Container>
-      </section>
-
-      <section className="py-10">
-        <Container>
-          <h2 className="sr-only">{t('levelsTitle')}</h2>
-          <ul className="grid gap-6 md:grid-cols-3">
-            {educationLevels.map((level) => (
-              <li
-                key={level.slug}
-                className="border-border bg-surface flex flex-col overflow-hidden rounded-xl border"
-              >
-                <div className={cn('h-2', levelBand[level.slug])} />
-                <div className="flex flex-1 flex-col p-7">
-                  <RobotIllustration kind={level.slug} className="mx-auto max-w-44" />
-                  <Badge variant={level.slug} className="mt-6 self-start">
-                    {level.short}
-                  </Badge>
-                  <h3 className="mt-3 text-2xl font-semibold">{pick(level.robotName, locale)}</h3>
-                  <p className="text-muted-foreground text-sm font-semibold">
-                    {pick(level.name, locale)}, {pick(level.ageRange, locale).toLowerCase()}
-                  </p>
-                  <p className="text-muted-foreground mt-4 flex-1 text-sm leading-relaxed">
-                    {pick(level.summary, locale)}
-                  </p>
-                  <Button asChild variant="outline" className="mt-6 self-start">
-                    <Link href={`/education/${level.slug}`}>
-                      {t('viewLevel', { level: level.short })}
-                    </Link>
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
+      <section className="bg-grid overflow-hidden">
+        <Container className="grid items-center gap-12 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+          <div>
+            <h1 className="text-[clamp(2.4rem,5.4vw,4.2rem)] leading-[1.03] font-bold tracking-tight [font-stretch:82%]">
+              {t('hero.title')}
+            </h1>
+            <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
+              {t('hero.body')}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ExternalButton href={simulatorUrl(locale)} size="lg" newTabLabel={common('newTab')}>
+                {t('hero.ctaSim')}
+              </ExternalButton>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/contact">{t('hero.ctaProposal')}</Link>
+              </Button>
+            </div>
+            <ul className="mt-8 flex gap-2">
+              {educationLevels.map((level) => (
+                <li key={level.slug}>
+                  <Badge variant={level.slug}>{level.short}</Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="border-border mx-auto max-w-md overflow-hidden rounded-xl border shadow-2xl">
+            <Image
+              src={images.posterBelajar}
+              alt={t('hero.imageAlt')}
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1024px) 28rem, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
         </Container>
       </section>
 
       <section className="py-20">
         <Container>
-          <SectionHeading aksara="Alur belajar" title={t('pathTitle')} intro={t('pathIntro')} />
-          <Steps className="mt-12" steps={localizeSteps(learningPath)} />
+          <SectionHeading title={t('advantages.title')} intro={t('advantages.intro')} />
+          <EduAdvantages locale={locale} className="mt-12" />
         </Container>
       </section>
 
       <section className="border-border bg-surface border-y py-20">
         <Container>
-          <SectionHeading
-            aksara="Sistém modular"
-            title={t('modularTitle')}
-            intro={t('modularIntro')}
-          />
-          <p className="mt-10 flex flex-wrap items-center gap-3 text-sm font-semibold">
-            {modularParts.map((part, index) => (
-              <Fragment key={part}>
-                {index > 0 ? (
-                  <span aria-hidden className="text-primary text-xl">
-                    +
-                  </span>
-                ) : null}
-                <span className="border-border bg-background rounded-full border px-4 py-2">
-                  {t(`modular.${part}`)}
-                </span>
-              </Fragment>
-            ))}
-            <span aria-hidden className="text-primary text-xl">
-              =
-            </span>
-            <span className="bg-primary text-primary-foreground rounded-full px-4 py-2">
-              {t('modular.result')}
-            </span>
-          </p>
+          <SectionHeading title={t('levels.title')} intro={t('levels.intro')} />
+          <div className="mt-10">
+            <LevelCards locale={locale} />
+          </div>
         </Container>
       </section>
 
       <section className="py-20">
         <Container>
-          <SectionHeading
-            aksara="Jalur upgrade"
-            title={t('upgradeTitle')}
-            intro={t('upgradeIntro')}
-          />
-          <Steps className="mt-12 lg:grid-cols-3" steps={localizeSteps(upgradePath)} />
+          <SectionHeading title={t('path.title')} intro={t('path.intro')} />
+          <Steps className="mt-12" steps={localize(learningPath, locale)} />
+        </Container>
+      </section>
+
+      <section className="py-10">
+        <Container className="grid gap-6 lg:grid-cols-2">
+          <div className="border-border bg-surface rounded-xl border p-8">
+            <h2 className="text-2xl font-semibold">{t('curriculum.title')}</h2>
+            <p className="text-muted-foreground mt-2">{t('curriculum.intro')}</p>
+            <ul className="divide-border border-border mt-6 divide-y border-y">
+              {educationLevels.map((level) => (
+                <li key={level.slug} className="flex items-center justify-between gap-4 py-3">
+                  <span className="flex items-center gap-3">
+                    <Badge variant={level.slug}>{level.short}</Badge>
+                    <span className="text-sm">
+                      {common('meetings', { count: meetingCount(curricula[level.slug]) })}
+                    </span>
+                  </span>
+                  <Link
+                    href={`/education/curriculum/${level.slug}`}
+                    className="text-primary text-sm font-semibold hover:underline"
+                  >
+                    {t('curriculum.viewLevel', { level: level.short })}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="border-border bg-surface rounded-xl border p-8">
+            <h2 className="text-2xl font-semibold">{t('simulator.title')}</h2>
+            <p className="text-muted-foreground mt-2">{t('simulator.intro')}</p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {simMissions.slice(0, 6).map((mission) => (
+                <li key={mission.id}>
+                  <a
+                    href={simulatorUrl(locale, mission.robot, mission.id)}
+                    target="_blank"
+                    rel="noopener"
+                    className="border-border bg-background hover:border-primary inline-flex rounded-full border px-3 py-1.5 text-sm font-semibold"
+                  >
+                    {pick(mission.title, locale)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <Button asChild variant="outline" className="mt-6">
+              <Link href="/education/simulator">{common('viewAll')}</Link>
+            </Button>
+          </div>
         </Container>
       </section>
 
       <section className="py-20">
+        <Container>
+          <SectionHeading title={t('upgrade.title')} intro={t('upgrade.intro')} />
+          <Steps className="mt-12 lg:grid-cols-3" steps={localize(upgradePath, locale)} />
+        </Container>
+      </section>
+
+      <section className="py-10">
         <Container className="grid gap-14 lg:grid-cols-[1.3fr_0.7fr]">
           <div>
-            <SectionHeading
-              aksara="Purnajual"
-              title={t('supportTitle')}
-              intro={t('supportIntro')}
-            />
+            <SectionHeading title={t('support.title')} intro={t('support.intro')} />
             <dl className="mt-10 grid gap-8 sm:grid-cols-2">
               {afterSales.map((item) => (
                 <div key={item.id}>
@@ -162,12 +184,9 @@ export default async function EducationPage({ params }: Props) {
             </dl>
           </div>
           <aside className="border-border bg-surface self-start rounded-xl border p-8">
-            <h2 className="text-2xl font-semibold">{t('syllabusTitle')}</h2>
+            <h2 className="text-2xl font-semibold">{t('competitions.title')}</h2>
             <p className="text-muted-foreground mt-3">
-              {t('syllabusBody', {
-                meetings: syllabusMeetings,
-                competitions: competitions.join(', '),
-              })}
+              {t('competitions.body', { list: competitions.join(', ') })}
             </p>
             <ul className="mt-6 flex gap-2">
               {competitions.map((competition) => (
@@ -180,7 +199,7 @@ export default async function EducationPage({ params }: Props) {
         </Container>
       </section>
 
-      <CtaBand />
+      <CtaBand ornament={false} />
     </>
   );
 }
