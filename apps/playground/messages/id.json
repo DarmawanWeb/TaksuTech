@@ -1,0 +1,122 @@
+{
+  "Meta": {
+    "title": "Playground coding blok Taksu Tech",
+    "description": "Susun blok kode, jalankan, dan bantu robot mengantar padi ke jineng. Lihat juga kode C++ dan Python yang dihasilkan."
+  },
+  "Playground": {
+    "title": "Antar padi ke jineng",
+    "backToSite": "Kembali ke situs Taksu Tech",
+    "theme": "Ganti tema terang atau gelap",
+    "language": "Bahasa",
+    "levels": "Level",
+    "goal": "Misi",
+    "hint": "Petunjuk",
+    "run": "Jalankan",
+    "stop": "Hentikan",
+    "reset": "Ulang posisi",
+    "restoreStarter": "Kembalikan blok awal",
+    "workspaceLabel": "Area menyusun blok",
+    "stageLabel": "Sawah tempat robot bergerak",
+    "loading": "Menyiapkan blok",
+    "legend": {
+      "robot": "Robot",
+      "water": "Aliran subak",
+      "duck": "Bebek (rintangan)",
+      "jineng": "Jineng (tujuan)"
+    },
+    "track": {
+      "sd": "SD: blok",
+      "smp": "SMP: blok dan kode"
+    },
+    "code": {
+      "title": "Kode program",
+      "blocks": "Blok",
+      "cpp": "C++",
+      "python": "Python",
+      "blocksNote": "Di SD, siswa cukup menyusun blok. Di SMP, program yang sama ditampilkan sebagai kode C++ untuk robot ESP32 dan Python.",
+      "copy": "Salin kode",
+      "copied": "Tersalin",
+      "empty": "Tambahkan blok di bawah blok saat mulai untuk melihat kodenya."
+    },
+    "errors": {
+      "noStart": "Program butuh blok saat mulai. Ambil dari kategori Mulai."
+    },
+    "results": {
+      "success": { "title": "Berhasil!", "body": "Padi sampai di jineng. Suksma, robot!" },
+      "crash": {
+        "title": "Aduh, robotnya menabrak",
+        "body": "Ada bebek atau pematang di depan. Ubah urutan blok, lalu coba lagi."
+      },
+      "incomplete": {
+        "title": "Belum sampai",
+        "body": "Program selesai, tapi robot belum berada di jineng."
+      },
+      "timeout": {
+        "title": "Programnya terus berulang",
+        "body": "Robot berjalan terlalu lama. Periksa blok ulangi dan kondisinya."
+      }
+    },
+    "nextLevel": "Level berikutnya",
+    "tryAgain": "Coba lagi",
+    "close": "Tutup",
+    "completed": "Selesai"
+  },
+  "Levels": {
+    "straight": {
+      "title": "Lurus ke jineng",
+      "goal": "Bawa robot ke jineng di depannya.",
+      "hint": "Ubah angka pada blok maju sampai robot berhenti tepat di jineng."
+    },
+    "turn": {
+      "title": "Belok di pematang",
+      "goal": "Jineng ada di ujung sawah sebelah atas.",
+      "hint": "Maju, belok kiri, lalu maju lagi."
+    },
+    "duck": {
+      "title": "Awas, ada bebek!",
+      "goal": "Antar padi tanpa menabrak bebek.",
+      "hint": "Putari bebek: belok, maju, lalu belok kembali."
+    },
+    "subak": {
+      "title": "Ikuti aliran subak",
+      "goal": "Ikuti aliran air sampai ke jineng.",
+      "hint": "Pakai ulangi sampai tiba. Di dalamnya, jika ada air di depan maju, jika tidak cek kiri atau kanan."
+    }
+  },
+  "Blocks": {
+    "TAKSU_CAT_EVENTS": "Mulai",
+    "TAKSU_CAT_MOTION": "Gerak",
+    "TAKSU_CAT_CONTROL": "Kontrol",
+    "TAKSU_CAT_LOOKS": "Lampu dan suara",
+    "TAKSU_START": "saat mulai",
+    "TAKSU_FORWARD": "maju %1 langkah",
+    "TAKSU_BACKWARD": "mundur %1 langkah",
+    "TAKSU_TURN": "belok %1",
+    "TAKSU_LEFT": "kiri",
+    "TAKSU_RIGHT": "kanan",
+    "TAKSU_WAIT": "tunggu %1 detik",
+    "TAKSU_REPEAT": "ulangi %1 kali",
+    "TAKSU_REPEAT_UNTIL_GOAL": "ulangi sampai tiba di jineng",
+    "TAKSU_IF": "jika %1",
+    "TAKSU_ELSE": "jika tidak",
+    "TAKSU_COND_OBSTACLE": "ada rintangan di depan",
+    "TAKSU_COND_LINE_AHEAD": "ada air di depan",
+    "TAKSU_COND_LINE_LEFT": "ada air di kiri",
+    "TAKSU_COND_LINE_RIGHT": "ada air di kanan",
+    "TAKSU_COND_GOAL": "sudah tiba di jineng",
+    "TAKSU_LED": "nyalakan lampu %1",
+    "TAKSU_RED": "merah",
+    "TAKSU_GREEN": "hijau",
+    "TAKSU_BLUE": "biru",
+    "TAKSU_YELLOW": "kuning",
+    "TAKSU_OFF": "mati",
+    "TAKSU_BEEP": "bunyikan nada %1",
+    "TAKSU_SAY": "katakan %1",
+    "TAKSU_SAY_DEFAULT": "Om Swastiastu!"
+  },
+  "NotFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Alamat ini tidak ada di playground.",
+    "back": "Buka playground"
+  }
+}
