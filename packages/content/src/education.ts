@@ -7,15 +7,20 @@ export interface EducationLevel {
   short: 'SD' | 'SMP' | 'SMA';
   name: Localized;
   ageRange: Localized;
-  robotName: Localized;
+  productName: Localized;
+  tagline: Localized;
   summary: Localized;
+  /** How the kit reaches students: ready-made, modular build, or full integration. */
+  build: { label: Localized; body: Localized };
+  controller: string;
   highlights: Localized[];
-  modules: Localized[];
+  components: { group: Localized; items: Localized[] }[];
   programming: Localized;
-  hardware: { title: Localized; items: Localized[] };
-  simulation: Localized;
-  /** Playground track that demonstrates this level, if any. */
-  playgroundTrack?: 'sd' | 'smp';
+  simulator: Localized;
+  meetings: number;
+  /** Key of the product image in the web app, if one exists. */
+  image?: 'robot-pintar-sd' | 'robot-modular-smp';
+  simTrack?: 'sd' | 'smp';
 }
 
 export const educationLevels: readonly EducationLevel[] = [
@@ -24,133 +29,249 @@ export const educationLevels: readonly EducationLevel[] = [
     short: 'SD',
     name: { id: 'Sekolah Dasar', en: 'Primary school' },
     ageRange: { id: 'Usia 7–12 tahun', en: 'Ages 7–12' },
-    robotName: { id: 'Robot Edukasi', en: 'Education Robot' },
+    productName: { id: 'Robot Pintar', en: 'Robot Pintar (Smart Robot)' },
+    tagline: {
+      id: 'Tebak, susun, jalankan, amati, ulangi',
+      en: 'Predict, build the program, run, observe, repeat',
+    },
     summary: {
-      id: 'Robot mungil yang aman dan berwarna ceria. Anak belajar logika dan urutan dengan menyusun blok kode, lalu melihat robotnya bergerak sungguhan.',
-      en: 'A small, safe, cheerful robot. Children learn logic and sequencing by snapping code blocks together, then watch the real robot move.',
+      id: 'Robot 2WD yang sudah dirakit dan diuji. Anak memprogram lewat blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED, dan berbunyi.',
+      en: 'A 2WD robot that arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, and beep.',
     },
+    build: {
+      label: { id: 'Siap pakai', en: 'Ready to use' },
+      body: {
+        id: 'Tidak perlu menyolder, menyambung kabel motor, atau memilih pin. Semua komponen terpasang kuat di dalam bodi.',
+        en: 'No soldering, motor wiring, or pin choices. Every part is mounted firmly inside the body.',
+      },
+    },
+    controller: 'Arduino Nano',
     highlights: [
-      { id: 'Desain aman tanpa sudut tajam', en: 'Safe design with no sharp edges' },
-      { id: 'Mudah dirakit di kelas', en: 'Easy to assemble in class' },
-      { id: 'Sensor cahaya, sentuh, dan garis', en: 'Light, touch, and line sensors' },
-      { id: 'Motor presisi yang senyap', en: 'Precise, quiet motors' },
+      {
+        id: 'Wajah OLED dengan ekspresi senang, bingung, waspada, dan berhasil',
+        en: 'OLED face with happy, puzzled, alert, and success expressions',
+      },
+      {
+        id: 'Sensor garis kiri-kanan dan sensor jarak depan',
+        en: 'Left and right line sensors plus a front distance sensor',
+      },
+      {
+        id: 'Blok berbahasa anak, unggah program tanpa urusan pin',
+        en: 'Child-friendly blocks; uploading hides pins and ports',
+      },
+      {
+        id: 'Tantangan bertingkat: pemula, menengah, lanjutan',
+        en: 'Tiered challenges: beginner, intermediate, advanced',
+      },
     ],
-    modules: [
-      { id: 'Pengenalan robot', en: 'Meet the robot' },
-      { id: 'Logika dan urutan', en: 'Logic and sequencing' },
-      { id: 'Gerak dan arah', en: 'Motion and direction' },
-      { id: 'Sensor dasar', en: 'Basic sensors' },
-      { id: 'Mengikuti garis', en: 'Line following' },
-      { id: 'Menghindari rintangan', en: 'Obstacle avoidance' },
+    components: [
+      {
+        group: { id: 'Gerak', en: 'Motion' },
+        items: [
+          {
+            id: 'Sasis 2WD, dua motor gearbox, roda, roda penyeimbang',
+            en: '2WD chassis, two gear motors, wheels, caster',
+          },
+          { id: 'Driver motor sesuai arus motor', en: 'Motor driver sized to the motors' },
+        ],
+      },
+      {
+        group: { id: 'Otak dan sensor', en: 'Brain and sensors' },
+        items: [
+          { id: 'Arduino Nano pada carrier terlindung', en: 'Arduino Nano on a protected carrier' },
+          { id: 'Sepasang sensor garis IR', en: 'A pair of IR line sensors' },
+          { id: 'Sensor jarak ultrasonik', en: 'Ultrasonic distance sensor' },
+        ],
+      },
+      {
+        group: { id: 'Umpan balik', en: 'Feedback' },
+        items: [
+          { id: 'OLED 128×64 untuk wajah', en: '128×64 OLED face' },
+          { id: 'Buzzer aktif', en: 'Active buzzer' },
+        ],
+      },
+      {
+        group: { id: 'Daya', en: 'Power' },
+        items: [
+          {
+            id: 'Baterai tertutup dengan proteksi dan charger khusus',
+            en: 'Enclosed battery with protection and a dedicated charger',
+          },
+        ],
+      },
     ],
-    programming: {
-      id: 'Pemrograman blok (drag and drop)',
-      en: 'Block programming (drag and drop)',
+    programming: { id: 'Pemrograman blok berbahasa anak', en: 'Child-friendly block programming' },
+    simulator: {
+      id: 'Semua misi bisa dicoba di simulator sebelum dijalankan di robot.',
+      en: 'Every mission can be tried in the simulator before running it on the robot.',
     },
-    hardware: {
-      title: { id: 'Yang ada di dalam kit', en: 'Inside the kit' },
-      items: [
-        { id: 'Robot rakit dengan cangkang', en: 'Robot with snap-on shell' },
-        { id: 'Baterai isi ulang USB-C', en: 'USB-C rechargeable battery' },
-        { id: 'Matras jalur garis', en: 'Line-track mat' },
-        { id: 'Kartu tantangan', en: 'Challenge cards' },
-      ],
-    },
-    simulation: {
-      id: 'Simulasi interaktif di browser untuk mencoba program sebelum dijalankan di robot.',
-      en: 'Interactive browser simulation to try programs before running them on the robot.',
-    },
-    playgroundTrack: 'sd',
+    meetings: 32,
+    image: 'robot-pintar-sd',
+    simTrack: 'sd',
   },
   {
     slug: 'smp',
     short: 'SMP',
     name: { id: 'Sekolah Menengah Pertama', en: 'Junior high school' },
     ageRange: { id: 'Usia 12–15 tahun', en: 'Ages 12–15' },
-    robotName: { id: 'Robot Modular', en: 'Modular Robot' },
+    productName: { id: 'Robot Modular ESP32 2WD', en: 'ESP32 Modular 2WD Robot' },
+    tagline: {
+      id: 'Dari memakai robot menjadi merancang sistem',
+      en: 'From using a robot to designing a system',
+    },
     summary: {
-      id: 'Sasis terbuka berbasis ESP32 dengan port sensor plug-and-play. Siswa mulai dari blok, lalu melihat kode C++ yang dihasilkan dan menulis kodenya sendiri.',
-      en: 'An open ESP32 chassis with plug-and-play sensor ports. Students start with blocks, read the generated C++, then write their own code.',
+      id: 'Robot 2WD berbasis ESP32 yang dirakit siswa dari modul. Siswa membaca data sensor, menyusun aturan, mengukur hasil, dan menjelaskan keterbatasan rancangannya.',
+      en: 'An ESP32 2WD robot that students assemble from modules. They read sensor data, write rules, measure results, and explain the limits of their design.',
     },
+    build: {
+      label: { id: 'Rakit modular', en: 'Modular build' },
+      body: {
+        id: 'Modul dipasang lewat PCB dan konektor tanpa menyolder. Konfigurasi bisa diubah: line follower, penghindar rintangan, kendali suara, atau stasiun pemantau.',
+        en: 'Modules connect through a PCB and connectors without soldering. Reconfigure it as a line follower, obstacle avoider, sound-controlled robot, or monitoring station.',
+      },
+    },
+    controller: 'ESP32-WROOM',
     highlights: [
-      { id: 'Modular dan bisa dikembangkan', en: 'Modular and expandable' },
-      { id: 'Kompatibel Arduino dan ESP32', en: 'Arduino and ESP32 compatible' },
-      { id: 'Banyak pilihan sensor dan aktuator', en: 'Wide choice of sensors and actuators' },
-      { id: 'Colok, program, baut, kreasikan', en: 'Plug, program, bolt, create' },
+      {
+        id: 'Sensor garis 5-in-1 untuk kendali proporsional',
+        en: '5-in-1 line array for proportional control',
+      },
+      {
+        id: 'Radar jarak: ultrasonik di atas servo',
+        en: 'Distance radar: ultrasonic sensor on a servo',
+      },
+      {
+        id: 'Suhu, kelembapan, dan suara sebagai data',
+        en: 'Temperature, humidity, and sound as data',
+      },
+      { id: 'Blok lalu C++, plus telemetri Wi-Fi', en: 'Blocks, then C++, plus Wi-Fi telemetry' },
     ],
-    modules: [
-      { id: 'Dasar mikrokontroler', en: 'Microcontroller basics' },
-      { id: 'Input dan output', en: 'Input and output' },
-      { id: 'Sensor ultrasonik', en: 'Ultrasonic sensing' },
-      { id: 'Line tracking', en: 'Line tracking' },
-      { id: 'Motor servo', en: 'Servo motors' },
-      { id: 'Robot penghindar rintangan', en: 'Obstacle-avoiding robot' },
-      { id: 'Dasar IoT', en: 'IoT basics' },
+    components: [
+      {
+        group: { id: 'Gerak', en: 'Motion' },
+        items: [
+          {
+            id: 'Sasis aluminium 2WD, dua motor DC dan roda',
+            en: 'Aluminium 2WD chassis, two DC motors and wheels',
+          },
+          { id: 'Driver motor TB6612FNG', en: 'TB6612FNG motor driver' },
+          { id: 'Servo untuk gerak tambahan', en: 'Servo for an extra axis' },
+        ],
+      },
+      {
+        group: { id: 'Otak dan sensor', en: 'Brain and sensors' },
+        items: [
+          {
+            id: 'ESP32-WROOM dengan Wi-Fi dan Bluetooth',
+            en: 'ESP32-WROOM with Wi-Fi and Bluetooth',
+          },
+          { id: 'Sensor garis IR 5-in-1', en: '5-in-1 IR line array' },
+          { id: 'Ultrasonik HC-SR04', en: 'HC-SR04 ultrasonic' },
+          { id: 'Sensor suhu dan kelembapan AHT10', en: 'AHT10 temperature and humidity' },
+          { id: 'Mikrofon', en: 'Microphone' },
+        ],
+      },
+      {
+        group: { id: 'Umpan balik', en: 'Feedback' },
+        items: [
+          { id: 'OLED SSD1306 128×64', en: 'SSD1306 128×64 OLED' },
+          { id: 'Buzzer pasif untuk nada', en: 'Passive buzzer for tones' },
+        ],
+      },
+      {
+        group: { id: 'Integrasi dan daya', en: 'Integration and power' },
+        items: [
+          {
+            id: 'PCB kustom dua lapis dan konektor modular',
+            en: 'Two-layer custom PCB and modular connectors',
+          },
+          {
+            id: 'Baterai 2S 18650, BMS, charger, regulator, sakelar',
+            en: '2S 18650 battery, BMS, charger, regulators, switch',
+          },
+          { id: 'Casing cetak 3D', en: '3D-printed casing' },
+        ],
+      },
     ],
-    programming: { id: 'Blok, lalu C++ (Arduino)', en: 'Blocks, then C++ (Arduino)' },
-    hardware: {
-      title: { id: 'Modul sensor plug-and-play', en: 'Plug-and-play sensor modules' },
-      items: [
-        { id: 'Ultrasonik (jarak)', en: 'Ultrasonic (distance)' },
-        { id: 'Line follower (garis)', en: 'Line follower' },
-        { id: 'Inframerah (halangan)', en: 'Infrared (obstacle)' },
-        { id: 'PIR (gerak)', en: 'PIR (motion)' },
-        { id: 'Suara', en: 'Sound' },
-        { id: 'Cahaya', en: 'Light' },
-        { id: 'Remote IR', en: 'IR remote' },
-        { id: 'Buzzer (alarm)', en: 'Buzzer (alarm)' },
-      ],
+    programming: {
+      id: 'Blok visual, lalu C++ di Arduino IDE',
+      en: 'Visual blocks, then C++ in the Arduino IDE',
     },
-    simulation: {
-      id: 'Uji program dan algoritma di simulator sebelum diunggah ke robot.',
-      en: 'Test programs and algorithms in the simulator before uploading them to the robot.',
+    simulator: {
+      id: 'Simulator meniru sensor garis 5-in-1, radar servo, suhu, dan suara, lengkap dengan pratinjau kode C++.',
+      en: 'The simulator mimics the 5-in-1 line array, servo radar, temperature, and sound, with a C++ code preview.',
     },
-    playgroundTrack: 'smp',
+    meetings: 36,
+    image: 'robot-modular-smp',
+    simTrack: 'smp',
   },
   {
     slug: 'sma',
     short: 'SMA',
     name: { id: 'Sekolah Menengah Atas', en: 'Senior high school' },
     ageRange: { id: 'Usia 15–18 tahun', en: 'Ages 15–18' },
-    robotName: { id: 'Robot Advanced', en: 'Advanced Robot' },
+    productName: { id: 'Robot Advanced ROS 2', en: 'ROS 2 Advanced Robot' },
+    tagline: { id: 'Robotika seperti di industri', en: 'Robotics the way industry does it' },
     summary: {
-      id: 'Rover dengan komputer onboard, kamera, dan lengan robot. Siswa belajar ROS 2, computer vision, pemetaan, dan navigasi otonom seperti di industri.',
-      en: 'A rover with an onboard computer, camera, and robotic arm. Students learn ROS 2, computer vision, mapping, and autonomous navigation the way industry does.',
+      id: 'Rover dengan komputer onboard, kamera, LiDAR, dan lengan robot. Siswa merakit, mengintegrasikan, dan memprogram ROS 2, computer vision, pemetaan, dan navigasi otonom.',
+      en: 'A rover with an onboard computer, camera, LiDAR, and robotic arm. Students assemble, integrate, and program ROS 2, computer vision, mapping, and autonomous navigation.',
     },
+    build: {
+      label: { id: 'Rakit dan integrasi', en: 'Build and integrate' },
+      body: {
+        id: 'Siswa merakit mekanik, menghubungkan komputer dengan mikrokontroler, lalu menyatukan sensor dalam sistem ROS 2.',
+        en: 'Students build the mechanics, connect the computer to the microcontroller, then bring sensors together in ROS 2.',
+      },
+    },
+    controller: 'Raspberry Pi 5 / NVIDIA Jetson Orin Nano Super',
     highlights: [
       {
-        id: 'Komputasi tinggi (Raspberry Pi 5 atau Jetson)',
-        en: 'High compute (Raspberry Pi 5 or Jetson)',
+        id: 'Dua paket komputasi: Raspberry Pi 5 atau Jetson',
+        en: 'Two compute packages: Raspberry Pi 5 or Jetson',
       },
-      { id: 'ROS 2, AI, dan computer vision', en: 'ROS 2, AI, and computer vision' },
-      { id: 'Pemetaan, navigasi, dan IoT', en: 'Mapping, navigation, and IoT' },
-      { id: 'Lengan robot dan pemrograman drone', en: 'Robotic arm and drone programming' },
+      {
+        id: 'ROS 2, OpenCV, dan deteksi objek YOLO',
+        en: 'ROS 2, OpenCV, and YOLO object detection',
+      },
+      { id: 'SLAM, navigasi, dan IoT dengan MQTT', en: 'SLAM, navigation, and IoT with MQTT' },
+      { id: 'Lengan robot dan jalur lomba', en: 'Robotic arm and competition tracks' },
     ],
-    modules: [
-      { id: 'Sistem tertanam (ESP32/STM32)', en: 'Embedded systems (ESP32/STM32)' },
-      { id: 'Raspberry Pi dan Jetson', en: 'Raspberry Pi and Jetson' },
-      { id: 'ROS 2', en: 'ROS 2' },
-      { id: 'Computer vision (OpenCV)', en: 'Computer vision (OpenCV)' },
-      { id: 'Deteksi objek (YOLO)', en: 'Object detection (YOLO)' },
-      { id: 'SLAM, pemetaan, dan navigasi', en: 'SLAM, mapping, and navigation' },
-      { id: 'IoT dengan MQTT', en: 'IoT with MQTT' },
-      { id: 'Lengan robot dan drone', en: 'Robotic arm and drones' },
+    components: [
+      {
+        group: { id: 'Komputasi', en: 'Compute' },
+        items: [
+          { id: 'Paket A: Raspberry Pi 5', en: 'Package A: Raspberry Pi 5' },
+          {
+            id: 'Paket B: NVIDIA Jetson Orin Nano Super',
+            en: 'Package B: NVIDIA Jetson Orin Nano Super',
+          },
+          {
+            id: 'Mikrokontroler ESP32 atau STM32 untuk motor',
+            en: 'ESP32 or STM32 microcontroller for motors',
+          },
+        ],
+      },
+      {
+        group: { id: 'Persepsi', en: 'Perception' },
+        items: [
+          { id: 'Kamera dan LiDAR 2D', en: 'Camera and 2D LiDAR' },
+          { id: 'IMU dan encoder roda', en: 'IMU and wheel encoders' },
+        ],
+      },
+      {
+        group: { id: 'Aktuator', en: 'Actuators' },
+        items: [
+          { id: 'Sasis rover dan motor', en: 'Rover chassis and motors' },
+          { id: 'Lengan robot dengan capit', en: 'Robotic arm with gripper' },
+        ],
+      },
     ],
     programming: { id: 'Python, C++, dan ROS 2', en: 'Python, C++, and ROS 2' },
-    hardware: {
-      title: { id: 'Dua paket komputasi', en: 'Two compute packages' },
-      items: [
-        { id: 'Paket A: Raspberry Pi 5', en: 'Package A: Raspberry Pi 5' },
-        {
-          id: 'Paket B: NVIDIA Jetson Orin Nano Super',
-          en: 'Package B: NVIDIA Jetson Orin Nano Super',
-        },
-      ],
+    simulator: {
+      id: 'Simulasi 3D dan digital twin di Gazebo dan RViz sebelum uji lapangan.',
+      en: '3D simulation and a digital twin in Gazebo and RViz before field tests.',
     },
-    simulation: {
-      id: 'Simulasi 3D dan digital twin di Gazebo dan RViz untuk validasi sebelum uji lapangan.',
-      en: '3D simulation and a digital twin in Gazebo and RViz to validate before field tests.',
-    },
+    meetings: 36,
   },
 ];
 
@@ -158,15 +279,73 @@ export function getLevel(slug: string): EducationLevel | undefined {
   return educationLevels.find((level) => level.slug === slug);
 }
 
+export type EduAdvantageIcon = 'custom' | 'simulator' | 'build' | 'curriculum' | 'kka' | 'support';
+
+/** Why schools choose Taksu Edu. */
+export const eduAdvantages: ReadonlyArray<{
+  id: EduAdvantageIcon;
+  title: Localized;
+  body: Localized;
+}> = [
+  {
+    id: 'simulator',
+    title: { id: 'Coba gratis di simulator', en: 'Try it free in the simulator' },
+    body: {
+      id: 'Guru dan siswa bisa mencoba misi sungguhan di browser sebelum sekolah membeli satu robot pun.',
+      en: 'Teachers and students can try real missions in the browser before the school buys a single robot.',
+    },
+  },
+  {
+    id: 'custom',
+    title: { id: 'Bisa dikustom', en: 'Customisable' },
+    body: {
+      id: 'Pilih modul sensor, komputasi, warna casing, dan logo sekolah. Kurikulum menyesuaikan jam pelajaran Anda.',
+      en: 'Choose sensor modules, compute, casing colour, and school logo. The curriculum fits your timetable.',
+    },
+  },
+  {
+    id: 'build',
+    title: {
+      id: 'Dirakit sendiri di SMP dan SMA',
+      en: 'Built by students in junior and senior high',
+    },
+    body: {
+      id: 'SD siap pakai. SMP dirakit modular tanpa solder. SMA dirakit dan diintegrasikan penuh.',
+      en: 'Primary arrives ready. Junior high builds modularly without soldering. Senior high builds and integrates fully.',
+    },
+  },
+  {
+    id: 'curriculum',
+    title: { id: 'Kurikulum dan panduan lengkap', en: 'Complete curriculum and guides' },
+    body: {
+      id: 'Silabus 32–36 pertemuan per jenjang, rubrik penilaian, panduan guru, panduan perakitan, dan panduan keselamatan.',
+      en: 'A 32–36 meeting syllabus per level, assessment rubrics, teacher guides, assembly guides, and safety guides.',
+    },
+  },
+  {
+    id: 'kka',
+    title: { id: 'Mendukung mapel KKA', en: 'Supports the KKA subject' },
+    body: {
+      id: 'Materi dipetakan ke elemen mata pelajaran pilihan Koding dan Kecerdasan Artifisial (Permendikdasmen 13/2025).',
+      en: 'Lessons map to the elements of the elective Coding and Artificial Intelligence subject (Permendikdasmen 13/2025).',
+    },
+  },
+  {
+    id: 'support',
+    title: { id: 'Didampingi setelah membeli', en: 'Support after purchase' },
+    body: {
+      id: 'Onboarding, pelatihan guru, dukungan teknis, servis, dan pembaruan materi.',
+      en: 'Onboarding, teacher training, technical support, repairs, and content updates.',
+    },
+  },
+];
+
 /** The four-step learning flow shared by every level. */
 export const learningPath: ReadonlyArray<{ id: string; title: Localized; body: Localized }> = [
   {
     id: 'simulate',
     title: { id: 'Simulasi', en: 'Simulate' },
-    body: {
-      id: 'Latihan logika dan konsep di dunia virtual.',
-      en: 'Practise logic and concepts in a virtual world.',
-    },
+    body: { id: 'Latihan logika di simulator.', en: 'Practise logic in the simulator.' },
   },
   {
     id: 'build',
@@ -176,15 +355,15 @@ export const learningPath: ReadonlyArray<{ id: string; title: Localized; body: L
   {
     id: 'program',
     title: { id: 'Program', en: 'Program' },
-    body: {
-      id: 'Menulis kode yang mudah dan menyenangkan.',
-      en: 'Write code that is easy and fun.',
-    },
+    body: { id: 'Blok dulu, lalu kode.', en: 'Blocks first, then code.' },
   },
   {
     id: 'deploy',
     title: { id: 'Deploy', en: 'Deploy' },
-    body: { id: 'Jalankan program di robot sungguhan.', en: 'Run the program on the real robot.' },
+    body: {
+      id: 'Jalankan di robot sungguhan dan ukur hasilnya.',
+      en: 'Run it on the real robot and measure the result.',
+    },
   },
 ];
 
@@ -193,35 +372,41 @@ export const upgradePath: ReadonlyArray<{ id: string; title: Localized; body: Lo
   {
     id: 'starter',
     title: { id: 'Starter kit', en: 'Starter kit' },
-    body: { id: 'Mulai belajar dari dasar.', en: 'Start from the basics.' },
+    body: { id: 'Mulai dari robot SD.', en: 'Start with the primary robot.' },
   },
   {
     id: 'sensors',
     title: { id: 'Tambah sensor', en: 'Add sensors' },
-    body: { id: 'Ultrasonik, LiDAR, kamera, IMU.', en: 'Ultrasonic, LiDAR, camera, IMU.' },
+    body: {
+      id: 'Garis 5-in-1, suhu, suara, servo.',
+      en: '5-in-1 line, temperature, sound, servo.',
+    },
   },
   {
     id: 'compute',
     title: { id: 'Naikkan komputasi', en: 'Upgrade compute' },
     body: {
-      id: 'ESP32, lalu Raspberry Pi, lalu Jetson.',
-      en: 'ESP32, then Raspberry Pi, then Jetson.',
+      id: 'Nano, lalu ESP32, lalu Raspberry Pi atau Jetson.',
+      en: 'Nano, then ESP32, then Raspberry Pi or Jetson.',
     },
   },
   {
     id: 'vision',
     title: { id: 'AI dan vision', en: 'AI and vision' },
-    body: { id: 'YOLO dan kamera kedalaman.', en: 'YOLO and depth cameras.' },
+    body: { id: 'Kamera, YOLO, dan LiDAR.', en: 'Camera, YOLO, and LiDAR.' },
   },
   {
     id: 'integration',
     title: { id: 'Integrasi sistem', en: 'System integration' },
-    body: { id: 'AI, IoT, cloud, dan sistem lanjut.', en: 'AI, IoT, cloud, and advanced systems.' },
+    body: { id: 'ROS 2, IoT, dan dasbor.', en: 'ROS 2, IoT, and dashboards.' },
   },
   {
     id: 'pro',
     title: { id: 'Robot profesional', en: 'Professional robot' },
-    body: { id: 'Siap untuk proyek nyata dan riset.', en: 'Ready for real projects and research.' },
+    body: {
+      id: 'Proyek nyata, riset, dan lomba.',
+      en: 'Real projects, research, and competitions.',
+    },
   },
 ];
 
@@ -229,10 +414,7 @@ export const afterSales: ReadonlyArray<{ id: string; title: Localized; body: Loc
   {
     id: 'onboarding',
     title: { id: 'Onboarding', en: 'Onboarding' },
-    body: {
-      id: 'Panduan awal dan pendampingan penggunaan.',
-      en: 'Getting-started guides and hands-on assistance.',
-    },
+    body: { id: 'Panduan awal dan pendampingan.', en: 'Getting-started guides and hands-on help.' },
   },
   {
     id: 'training',
@@ -252,16 +434,74 @@ export const afterSales: ReadonlyArray<{ id: string; title: Localized; body: Loc
   {
     id: 'repair',
     title: { id: 'Perawatan dan servis', en: 'Maintenance and repair' },
-    body: { id: 'Perbaikan perangkat di Bali.', en: 'Hardware repair in Bali.' },
+    body: { id: 'Perbaikan dan suku cadang.', en: 'Repairs and spare parts.' },
   },
   {
     id: 'updates',
     title: { id: 'Konten baru', en: 'New content' },
-    body: { id: 'Pembaruan modul dan materi pembelajaran.', en: 'Module and curriculum updates.' },
+    body: { id: 'Misi dan materi terus diperbarui.', en: 'Missions and lessons keep coming.' },
+  },
+];
+
+/** Custom-by-request programmes. */
+export const customPrograms: ReadonlyArray<{ id: string; title: Localized; body: Localized }> = [
+  {
+    id: 'school',
+    title: { id: 'Sekolah', en: 'Schools' },
+    body: {
+      id: 'Kit, warna, dan logo sekolah, dengan kurikulum yang menyesuaikan jam pelajaran.',
+      en: 'Kits in school colours and logo, with a curriculum that fits the timetable.',
+    },
+  },
+  {
+    id: 'research',
+    title: { id: 'Riset dan kampus', en: 'Research and campuses' },
+    body: {
+      id: 'Platform robot untuk penelitian, tugas akhir, dan laboratorium.',
+      en: 'Robot platforms for research, theses, and labs.',
+    },
+  },
+  {
+    id: 'industry',
+    title: { id: 'Industri', en: 'Industry' },
+    body: {
+      id: 'Prototipe dan otomasi untuk kebutuhan produksi atau inspeksi.',
+      en: 'Prototypes and automation for production or inspection.',
+    },
+  },
+  {
+    id: 'special',
+    title: { id: 'Proyek khusus', en: 'Special projects' },
+    body: {
+      id: 'Robot lomba, pameran, dan instalasi interaktif.',
+      en: 'Competition robots, exhibitions, and interactive installations.',
+    },
+  },
+];
+
+/** What a school can tailor. */
+export const customOptions: Localized[] = [
+  {
+    id: 'Pilih modul sensor dan aktuator per kelas',
+    en: 'Choose sensor and actuator modules per class',
+  },
+  {
+    id: 'Pilih komputasi: Nano, ESP32, Raspberry Pi, atau Jetson',
+    en: 'Choose compute: Nano, ESP32, Raspberry Pi, or Jetson',
+  },
+  { id: 'Warna casing dan logo sekolah', en: 'Casing colour and school logo' },
+  {
+    id: 'Silabus disesuaikan jumlah pertemuan dan jam pelajaran',
+    en: 'Syllabus fitted to your meetings and lesson length',
+  },
+  {
+    id: 'Paket persiapan lomba WRO, MakeX, dan KRI',
+    en: 'Preparation packs for WRO, MakeX, and KRI',
+  },
+  {
+    id: 'Misi simulator khusus untuk materi sekolah',
+    en: 'Custom simulator missions for your lessons',
   },
 ];
 
 export const competitions = ['WRO', 'MakeX', 'KRI'] as const;
-
-/** Course length offered per level, in meetings. */
-export const syllabusMeetings = '30–36';

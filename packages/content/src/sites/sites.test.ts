@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { robots } from '../robots';
+import { robots } from '../reception';
 import { flattenOrganization, kioskSites } from './index';
 
 describe.each(kioskSites.map((site) => [site.slug, site] as const))(

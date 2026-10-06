@@ -331,6 +331,6 @@ export const kantorLayanan: KioskSite = {
       },
     },
   ],
-  recommendedRobot: 'timo',
+  recommendedRobot: 'kiosk',
   isSample: true,
 };

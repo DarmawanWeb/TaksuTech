@@ -1,5 +1,5 @@
 import type { Localized } from '../i18n';
-import type { RobotSlug } from '../robots';
+import type { RobotSlug } from '../reception';
 
 export type RoomCategory = 'service' | 'office' | 'facility' | 'dining' | 'wellness' | 'leisure';
 

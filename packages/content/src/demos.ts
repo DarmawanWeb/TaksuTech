@@ -1,8 +1,8 @@
 import type { Localized } from './i18n';
-import { robots, type RobotSlug } from './robots';
+import { robots, type RobotSlug } from './reception';
 import { getSite } from './sites';
 
-export type DemoApp = 'kiosk' | 'playground';
+export type DemoApp = 'kiosk' | 'sim';
 
 export interface DemoEntry {
   id: string;
@@ -24,39 +24,46 @@ const kioskDemos: DemoEntry[] = robots.flatMap((robot) => {
       app: 'kiosk' as const,
       path: `/${robot.slug}/${site.slug}`,
       robot: robot.slug,
-      title: {
-        id: `${robot.name} di ${site.name}`,
-        en: `${robot.name} at ${site.name}`,
-      },
+      title: { id: `${robot.name} di ${site.name}`, en: `${robot.name} at ${site.name}` },
       description: site.tagline,
     },
   ];
 });
 
-const playgroundDemos: DemoEntry[] = [
+const extraDemos: DemoEntry[] = [
   {
-    id: 'playground-sd',
-    app: 'playground',
-    path: '?track=sd',
-    track: 'sd',
-    title: { id: 'Coding blok untuk SD', en: 'Block coding for primary school' },
+    id: 'kiosk-studio',
+    app: 'kiosk',
+    path: '/studio',
+    title: { id: 'Studio: rakit kios Anda sendiri', en: 'Studio: build your own kiosk' },
     description: {
-      id: 'Susun blok, jalankan, dan bantu robot mengantar padi ke jineng.',
-      en: 'Snap blocks together, run them, and help the robot bring rice to the jineng.',
+      id: 'Ketik nama instansi, lihat papan Aksara Bali-nya, pilih fitur, lalu buka kios kustom.',
+      en: 'Type your organisation’s name, see its Aksara Bali sign, choose features, and open a custom kiosk.',
     },
   },
   {
-    id: 'playground-smp',
-    app: 'playground',
-    path: '?track=smp',
-    track: 'smp',
-    title: { id: 'Dari blok ke C++ untuk SMP', en: 'From blocks to C++ for junior high' },
+    id: 'sim-sd',
+    app: 'sim',
+    path: '?robot=sd',
+    track: 'sd',
+    title: { id: 'Simulator Robot Pintar SD', en: 'Robot Pintar simulator (primary)' },
     description: {
-      id: 'Program yang sama, lengkap dengan kode C++ dan Python yang dihasilkan otomatis.',
-      en: 'The same programs, with the C++ and Python generated alongside.',
+      id: 'Misi gerak, rintangan, dan ikuti garis dengan blok berbahasa anak.',
+      en: 'Motion, obstacle, and line-following missions with child-friendly blocks.',
+    },
+  },
+  {
+    id: 'sim-smp',
+    app: 'sim',
+    path: '?robot=smp',
+    track: 'smp',
+    title: { id: 'Simulator Robot Modular SMP', en: 'Modular robot simulator (junior high)' },
+    description: {
+      id: 'Sensor garis 5-in-1, radar servo, suhu, suara, dan pratinjau kode C++.',
+      en: '5-in-1 line array, servo radar, temperature, sound, and a C++ code preview.',
     },
   },
 ];
 
-/** Every demo listed on the company profile. New kiosk samples appear here automatically. */
-export const demos: readonly DemoEntry[] = [...kioskDemos, ...playgroundDemos];
+/** Every demo listed on the company profile. New kiosk samples appear automatically. */
+export const demos: readonly DemoEntry[] = [...kioskDemos, ...extraDemos];
