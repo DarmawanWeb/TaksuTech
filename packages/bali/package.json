@@ -1,0 +1,24 @@
+{
+  "name": "@taksu/bali",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Balinese cultural utilities: Aksara Bali transliteration, Balinese digits, and the Pawukon calendar.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@taksu/eslint-config": "workspace:*",
+    "@taksu/typescript-config": "workspace:*",
+    "@types/node": "^22.20.5",
+    "eslint": "^9.39.5",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
+}
