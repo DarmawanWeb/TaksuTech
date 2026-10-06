@@ -1,0 +1,7 @@
+{
+  "extends": "@taksu/typescript-config/base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["src", "vitest.config.ts"]
+}
