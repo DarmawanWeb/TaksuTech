@@ -1,7 +1,7 @@
 name: Docker images
 
 # Continuous delivery: every push to main (and every v* tag) publishes one image per app to
-# GHCR. Set repository variables SITE_URL, KIOSK_URL, PLAYGROUND_URL, WHATSAPP_NUMBER first.
+# GHCR. Set repository variables SITE_URL, KIOSK_URL, SIM_URL, WHATSAPP_NUMBER first.
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [web, kiosk, playground]
+        app: [web, kiosk, sim]
     steps:
       - uses: actions/checkout@v5
       - uses: docker/setup-buildx-action@v3
@@ -47,7 +47,7 @@ jobs:
             APP=${{ matrix.app }}
             NEXT_PUBLIC_SITE_URL=${{ vars.SITE_URL }}
             NEXT_PUBLIC_KIOSK_URL=${{ vars.KIOSK_URL }}
-            NEXT_PUBLIC_PLAYGROUND_URL=${{ vars.PLAYGROUND_URL }}
+            NEXT_PUBLIC_SIM_URL=${{ vars.SIM_URL }}
             NEXT_PUBLIC_WHATSAPP_NUMBER=${{ vars.WHATSAPP_NUMBER }}
           cache-from: type=gha,scope=${{ matrix.app }}
           cache-to: type=gha,mode=max,scope=${{ matrix.app }}

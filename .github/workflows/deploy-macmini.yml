@@ -1,6 +1,6 @@
-name: Deploy (Mac mini)
+name: Deploy to Mac mini
 
-# Runs on the organisation's self-hosted runner on the Mac mini after CI passes on main.
+# Runs on the self-hosted runner on the Mac mini after CI passes on main.
 on:
   workflow_run:
     workflows: [CI]
@@ -16,23 +16,21 @@ jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: [self-hosted, macOS, ARM64]
-    timeout-minutes: 30
-    environment: production
+    timeout-minutes: 60
     env:
-      TAKSU_HOME: ${{ vars.TAKSU_HOME }}
-      # Keeps a PM2 daemon started by this job alive after the job finishes.
-      RUNNER_TRACKING_ID: ''
-      GITHUB_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      APP_DIR: ${{ format('{0}/apps/taksu-tech', '~') }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
-      - name: Sync source to the server folder
+      # Compose bind-mounts config files, so deploy from a stable folder, not the runner workspace.
+      - name: Sync to ~/apps/taksu-tech/app
         run: |
-          target="${TAKSU_HOME:-$HOME/apps/taksu-tech}/source"
-          mkdir -p "$target"
-          rsync -a --delete --exclude .git --exclude node_modules --exclude .next --exclude .turbo ./ "$target/"
+          mkdir -p "$HOME/apps/taksu-tech/app"
+          rsync -a --delete --exclude .git --exclude node_modules --exclude '.next' --exclude '.turbo' \
+            --exclude 'infra/.env' ./ "$HOME/apps/taksu-tech/app/"
 
-      - name: Build, release, and reload PM2
-        run: '"${TAKSU_HOME:-$HOME/apps/taksu-tech}/source/deploy/macmini/deploy.sh"'
+      - name: Deploy with Docker Compose
+        working-directory: ${{ env.HOME }}
+        run: ENV_FILE="$HOME/apps/taksu-tech/.env" "$HOME/apps/taksu-tech/app/infra/deploy.sh"

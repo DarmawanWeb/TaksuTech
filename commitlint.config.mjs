@@ -8,7 +8,9 @@ const config = {
       [
         'web',
         'kiosk',
-        'playground',
+        'sim',
+        'speech',
+        'infra',
         'ui',
         'bali',
         'content',
