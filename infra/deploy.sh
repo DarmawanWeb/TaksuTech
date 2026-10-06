@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Build and (re)start the whole Taksu stack, then smoke-test it through Caddy.
+#   infra/deploy.sh                 # uses infra/.env
+#   ENV_FILE=~/apps/taksu-tech/.env infra/deploy.sh
+# shellcheck source=infra/scripts/common.sh
+source "$(dirname "$0")/scripts/common.sh"
+
+require docker
+require curl
+load_env
+[[ "${MONITORING:-1}" != "1" || -n "${GRAFANA_ADMIN_PASSWORD:-}" ]] || die "Set GRAFANA_ADMIN_PASSWORD (or MONITORING=0)."
+
+# The port must be free, or already held by our own Caddy container.
+if command -v lsof >/dev/null 2>&1 && lsof -nP -iTCP:"$CADDY_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+  if ! docker ps --filter "name=taksu-caddy" --filter "publish=$CADDY_PORT" --format '{{.Names}}' | grep -q caddy; then
+    die "Port $CADDY_PORT is used by another process. Pick another CADDY_PORT."
+  fi
+fi
+
+log "Building images and starting containers"
+compose up -d --build --remove-orphans
+
+probe() {
+  local host="$1" path="$2"
+  for _ in $(seq 1 40); do
+    if curl -fsS -o /dev/null -H "Host: $host" "http://127.0.0.1:$CADDY_PORT$path"; then
+      ok "$host$path"
+      return 0
+    fi
+    sleep 3
+  done
+  die "$host$path did not answer through Caddy"
+}
+
+probe "$WEB_HOST" /id
+probe "$WEB_HOST" /en/education
+probe "$KIOSK_HOST" /api/health
+probe "$SIM_HOST" /id
+
+log "Assistant smoke test"
+curl -fsS -H "Host: $KIOSK_HOST" -H 'content-type: application/json' \
+  -d '{"robot":"kiosk","site":"kantor-layanan","locale":"id","messages":[{"role":"user","content":"Di mana ruang rapat?"}]}' \
+  "http://127.0.0.1:$CADDY_PORT/api/assistant" | head -c 300 && echo
+log "Speech status (models download on the first start, so false at first is normal)"
+curl -fsS -H "Host: $KIOSK_HOST" "http://127.0.0.1:$CADDY_PORT/api/speech/health" && echo
+
+docker image prune -f >/dev/null
+compose ps
+ok "Deployed. Point cloudflared at http://127.0.0.1:$CADDY_PORT (infra/scripts/cloudflare-ingress.sh)."

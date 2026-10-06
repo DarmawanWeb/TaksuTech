@@ -1,38 +1,191 @@
-# Self-hosting: docker compose up --build -d
-# Public URLs are baked into the web build; set them in a .env file next to this one.
-x-build: &build
-  context: .
-  dockerfile: docker/Dockerfile
+# Taksu Tech on the Mac mini: three Next.js apps, the speech service, and Caddy in front.
+# Only Caddy publishes a port, on the loopback, for the existing cloudflared tunnel.
+#   cp infra/.env.example infra/.env && infra/deploy.sh
+name: taksu
+
+x-logging: &logging
+  driver: json-file
+  options: { max-size: '10m', max-file: '3' }
 
 x-public-urls: &public-urls
-  NEXT_PUBLIC_SITE_URL: ${SITE_URL:-http://localhost:3000}
-  NEXT_PUBLIC_KIOSK_URL: ${KIOSK_URL:-http://localhost:3001}
-  NEXT_PUBLIC_PLAYGROUND_URL: ${PLAYGROUND_URL:-http://localhost:3002}
+  NEXT_PUBLIC_SITE_URL: https://${WEB_HOST:-taksu.agus-darmawan.com}
+  NEXT_PUBLIC_KIOSK_URL: https://${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
+  NEXT_PUBLIC_SIM_URL: https://${SIM_HOST:-taksu-sim.agus-darmawan.com}
   NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-}
 
+x-next-app: &next-app
+  restart: unless-stopped
+  networks: [taksu]
+  logging: *logging
+  environment:
+    NODE_ENV: production
+  healthcheck:
+    test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/id']
+    interval: 30s
+    timeout: 5s
+    retries: 3
+    start_period: 20s
+
 services:
-  web:
-    build:
-      <<: *build
-      args: { APP: web, <<: *public-urls }
-    ports: ['3000:3000']
+  caddy:
+    image: caddy:2.10-alpine
     restart: unless-stopped
+    ports:
+      - '127.0.0.1:${CADDY_PORT:-4480}:80'
+    environment:
+      WEB_HOST: ${WEB_HOST:-taksu.agus-darmawan.com}
+      KIOSK_HOST: ${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
+      SIM_HOST: ${SIM_HOST:-taksu-sim.agus-darmawan.com}
+      GRAFANA_HOST: ${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
+    volumes:
+      - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [web, kiosk, sim]
+    networks: [taksu]
+    logging: *logging
+
+  web:
+    <<: *next-app
+    image: taksu/web:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: web, <<: *public-urls }
 
   kiosk:
+    <<: *next-app
+    image: taksu/kiosk:local
     build:
-      <<: *build
+      context: .
+      dockerfile: docker/Dockerfile
       args: { APP: kiosk, <<: *public-urls }
-    ports: ['3001:3000']
     environment:
-      AI_PROVIDER: ${AI_PROVIDER:-offline}
-      AI_MODEL: ${AI_MODEL:-}
+      NODE_ENV: production
+      # Ollama runs natively on macOS (Metal); containers reach it through the host gateway.
+      AI_PROVIDER: ${AI_PROVIDER:-ollama}
+      AI_MODEL: ${AI_MODEL:-taksu-asisten}
+      AI_BASE_URL: ${AI_BASE_URL:-http://host.docker.internal:11434}
       AI_API_KEY: ${AI_API_KEY:-}
-      AI_BASE_URL: ${AI_BASE_URL:-}
-    restart: unless-stopped
+      AI_TIMEOUT_MS: ${AI_TIMEOUT_MS:-20000}
+      AI_KEEP_ALIVE: ${AI_KEEP_ALIVE:-30m}
+      AI_MAX_CONCURRENCY: ${AI_MAX_CONCURRENCY:-2}
+      ASSISTANT_RATE_LIMIT: ${ASSISTANT_RATE_LIMIT:-12}
+      SPEECH_URL: http://speech:8000
+    extra_hosts: ['host.docker.internal:host-gateway']
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/api/health']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
 
-  playground:
+  sim:
+    <<: *next-app
+    image: taksu/sim:local
     build:
-      <<: *build
-      args: { APP: playground, <<: *public-urls }
-    ports: ['3002:3000']
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: sim, <<: *public-urls }
+
+  speech:
+    image: taksu/speech:local
+    build: services/speech
     restart: unless-stopped
+    environment:
+      WHISPER_MODEL: ${WHISPER_MODEL:-small}
+      WHISPER_COMPUTE: ${WHISPER_COMPUTE:-int8}
+      WHISPER_CPU_THREADS: ${WHISPER_CPU_THREADS:-4}
+      PIPER_VOICE_ID: ${PIPER_VOICE_ID:-id_ID-news_tts-medium}
+      PIPER_VOICE_EN: ${PIPER_VOICE_EN:-en_US-lessac-medium}
+    volumes:
+      - speech_models:/models
+    mem_limit: 2g
+    networks: [taksu]
+    logging: *logging
+
+  # ---- monitoring (docker compose --profile monitoring ...) ----
+  prometheus:
+    image: prom/prometheus:v3.3.0
+    profiles: [monitoring]
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+    volumes:
+      - ./infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    extra_hosts: ['host.docker.internal:host-gateway']
+    networks: [taksu]
+    logging: *logging
+
+  blackbox:
+    image: prom/blackbox-exporter:v0.26.0
+    profiles: [monitoring]
+    restart: unless-stopped
+    command: ['--config.file=/etc/blackbox/blackbox.yml']
+    volumes:
+      - ./infra/monitoring/blackbox.yml:/etc/blackbox/blackbox.yml:ro
+    extra_hosts: ['host.docker.internal:host-gateway']
+    networks: [taksu]
+    logging: *logging
+
+  loki:
+    image: grafana/loki:3.4.2
+    profiles: [monitoring]
+    restart: unless-stopped
+    command: ['-config.file=/etc/loki/loki.yml']
+    volumes:
+      - ./infra/monitoring/loki.yml:/etc/loki/loki.yml:ro
+      - loki_data:/loki
+    networks: [taksu]
+    logging: *logging
+
+  alloy:
+    image: grafana/alloy:v1.8.0
+    profiles: [monitoring]
+    restart: unless-stopped
+    command:
+      [
+        'run',
+        '--server.http.listen-addr=0.0.0.0:12345',
+        '--storage.path=/var/lib/alloy',
+        '/etc/alloy/config.alloy',
+      ]
+    volumes:
+      - ./infra/monitoring/config.alloy:/etc/alloy/config.alloy:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on: [loki]
+    networks: [taksu]
+    logging: *logging
+
+  grafana:
+    image: grafana/grafana:11.6.0
+    profiles: [monitoring]
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in infra/.env}
+      GF_SERVER_ROOT_URL: https://${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+      GF_ANALYTICS_REPORTING_ENABLED: 'false'
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/taksu-overview.json
+    volumes:
+      - ./infra/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    depends_on: [prometheus, loki]
+    networks: [taksu]
+    logging: *logging
+
+networks:
+  taksu:
+
+volumes:
+  caddy_data:
+  caddy_config:
+  speech_models:
+  prometheus_data:
+  loki_data:
+  grafana_data:
