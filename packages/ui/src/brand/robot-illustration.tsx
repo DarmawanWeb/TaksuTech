@@ -1,7 +1,7 @@
 import type * as React from 'react';
 import { cn } from '../lib/utils';
 
-export type RobotIllustrationKind = 'timo' | 'snow' | 'sd' | 'smp' | 'sma';
+export type RobotIllustrationKind = 'timo' | 'snow' | 'kiosk' | 'sd' | 'smp' | 'sma';
 
 export interface RobotIllustrationProps extends Omit<React.ComponentProps<'svg'>, 'children'> {
   kind: RobotIllustrationKind;
@@ -18,11 +18,13 @@ const body = { fill: 'var(--illus-body)', ...line };
  */
 export function RobotIllustration({ kind, label, className, ...props }: RobotIllustrationProps) {
   const a11y = label ? { role: 'img' as const, 'aria-label': label } : { 'aria-hidden': true };
-  const viewBox = kind === 'timo' || kind === 'snow' ? '0 0 240 300' : '0 0 240 200';
+  const viewBox =
+    kind === 'timo' || kind === 'snow' || kind === 'kiosk' ? '0 0 240 300' : '0 0 240 200';
   return (
     <svg viewBox={viewBox} className={cn('h-auto w-full', className)} {...a11y} {...props}>
       {kind === 'timo' ? <Timo /> : null}
       {kind === 'snow' ? <Snow /> : null}
+      {kind === 'kiosk' ? <Kiosk /> : null}
       {kind === 'sd' ? <PrimaryBot /> : null}
       {kind === 'smp' ? <ModularBot /> : null}
       {kind === 'sma' ? <AdvancedBot /> : null}
@@ -169,6 +171,43 @@ function AdvancedBot() {
         strokeLinecap="round"
       />
       <circle cx="190" cy="62" r="6" fill="var(--accent)" />
+    </g>
+  );
+}
+
+/** Taksu Kiosk: a carved totem with a split-gate crown, portrait screen, and thermal printer. */
+function Kiosk() {
+  return (
+    <g>
+      <Shadow cy={290} rx={70} />
+      <path d="M62 284h116v-14H62z" {...body} />
+      <path d="M78 62h84v208H78z" {...body} />
+      <g fill="var(--accent)" {...line}>
+        <path d="M78 62V40h8v-8h8v-8h10v38z" />
+        <path d="M162 62V40h-8v-8h-8v-8h-10v38z" />
+      </g>
+      <circle cx="120" cy="44" r="5" fill="var(--accent)" {...line} />
+      <rect x="88" y="74" width="64" height="104" rx="6" fill="#120f2a" {...line} />
+      <path
+        d="M104 116q8-10 16 0M120 116q8-10 16 0"
+        fill="none"
+        stroke="#e6bd52"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M110 138q10 8 20 0"
+        fill="none"
+        stroke="#e6bd52"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <rect x="96" y="160" width="48" height="8" rx="4" fill="#26338a" />
+      <rect x="96" y="196" width="48" height="6" rx="3" fill="var(--illus-line)" />
+      <path d="M102 202h36v22l-6-4-6 4-6-4-6 4-6-4-6 4z" fill="#ffffff" {...line} />
+      {[88, 110, 132, 154].map((x) => (
+        <circle key={x} cx={x} cy="248" r="5" fill="none" stroke="var(--accent)" strokeWidth="3" />
+      ))}
     </g>
   );
 }

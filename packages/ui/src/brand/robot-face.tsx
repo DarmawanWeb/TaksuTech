@@ -2,22 +2,35 @@ import type * as React from 'react';
 import { cn } from '../lib/utils';
 
 export type RobotMood = 'idle' | 'listening' | 'thinking' | 'speaking' | 'happy';
-export type RobotFaceVariant = 'timo' | 'snow';
+export type RobotFaceVariant = 'timo' | 'snow' | 'kiosk';
 
 export interface RobotFaceProps extends Omit<React.ComponentProps<'svg'>, 'children'> {
   variant: RobotFaceVariant;
   mood?: RobotMood;
   /** Accessible description, e.g. "Timo is listening". */
   label: string;
+  /**
+   * Live speech loudness (0–1). When given while speaking, the mouth follows the audio
+   * instead of the generic talking animation, so the robot lip-syncs to real TTS.
+   */
+  level?: number;
 }
 
 const palettes: Record<RobotFaceVariant, { screen: string; eye: string; cheek: string }> = {
   timo: { screen: '#0b1030', eye: '#7fe0ff', cheek: 'transparent' },
   snow: { screen: '#f7f8fc', eye: '#1b2253', cheek: '#ff9fb2' },
+  kiosk: { screen: '#120f2a', eye: '#e6bd52', cheek: 'transparent' },
 };
 
 /** Animated robot face shared by the website hero and the kiosk. */
-export function RobotFace({ variant, mood = 'idle', label, className, ...props }: RobotFaceProps) {
+export function RobotFace({
+  variant,
+  mood = 'idle',
+  label,
+  level,
+  className,
+  ...props
+}: RobotFaceProps) {
   const palette = palettes[variant];
   const eyeY = mood === 'thinking' ? 50 : 58;
   const happy = mood === 'happy';
@@ -38,6 +51,19 @@ export function RobotFace({ variant, mood = 'idle', label, className, ...props }
         rx={variant === 'snow' ? 61 : 28}
         fill={palette.screen}
       />
+      {variant === 'kiosk' ? (
+        <rect
+          x="10"
+          y="10"
+          width="180"
+          height="110"
+          rx="22"
+          fill="none"
+          stroke="#e6bd52"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+        />
+      ) : null}
 
       {mood === 'listening' ? (
         <circle
@@ -55,6 +81,12 @@ export function RobotFace({ variant, mood = 'idle', label, className, ...props }
         <g fill="none" stroke={palette.eye} strokeWidth="7" strokeLinecap="round">
           <path d="M52 64q18-22 36 0" />
           <path d="M112 64q18-22 36 0" />
+        </g>
+      ) : variant === 'kiosk' ? (
+        <g className="robot-eye" fill={palette.eye}>
+          <path d={`M50 ${eyeY}q18-24 36 0q-18 14-36 0z`} />
+          <path d={`M114 ${eyeY}q18-24 36 0q-18 14-36 0z`} />
+          <circle cx="100" cy="22" r="4" />
         </g>
       ) : variant === 'snow' ? (
         <g className="robot-eye">
@@ -83,6 +115,15 @@ export function RobotFace({ variant, mood = 'idle', label, className, ...props }
           <circle cx="100" cy="100" r="4" opacity="0.75" />
           <circle cx="114" cy="100" r="4" />
         </g>
+      ) : mood === 'speaking' && level !== undefined ? (
+        <rect
+          x="86"
+          y={99 - Math.max(2, Math.min(1, level) * 12)}
+          width="28"
+          height={Math.max(4, Math.min(1, level) * 24)}
+          rx="7"
+          fill={palette.eye}
+        />
       ) : mood === 'speaking' ? (
         <rect
           className="robot-mouth-talking"

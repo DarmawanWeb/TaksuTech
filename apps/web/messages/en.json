@@ -1,13 +1,13 @@
 {
   "Meta": {
-    "title": "Taksu Tech: receptionist and education robots in Bali",
-    "description": "Taksu Tech, part of Ezra Robotics, brings the Timo and Snow receptionist robots to hotels and public-service offices in Bali, plus education robot kits for primary to senior high school."
+    "title": "Taksu Tech: robotics built by young Balinese engineers",
+    "description": "Taksu Tech, part of Ezra Robotics: Bali receptionist robots (Snow, Timo, and Taksu Kiosk) and education robot kits for primary to senior high, with a simulator and a full curriculum."
   },
   "Nav": {
     "skip": "Skip to content",
     "home": "Home",
-    "robots": "Receptionist robots",
-    "education": "Education robots",
+    "education": "Education",
+    "reception": "Reception",
     "demo": "Demo",
     "about": "About",
     "contact": "Contact",
@@ -24,218 +24,319 @@
     "viewDetails": "View details",
     "backHome": "Back to home",
     "newTab": "(opens in a new tab)",
-    "partOf": "Part of Ezra Robotics"
+    "partOf": "Part of Ezra Robotics",
+    "meetings": "{count} meetings",
+    "minutes": "{count} minutes",
+    "viewAll": "View all"
   },
   "Home": {
     "hero": {
-      "title": "Robots that greet your guests with Om Swastiastu",
-      "body": "Taksu Tech brings the Timo and Snow receptionist robots to hotels and public-service offices in Bali, plus education robot kits from primary to senior high school.",
-      "primaryCta": "See receptionist robots",
-      "secondaryCta": "Explore education robots",
-      "faceLabel": "Timo’s face, greeting a visitor",
-      "panelCaption": "A preview of our receptionist robot screen",
-      "writerLabel": "Write your name in Aksara Bali",
-      "writerPlaceholder": "Type a name, for example Made",
-      "writerHint": "A plain e reads like the e in Ketut. Type é for the sound in Madé.",
-      "writerEmpty": "Your Aksara Bali will appear here"
+      "title": "Robotics built by young Balinese engineers",
+      "body": "We design receptionist robots that understand Balinese custom and education robot kits for schools across Indonesia. Taksu Tech is part of Ezra Robotics.",
+      "ctaReception": "Bali receptionist robots",
+      "ctaEducation": "Education robots",
+      "imageAlt": "Snow and Timo Bali Edition robots in traditional dress in a hotel lobby",
+      "caption": "Snow and Timo Bali Edition, modified by Taksu Tech"
     },
-    "lines": {
+    "divisions": {
       "title": "Two product lines",
-      "intro": "One team in Bali that installs, teaches, and maintains the robots.",
-      "commercialTitle": "Receptionist robots",
-      "commercialBody": "Timo and Snow, Taksu Tech receptionist robots configured for Bali: queues, directions, organisation charts, an AI assistant, and Aksara Bali on screen.",
-      "commercialCta": "Meet Timo and Snow",
-      "educationTitle": "Education robots",
-      "educationBody": "Kits for primary, junior, and senior high school that grow with students: from blocks, to C++, to ROS 2 and AI.",
-      "educationCta": "See the levels"
+      "intro": "One team in Bali that designs, installs, teaches, and maintains the robots.",
+      "receptionCta": "See the reception line",
+      "educationCta": "See the education line",
+      "educationImageAlt": "Education robots for primary, junior, and senior high on a classroom desk"
+    },
+    "proof": {
+      "title": "Why Taksu Tech",
+      "items": {
+        "aksara": {
+          "title": "Follows the Aksara Bali regulation",
+          "body": "Screens and printouts show Aksara Bali above Latin, following Bali Governor Regulation 80/2018."
+        },
+        "kiosk": {
+          "title": "A kiosk built in Bali",
+          "body": "Taksu Kiosk is assembled in Bali with high local content and a built-in printer."
+        },
+        "kka": {
+          "title": "Aligned with the KKA subject",
+          "body": "The education curriculum maps to the elective Coding and Artificial Intelligence subject."
+        },
+        "simulator": {
+          "title": "Free to try in the browser",
+          "body": "The robot simulator and kiosk demos work without signing in."
+        }
+      }
     },
     "demos": {
       "title": "Try it in your browser",
-      "intro": "Every demo runs in the browser with no sign-in. Open one on a tablet to get a feel for the robot screen.",
+      "intro": "Talk to a receptionist robot, print a visitor pass, or program a robot in the simulator.",
       "kiosk": "Robot kiosk",
-      "playground": "Block coding",
+      "sim": "Simulator",
       "launcher": "Pick your own robot and sample venue"
     },
-    "useCases": {
-      "title": "Where our robots work",
-      "intro": "Every venue moves guests differently. We tailor the robot’s content and routes to each one.",
-      "demoLink": "See an example"
-    },
-    "bali": {
-      "title": "Made for Bali",
-      "intro": "We write our own kiosk software, so local customs can be part of the robot.",
-      "todayLabel": "Today in the Pawukon calendar",
-      "holyToday": "Rahajeng rahina {name}",
-      "nextHoly": "{name} in {days, plural, one {# day} other {# days}}",
-      "items": {
-        "aksara": {
-          "title": "Aksara Bali on screen",
-          "body": "Venue names appear in Balinese script above the Latin, the way signs are written across Bali."
-        },
-        "pawukon": {
-          "title": "Knows the Pawukon calendar",
-          "body": "The robot knows when it is Galungan, Kuningan, or Saraswati and adjusts its greetings and information."
-        },
-        "salam": {
-          "title": "Greetings and etiquette",
-          "body": "Om Swastiastu to open, suksma to say thanks, and customs tips for international guests."
-        },
-        "language": {
-          "title": "Two languages, ready for more",
-          "body": "Indonesian and English are built in. Other languages for visitors can be added per venue."
-        }
-      }
-    },
-    "path": {
-      "title": "How students learn at every level",
-      "intro": "Students always try a program in the simulator first, then run it on the real robot."
+    "values": {
+      "title": "Tri Hita Karana in how we work",
+      "intro": "Three sources of harmony in Balinese philosophy, and what they mean for our products."
     },
     "cta": {
       "title": "Want to see the robots in person?",
-      "body": "We can visit your venue in Bali for a demo and a site survey.",
+      "body": "We can visit your office, hotel, or school for a demo.",
       "button": "Book a demo"
     }
   },
-  "Robots": {
-    "metaTitle": "Timo and Snow receptionist robots",
-    "metaDescription": "Taksu Tech receptionist robots for hotels, resorts, and public-service offices in Bali: queues, directions, an AI assistant, and Aksara Bali.",
-    "title": "Receptionist robots for Bali",
-    "intro": "Timo and Snow come with kiosk software we build ourselves. We tailor the content, languages, and routes to your venue.",
-    "specsTitle": "Key specifications",
-    "idealFor": "Ideal for",
+  "Reception": {
+    "metaTitle": "Bali receptionist robots: Snow, Timo, and Taksu Kiosk",
+    "metaDescription": "Bali Edition receptionist robots and a Bali-built kiosk that support Aksara Bali per Regulation 80/2018, print tickets and visitor passes, and hold a spoken conversation.",
+    "subnav": {
+      "label": "Reception navigation",
+      "overview": "Overview",
+      "compare": "Compare",
+      "aksara": "Aksara Bali"
+    },
+    "hero": {
+      "title": "Receptionist robots that greet with Om Swastiastu",
+      "body": "Snow and Timo Bali Edition in traditional dress, plus our own Taksu Kiosk. All of them show Aksara Bali, print tickets and visitor passes, and talk with guests in Indonesian or English.",
+      "imageAlt": "Snow and Timo Bali Edition in Balinese traditional dress",
+      "ctaDemo": "Talk to a robot",
+      "ctaCompare": "Compare all three"
+    },
+    "robots": {
+      "title": "Choose your receptionist",
+      "intro": "Two mobile robots we modify for Bali, and one static kiosk we build ourselves.",
+      "mobile": "Mobile",
+      "static": "Static",
+      "escort": "Walks guests to rooms",
+      "printerBuiltIn": "Built-in printer",
+      "printerStation": "Printer station",
+      "price": "{tier, select, low {Most affordable} mid {Mid-range} other {Premium}}"
+    },
+    "features": {
+      "title": "One kiosk app for all three",
+      "intro": "We build the Taksu kiosk software ourselves, so it adapts to your services."
+    },
+    "voice": {
+      "title": "Holds a conversation",
+      "body": "Speech recognition and the robot’s voice run on your own server, not an outside service. Guests just ask; the robot answers from your venue’s data.",
+      "cta": "Try talking to it"
+    },
+    "bali": {
+      "title": "Knows the Balinese calendar",
+      "intro": "The robot’s greetings and notices follow the holy days of the Pawukon calendar.",
+      "todayLabel": "Today in the Pawukon calendar",
+      "holyToday": "Rahajeng rahina {name}",
+      "nextHoly": "{name} in {days, plural, one {# day} other {# days}}"
+    },
+    "aksara": {
+      "metaTitle": "Aksara Bali on robots and kiosks",
+      "metaDescription": "Digital signage and printouts with Aksara Bali above Latin, following Bali Governor Regulation 80/2018 and Bali Regional Regulation 1/2018.",
+      "title": "Aksara Bali on every screen and printout",
+      "intro": "Our kiosks write venue names in Aksara Bali above the Latin script, following Bali’s signage rules.",
+      "ruleTitle": "The regulation",
+      "signageTitle": "Try the digital sign",
+      "signageLabel": "Organisation or business name",
+      "signagePlaceholder": "For example Kantor Désa Taman Sari",
+      "signageHint": "A plain e reads as pepet; type é for the taling sound.",
+      "writerLabel": "Write a guest’s name in Aksara Bali",
+      "writerPlaceholder": "Type a name, for example Made",
+      "writerHint": "The kiosk uses this on printed visitor passes.",
+      "writerEmpty": "Your Aksara Bali will appear here",
+      "reviewNote": "Automatic transliteration. For official signs we review it with Balinese language advisers."
+    },
+    "useCases": {
+      "title": "Where our robots work",
+      "intro": "Every venue moves guests differently. We tailor the content and the robot.",
+      "demoLink": "See an example",
+      "recommended": "Recommended"
+    },
     "process": {
-      "title": "How we install a robot",
-      "intro": "From the site survey to a robot at work in your lobby.",
-      "steps": {
-        "survey": {
-          "title": "Site survey",
-          "body": "We map guest flow, service points, and the network at your venue."
-        },
-        "mapping": {
-          "title": "Mapping and content",
-          "body": "The robot maps the building. We load information, queues, and the organisation chart."
-        },
-        "install": {
-          "title": "Installation and training",
-          "body": "Staff learn to operate the robot and update its content themselves."
-        },
-        "support": {
-          "title": "Ongoing support",
-          "body": "Maintenance and software updates from our team in Bali."
-        }
-      }
+      "title": "How we install",
+      "intro": "From the site survey to a robot at work in your lobby."
     },
-    "software": {
-      "title": "Taksu kiosk software",
-      "intro": "Runs on both robots’ 13.3-inch touchscreens. Turn each feature on to suit the venue.",
-      "items": {
-        "queue": {
-          "title": "Queue tickets",
-          "body": "Numbers per service, with an estimated waiting time."
-        },
-        "wayfinding": {
-          "title": "Directions",
-          "body": "A floor map, the shortest route, and a robot that walks you there."
-        },
-        "organization": {
-          "title": "Organisation chart",
-          "body": "Who is responsible for what, and which room they are in."
-        },
-        "assistant": {
-          "title": "AI assistant",
-          "body": "Answers questions from your venue’s own information, out loud."
-        },
-        "aksara": {
-          "title": "Aksara Bali",
-          "body": "Writes a guest’s name in Balinese script, a keepsake visitors love."
-        },
-        "calendar": {
-          "title": "Holy-day calendar",
-          "body": "Greetings and notices that follow the Pawukon holy days."
-        }
-      }
+    "compare": {
+      "metaTitle": "Compare Snow, Timo, and Taksu Kiosk",
+      "metaDescription": "Snow and Timo Bali Edition compared with the Bali-built Taksu Kiosk: mobility, printing, local content, and price.",
+      "title": "Compare all three",
+      "intro": "Mobile robots for a lively experience, a static kiosk for affordable printing and high local content.",
+      "feature": "Feature",
+      "note": "The Taksu Kiosk TKDN percentage follows official certification."
     },
-    "softwareCta": "Try the kiosk demo"
+    "robot": {
+      "back": "All receptionists",
+      "specs": "Specifications",
+      "features": "What {name} can do",
+      "balinese": "Balinese touches",
+      "idealFor": "Ideal for",
+      "localContent": "Local content",
+      "demoTitle": "Try {name} in your browser",
+      "demoBody": "This demo shows {name}’s screen at {site}: greetings, conversation, queues, the guest book, and printing.",
+      "sourceTitle": "About these specifications",
+      "compareCta": "Compare with the others"
+    }
   },
-  "RobotDetail": {
-    "back": "All receptionist robots",
-    "specs": "Specifications",
-    "features": "What {name} can do",
-    "idealFor": "Ideal for",
-    "demoTitle": "Try {name} in your browser",
-    "demoBody": "This demo shows {name}’s screen at {site}: greetings, queue tickets, directions, and the AI assistant.",
-    "sourceTitle": "About these specifications"
-  },
-  "Education": {
-    "metaTitle": "Education robots for primary to senior high school",
-    "metaDescription": "Modular education robot kits by Taksu Tech: block programming for primary school, Arduino and ESP32 for junior high, ROS 2 and AI for senior high.",
-    "title": "Education robots from primary to senior high",
-    "intro": "One ecosystem that grows with students. Robots, modules, and lessons connect across levels, so schools never start from zero when students move up.",
-    "levelsTitle": "Choose a level",
-    "viewLevel": "View {level}",
-    "pathTitle": "Learning flow",
-    "pathIntro": "The same four steps at every level.",
-    "modularTitle": "Modular system",
-    "modularIntro": "Plug, program, or bolt on parts to match each student’s idea.",
-    "modular": {
-      "chassis": "Base chassis",
-      "sensor": "Sensor modules",
-      "actuator": "Actuator modules",
-      "communication": "Communication modules",
-      "result": "A robot of the student’s own design"
+  "Edu": {
+    "metaTitle": "Taksu Edu: education robots for primary to senior high",
+    "metaDescription": "Customisable education robot kits, a free simulator, a 32–36 meeting curriculum, and teacher guides. Aligned with the Coding and AI subject.",
+    "subnav": {
+      "label": "Education navigation",
+      "overview": "Overview",
+      "curriculum": "Curriculum",
+      "guides": "Guides",
+      "simulator": "Simulator",
+      "custom": "Custom"
     },
-    "upgradeTitle": "Upgrade path",
-    "upgradeIntro": "Every platform is compatible and can be upgraded at any time.",
-    "supportTitle": "After-sales and support",
-    "supportIntro": "We stay with schools after the purchase, not only at delivery.",
-    "syllabusTitle": "Curriculum and competitions",
-    "syllabusBody": "A {meetings}-meeting syllabus per level, prepared for the {competitions} competition tracks."
-  },
-  "Level": {
-    "back": "All levels",
-    "highlights": "Highlights",
-    "modules": "Lessons",
-    "programming": "How students program",
-    "simulation": "Simulation",
-    "demoTitle": "Try the simulator",
-    "demoBody": "Snap blocks together, run them, and watch the robot move in the simulator. The same program can be uploaded to the robot.",
-    "demoSoon": "A 3D simulation demo for this level is in preparation. Contact us for a live demo.",
-    "otherLevels": "Other levels"
+    "hero": {
+      "title": "Learn robotics from simulation to a real robot",
+      "body": "Customisable robot kits for primary, junior, and senior high, with a free simulator, a meeting-by-meeting curriculum, and teacher guides.",
+      "ctaSim": "Try the free simulator",
+      "ctaProposal": "Request a school proposal",
+      "imageAlt": "Poster of the learning flow from simulation to a real robot"
+    },
+    "advantages": {
+      "title": "Why schools choose Taksu Edu",
+      "intro": "We do not just sell kits. We prepare how to teach with them."
+    },
+    "levels": {
+      "title": "One path from primary to senior high",
+      "intro": "Robots, modules, and lessons connect across levels.",
+      "view": "View {level}",
+      "imageAlt": "Education robots for primary, junior, and senior high"
+    },
+    "path": {
+      "title": "The flow of every meeting",
+      "intro": "Students try in the simulator first, then run it on the real robot."
+    },
+    "upgrade": {
+      "title": "Upgrade path",
+      "intro": "Every platform is compatible and upgradeable at any time."
+    },
+    "support": {
+      "title": "After-sales and support",
+      "intro": "We stay with schools after the purchase."
+    },
+    "competitions": {
+      "title": "Competition ready",
+      "body": "Advanced material is prepared for the {list} tracks."
+    },
+    "level": {
+      "back": "All levels",
+      "build": "How it is built",
+      "controller": "Controller",
+      "highlights": "Highlights",
+      "components": "Inside the kit",
+      "programming": "How students program",
+      "simulator": "Simulator",
+      "curriculumCta": "See the {count}-meeting curriculum",
+      "simCta": "Try it in the simulator",
+      "guides": "Guides for this level",
+      "otherLevels": "Other levels",
+      "imageAlt": "Product illustration of {name}"
+    },
+    "curriculum": {
+      "metaTitle": "Meeting-by-meeting robotics curriculum",
+      "metaDescription": "A 32-meeting primary robotics syllabus and 36-meeting junior and senior high syllabi, with goals, evidence of learning, rubrics, and KKA mapping.",
+      "title": "Curriculum and syllabus",
+      "intro": "Every level has modules, a per-meeting plan, evidence of learning, and an assessment rubric.",
+      "perMeeting": "{count} minutes per meeting",
+      "goal": "Goal",
+      "concepts": "Concepts",
+      "evidence": "Evidence of learning",
+      "simMission": "Simulator mission",
+      "meeting": "Meeting {n}",
+      "kkaTitle": "KKA subject mapping",
+      "kkaIntro": "The Coding and Artificial Intelligence elements this level strengthens most.",
+      "tiersTitle": "Challenge tiers in primary",
+      "tiersIntro": "Variations of activity on the same robot, not three different devices.",
+      "approach": "Approach",
+      "target": "Target",
+      "rubricTitle": "Assessment rubric",
+      "rubricIntro": "Assess the process, not only whether the first program worked.",
+      "criteria": "Criteria",
+      "viewLevel": "{level} syllabus",
+      "guideCta": "Teacher guide"
+    },
+    "guides": {
+      "metaTitle": "Teacher, assembly, and safety guides",
+      "metaDescription": "Guides to start the robot, run a class, assemble the junior high robot, stay safe with batteries, and use the simulator.",
+      "title": "Guides",
+      "intro": "Practical steps for teachers, students, and schools.",
+      "audience": {
+        "teacher": "Teachers",
+        "student": "Students",
+        "school": "Schools"
+      },
+      "back": "All guides",
+      "read": "Read the guide",
+      "note": "Note"
+    },
+    "simulator": {
+      "metaTitle": "Free robot simulator",
+      "metaDescription": "Try primary and junior high robot missions in the browser: motion, line sensors, distance, servo radar, temperature, and sound, with a C++ preview.",
+      "title": "A free simulation platform",
+      "intro": "Schools can try every mission before buying a robot. The simulator mimics the real robot’s sensors and outputs.",
+      "cta": "Open the simulator",
+      "featuresTitle": "What it simulates",
+      "features": {
+        "physics": "Left and right wheel motion, speed, and turning",
+        "line": "Two-point (primary) and 5-in-1 (junior high) line sensors",
+        "distance": "Ultrasonic distance, including on a servo",
+        "outputs": "OLED face, OLED text, and buzzer",
+        "env": "Temperature, humidity, and claps for junior high",
+        "code": "A C++ preview of the blocks you build"
+      },
+      "missionsTitle": "Missions that follow the curriculum",
+      "module": "Module {n}",
+      "robotSd": "Robot Pintar (primary)",
+      "robotSmp": "Modular robot (junior high)",
+      "trialTitle": "Trial access for schools",
+      "trialBody": "Want the simulator in your computer lab with custom missions? We set up access and a short training.",
+      "trialCta": "Request trial access"
+    },
+    "custom": {
+      "metaTitle": "Custom education robots",
+      "metaDescription": "Robot kits and curricula tailored for schools, campuses, research, industry, and special projects.",
+      "title": "Custom to your needs",
+      "intro": "From casing colours to curricula and research robots, we help build it.",
+      "programsTitle": "Custom programmes",
+      "optionsTitle": "What you can tailor",
+      "pcbAlt": "Custom PCB for the modular robot",
+      "pcbCaption": "Our custom PCB: where sensors, driver, power, and the ESP32 come together.",
+      "cta": "Discuss your needs"
+    }
   },
   "Demo": {
-    "metaTitle": "Receptionist robot and block coding demos",
-    "metaDescription": "Try the Timo and Snow receptionist robot screens and the block-coding playground for primary and junior high school, right in your browser.",
+    "metaTitle": "Receptionist robot and simulator demos",
+    "metaDescription": "Talk to a Bali receptionist robot, print a visitor pass, build your own kiosk in Studio, or program a robot in the simulator.",
     "title": "Demo",
-    "intro": "Every demo runs in the browser. The venue data inside is sample data and can be replaced with your own.",
+    "intro": "Every demo runs in the browser. The venue data inside is sample data.",
     "kioskTitle": "Receptionist robots",
-    "kioskIntro": "The robot’s touchscreen with queue tickets, directions, the organisation chart, and the AI assistant.",
-    "playgroundTitle": "Education robots",
-    "playgroundIntro": "Block coding as in class, with a robot simulator set in a rice field.",
+    "kioskIntro": "The robot touchscreen with voice conversation, queues, the guest book, directions, and printing.",
+    "simTitle": "Education simulator",
+    "simIntro": "Program Robot Pintar and the junior high modular robot with blocks.",
     "launcherTitle": "Build your own demo",
-    "launcherBody": "Pick the robot and sample venue you want to try, then open it full screen.",
+    "launcherBody": "Pick the robot and sample venue, then open it full screen.",
     "launcherCta": "Open the kiosk launcher",
-    "tip": "Tip: open it on a tablet in landscape for the closest feel to the robot."
+    "tip": "Tip: allow the microphone to talk to the robot, and use a tablet in landscape for the closest feel."
   },
   "About": {
     "metaTitle": "About Taksu Tech",
-    "metaDescription": "Taksu Tech is part of Ezra Robotics and focuses on service robots and robotics education in Bali.",
+    "metaDescription": "Taksu Tech is robotics built by young Balinese engineers under Ezra Robotics: Bali receptionist robots and education robots.",
     "title": "About Taksu Tech",
     "meaningTitle": "What our name means",
+    "storyTitle": "Our story",
     "parentTitle": "Part of Ezra Robotics",
-    "parentBody": "Ezra Robotics integrates robots for inspection, safety, and commercial services across Indonesia. Taksu Tech is its Bali-focused unit: service robots for tourism and public services, and robotics education for schools.",
+    "parentBody": "Ezra Robotics integrates robots for inspection, safety, and commercial services across Indonesia. Taksu Tech is its Bali-based unit.",
     "valuesTitle": "Tri Hita Karana in how we work",
-    "valuesIntro": "Three sources of harmony in Balinese philosophy, and what they mean for our products.",
+    "valuesIntro": "Three sources of harmony in Balinese philosophy.",
     "aksaraTitle": "About the Aksara Bali on this site",
-    "aksaraBody": "The Balinese script on this site and kiosk is generated by our transliteration library. For official signage and content, we review the output with Balinese speakers and language advisers."
+    "aksaraBody": "The Balinese script is generated by our transliteration library. For official signage and content, we review it with Balinese speakers and language advisers."
   },
   "Contact": {
     "metaTitle": "Contact Taksu Tech",
-    "metaDescription": "Request a quote or book a demo of Taksu Tech receptionist and education robots in Bali.",
+    "metaDescription": "Request a quote or book a demo of Taksu Tech receptionist and education robots.",
     "title": "Contact us",
-    "intro": "Tell us about your venue or school and what you want to achieve. We will get back to you to schedule a demo.",
+    "intro": "Tell us about your venue or school and what you want to achieve. We will get back to you.",
     "form": {
       "name": "Name",
-      "organization": "Organisation or business",
+      "organization": "Organisation, business, or school",
       "interest": "I am interested in",
       "interestOptions": {
         "reception": "Receptionist robots",
@@ -243,7 +344,7 @@
         "other": "Something else"
       },
       "message": "Message",
-      "messagePlaceholder": "For example: a 40-room hotel lobby in Ubud, would like a Snow demo next month.",
+      "messagePlaceholder": "For example: a village office that needs Taksu Kiosk with a queue printer.",
       "sendWhatsapp": "Send via WhatsApp",
       "sendEmail": "Send via email",
       "whatsappMissing": "No WhatsApp number is configured yet. Please use email for now.",
@@ -260,8 +361,9 @@
     }
   },
   "Footer": {
-    "tagline": "Service robots and robotics education from Bali.",
+    "tagline": "Robotics built by young Balinese engineers.",
     "explore": "Explore",
+    "lines": "Product lines",
     "contact": "Contact",
     "rights": "© {year} Taksu Tech. All rights reserved."
   },
