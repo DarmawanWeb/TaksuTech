@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds
+.next/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# turbo
+.turbo/
+
+# env
+.env
+.env*.local
+
+# misc
+.DS_Store
+*.log
+.vercel
+
+# generated at build time from node_modules/blockly/media
+apps/playground/public/blockly-media/
