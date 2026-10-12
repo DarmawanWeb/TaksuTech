@@ -18,24 +18,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({ locale, path: '/', description: t('description') });
 }
 
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: brand.name,
-  url: siteConfig.url,
-  email: brand.contact.email,
-  areaServed: 'Indonesia',
-  parentOrganization: { '@type': 'Organization', name: brand.parent.name },
-};
+function organizationJsonLd(description: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: brand.name,
+    description,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/icon.svg`,
+    email: brand.contact.email,
+    address: { '@type': 'PostalAddress', addressRegion: 'Bali', addressCountry: 'ID' },
+    areaServed: 'Indonesia',
+    parentOrganization: { '@type': 'Organization', name: brand.parent.name },
+  };
+}
 
 export default async function HomePage({ params }: Props) {
   const locale = await resolveLocale(params);
+  const meta = await getTranslations('Meta');
   return (
     <>
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD built from our own constant data
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd(meta('description'))),
+        }}
       />
       <Hero />
       <ProductLines locale={locale} />
