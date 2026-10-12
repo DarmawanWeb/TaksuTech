@@ -72,7 +72,7 @@ export default async function LevelCurriculumPage({ params }: Props) {
             </span>
           </div>
           <h1 className="mt-3 text-5xl font-bold tracking-tight [font-stretch:85%]">
-            {t('viewLevel', { level: pick(level.productName, locale) })}
+            {t('viewLevel', { level: level.kit })}
           </h1>
         </Container>
       </section>

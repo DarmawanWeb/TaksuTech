@@ -14,6 +14,6 @@ export const images = {
 } as const;
 
 export const levelImages = {
-  'robot-pintar-sd': robotPintarSd,
-  'robot-modular-smp': robotModularSmp,
+  'kit-sd': robotPintarSd,
+  'kit-smp': robotModularSmp,
 } as const;

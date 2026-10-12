@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({
     locale,
     path: `/education/${level.slug}`,
-    title: `${pick(level.productName, locale)} ${level.short}`,
+    title: `${level.kit} ${level.short}`,
     description: pick(level.summary, locale),
   });
 }
@@ -43,7 +43,7 @@ export default async function LevelPage({ params }: Props) {
   const [t, common] = await Promise.all([getTranslations('Edu.level'), getTranslations('Common')]);
   const levelGuides = guides.filter((guide) => guide.levels.includes(level.slug));
   const others = educationLevels.filter((entry) => entry.slug !== level.slug);
-  const name = pick(level.productName, locale);
+  const name = level.kit;
 
   return (
     <>
@@ -191,7 +191,7 @@ export default async function LevelPage({ params }: Props) {
               {others.map((other) => (
                 <Button key={other.slug} asChild variant="outline" size="sm">
                   <Link href={`/education/${other.slug}`}>
-                    {other.short}: {pick(other.productName, locale)}
+                    {other.short}: {other.kit}
                   </Link>
                 </Button>
               ))}

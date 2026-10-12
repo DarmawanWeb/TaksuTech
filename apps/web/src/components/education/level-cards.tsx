@@ -27,7 +27,7 @@ export async function LevelCards({ locale }: { locale: Locale }) {
           {level.image ? (
             <Image
               src={levelImages[level.image]}
-              alt={pick(level.productName, locale)}
+              alt={level.kit}
               placeholder="blur"
               sizes="(min-width: 768px) 33vw, 100vw"
               className="aspect-[4/3] h-auto w-full object-cover"
@@ -42,7 +42,7 @@ export async function LevelCards({ locale }: { locale: Locale }) {
               <Badge variant={level.slug}>{level.short}</Badge>
               <Badge variant="outline">{pick(level.build.label, locale)}</Badge>
             </div>
-            <h3 className="mt-3 text-2xl font-semibold">{pick(level.productName, locale)}</h3>
+            <h3 className="mt-3 text-2xl font-semibold">{level.kit}</h3>
             <p className="text-muted-foreground text-sm font-semibold">
               {pick(level.ageRange, locale)}, {common('meetings', { count: level.meetings })}
             </p>

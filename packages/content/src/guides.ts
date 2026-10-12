@@ -21,8 +21,8 @@ const l = (id: string, en: string): Localized => ({ id, en });
 
 export const guides: readonly Guide[] = [
   {
-    slug: 'memulai-robot-pintar',
-    title: l('Memulai Robot Pintar SD', 'Getting started with Robot Pintar'),
+    slug: 'memulai-sd-v1',
+    title: l('Memulai SD v1', 'Getting started with SD v1'),
     summary: l(
       'Dari kotak sampai program pertama berjalan di robot.',
       'From the box to the first program running on the robot.',
@@ -171,7 +171,7 @@ export const guides: readonly Guide[] = [
   },
   {
     slug: 'rakit-robot-smp',
-    title: l('Merakit Robot Modular SMP', 'Assembling the junior high modular robot'),
+    title: l('Merakit SMP v1', 'Assembling SMP v1'),
     summary: l(
       'Langkah rakit tanpa solder, dari sasis sampai uji daya pertama.',
       'A no-solder build, from chassis to first power test.',
@@ -369,7 +369,7 @@ export const guides: readonly Guide[] = [
   },
   {
     slug: 'persiapan-sma-ros2',
-    title: l('Persiapan Robot Advanced SMA', 'Setting up the senior high advanced robot'),
+    title: l('Persiapan SMA v1', 'Setting up SMA v1'),
     summary: l(
       'Menyiapkan komputer onboard, jaringan, dan ROS 2.',
       'Preparing the onboard computer, network, and ROS 2.',

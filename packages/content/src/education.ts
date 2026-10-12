@@ -2,12 +2,19 @@ import type { Localized } from './i18n';
 
 export type LevelSlug = 'sd' | 'smp' | 'sma';
 
+/** pilot: ready for school pilot programmes; development: still being engineered. */
+export type KitStatus = 'pilot' | 'development';
+
 export interface EducationLevel {
   slug: LevelSlug;
   short: 'SD' | 'SMP' | 'SMA';
   name: Localized;
   ageRange: Localized;
-  productName: Localized;
+  grades: Localized;
+  /** Product name shown on the box, e.g. "SD v1". Placeholder until the line is named. */
+  kit: string;
+  version: string;
+  status: KitStatus;
   tagline: Localized;
   summary: Localized;
   /** How the kit reaches students: ready-made, modular build, or full integration. */
@@ -19,7 +26,7 @@ export interface EducationLevel {
   simulator: Localized;
   meetings: number;
   /** Key of the product image in the web app, if one exists. */
-  image?: 'robot-pintar-sd' | 'robot-modular-smp';
+  image?: 'kit-sd' | 'kit-smp';
   simTrack?: 'sd' | 'smp';
 }
 
@@ -29,7 +36,10 @@ export const educationLevels: readonly EducationLevel[] = [
     short: 'SD',
     name: { id: 'Sekolah Dasar', en: 'Primary school' },
     ageRange: { id: 'Usia 7–12 tahun', en: 'Ages 7–12' },
-    productName: { id: 'Robot Pintar', en: 'Robot Pintar (Smart Robot)' },
+    grades: { id: 'Kelas 1–6', en: 'Grades 1–6' },
+    kit: 'SD v1',
+    version: 'v1',
+    status: 'pilot',
     tagline: {
       id: 'Tebak, susun, jalankan, amati, ulangi',
       en: 'Predict, build the program, run, observe, repeat',
@@ -106,7 +116,7 @@ export const educationLevels: readonly EducationLevel[] = [
       en: 'Every mission can be tried in the simulator before running it on the robot.',
     },
     meetings: 32,
-    image: 'robot-pintar-sd',
+    image: 'kit-sd',
     simTrack: 'sd',
   },
   {
@@ -114,7 +124,10 @@ export const educationLevels: readonly EducationLevel[] = [
     short: 'SMP',
     name: { id: 'Sekolah Menengah Pertama', en: 'Junior high school' },
     ageRange: { id: 'Usia 12–15 tahun', en: 'Ages 12–15' },
-    productName: { id: 'Robot Modular ESP32 2WD', en: 'ESP32 Modular 2WD Robot' },
+    grades: { id: 'Kelas 7–9', en: 'Grades 7–9' },
+    kit: 'SMP v1',
+    version: 'v1',
+    status: 'pilot',
     tagline: {
       id: 'Dari memakai robot menjadi merancang sistem',
       en: 'From using a robot to designing a system',
@@ -202,7 +215,7 @@ export const educationLevels: readonly EducationLevel[] = [
       en: 'The simulator mimics the 5-in-1 line array, servo radar, temperature, and sound, with a C++ code preview.',
     },
     meetings: 36,
-    image: 'robot-modular-smp',
+    image: 'kit-smp',
     simTrack: 'smp',
   },
   {
@@ -210,7 +223,10 @@ export const educationLevels: readonly EducationLevel[] = [
     short: 'SMA',
     name: { id: 'Sekolah Menengah Atas', en: 'Senior high school' },
     ageRange: { id: 'Usia 15–18 tahun', en: 'Ages 15–18' },
-    productName: { id: 'Robot Advanced ROS 2', en: 'ROS 2 Advanced Robot' },
+    grades: { id: 'Kelas 10–12', en: 'Grades 10–12' },
+    kit: 'SMA v1',
+    version: 'v1',
+    status: 'development',
     tagline: { id: 'Robotika seperti di industri', en: 'Robotics the way industry does it' },
     summary: {
       id: 'Rover dengan komputer onboard, kamera, LiDAR, dan lengan robot. Siswa merakit, mengintegrasikan, dan memprogram ROS 2, computer vision, pemetaan, dan navigasi otonom.',
@@ -281,7 +297,7 @@ export function getLevel(slug: string): EducationLevel | undefined {
 
 export type EduAdvantageIcon = 'custom' | 'simulator' | 'build' | 'curriculum' | 'kka' | 'support';
 
-/** Why schools choose Taksu Edu. */
+/** Why schools choose the education line. */
 export const eduAdvantages: ReadonlyArray<{
   id: EduAdvantageIcon;
   title: Localized;

@@ -48,7 +48,7 @@ export default async function CurriculumPage({ params }: Props) {
                   <Badge variant={level.slug} className="self-start">
                     {level.short}
                   </Badge>
-                  <h2 className="mt-3 text-2xl font-semibold">{pick(level.productName, locale)}</h2>
+                  <h2 className="mt-3 text-2xl font-semibold">{level.kit}</h2>
                   <p className="text-muted-foreground text-sm">
                     {common('meetings', { count: meetingCount(curriculum) })},{' '}
                     {t('perMeeting', { count: curriculum.minutesPerMeeting })}

@@ -46,7 +46,7 @@ const extraDemos: DemoEntry[] = [
     app: 'sim',
     path: '?robot=sd',
     track: 'sd',
-    title: { id: 'Simulator Robot Pintar SD', en: 'Robot Pintar simulator (primary)' },
+    title: { id: 'Simulator SD v1', en: 'SD v1 simulator' },
     description: {
       id: 'Misi gerak, rintangan, dan ikuti garis dengan blok berbahasa anak.',
       en: 'Motion, obstacle, and line-following missions with child-friendly blocks.',
@@ -57,7 +57,7 @@ const extraDemos: DemoEntry[] = [
     app: 'sim',
     path: '?robot=smp',
     track: 'smp',
-    title: { id: 'Simulator Robot Modular SMP', en: 'Modular robot simulator (junior high)' },
+    title: { id: 'Simulator SMP v1', en: 'SMP v1 simulator' },
     description: {
       id: 'Sensor garis 5-in-1, radar servo, suhu, suara, dan pratinjau kode C++.',
       en: '5-in-1 line array, servo radar, temperature, sound, and a C++ code preview.',
