@@ -31,7 +31,7 @@ jobs:
       - run: pnpm commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
   check:
-    name: Format, lint, typecheck, test, build
+    name: Biome, typecheck, test, build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -41,6 +41,6 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm turbo run lint typecheck test
+      - run: pnpm biome ci .
+      - run: pnpm turbo run typecheck test
       - run: pnpm turbo run build
