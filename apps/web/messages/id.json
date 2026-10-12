@@ -62,24 +62,25 @@
       "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
       "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
     },
-    "proof": {
-      "title": "Kenapa Taksu Tech",
-      "items": {
-        "aksara": {
-          "title": "Sesuai Pergub Aksara Bali",
-          "body": "Layar dan cetakan menampilkan Aksara Bali di atas huruf Latin, sesuai Pergub Bali 80/2018."
+    "inHouse": {
+      "title": "Yang kami kerjakan sendiri",
+      "intro": "Karena dikerjakan sendiri, produk bisa kami sesuaikan untuk tiap tempat dan kami perbaiki tanpa menunggu pemasok.",
+      "areas": {
+        "hardware": {
+          "title": "Elektronik dan mekanik",
+          "body": "PCB kustom dan rangka modular untuk kit edukasi, serta modifikasi bodi robot resepsionis."
         },
-        "kiosk": {
-          "title": "Kios buatan Bali",
-          "body": "Taksu Kiosk dirakit di Bali dengan komponen lokal tinggi dan printer bawaan."
+        "software": {
+          "title": "Perangkat lunak",
+          "body": "Aplikasi kios dengan percakapan suara, antrean, dan cetak, serta simulator robot yang berjalan di browser."
         },
-        "kka": {
-          "title": "Selaras mapel KKA",
-          "body": "Kurikulum edukasi dipetakan ke mapel pilihan Koding dan Kecerdasan Artifisial."
+        "content": {
+          "title": "Materi dan konten",
+          "body": "Kurikulum per pertemuan, panduan guru, serta naskah dan bahasa yang dipakai robot di tiap tempat."
         },
-        "simulator": {
-          "title": "Coba gratis di browser",
-          "body": "Simulator robot dan demo kios bisa dicoba tanpa login."
+        "service": {
+          "title": "Layanan",
+          "body": "Survei lokasi, pemasangan, pelatihan staf dan guru, servis, dan suku cadang."
         }
       }
     },

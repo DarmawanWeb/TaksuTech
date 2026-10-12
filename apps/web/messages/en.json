@@ -62,24 +62,25 @@
       "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
       "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
     },
-    "proof": {
-      "title": "Why Taksu Tech",
-      "items": {
-        "aksara": {
-          "title": "Follows the Aksara Bali regulation",
-          "body": "Screens and printouts show Aksara Bali above Latin, following Bali Governor Regulation 80/2018."
+    "inHouse": {
+      "title": "What we make ourselves",
+      "intro": "Because we make these ourselves, we can adapt the products to each place and fix them without waiting on a supplier.",
+      "areas": {
+        "hardware": {
+          "title": "Electronics and mechanics",
+          "body": "Custom PCBs and modular frames for the education kits, and body modifications for the receptionist robots."
         },
-        "kiosk": {
-          "title": "A kiosk built in Bali",
-          "body": "Taksu Kiosk is assembled in Bali with high local content and a built-in printer."
+        "software": {
+          "title": "Software",
+          "body": "The kiosk app with voice conversation, queues, and printing, and a robot simulator that runs in the browser."
         },
-        "kka": {
-          "title": "Aligned with the KKA subject",
-          "body": "The education curriculum maps to the elective Coding and Artificial Intelligence subject."
+        "content": {
+          "title": "Lessons and content",
+          "body": "Meeting-by-meeting curricula, teacher guides, and the scripts and languages each robot uses on site."
         },
-        "simulator": {
-          "title": "Free to try in the browser",
-          "body": "The robot simulator and kiosk demos work without signing in."
+        "service": {
+          "title": "Service",
+          "body": "Site surveys, installation, staff and teacher training, servicing, and spare parts."
         }
       }
     },
