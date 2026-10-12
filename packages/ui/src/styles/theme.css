@@ -1,5 +1,6 @@
 /*
- * Taksu Tech design tokens (Tailwind CSS v4).
+ * Reception line theme, used by the receptionist robot site and the kiosk. The company
+ * profile has its own plain theme (company.css), and schools get edu.css.
  *
  * Palette, named after Balinese materials:
  *   Paras   #eef0eb  carved volcanic stone, light background
@@ -58,30 +59,6 @@
   --illus-line: #0e1335;
   --poleng-dark: #070a20;
   --poleng-light: #d9dcec;
-}
-
-/*
- * The education line has its own identity (no Balinese ornament, see edu.css). When a
- * Taksu page shows it, for example the company profile's product cards, wrap that card
- * in data-brand="edu" so it keeps the edu colours in both themes.
- */
-[data-brand='edu'] {
-  --background: #ffffff;
-  --foreground: #000000;
-  --surface: #ffffff;
-  --surface-muted: #eef1ec;
-  --primary: #ff5a1f;
-  --primary-foreground: #000000;
-  --accent: #ffd23f;
-  --accent-soft: #fff4c4;
-  --muted-foreground: #4b524e;
-  --border: #000000;
-  --ring: #000000;
-  --illus-body: #ffffff;
-  --illus-line: #000000;
-  --level-sd: #4cc3ff;
-  --level-smp: #19b48a;
-  --level-sma: #a797ff;
 }
 
 @theme inline {

@@ -1,7 +1,8 @@
 /*
  * Shared foundation for every site: semantic colour tokens mapped into Tailwind, radii,
- * motion, base element styles, and the robot face utilities. A brand theme (theme.css for
- * Taksu, edu.css for the education line) sets the token values and fonts on top.
+ * motion, base element styles, and the robot face utilities. A brand theme sets the token
+ * values and fonts on top: company.css for the company profile, theme.css for the reception
+ * line, edu.css for schools.
  */
 
 @custom-variant dark (&:where(.dark, .dark *));
