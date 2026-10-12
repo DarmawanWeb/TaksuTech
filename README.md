@@ -2,7 +2,7 @@
 
 Monorepo **Taksu Tech** di bawah **Ezra Robotics**: satu company profile dan dua lini produk, masing-masing dengan situs sendiri karena pasarnya berbeda.
 
-- **Company profile** (`apps/web`): siapa kami, dua lini produk, demo, kontak. Nuansa Bali.
+- **Company profile** (`apps/web`): siapa kami, dua lini produk, demo, kontak. Umum dan polos, tanpa ornamen Bali; nuansa Bali hanya ada di situs robot resepsionis.
 - **NAMA Robot** (`apps/robot`, khusus Bali): Snow dan Timo **Edisi Bali** plus **Taksu Kiosk** buatan sendiri. Aksara Bali sesuai Pergub Bali 80/2018, cetak tiket dan kartu tamu, bisa diajak bicara.
 - **NAMA Edu** (`apps/edu`, untuk sekolah di seluruh Indonesia, tanpa unsur Bali): kit **SD v1**, **SMP v1**, **SMA v1**, upgrade pack dan aksesori, simulator gratis, kurikulum per pertemuan dengan video dan silabus yang bisa dicetak, panduan, dan blog.
 
@@ -23,7 +23,7 @@ taksu-tech/
 ├── apps/{web,edu,robot,kiosk,sim}
 ├── packages/
 │   ├── content/      # satu sumber data: nama brand, robot, kit, upgrade pack, kurikulum, panduan, misi
-│   ├── ui/           # komponen bersama + dua tema: theme.css (Taksu, Bali) dan edu.css (edukasi)
+│   ├── ui/           # komponen bersama + tiga tema: company.css, theme.css (resepsionis, Bali), edu.css
 │   ├── bali/         # transliterasi Aksara Bali + kalender Pawukon
 │   └── typescript-config
 ├── services/speech/  # Python, diuji dengan engine palsu
@@ -96,6 +96,7 @@ Saat pertama start, service speech mengunduh model Whisper `small` dan suara Pip
 
 ## Catatan konten
 
+- Company profile memakai tema `company.css`: putih dan petrol (#12343b) dengan cyan (#1fb0cf) hanya untuk aksen kecil, font Hubot Sans untuk judul dan Mona Sans untuk teks. Logonya huruf T dari jalur PCB yang berbelok 45° dan berakhir di via. Foto hero adalah papan kendali SMP v1 dengan keterangan bagian; koordinatnya ada di `apps/web/src/components/home/board-figure.tsx`.
 - Situs edukasi sengaja tanpa unsur Bali (pasarnya nasional): tema `edu.css`, font Archivo dan Atkinson Hyperlegible, simulator ikut tema yang sama.
 - Kit diberi nama per jenjang dan versi (`SD v1`, `SMP v1`, `SMA v1`). Upgrade pack dan aksesori ditandai "Segera" sampai siap dijual.
 - Materi publik hanya memakai label Taksu Tech, tanpa nama OEM.

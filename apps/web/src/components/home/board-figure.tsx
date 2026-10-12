@@ -7,7 +7,10 @@ import { images } from '@/lib/images';
 const W = 900;
 const H = 506;
 
-/** Parts of the SMP v1 board, each pointed at with a numbered balloon like an assembly drawing. */
+/**
+ * Parts of the SMP v1 board, each pointed at with a numbered balloon like an assembly drawing.
+ * The photo stays light in dark mode, so the callouts keep the light theme's petrol.
+ */
 const parts = [
   { id: 'esp32', target: [300, 236], balloon: [128, 84] },
   { id: 'connectors', target: [452, 338], balloon: [432, 452] },

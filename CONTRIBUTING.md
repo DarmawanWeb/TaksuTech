@@ -21,7 +21,7 @@
 - **Taksu Tech label only.** Public copy, specs, and images name products as Taksu Tech products. Do not add OEM brand names or model codes.
 - **No Balinese ornament on the education line.** `apps/edu` and `apps/sim` use `edu.css`; Aksara Bali, poleng, and the Taksu palette stay on the company and robot sites.
 - **Aksara Bali.** Use `<AksaraText latin="..." />`; write `é` for the taling sound. Official signage text must be reviewed by a Balinese language adviser.
-- **Design tokens, not hex codes.** Use the semantic Tailwind tokens from `packages/ui/src/styles/theme.css` or `edu.css` (`bg-surface`, `text-primary`, `bg-level-sd`, ...). Raw colors are only allowed inside illustrations.
+- **Design tokens, not hex codes.** Use the semantic Tailwind tokens from `packages/ui/src/styles/company.css` (company profile), `theme.css` (reception line), or `edu.css` (`bg-surface`, `text-primary`, `bg-level-sd`, ...). Raw colors are only allowed inside illustrations and overlays on photos.
 - **Accessibility.** Keyboard focus must stay visible, motion must respect `prefers-reduced-motion`, and decorative Aksara lines use `decorative` so screen readers skip them.
 
 ## Adding a blog post (`apps/edu`)
