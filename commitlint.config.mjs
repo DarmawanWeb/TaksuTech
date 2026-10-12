@@ -7,6 +7,8 @@ const config = {
       'always',
       [
         'web',
+        'edu',
+        'robot',
         'kiosk',
         'sim',
         'speech',
