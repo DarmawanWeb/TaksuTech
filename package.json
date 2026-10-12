@@ -15,15 +15,17 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "check": "turbo run lint typecheck test",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "commitlint": "commitlint",
     "prepare": "husky",
     "dev:sim": "turbo run dev --filter=@taksu/sim",
     "test:speech": "cd services/speech && python3 -m pytest -q",
-    "deploy": "infra/deploy.sh"
+    "deploy": "infra/deploy.sh",
+    "biome": "biome"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "husky": "^9.1.7",
@@ -33,6 +35,6 @@
     "turbo": "^2.11.7"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,mjs,cjs,json,css,md,yml,yaml}": "prettier --write"
+    "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc,css}": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
   }
 }
