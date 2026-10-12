@@ -41,9 +41,8 @@
     "divisions": {
       "title": "Dua lini produk",
       "intro": "Satu tim di Bali yang merancang, memasang, mengajarkan, dan merawat robotnya.",
-      "receptionCta": "Lihat lini resepsionis",
-      "educationCta": "Lihat lini edukasi",
-      "educationImageAlt": "Robot edukasi SD, SMP, dan SMA di meja kelas"
+      "receptionCta": "Kunjungi situs {brand}",
+      "educationCta": "Kunjungi situs {brand}"
     },
     "proof": {
       "title": "Kenapa Taksu Tech",

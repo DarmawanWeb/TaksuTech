@@ -2,13 +2,17 @@ import { OM_SWASTIASTU } from '@taksu/bali';
 import { AksaraText } from '@taksu/ui/brand/aksara-text';
 import { Button } from '@taksu/ui/components/button';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { images } from '@/lib/images';
+import { eduUrl, robotUrl } from '@/lib/links';
 import { Container } from '../shared/container';
 
 export async function Hero() {
-  const [t, common] = await Promise.all([getTranslations('Home.hero'), getTranslations('Common')]);
+  const [t, common, locale] = await Promise.all([
+    getTranslations('Home.hero'),
+    getTranslations('Common'),
+    getLocale(),
+  ]);
   return (
     <section className="overflow-hidden">
       <Container className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-20">
@@ -24,10 +28,10 @@ export async function Hero() {
           <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">{t('body')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
-              <Link href="/reception">{t('ctaReception')}</Link>
+              <a href={robotUrl(locale)}>{t('ctaReception')}</a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/education">{t('ctaEducation')}</Link>
+              <a href={eduUrl(locale)}>{t('ctaEducation')}</a>
             </Button>
           </div>
           <p className="text-muted-foreground mt-10 text-sm font-semibold">{common('partOf')}</p>

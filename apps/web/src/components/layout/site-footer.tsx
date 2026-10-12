@@ -3,7 +3,7 @@ import { Logo } from '@taksu/ui/brand/logo';
 import { PolengBand } from '@taksu/ui/brand/ornaments';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { whatsappUrl } from '@/lib/links';
+import { eduUrl, robotUrl, whatsappUrl } from '@/lib/links';
 import { Container } from '../shared/container';
 
 export async function SiteFooter() {
@@ -21,11 +21,11 @@ export async function SiteFooter() {
   ];
   const lines = [
     {
-      href: '/reception',
+      href: robotUrl(locale),
       label: `${divisions.reception.name}: ${divisions.reception.title[locale]}`,
     },
     {
-      href: '/education',
+      href: eduUrl(locale),
       label: `${divisions.education.name}: ${divisions.education.title[locale]}`,
     },
   ];
@@ -44,9 +44,9 @@ export async function SiteFooter() {
           <ul className="flex flex-col gap-2 text-sm">
             {lines.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-primary hover:underline">
+                <a href={link.href} className="hover:text-primary hover:underline">
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

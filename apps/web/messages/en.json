@@ -41,9 +41,8 @@
     "divisions": {
       "title": "Two product lines",
       "intro": "One team in Bali that designs, installs, teaches, and maintains the robots.",
-      "receptionCta": "See the reception line",
-      "educationCta": "See the education line",
-      "educationImageAlt": "Education robots for primary, junior, and senior high on a classroom desk"
+      "receptionCta": "Visit the {brand} site",
+      "educationCta": "Visit the {brand} site"
     },
     "proof": {
       "title": "Why Taksu Tech",

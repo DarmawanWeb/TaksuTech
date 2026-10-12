@@ -1,17 +1,18 @@
 import { Logo } from '@taksu/ui/brand/logo';
 import { ThemeToggle } from '@taksu/ui/brand/theme-toggle';
 import { Button } from '@taksu/ui/components/button';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { eduUrl, robotUrl } from '@/lib/links';
 import { LocaleSwitcher } from './locale-switcher';
 import { MobileNav } from './mobile-nav';
 import { NavLinks } from './nav-links';
 
 export async function SiteHeader() {
-  const t = await getTranslations('Nav');
+  const [t, locale] = await Promise.all([getTranslations('Nav'), getLocale()]);
   const items = [
-    { href: '/reception', label: t('reception') },
-    { href: '/education', label: t('education') },
+    { href: robotUrl(locale), label: t('reception'), external: true },
+    { href: eduUrl(locale), label: t('education'), external: true },
     { href: '/demo', label: t('demo') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },
