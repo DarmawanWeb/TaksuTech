@@ -1,4 +1,4 @@
 @import 'tailwindcss';
-@import '@taksu/ui/theme.css';
+@import '@taksu/ui/company.css';
 
 @source '../../../../packages/ui/src';

@@ -1,6 +1,5 @@
-import '@fontsource-variable/plus-jakarta-sans';
-import '@fontsource-variable/bricolage-grotesque/standard.css';
-import '@fontsource/noto-serif-balinese/balinese-400.css';
+import '@fontsource-variable/mona-sans';
+import '@fontsource-variable/hubot-sans';
 import '../globals.css';
 
 import { ThemeProvider } from '@taksu/ui/brand/theme-provider';
@@ -35,8 +34,8 @@ export async function generateMetadata({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#eef0eb' },
-    { media: '(prefers-color-scheme: dark)', color: '#0e1335' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0c2025' },
   ],
 };
 
