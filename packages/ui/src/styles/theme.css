@@ -6,7 +6,7 @@
  *   Endek   #26338a  ikat-dyed indigo, primary in light mode
  *   Malam   #0e1335  indigo night, dark background
  *   Prada   #e6bd52  gold leaf on temple cloth, primary in dark mode, ornaments
- *   Subak   #1d7466  irrigation water, education accents
+ *   Subak   #1d7466  irrigation water, calm accents
  *
  * Import after `@import "tailwindcss";` and add `@source` for this package.
  */
@@ -61,35 +61,27 @@
 }
 
 /*
- * Taksu Edu area: schools anywhere in Indonesia, so the Balinese ornament gives way to a
- * clean engineering-notebook look. Applied with data-area="edu" on a wrapper.
+ * The education line has its own identity (no Balinese ornament, see edu.css). When a
+ * Taksu page shows it, for example the company profile's product cards, wrap that card
+ * in data-brand="edu" so it keeps the edu colours in both themes.
  */
-[data-area='edu'] {
-  --background: #f5f7fb;
+[data-brand='edu'] {
+  --background: #ffffff;
+  --foreground: #000000;
   --surface: #ffffff;
-  --surface-muted: #e8edf6;
-  --primary: #1f4fd1;
-  --primary-foreground: #ffffff;
-  --accent: #f59e0b;
-  --accent-soft: #fdecc8;
-  --border: #d3dbea;
-  --ring: #1f4fd1;
-  --muted-foreground: #475069;
-  --grid-line: rgb(31 79 209 / 0.07);
-}
-
-.dark [data-area='edu'] {
-  --background: #0b1226;
-  --surface: #111b36;
-  --surface-muted: #18244a;
-  --primary: #8cb0ff;
-  --primary-foreground: #0b1226;
-  --accent: #fbbf24;
-  --accent-soft: #3a2f12;
-  --border: #253260;
-  --ring: #8cb0ff;
-  --muted-foreground: #a6b1d1;
-  --grid-line: rgb(140 176 255 / 0.08);
+  --surface-muted: #eef1ec;
+  --primary: #ff5a1f;
+  --primary-foreground: #000000;
+  --accent: #ffd23f;
+  --accent-soft: #fff4c4;
+  --muted-foreground: #4b524e;
+  --border: #000000;
+  --ring: #000000;
+  --illus-body: #ffffff;
+  --illus-line: #000000;
+  --level-sd: #4cc3ff;
+  --level-smp: #19b48a;
+  --level-sma: #a797ff;
 }
 
 @theme inline {
@@ -115,13 +107,5 @@
   .bg-poleng {
     background:
       repeating-conic-gradient(var(--poleng-dark) 0 25%, var(--poleng-light) 0 50%) 0 0 / 12px 12px;
-  }
-
-  /* Graph-paper backdrop for the education area. */
-  .bg-grid {
-    background-image:
-      linear-gradient(var(--grid-line, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line, transparent) 1px, transparent 1px);
-    background-size: 24px 24px;
   }
 }
