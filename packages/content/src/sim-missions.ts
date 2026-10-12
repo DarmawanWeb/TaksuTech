@@ -43,6 +43,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'sd-belok',
+    robot: 'sd',
+    title: l('Belok di tikungan', 'Turn at the corner'),
+    brief: l(
+      'Maju ke tikungan, belok kiri seperempat putaran, lalu berhenti di zona finis.',
+      'Drive to the corner, turn left a quarter turn, then stop in the finish zone.',
+    ),
+  },
+  {
     id: 'sd-kotak',
     robot: 'sd',
     title: l('Kotak dan kembali', 'Square and return'),

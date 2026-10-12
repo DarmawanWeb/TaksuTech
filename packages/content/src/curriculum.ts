@@ -123,6 +123,7 @@ const sd: Curriculum = {
           'Turning left and right',
           'Ukur belokan seperempat putaran.',
           'Find a quarter turn.',
+          'sd-belok',
         ),
         m(
           'Tebak, jalankan, amati',
