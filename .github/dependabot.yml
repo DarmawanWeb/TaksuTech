@@ -6,19 +6,9 @@ updates:
       interval: weekly
     groups:
       next-react:
-        patterns: ['next', 'react', 'react-dom', '@types/react*', 'eslint-config-next', 'next-intl']
+        patterns: ['next', 'react', 'react-dom', '@types/react*', 'next-intl']
       tooling:
-        patterns:
-          [
-            'eslint*',
-            '@eslint/*',
-            'typescript*',
-            'prettier*',
-            'vitest',
-            'vite',
-            'turbo',
-            '@commitlint/*',
-          ]
+        patterns: ['@biomejs/biome', 'typescript*', 'vitest', 'vite', 'turbo', '@commitlint/*']
     commit-message:
       prefix: 'chore'
       include: scope
