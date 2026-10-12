@@ -1,4 +1,5 @@
 import type { Localized } from './i18n';
+import { names } from './names';
 
 export const brand = {
   name: 'Taksu Tech',
@@ -33,7 +34,7 @@ export const brand = {
 /** The two product lines. Reception is Bali-first; Edu is for schools anywhere. */
 export const divisions = {
   reception: {
-    name: 'Taksu Reception',
+    name: names.robot,
     title: { id: 'Robot resepsionis Bali', en: 'Bali receptionist robots' },
     summary: {
       id: 'Snow dan Timo edisi Bali, plus Taksu Kiosk buatan kami sendiri. Menyapa dengan Om Swastiastu, menampilkan Aksara Bali, mencetak tiket dan kartu tamu, dan bisa diajak bicara.',
@@ -41,7 +42,7 @@ export const divisions = {
     },
   },
   education: {
-    name: 'Taksu Edu',
+    name: names.edu,
     title: { id: 'Robot edukasi SD sampai SMA', en: 'Education robots for primary to senior high' },
     summary: {
       id: 'Kit robot yang bisa dikustom, simulator gratis untuk mencoba sebelum membeli, kurikulum 32–36 pertemuan, dan panduan guru yang siap dipakai di kelas.',
