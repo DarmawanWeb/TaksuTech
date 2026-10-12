@@ -81,3 +81,17 @@
     letter-spacing: -0.015em;
   }
 }
+
+/* Product line marks keep their own colours when they appear on company pages. */
+[data-brand='reception'] {
+  --primary: #26338a;
+  --accent: #e6bd52;
+}
+
+.dark [data-brand='reception'] {
+  --primary: #e6bd52;
+}
+
+[data-brand='edu'] {
+  --primary: #ff5a1f;
+}

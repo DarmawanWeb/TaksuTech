@@ -55,11 +55,12 @@
         }
       }
     },
-    "divisions": {
+    "lines": {
       "title": "Dua lini produk",
-      "intro": "Satu tim di Bali yang merancang, memasang, mengajarkan, dan merawat robotnya.",
-      "receptionCta": "Kunjungi situs {brand}",
-      "educationCta": "Kunjungi situs {brand}"
+      "intro": "Setiap lini punya situs sendiri dengan detail produk dan demonya.",
+      "visit": "Kunjungi situs {brand}",
+      "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
+      "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
     },
     "proof": {
       "title": "Kenapa Taksu Tech",

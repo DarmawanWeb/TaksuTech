@@ -55,11 +55,12 @@
         }
       }
     },
-    "divisions": {
+    "lines": {
       "title": "Two product lines",
-      "intro": "One team in Bali that designs, installs, teaches, and maintains the robots.",
-      "receptionCta": "Visit the {brand} site",
-      "educationCta": "Visit the {brand} site"
+      "intro": "Each line has its own site with product details and demos.",
+      "visit": "Visit the {brand} site",
+      "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
+      "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
     },
     "proof": {
       "title": "Why Taksu Tech",

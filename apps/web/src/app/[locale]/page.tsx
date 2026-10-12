@@ -2,8 +2,8 @@ import { brand } from '@taksu/content';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { DemoShowcase } from '@/components/home/demo-showcase';
-import { Divisions } from '@/components/home/divisions';
 import { Hero } from '@/components/home/hero';
+import { ProductLines } from '@/components/home/product-lines';
 import { Proof } from '@/components/home/proof';
 import { CtaBand } from '@/components/shared/cta-band';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
@@ -38,7 +38,7 @@ export default async function HomePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <Hero />
-      <Divisions locale={locale} />
+      <ProductLines locale={locale} />
       <Proof />
       <DemoShowcase locale={locale} />
       <CtaBand />
