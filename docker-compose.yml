@@ -1,4 +1,5 @@
-# Taksu Tech on the Mac mini: three Next.js apps, the speech service, and Caddy in front.
+# Taksu Tech on the Mac mini: five Next.js apps, the speech service, and Caddy in front.
+# web is the company profile, edu and robot are the two product sites, kiosk and sim the demos.
 # Only Caddy publishes a port, on the loopback, for the existing cloudflared tunnel.
 #   cp infra/.env.example infra/.env && infra/deploy.sh
 name: taksu
@@ -8,7 +9,9 @@ x-logging: &logging
   options: { max-size: '10m', max-file: '3' }
 
 x-public-urls: &public-urls
-  NEXT_PUBLIC_SITE_URL: https://${WEB_HOST:-taksu.agus-darmawan.com}
+  NEXT_PUBLIC_COMPANY_URL: https://${WEB_HOST:-taksu.agus-darmawan.com}
+  NEXT_PUBLIC_EDU_URL: https://${EDU_HOST:-taksu-edu.agus-darmawan.com}
+  NEXT_PUBLIC_ROBOT_URL: https://${ROBOT_HOST:-taksu-robot.agus-darmawan.com}
   NEXT_PUBLIC_KIOSK_URL: https://${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
   NEXT_PUBLIC_SIM_URL: https://${SIM_HOST:-taksu-sim.agus-darmawan.com}
   NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-}
@@ -34,6 +37,8 @@ services:
       - '127.0.0.1:${CADDY_PORT:-4480}:80'
     environment:
       WEB_HOST: ${WEB_HOST:-taksu.agus-darmawan.com}
+      EDU_HOST: ${EDU_HOST:-taksu-edu.agus-darmawan.com}
+      ROBOT_HOST: ${ROBOT_HOST:-taksu-robot.agus-darmawan.com}
       KIOSK_HOST: ${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
       SIM_HOST: ${SIM_HOST:-taksu-sim.agus-darmawan.com}
       GRAFANA_HOST: ${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
@@ -41,7 +46,7 @@ services:
       - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
-    depends_on: [web, kiosk, sim]
+    depends_on: [web, edu, robot, kiosk, sim]
     networks: [taksu]
     logging: *logging
 
@@ -87,6 +92,22 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       args: { APP: sim, <<: *public-urls }
+
+  edu:
+    <<: *next-app
+    image: taksu/edu:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: edu, <<: *public-urls }
+
+  robot:
+    <<: *next-app
+    image: taksu/robot:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: robot, <<: *public-urls }
 
   speech:
     image: taksu/speech:local

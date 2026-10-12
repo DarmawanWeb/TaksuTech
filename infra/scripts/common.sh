@@ -21,6 +21,13 @@ load_env() {
   source "$ENV_FILE"
   set +a
   CADDY_PORT="${CADDY_PORT:-4480}"
+  # Same defaults as docker-compose.yml, so an older env file keeps working.
+  WEB_HOST="${WEB_HOST:-taksu.agus-darmawan.com}"
+  EDU_HOST="${EDU_HOST:-taksu-edu.agus-darmawan.com}"
+  ROBOT_HOST="${ROBOT_HOST:-taksu-robot.agus-darmawan.com}"
+  KIOSK_HOST="${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}"
+  SIM_HOST="${SIM_HOST:-taksu-sim.agus-darmawan.com}"
+  GRAFANA_HOST="${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}"
   case "$CADDY_PORT" in
     80 | 8080) die "CADDY_PORT=$CADDY_PORT is reserved on this Mac mini (80 is taken, 8080 is cAdvisor)." ;;
   esac

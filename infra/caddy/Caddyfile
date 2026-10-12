@@ -31,6 +31,18 @@ http://{$WEB_HOST} {
 	reverse_proxy web:3000
 }
 
+http://{$EDU_HOST} {
+	import common
+	header Permissions-Policy "camera=(), microphone=(), geolocation=()"
+	reverse_proxy edu:3000
+}
+
+http://{$ROBOT_HOST} {
+	import common
+	header Permissions-Policy "camera=(), microphone=(), geolocation=()"
+	reverse_proxy robot:3000
+}
+
 http://{$KIOSK_HOST} {
 	import common
 	# Visitors talk to the robot, so the kiosk may ask for the microphone.

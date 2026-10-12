@@ -33,7 +33,11 @@ probe() {
 }
 
 probe "$WEB_HOST" /id
-probe "$WEB_HOST" /en/education
+probe "$WEB_HOST" /en/about
+probe "$EDU_HOST" /id
+probe "$EDU_HOST" /en/kits/sd
+probe "$ROBOT_HOST" /id
+probe "$ROBOT_HOST" /en/snow
 probe "$KIOSK_HOST" /api/health
 probe "$SIM_HOST" /id
 

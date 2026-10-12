@@ -11,7 +11,7 @@ CONFIG="${CLOUDFLARED_CONFIG:-$HOME/apps/cloudflared/config.yml}"
 [[ -n "${CLOUDFLARE_TUNNEL:-}" ]] || die "Set CLOUDFLARE_TUNNEL in $ENV_FILE"
 
 target="http://127.0.0.1:$CADDY_PORT"
-hosts=("$WEB_HOST" "$KIOSK_HOST" "$SIM_HOST")
+hosts=("$WEB_HOST" "$EDU_HOST" "$ROBOT_HOST" "$KIOSK_HOST" "$SIM_HOST")
 [[ "${MONITORING:-1}" == "1" ]] && hosts+=("$GRAFANA_HOST")
 
 backup="$CONFIG.bak.$(date +%Y%m%d%H%M%S)"
