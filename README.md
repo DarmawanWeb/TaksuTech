@@ -4,7 +4,7 @@ Monorepo **Taksu Tech** di bawah **Ezra Robotics**: satu company profile dan dua
 
 - **Company profile** (`apps/web`): siapa kami, dua lini produk, demo, kontak. Nuansa Bali.
 - **NAMA Robot** (`apps/robot`, khusus Bali): Snow dan Timo **Edisi Bali** plus **Taksu Kiosk** buatan sendiri. Aksara Bali sesuai Pergub Bali 80/2018, cetak tiket dan kartu tamu, bisa diajak bicara.
-- **NAMA Edu** (`apps/edu`, untuk sekolah di seluruh Indonesia, tanpa unsur Bali): kit **SD v1**, **SMP v1**, **SMA v1**, upgrade pack dan aksesori, simulator gratis, kurikulum per pertemuan, panduan.
+- **NAMA Edu** (`apps/edu`, untuk sekolah di seluruh Indonesia, tanpa unsur Bali): kit **SD v1**, **SMP v1**, **SMA v1**, upgrade pack dan aksesori, simulator gratis, kurikulum per pertemuan dengan video dan silabus yang bisa dicetak, panduan, dan blog.
 
 Nama "NAMA Edu" dan "NAMA Robot" masih placeholder. Semua situs membacanya dari `packages/content/src/names.ts`, jadi mengganti nama cukup satu baris di sana.
 
@@ -12,8 +12,8 @@ Nama "NAMA Edu" dan "NAMA Robot" masih placeholder. Semua situs membacanya dari 
 | ----------------- | -------- | -------------------------------------------------------------------------------------------------------- |
 | `apps/web`        | 3000     | Company profile, ID/EN, statis. Alamat lama `/reception/*` dan `/education/*` dialihkan ke situs produk  |
 | `apps/kiosk`      | 3001     | Layar robot: ngobrol suara, antrean, buku tamu, petunjuk arah, cetak 80 mm dengan QR, Studio kios kustom |
-| `apps/sim`        | 3002     | Simulator robot 2WD (fisika, sensor garis, sonar, servo, suhu, suara) + Blockly + pratinjau C++          |
-| `apps/edu`        | 3003     | Situs edukasi: kit, upgrade, kurikulum, panduan, simulator, program sekolah, form proposal               |
+| `apps/sim`        | 3002     | Simulator SD v1 dan SMP v1 (gerak, sensor garis, sonar, servo, suhu, suara, Wi-Fi) + Blockly + C++      |
+| `apps/edu`        | 3003     | Situs edukasi: kit, upgrade, kurikulum, panduan, blog (MDX + RSS), simulator, program sekolah, proposal  |
 | `apps/robot`      | 3004     | Situs robot resepsionis: line-up sesuai tinggi asli, detail robot, perbandingan, Aksara Bali, demo       |
 | `services/speech` | 8000     | FastAPI: Whisper (faster-whisper) untuk STT, Piper untuk TTS Bahasa Indonesia dan Inggris                |
 | `infra/`          | 4480     | Docker Compose, Caddy, Prometheus, Loki, Alloy, Grafana, skrip cloudflared dan Ollama                    |
@@ -83,6 +83,16 @@ Saat pertama start, service speech mengunduh model Whisper `small` dan suara Pip
 ### Monitoring
 
 `MONITORING=1` menjalankan profil `monitoring`: Prometheus (scrape Caddy dan probe blackbox ke web, edu, robot, kiosk, sim, speech, Ollama), Loki + Alloy (log semua kontainer proyek `taksu`), dan Grafana dengan dasbor **Taksu Tech: layanan** yang langsung terpasang. Jika ingin memakai stack monitoring yang sudah ada di `~/apps/monitoring`, set `MONITORING=0` lalu tambahkan target probe dari `infra/monitoring/prometheus.yml`.
+
+## Simulator dan kurikulum
+
+- Robot di arena digambar seperti kit aslinya. SD v1: pelat merah, roda kuning, wajah biru dengan sensor ultrasonik di atasnya, dua sensor garis di bawah wajah. SMP v1: rangka merah, bar IR 5-in-1, HC-SR04 di atas servo, ESP32, TB6612FNG, AHT10, mikrofon. Roda berputar sesuai motor, lensa IR menyala saat melihat lakban, sonar tampil sebagai kerucut, buzzer sebagai gelombang suara. Tombol "Ikuti robot" memperbesar arena di sekitar robot.
+- Setiap misi terhubung ke pertemuan tertentu di silabus (`m(..., 'id-misi')` di `curriculum.ts`). Simulator menampilkan "Modul n, pertemuan x" dan tautan balik ke silabus; halaman silabus menampilkan "Coba di simulator" di baris pertemuannya. Misi yang selesai diingat di browser.
+- Ada 17 misi: 9 untuk SD v1 dan 8 untuk SMP v1, termasuk input-proses-output dengan tangan yang mendekat (SMP modul 1) dan telemetri Wi-Fi dengan dasbor lokal dan mode luring (SMP modul 7).
+- Setiap modul SD dan SMP punya satu video YouTube dengan catatan cara memakainya di kelas. Video baru dimuat dari youtube-nocookie.com setelah diklik. ID video dicek lewat halaman kanal dan daftar resminya, belum lewat oEmbed; jalankan `CHECK_VIDEOS=1 pnpm --filter @taksu/content test` sekali dari jaringan biasa.
+- Pemetaan KKA memakai nama elemen resmi mapel Koding dan Kecerdasan Artifisial dan fasenya (C, D, E dan F).
+- Silabus bisa dicetak dari tombol "Cetak silabus"; versi cetak selalu hitam di atas putih.
+- Blog ada di `apps/edu/src/content/blog`. Cara menambah tulisan ada di `CONTRIBUTING.md`. Tanggal tulisan contoh perlu disesuaikan saat benar-benar terbit.
 
 ## Catatan konten
 
