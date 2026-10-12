@@ -31,7 +31,7 @@ async function DemoList({ items, locale }: { items: DemoEntry[]; locale: Locale 
   return (
     <ul className="mt-10 grid gap-6 md:grid-cols-2">
       {items.map((demo) => (
-        <li key={demo.id} className="border-border bg-surface flex gap-6 rounded-xl border p-6">
+        <li key={demo.id} className="border-border bg-surface flex gap-6 rounded-lg border p-6">
           <RobotIllustration kind={illustrationFor(demo)} className="w-24 shrink-0" />
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">{pick(demo.title, locale)}</h3>
@@ -60,7 +60,7 @@ export default async function DemoPage({ params }: Props) {
 
   return (
     <>
-      <section className="pt-16 pb-6">
+      <section className="pt-14 pb-6 lg:pt-20">
         <Container>
           <SectionHeading as="h1" title={t('title')} intro={t('intro')} />
         </Container>
@@ -70,12 +70,16 @@ export default async function DemoPage({ params }: Props) {
         <Container>
           <SectionHeading title={t('kioskTitle')} intro={t('kioskIntro')} />
           <DemoList items={demos.filter((demo) => demo.app === 'kiosk')} locale={locale} />
-          <div className="dark border-border bg-background text-foreground mt-8 flex flex-col gap-4 rounded-xl border p-8 md:flex-row md:items-center md:justify-between">
+          <div className="bg-surface-muted mt-6 flex flex-col gap-4 rounded-lg p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
             <div>
               <h3 className="text-xl font-semibold">{t('launcherTitle')}</h3>
-              <p className="text-muted-foreground mt-1 text-sm">{t('launcherBody')}</p>
+              <p className="text-muted-foreground mt-1">{t('launcherBody')}</p>
             </div>
-            <ExternalButton href={kioskLauncherUrl(locale)} newTabLabel={common('newTab')}>
+            <ExternalButton
+              href={kioskLauncherUrl(locale)}
+              newTabLabel={common('newTab')}
+              className="self-start md:self-center"
+            >
               {t('launcherCta')}
             </ExternalButton>
           </div>
