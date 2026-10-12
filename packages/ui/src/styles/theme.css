@@ -242,10 +242,12 @@
     *,
     ::after,
     ::before {
+      /* biome-ignore-start lint/complexity/noImportantStyles: reduced motion must override every animation */
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      /* biome-ignore-end lint/complexity/noImportantStyles: reduced motion must override every animation */
     }
   }
 }
@@ -260,8 +262,8 @@
 
   /* Poleng: the black-and-white checked cloth that wraps shrines and guardian statues. */
   .bg-poleng {
-    background: repeating-conic-gradient(var(--poleng-dark) 0 25%, var(--poleng-light) 0 50%) 0 0 /
-      12px 12px;
+    background:
+      repeating-conic-gradient(var(--poleng-dark) 0 25%, var(--poleng-light) 0 50%) 0 0 / 12px 12px;
   }
 
   /* Graph-paper backdrop for the education area. */

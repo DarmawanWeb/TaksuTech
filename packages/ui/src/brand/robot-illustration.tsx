@@ -17,17 +17,26 @@ const body = { fill: 'var(--illus-body)', ...line };
  * Replace with official photos via the content package when available.
  */
 export function RobotIllustration({ kind, label, className, ...props }: RobotIllustrationProps) {
-  const a11y = label ? { role: 'img' as const, 'aria-label': label } : { 'aria-hidden': true };
   const viewBox =
     kind === 'timo' || kind === 'snow' || kind === 'kiosk' ? '0 0 240 300' : '0 0 240 200';
-  return (
-    <svg viewBox={viewBox} className={cn('h-auto w-full', className)} {...a11y} {...props}>
+  const art = (
+    <>
       {kind === 'timo' ? <Timo /> : null}
       {kind === 'snow' ? <Snow /> : null}
       {kind === 'kiosk' ? <Kiosk /> : null}
       {kind === 'sd' ? <PrimaryBot /> : null}
       {kind === 'smp' ? <ModularBot /> : null}
       {kind === 'sma' ? <AdvancedBot /> : null}
+    </>
+  );
+  return label ? (
+    <svg viewBox={viewBox} role="img" className={cn('h-auto w-full', className)} {...props}>
+      <title>{label}</title>
+      {art}
+    </svg>
+  ) : (
+    <svg viewBox={viewBox} aria-hidden="true" className={cn('h-auto w-full', className)} {...props}>
+      {art}
     </svg>
   );
 }
