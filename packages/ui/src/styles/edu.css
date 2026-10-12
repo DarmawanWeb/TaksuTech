@@ -1,0 +1,127 @@
+/*
+ * Education line theme. Sold to schools across Indonesia, so it carries no regional
+ * ornament: the look comes from the classroom robotics bench instead.
+ *
+ *   Arena   #ffffff  competition mat, page background
+ *   Ink     #000000  type, track tape, outlines
+ *   Signal  #ff5a1f  safety orange, primary actions
+ *   Mat     #0e6b57  cutting-mat green, simulator and curriculum surfaces
+ *   Tape    #ffd23f  marking tape, status tags and highlights
+ *
+ * Import after `@import "tailwindcss";` and add `@source` for the ui package.
+ */
+
+@import './base.css';
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #ffffff;
+  --surface-muted: #eef1ec;
+  --primary: #ff5a1f;
+  --primary-foreground: #000000;
+  --accent: #ffd23f;
+  --accent-soft: #fff4c4;
+  --muted-foreground: #4b524e;
+  --border: #d5d9d2;
+  --edge: #000000;
+  --ring: #000000;
+  --danger: #c81e1e;
+  --ink: #000000;
+  --ink-foreground: #ffffff;
+  --mat: #0e6b57;
+  --mat-foreground: #ffffff;
+  --mat-grid: rgb(255 255 255 / 0.14);
+  --mat-grid-fine: rgb(255 255 255 / 0.06);
+  --track: #000000;
+  --level-sd: #ffb000;
+  --level-smp: #19b48a;
+  --level-sma: #a797ff;
+  --illus-body: #ffffff;
+  --illus-line: #000000;
+}
+
+.dark {
+  --background: #0f1a17;
+  --foreground: #f1f5f2;
+  --surface: #15241f;
+  --surface-muted: #1b2f29;
+  --primary: #ff7442;
+  --primary-foreground: #000000;
+  --accent: #ffd23f;
+  --accent-soft: #3a3415;
+  --muted-foreground: #a9b8b1;
+  --border: #2b443c;
+  --edge: #f1f5f2;
+  --ring: #ffd23f;
+  --ink: #f1f5f2;
+  --ink-foreground: #0f1a17;
+  --mat: #0b4f41;
+  --track: #000000;
+  --illus-body: #f1f5f2;
+  --illus-line: #0f1a17;
+}
+
+@theme inline {
+  --color-edge: var(--edge);
+  --color-mat: var(--mat);
+  --color-mat-foreground: var(--mat-foreground);
+  --color-track: var(--track);
+}
+
+@theme {
+  --font-sans: 'Atkinson Hyperlegible Next Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    'Archivo Variable', 'Atkinson Hyperlegible Next Variable', ui-sans-serif, sans-serif;
+  --font-mono: 'Atkinson Hyperlegible Mono Variable', ui-monospace, monospace;
+
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+}
+
+/* Cutting-mat surface: fine 1 cm grid with a heavier 5 cm grid on top. */
+@utility bg-mat {
+  background-color: var(--mat);
+  color: var(--mat-foreground);
+  background-image:
+    linear-gradient(var(--mat-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mat-grid) 1px, transparent 1px),
+    linear-gradient(var(--mat-grid-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mat-grid-fine) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+}
+
+/* Ruler ticks along the edge of a mat: short every 24px, long every 120px. */
+@utility ruler {
+  background-image:
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 120px);
+  background-size:
+    100% 8px,
+    100% 16px;
+  background-repeat: repeat-x;
+}
+
+/* Products are boxes: an inked outline and a hard offset shadow, nothing else gets it. */
+@utility box-ink {
+  border: 2px solid var(--edge);
+  box-shadow: 6px 6px 0 0 var(--edge);
+}
+
+@utility box-ink-sm {
+  border: 2px solid var(--edge);
+  box-shadow: 3px 3px 0 0 var(--edge);
+}
+
+/* Display type set wide, like a label printed on a kit box. */
+@utility type-label {
+  font-family: var(--font-display);
+  font-stretch: 116%;
+  font-weight: 820;
+  letter-spacing: -0.01em;
+  line-height: 0.98;
+}
