@@ -14,8 +14,8 @@ export const brand = {
     en: 'Taksu is a Balinese word for the quality that makes a piece of work feel alive to the people who see it.',
   },
   story: {
-    id: 'Taksu Tech adalah unit robotika di bawah Ezra Robotics. Kami merancang robot resepsionis, kios layanan, dan kit robot edukasi, lalu tetap mendampingi pemakainya setelah robot terpasang: melatih staf dan guru, memperbarui perangkat lunak, dan menyediakan suku cadang.',
-    en: 'Taksu Tech is the robotics unit of Ezra Robotics. We design receptionist robots, service kiosks, and robot kits for schools, and we stay with the people who use them after installation: training staff and teachers, updating the software, and supplying spare parts.',
+    id: 'Taksu Tech adalah unit Ezra Robotics untuk robot layanan dan robot edukasi. Kami menyediakan robot resepsionis dan kios layanan, merancang kit robot untuk sekolah, lalu tetap mendampingi pemakainya setelah robot terpasang: melatih staf dan guru, memperbarui perangkat lunak, dan menyiapkan suku cadang.',
+    en: 'Taksu Tech is the Ezra Robotics unit for service and education robots. We supply receptionist robots and service kiosks, design robot kits for schools, and keep supporting customers after installation: training staff and teachers, updating the software, and supplying spare parts.',
   },
   contact: {
     person: 'Darmawan',
@@ -53,7 +53,7 @@ export const divisions = {
     },
     points: [
       {
-        id: 'Percakapan suara dalam Bahasa Indonesia dan Inggris',
+        id: 'Percakapan suara dalam bahasa Indonesia dan bahasa Inggris',
         en: 'Voice conversation in Indonesian and English',
       },
       { id: 'Antrean, buku tamu, dan petunjuk arah', en: 'Queues, a guest book, and directions' },
@@ -68,7 +68,7 @@ export const divisions = {
     title: { id: 'Robot edukasi SD sampai SMA', en: 'Education robots for primary to senior high' },
     summary: {
       id: 'Kit robot untuk sekolah, kurikulum 32 sampai 36 pertemuan, panduan guru, dan simulator gratis untuk mencoba sebelum membeli.',
-      en: 'Robot kits for schools, a 32 to 36 meeting curriculum, teacher guides, and a free simulator to try before buying.',
+      en: 'Robot kits for schools, a curriculum of 32 to 36 meetings, teacher guides, and a free simulator to try before buying.',
     },
     points: [
       {
@@ -76,7 +76,7 @@ export const divisions = {
         en: 'SD v1 and SMP v1 for pilot programmes, SMA v1 to follow',
       },
       {
-        id: 'Dipetakan ke mapel Koding dan Kecerdasan Artifisial',
+        id: 'Dipetakan ke mata pelajaran Koding dan Kecerdasan Artifisial',
         en: 'Mapped to the Coding and Artificial Intelligence subject',
       },
       { id: 'Pelatihan guru dan servis purnajual', en: 'Teacher training and after-sales service' },
@@ -90,24 +90,24 @@ export const principles: ReadonlyArray<{ id: string; title: Localized; body: Loc
     id: 'support',
     title: { id: 'Robot membantu staf dan guru', en: 'Robots support staff and teachers' },
     body: {
-      id: 'Robot menangani pertanyaan yang berulang dan antrean, jadi staf punya waktu untuk tamu yang butuh perhatian lebih. Di kelas, robot menjadi alat bantu guru.',
-      en: 'Robots take the repeated questions and the queue, so staff have time for visitors who need more attention. In class, the robot is a tool for the teacher.',
+      id: 'Robot menangani pertanyaan yang berulang dan antrean, sehingga staf memiliki waktu untuk tamu yang butuh perhatian lebih. Di kelas, robot menjadi alat bantu guru.',
+      en: 'Robots handle repetitive questions and queues, so staff have time for visitors who need more attention. In class, the robot is a tool for the teacher.',
     },
   },
   {
     id: 'honest',
-    title: { id: 'Spesifikasi apa adanya', en: 'Specifications as they are' },
+    title: { id: 'Spesifikasi apa adanya', en: 'Honest specifications' },
     body: {
-      id: 'Bagian yang masih diuji kami sebut rancangan. Angka di situs kami baru berubah setelah ada hasil uji.',
-      en: 'Anything still being tested is called a design. The numbers on our sites change only after we have test results.',
+      id: 'Spesifikasi yang belum diuji kami tandai sebagai rancangan, dan angkanya baru kami perbarui setelah ada hasil uji.',
+      en: 'Specifications that have not been tested are marked as design targets, and we update the figures only after testing.',
     },
   },
   {
     id: 'lasting',
-    title: { id: 'Dibuat untuk dipakai bertahun-tahun', en: 'Built to be used for years' },
+    title: { id: 'Dirancang untuk dipakai lama', en: 'Designed for long use' },
     body: {
-      id: 'Kit edukasi kami modular dan bisa ditingkatkan, jadi sekolah tidak membeli ulang setiap naik jenjang. Servis dan suku cadang kami tangani sendiri.',
-      en: 'Our education kits are modular and upgradeable, so schools do not rebuy at every level. We handle servicing and spare parts ourselves.',
+      id: 'Kit edukasi kami modular, sehingga modul yang rusak bisa diganti satu per satu. Servis dan suku cadang kami tangani sendiri.',
+      en: 'Our education kits are modular, so a broken module can be replaced on its own. We handle servicing and spare parts ourselves.',
     },
   },
 ];
