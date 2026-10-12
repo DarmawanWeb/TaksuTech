@@ -303,6 +303,7 @@ const sd: Curriculum = {
           'Wide lines and junctions',
           'Berhenti saat kedua sensor melihat garis.',
           'Stop when both sensors see the line.',
+          'sd-persimpangan',
         ),
         m(
           'Debugging',

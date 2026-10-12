@@ -88,6 +88,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'sd-persimpangan',
+    robot: 'sd',
+    title: l('Berhenti di garis lebar', 'Stop at the wide line'),
+    brief: l(
+      'Ikuti garis sampai bertemu garis lebar yang melintang, lalu berhenti tepat di situ.',
+      'Follow the line until it meets a wide line across the track, then stop right there.',
+    ),
+  },
+  {
     id: 'sd-misi-akhir',
     robot: 'sd',
     title: l('Misi akhir: robot pintar', 'Final mission: smart robot'),
