@@ -1,7 +1,7 @@
 {
   "Meta": {
     "title": "Taksu Tech: robot resepsionis dan robot edukasi",
-    "description": "Taksu Tech, bagian dari Ezra Robotics, merancang robot resepsionis, kios layanan, dan kit robot edukasi untuk sekolah, lengkap dengan perangkat lunak, kurikulum, dan layanan purnajual."
+    "description": "Taksu Tech, bagian dari Ezra Robotics, menyediakan robot resepsionis dan kios layanan serta merancang kit robot edukasi untuk sekolah, lengkap dengan perangkat lunak, kurikulum, dan layanan purnajual."
   },
   "Nav": {
     "skip": "Langsung ke konten",
@@ -26,13 +26,13 @@
   "Home": {
     "hero": {
       "title": "Robot untuk lobi dan ruang kelas",
-      "body": "Taksu Tech merancang robot resepsionis, kios layanan, dan kit robot edukasi untuk sekolah. Elektronik, perangkat lunak, dan materi ajarnya kami kerjakan sendiri.",
+      "body": "Taksu Tech menyediakan robot resepsionis dan kios layanan, serta merancang kit robot edukasi untuk sekolah. Perangkat lunak, elektronik kit, dan materi ajarnya kami buat sendiri.",
       "ctaProducts": "Lihat produk",
       "ctaDemo": "Coba demo"
     },
     "board": {
       "alt": "Papan kendali robot SMP v1 dengan modul ESP32, deretan konektor putih, dan regulator daya",
-      "caption": "Papan kendali robot SMP v1, kami rancang sendiri.",
+      "caption": "Papan kendali robot SMP v1 rancangan kami sendiri.",
       "parts": {
         "esp32": {
           "name": "ESP32",
@@ -50,14 +50,14 @@
     },
     "lines": {
       "title": "Dua lini produk",
-      "intro": "Setiap lini punya situs sendiri dengan detail produk dan demonya.",
+      "intro": "Setiap lini memiliki situs sendiri dengan detail produk dan demonya.",
       "visit": "Kunjungi situs {brand}",
       "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
       "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
     },
     "inHouse": {
       "title": "Yang kami kerjakan sendiri",
-      "intro": "Karena dikerjakan sendiri, produk bisa kami sesuaikan untuk tiap tempat dan kami perbaiki tanpa menunggu pemasok.",
+      "intro": "Bagian-bagian ini kami kerjakan sendiri, sehingga produk bisa disesuaikan untuk tiap tempat dan diperbaiki oleh tim kami.",
       "areas": {
         "hardware": {
           "title": "Elektronik dan mekanik",
@@ -65,11 +65,11 @@
         },
         "software": {
           "title": "Perangkat lunak",
-          "body": "Aplikasi kios dengan percakapan suara, antrean, dan cetak, serta simulator robot yang berjalan di browser."
+          "body": "Aplikasi kios dengan percakapan suara, antrean, dan pencetakan tiket, serta simulator robot yang berjalan di browser."
         },
         "content": {
           "title": "Materi dan konten",
-          "body": "Kurikulum per pertemuan, panduan guru, serta naskah dan bahasa yang dipakai robot di tiap tempat."
+          "body": "Kurikulum per pertemuan, panduan guru, serta naskah percakapan robot untuk tiap tempat."
         },
         "service": {
           "title": "Layanan",
@@ -78,8 +78,8 @@
       }
     },
     "demos": {
-      "title": "Coba di browser",
-      "intro": "Robot resepsionis dan simulator robot edukasi bisa dicoba tanpa login. Data tempat di dalamnya adalah contoh.",
+      "title": "Coba produknya di browser",
+      "intro": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka tanpa login. Tempat di dalam demo hanya contoh.",
       "all": "Lihat semua demo"
     },
     "cta": {
@@ -92,22 +92,22 @@
     "metaTitle": "Demo robot resepsionis dan simulator",
     "metaDescription": "Ajak bicara robot resepsionis, cetak kartu tamu, rakit kios sendiri di Studio, atau program robot edukasi di simulator.",
     "title": "Demo di browser",
-    "intro": "Semua demo berjalan di browser. Data tempat di dalamnya adalah contoh.",
+    "intro": "Semua demo berjalan di browser. Tempat di dalamnya hanya contoh.",
     "kioskTitle": "Robot resepsionis",
-    "kioskIntro": "Layar sentuh robot dengan percakapan suara, antrean, buku tamu, petunjuk arah, dan cetak.",
+    "kioskIntro": "Layar sentuh robot dengan percakapan suara, antrean, buku tamu, petunjuk arah, dan pencetakan tiket.",
     "simTitle": "Simulator robot edukasi",
-    "simIntro": "Program SD v1 dan SMP v1 dengan blok.",
-    "launcherTitle": "Rakit demo sendiri",
-    "launcherBody": "Pilih robot dan contoh tempat, lalu buka dalam layar penuh.",
+    "simIntro": "Buat program untuk SD v1 dan SMP v1 dengan blok kode.",
+    "launcherTitle": "Pilih robot dan tempat",
+    "launcherBody": "Buka kombinasi robot dan tempat mana pun dalam layar penuh.",
     "launcherCta": "Buka peluncur kios",
-    "tip": "Tips: izinkan mikrofon untuk mengajak robot bicara, dan buka di tablet mendatar untuk rasa paling mirip robot."
+    "tip": "Tips: izinkan akses mikrofon untuk mengajak robot bicara, dan buka di tablet dalam posisi mendatar agar paling mirip robot aslinya."
   },
   "About": {
     "metaTitle": "Tentang Taksu Tech",
-    "metaDescription": "Taksu Tech adalah unit robotika di bawah Ezra Robotics yang merancang robot resepsionis, kios layanan, dan kit robot edukasi untuk sekolah.",
+    "metaDescription": "Taksu Tech adalah unit Ezra Robotics untuk robot layanan dan robot edukasi: robot resepsionis, kios layanan, dan kit robot untuk sekolah.",
     "title": "Tentang Taksu Tech",
     "parentTitle": "Bagian dari Ezra Robotics",
-    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia. Taksu Tech adalah unitnya untuk robot layanan dan robot edukasi.",
+    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia.",
     "nameTitle": "Nama kami",
     "principlesTitle": "Cara kami bekerja",
     "facts": {
@@ -140,7 +140,7 @@
       "whatsappMissing": "Nomor WhatsApp belum diatur. Gunakan email untuk sementara.",
       "required": "Isi nama dan pesan terlebih dahulu.",
       "subject": "Permintaan dari situs Taksu Tech",
-      "template": "Halo Taksu Tech, saya {name} dari {organization}. Saya tertarik dengan {interest}.\n\n{message}"
+      "template": "Halo Taksu Tech, saya {name} dari {organization}.\nMinat: {interest}\n\n{message}"
     },
     "direct": {
       "title": "Kontak langsung",

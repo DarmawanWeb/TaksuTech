@@ -1,7 +1,7 @@
 {
   "Meta": {
     "title": "Taksu Tech: receptionist and education robots",
-    "description": "Taksu Tech, part of Ezra Robotics, designs receptionist robots, service kiosks, and robot kits for schools, with the software, curriculum, and after-sales service to go with them."
+    "description": "Taksu Tech, part of Ezra Robotics, supplies receptionist robots and service kiosks and designs robot kits for schools, with the software, curriculum, and after-sales service to go with them."
   },
   "Nav": {
     "skip": "Skip to content",
@@ -26,7 +26,7 @@
   "Home": {
     "hero": {
       "title": "Robots for lobbies and classrooms",
-      "body": "Taksu Tech designs receptionist robots, service kiosks, and robot kits for schools. We make the electronics, the software, and the teaching materials ourselves.",
+      "body": "Taksu Tech supplies receptionist robots and service kiosks and designs robot kits for schools. We make the software, the kit electronics, and the teaching materials ourselves.",
       "ctaProducts": "See the products",
       "ctaDemo": "Try the demos"
     },
@@ -57,7 +57,7 @@
     },
     "inHouse": {
       "title": "What we make ourselves",
-      "intro": "Because we make these ourselves, we can adapt the products to each place and fix them without waiting on a supplier.",
+      "intro": "We make these parts ourselves, so the products can be adapted to each place and repaired by our own team.",
       "areas": {
         "hardware": {
           "title": "Electronics and mechanics",
@@ -65,11 +65,11 @@
         },
         "software": {
           "title": "Software",
-          "body": "The kiosk app with voice conversation, queues, and printing, and a robot simulator that runs in the browser."
+          "body": "The kiosk app with voice conversation, queues, and ticket printing, and a robot simulator that runs in the browser."
         },
         "content": {
           "title": "Lessons and content",
-          "body": "Meeting-by-meeting curricula, teacher guides, and the scripts and languages each robot uses on site."
+          "body": "Meeting-by-meeting curricula, teacher guides, and the robot conversation scripts for each venue."
         },
         "service": {
           "title": "Service",
@@ -78,8 +78,8 @@
       }
     },
     "demos": {
-      "title": "Try them in your browser",
-      "intro": "The receptionist robots and the education simulator work without signing in. The venue data inside is sample data.",
+      "title": "Try the products in your browser",
+      "intro": "The receptionist robot demos and the education simulator open without signing in. The venues in them are examples.",
       "all": "See all demos"
     },
     "cta": {
@@ -92,22 +92,22 @@
     "metaTitle": "Receptionist robot and simulator demos",
     "metaDescription": "Talk to a receptionist robot, print a visitor pass, build your own kiosk in Studio, or program an education robot in the simulator.",
     "title": "Demos in your browser",
-    "intro": "Every demo runs in the browser. The venue data inside is sample data.",
+    "intro": "Every demo runs in the browser. The venues in them are examples.",
     "kioskTitle": "Receptionist robots",
-    "kioskIntro": "The robot touchscreen with voice conversation, queues, the guest book, directions, and printing.",
+    "kioskIntro": "The robot touchscreen with voice conversation, queues, the guest book, directions, and ticket printing.",
     "simTitle": "Education robot simulator",
-    "simIntro": "Program SD v1 and SMP v1 with blocks.",
-    "launcherTitle": "Build your own demo",
-    "launcherBody": "Pick the robot and sample venue, then open it full screen.",
+    "simIntro": "Program SD v1 and SMP v1 with code blocks.",
+    "launcherTitle": "Pick a robot and a venue",
+    "launcherBody": "Open any robot and venue combination full screen.",
     "launcherCta": "Open the kiosk launcher",
-    "tip": "Tip: allow the microphone to talk to the robot, and use a tablet in landscape for the closest feel."
+    "tip": "Tip: allow microphone access to talk to the robot, and use a tablet in landscape for the closest feel to the real robot."
   },
   "About": {
     "metaTitle": "About Taksu Tech",
-    "metaDescription": "Taksu Tech is the robotics unit of Ezra Robotics. It designs receptionist robots, service kiosks, and robot kits for schools.",
+    "metaDescription": "Taksu Tech is the Ezra Robotics unit for service and education robots: receptionist robots, service kiosks, and robot kits for schools.",
     "title": "About Taksu Tech",
     "parentTitle": "Part of Ezra Robotics",
-    "parentBody": "Ezra Robotics integrates robots for inspection, safety, and commercial services in Indonesia. Taksu Tech is its unit for service and education robots.",
+    "parentBody": "Ezra Robotics integrates robots for inspection, security, and commercial services in Indonesia.",
     "nameTitle": "Our name",
     "principlesTitle": "How we work",
     "facts": {
@@ -140,7 +140,7 @@
       "whatsappMissing": "No WhatsApp number is configured yet. Please use email for now.",
       "required": "Fill in your name and message first.",
       "subject": "Enquiry from the Taksu Tech website",
-      "template": "Hello Taksu Tech, I am {name} from {organization}. I am interested in {interest}.\n\n{message}"
+      "template": "Hello Taksu Tech, I am {name} from {organization}.\nInterest: {interest}\n\n{message}"
     },
     "direct": {
       "title": "Direct contact",
