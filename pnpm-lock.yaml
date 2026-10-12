@@ -169,18 +169,15 @@ importers:
 
   apps/sim:
     dependencies:
-      '@fontsource-variable/bricolage-grotesque':
+      '@fontsource-variable/archivo':
         specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource-variable/plus-jakarta-sans':
+      '@fontsource-variable/atkinson-hyperlegible-mono':
         specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/noto-serif-balinese':
+      '@fontsource-variable/atkinson-hyperlegible-next':
         specifier: ^5.3.0
         version: 5.3.0
-      '@taksu/bali':
-        specifier: workspace:*
-        version: link:../../packages/bali
       '@taksu/content':
         specifier: workspace:*
         version: link:../../packages/content
