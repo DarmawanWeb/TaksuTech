@@ -17,20 +17,18 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 60
-    env:
-      APP_DIR: ${{ format('{0}/apps/taksu-tech', '~') }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
-      # Compose bind-mounts config files, so deploy from a stable folder, not the runner workspace.
-      - name: Sync to ~/apps/taksu-tech/app
+      # Compose bind-mounts config files, so deploy from the same folder the stack already
+      # runs from (~/web/taksu-tech), not the runner workspace. Its .git and env stay put.
+      - name: Sync to ~/web/taksu-tech
         run: |
-          mkdir -p "$HOME/apps/taksu-tech/app"
+          mkdir -p "$HOME/web/taksu-tech"
           rsync -a --delete --exclude .git --exclude node_modules --exclude '.next' --exclude '.turbo' \
-            --exclude 'infra/.env' ./ "$HOME/apps/taksu-tech/app/"
+            --exclude 'infra/.env' ./ "$HOME/web/taksu-tech/"
 
       - name: Deploy with Docker Compose
-        working-directory: ${{ env.HOME }}
-        run: ENV_FILE="$HOME/apps/taksu-tech/.env" "$HOME/apps/taksu-tech/app/infra/deploy.sh"
+        run: ENV_FILE="$HOME/web/taksu-tech.env" "$HOME/web/taksu-tech/infra/deploy.sh"
