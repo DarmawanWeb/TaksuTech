@@ -19,6 +19,10 @@ scrape_configs:
     static_configs:
       - targets: ['http://web:3000/id']
         labels: { service: web }
+      - targets: ['http://edu:3000/id']
+        labels: { service: edu }
+      - targets: ['http://robot:3000/id']
+        labels: { service: robot }
       - targets: ['http://kiosk:3000/api/health']
         labels: { service: kiosk }
       - targets: ['http://sim:3000/id']
