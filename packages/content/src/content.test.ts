@@ -4,7 +4,7 @@ import { accessories, eduFaq, upgradePacks } from './edu-catalog';
 import { educationLevels } from './education';
 import { guides } from './guides';
 import { comparison, robots } from './reception';
-import { simMissions } from './sim-missions';
+import { missionPlace, simMissions } from './sim-missions';
 
 describe('curriculum', () => {
   it('matches the advertised meeting count per level', () => {
@@ -13,13 +13,33 @@ describe('curriculum', () => {
     }
   });
 
-  it('links modules only to simulator missions that exist for that robot', () => {
-    const ids = new Map(simMissions.map((mission) => [mission.id, mission.robot]));
+  it('sends meetings only to simulator missions for the same kit', () => {
+    const robots = new Map(simMissions.map((mission) => [mission.id, mission.robot]));
     for (const [level, curriculum] of Object.entries(curricula)) {
       for (const module of curriculum.modules) {
-        if (!module.simMission) continue;
-        expect(ids.get(module.simMission), `${level}/${module.id}`).toBe(level);
+        for (const meeting of module.meetings) {
+          if (meeting.sim) expect(robots.get(meeting.sim), `${level}/${module.id}`).toBe(level);
+        }
       }
+    }
+  });
+
+  it('places every simulator mission in exactly one module', () => {
+    for (const mission of simMissions) {
+      const modules = curricula[mission.robot].modules.filter((module) =>
+        module.meetings.some((meeting) => meeting.sim === mission.id),
+      );
+      expect(modules.length, mission.id).toBe(1);
+      expect(missionPlace(mission)?.moduleId).toBe(modules[0]?.id);
+    }
+  });
+
+  it('lists missions in the order the syllabus reaches them', () => {
+    for (const robot of ['sd', 'smp'] as const) {
+      const firstMeetings = simMissions
+        .filter((mission) => mission.robot === robot)
+        .map((mission) => missionPlace(mission)?.meetings[0] ?? 0);
+      expect(firstMeetings, robot).toEqual([...firstMeetings].sort((a, b) => a - b));
     }
   });
 });

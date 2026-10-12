@@ -4,6 +4,8 @@ import type { Localized } from './i18n';
 export interface Meeting {
   title: Localized;
   activity: Localized;
+  /** Simulator mission students open in this meeting, if any. */
+  sim?: string;
 }
 
 export interface CurriculumModule {
@@ -12,8 +14,6 @@ export interface CurriculumModule {
   goal: Localized;
   concepts: Localized[];
   evidence: Localized;
-  /** Simulator mission that practises this module, if any. */
-  simMission?: string;
   meetings: Meeting[];
 }
 
@@ -26,10 +26,17 @@ export interface Curriculum {
 }
 
 const l = (id: string, en: string): Localized => ({ id, en });
-/** Compact meeting row: [title ID, title EN, activity ID, activity EN]. */
-const m = (titleId: string, titleEn: string, activityId: string, activityEn: string): Meeting => ({
+/** Compact meeting row: title and activity in both languages, plus an optional simulator mission. */
+const m = (
+  titleId: string,
+  titleEn: string,
+  activityId: string,
+  activityEn: string,
+  sim?: string,
+): Meeting => ({
   title: l(titleId, titleEn),
   activity: l(activityId, activityEn),
+  ...(sim ? { sim } : {}),
 });
 
 const sd: Curriculum = {
@@ -59,7 +66,6 @@ const sd: Curriculum = {
         'Siswa menceritakan alur sensor, pengendali, lalu respons robot.',
         'Students describe the flow from sensor to controller to response.',
       ),
-      simMission: 'sd-kenalan',
       meetings: [
         m(
           'Apa itu robot?',
@@ -84,6 +90,7 @@ const sd: Curriculum = {
           'First program in the simulator',
           'Tampilkan wajah senang dan bunyikan bip.',
           'Show a happy face and play a beep.',
+          'sd-kenalan',
         ),
       ],
     },
@@ -103,13 +110,13 @@ const sd: Curriculum = {
         'Robot sampai di garis finis dan siswa menjelaskan perubahan yang dibuat.',
         'The robot reaches the finish and students explain what they changed.',
       ),
-      simMission: 'sd-finish',
       meetings: [
         m(
           'Maju dan berhenti',
           'Forward and stop',
           'Tebak jarak tempuh sebelum menekan Jalankan.',
           'Predict the distance before pressing Run.',
+          'sd-finish',
         ),
         m(
           'Belok kiri dan kanan',
@@ -155,7 +162,6 @@ const sd: Curriculum = {
         'Program memakai blok ulangi dan siswa menjelaskan parameter yang diubah.',
         'The program uses a repeat block and students explain the parameter they changed.',
       ),
-      simMission: 'sd-kotak',
       meetings: [
         m(
           'Kecepatan dan jarak',
@@ -174,6 +180,7 @@ const sd: Curriculum = {
           'The repeat block',
           'Ubah program kotak menjadi pengulangan.',
           'Turn the square program into a loop.',
+          'sd-kotak',
         ),
         m(
           'Tantangan pola',
@@ -205,7 +212,6 @@ const sd: Curriculum = {
         'Robot berhenti sebelum rintangan, menampilkan wajah waspada, dan siswa menjelaskan ambangnya.',
         'The robot stops before the obstacle, shows an alert face, and students explain the threshold.',
       ),
-      simMission: 'sd-rintangan',
       meetings: [
         m(
           'Sensor jarak',
@@ -218,12 +224,14 @@ const sd: Curriculum = {
           'If the distance is short',
           'Susun aturan berhenti dengan blok jika.',
           'Build a stop rule with an if block.',
+          'sd-rintangan',
         ),
         m(
           'Berhenti tepat waktu',
           'Stopping in time',
           'Uji beberapa ambang jarak.',
           'Test several distance thresholds.',
+          'sd-rintangan',
         ),
         m(
           'Wajah dan bunyi waspada',
@@ -261,7 +269,6 @@ const sd: Curriculum = {
         'Robot menyelesaikan lintasan dan siswa menjelaskan kegagalan yang diperbaiki.',
         'The robot completes the track and students explain the failures they fixed.',
       ),
-      simMission: 'sd-garis',
       meetings: [
         m(
           'Sensor garis kiri-kanan',
@@ -280,12 +287,14 @@ const sd: Curriculum = {
           'Steering rules',
           'Garis kiri: belok kiri. Garis kanan: belok kanan.',
           'Line on the left: turn left. Line on the right: turn right.',
+          'sd-garis',
         ),
         m(
           'Lintasan lengkung',
           'Curved tracks',
           'Atur kecepatan agar tidak keluar garis.',
           'Tune speed so the robot stays on the line.',
+          'sd-garis',
         ),
         m(
           'Garis lebar dan persimpangan',
@@ -317,7 +326,6 @@ const sd: Curriculum = {
         'Misi berhasil, aturan dijelaskan, dan ada bukti uji coba serta perbaikan.',
         'The mission succeeds, rules are explained, and testing and fixes are shown.',
       ),
-      simMission: 'sd-misi-akhir',
       meetings: [
         m(
           'Rancang misi',
@@ -330,12 +338,14 @@ const sd: Curriculum = {
           'Combine sensors',
           'Ikuti garis dan berhenti saat ada halangan.',
           'Follow the line and stop at an obstacle.',
+          'sd-misi-akhir',
         ),
         m(
           'Uji dan perbaiki',
           'Test and fix',
           'Uji tiga kali, catat hasilnya.',
           'Run three trials and record them.',
+          'sd-misi-akhir',
         ),
         m(
           'Gladi',
@@ -417,7 +427,6 @@ const smp: Curriculum = {
         'Siswa membandingkan hasil dan alasan setiap perubahan parameter.',
         'Students compare results and reasons for each parameter change.',
       ),
-      simMission: 'smp-pwm',
       meetings: [
         m(
           'Driver motor TB6612FNG',
@@ -436,6 +445,7 @@ const smp: Curriculum = {
           'Driving straight',
           'Kalibrasi beda kecepatan kiri-kanan.',
           'Calibrate left-right speed differences.',
+          'smp-pwm',
         ),
         m(
           'Ukur jarak tempuh',
@@ -448,6 +458,7 @@ const smp: Curriculum = {
           'Stopping on target',
           'Tantangan berhenti di zona: simulator lalu robot.',
           'Stop in the zone: simulator, then robot.',
+          'smp-pwm',
         ),
       ],
     },
@@ -467,7 +478,6 @@ const smp: Curriculum = {
         'Robot menyelesaikan lintasan dan siswa menjelaskan kegagalannya.',
         'The robot completes the track and students explain its failures.',
       ),
-      simMission: 'smp-garis',
       meetings: [
         m(
           'Pasang dan baca IR 5-in-1',
@@ -492,6 +502,7 @@ const smp: Curriculum = {
           'Proportional correction',
           'Kemudi sebanding posisi garis.',
           'Steer in proportion to line position.',
+          'smp-garis',
         ),
         m(
           'Lintasan sulit',
@@ -519,7 +530,6 @@ const smp: Curriculum = {
         'Siswa membuat aturan berhenti atau memilih jalur dari data pindaian.',
         'Students build a stop or path-choice rule from scan data.',
       ),
-      simMission: 'smp-radar',
       meetings: [
         m(
           'HC-SR04 dan level sinyal',
@@ -538,12 +548,14 @@ const smp: Curriculum = {
           'Scanning three ways',
           'Simpan jarak tiap arah ke variabel.',
           'Store each direction’s distance in a variable.',
+          'smp-radar',
         ),
         m(
           'Pilih jalur',
           'Choosing a path',
           'Belok ke arah yang paling lapang.',
           'Turn toward the most open side.',
+          'smp-radar',
         ),
         m(
           'Tantangan labirin mini',
@@ -566,7 +578,6 @@ const smp: Curriculum = {
         'Siswa mencatat data, kondisi uji, dan keterbatasan.',
         'Students log data, test conditions, and limitations.',
       ),
-      simMission: 'smp-lingkungan',
       meetings: [
         m(
           'I2C dan AHT10',
@@ -579,6 +590,7 @@ const smp: Curriculum = {
           'Show it on the OLED',
           'Format angka dan satuan.',
           'Format numbers and units.',
+          'smp-lingkungan',
         ),
         m(
           'Catat dan grafik',
@@ -606,7 +618,6 @@ const smp: Curriculum = {
         'Siswa membedakan peristiwa sederhana dari pengenalan ucapan.',
         'Students tell simple sound events apart from speech recognition.',
       ),
-      simMission: 'smp-suara',
       meetings: [
         m(
           'Mikrofon dan tingkat suara',
@@ -625,6 +636,7 @@ const smp: Curriculum = {
           'Clap-controlled robot',
           'Tepuk sekali jalan, tepuk lagi berhenti.',
           'Clap once to go, again to stop.',
+          'smp-suara',
         ),
         m(
           'Peristiwa vs ucapan',
@@ -693,7 +705,6 @@ const smp: Curriculum = {
         'Siswa menunjukkan hasil, data uji, batasan, dan iterasi.',
         'Students show results, test data, limits, and iterations.',
       ),
-      simMission: 'smp-bebas',
       meetings: [
         m(
           'Pilih masalah',
@@ -706,6 +717,7 @@ const smp: Curriculum = {
           'Integrate modules',
           'Gabungkan sensor dan aktuator yang dibutuhkan.',
           'Combine the sensors and actuators you need.',
+          'smp-bebas',
         ),
         m('Uji dan iterasi', 'Test and iterate', 'Uji, catat, perbaiki.', 'Test, log, fix.'),
         m(

@@ -1,3 +1,4 @@
+import { curricula } from './curriculum';
 import type { Localized } from './i18n';
 
 export type SimRobot = 'sd' | 'smp';
@@ -6,10 +7,18 @@ export type SimRobot = 'sd' | 'smp';
 export interface SimMissionInfo {
   id: string;
   robot: SimRobot;
-  /** Curriculum module number this mission practises. */
-  module: number;
   title: Localized;
   brief: Localized;
+}
+
+/** Where a mission sits in its kit's syllabus. */
+export interface MissionPlace {
+  /** Module number, starting at 1. */
+  module: number;
+  moduleId: string;
+  moduleTitle: Localized;
+  /** Meeting numbers counted across the whole syllabus, starting at 1. */
+  meetings: number[];
 }
 
 const l = (id: string, en: string): Localized => ({ id, en });
@@ -18,7 +27,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-kenalan',
     robot: 'sd',
-    module: 1,
     title: l('Kenalan dengan robot', 'Meet the robot'),
     brief: l(
       'Tampilkan wajah senang, bunyikan bip, lalu maju sedikit.',
@@ -28,7 +36,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-finish',
     robot: 'sd',
-    module: 2,
     title: l('Berhenti di garis finis', 'Stop at the finish'),
     brief: l(
       'Atur lama maju agar robot berhenti di zona finis.',
@@ -38,7 +45,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-kotak',
     robot: 'sd',
-    module: 3,
     title: l('Kotak dan kembali', 'Square and return'),
     brief: l(
       'Lewati keempat sudut lalu kembali ke awal. Coba pakai ulangi.',
@@ -48,7 +54,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-rintangan',
     robot: 'sd',
-    module: 4,
     title: l('Berhenti sebelum rintangan', 'Stop before the obstacle'),
     brief: l(
       'Maju sampai sensor jarak melihat kotak, lalu berhenti dengan wajah waspada.',
@@ -58,7 +63,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-garis',
     robot: 'sd',
-    module: 5,
     title: l('Ikuti garis', 'Follow the line'),
     brief: l(
       'Pakai sensor garis kiri dan kanan untuk menyelesaikan lintasan.',
@@ -68,7 +72,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'sd-misi-akhir',
     robot: 'sd',
-    module: 6,
     title: l('Misi akhir: robot pintar', 'Final mission: smart robot'),
     brief: l(
       'Ikuti garis, berhenti saat ada halangan, tampilkan ekspresi, dan bunyikan bip.',
@@ -78,7 +81,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-pwm',
     robot: 'smp',
-    module: 2,
     title: l('Kendali gerak PWM', 'PWM motion control'),
     brief: l(
       'Atur kecepatan motor kiri-kanan dan waktu agar berhenti di zona 1 meter.',
@@ -88,7 +90,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-garis',
     robot: 'smp',
-    module: 3,
     title: l('Ikuti garis 5 sensor', '5-sensor line following'),
     brief: l(
       'Selesaikan satu putaran lintasan dengan koreksi berdasarkan posisi garis.',
@@ -98,7 +99,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-radar',
     robot: 'smp',
-    module: 4,
     title: l('Radar jarak', 'Distance radar'),
     brief: l(
       'Putar servo, bandingkan jarak kiri dan kanan, lalu pilih jalan yang terbuka.',
@@ -108,7 +108,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-lingkungan',
     robot: 'smp',
-    module: 5,
     title: l('Stasiun lingkungan', 'Environment station'),
     brief: l(
       'Tampilkan suhu dan kelembapan di OLED dan ikuti perubahannya.',
@@ -118,7 +117,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-suara',
     robot: 'smp',
-    module: 6,
     title: l('Robot tepuk tangan', 'Clap-controlled robot'),
     brief: l(
       'Tepuk sekali robot jalan, tepuk lagi robot berhenti.',
@@ -128,7 +126,6 @@ export const simMissions: readonly SimMissionInfo[] = [
   {
     id: 'smp-bebas',
     robot: 'smp',
-    module: 8,
     title: l('Proyek bebas', 'Free project'),
     brief: l(
       'Arena terbuka dengan garis dan rintangan untuk proyek akhir.',
@@ -139,4 +136,21 @@ export const simMissions: readonly SimMissionInfo[] = [
 
 export function getSimMission(id: string): SimMissionInfo | undefined {
   return simMissions.find((mission) => mission.id === id);
+}
+
+/** The module and meetings that send students to this mission, read from the syllabus. */
+export function missionPlace(
+  mission: Pick<SimMissionInfo, 'id' | 'robot'>,
+): MissionPlace | undefined {
+  let meetingNumber = 0;
+  let place: MissionPlace | undefined;
+  for (const [index, module] of curricula[mission.robot].modules.entries()) {
+    for (const meeting of module.meetings) {
+      meetingNumber += 1;
+      if (meeting.sim !== mission.id) continue;
+      place ??= { module: index + 1, moduleId: module.id, moduleTitle: module.title, meetings: [] };
+      place.meetings.push(meetingNumber);
+    }
+  }
+  return place;
 }
