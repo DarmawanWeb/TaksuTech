@@ -678,6 +678,7 @@ const smp: Curriculum = {
           'Local dashboard',
           'Kirim data jarak dan suhu ke halaman lokal.',
           'Send distance and temperature to a local page.',
+          'smp-telemetri',
         ),
         m(
           'Privasi dan keamanan',
@@ -690,6 +691,7 @@ const smp: Curriculum = {
           'Offline mode',
           'Pastikan robot tetap bekerja tanpa jaringan.',
           'Make sure the robot works without a network.',
+          'smp-telemetri',
         ),
       ],
     },

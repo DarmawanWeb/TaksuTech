@@ -160,6 +160,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'smp-telemetri',
+    robot: 'smp',
+    title: l('Dasbor dan mode luring', 'Dashboard and offline mode'),
+    brief: l(
+      'Kirim suhu ke dasbor lokal lewat Wi-Fi. Di tengah misi Wi-Fi putus: robot tetap menampilkan suhu di OLED dan menulis LURING sampai Wi-Fi kembali.',
+      'Send the temperature to a local dashboard over Wi-Fi. Halfway through, the Wi-Fi drops: the robot keeps showing the temperature on its OLED and writes OFFLINE until the Wi-Fi is back.',
+    ),
+  },
+  {
     id: 'smp-bebas',
     robot: 'smp',
     title: l('Proyek bebas', 'Free project'),
