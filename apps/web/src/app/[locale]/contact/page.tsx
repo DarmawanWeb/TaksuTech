@@ -29,7 +29,7 @@ export default async function ContactPage({ params }: Props) {
   return (
     <section className="pt-16 pb-10">
       <Container>
-        <SectionHeading as="h1" aksara="Hubungi kami" title={t('title')} intro={t('intro')} />
+        <SectionHeading as="h1" title={t('title')} intro={t('intro')} />
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
           <div className="border-border bg-surface rounded-xl border p-6 sm:p-8">
             <ContactForm email={brand.contact.email} />

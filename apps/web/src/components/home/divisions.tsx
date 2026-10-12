@@ -17,7 +17,7 @@ export async function Divisions({ locale }: { locale: Locale }) {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeading aksara="Produk" title={t('title')} intro={t('intro')} />
+        <SectionHeading title={t('title')} intro={t('intro')} />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <article className="dark border-border bg-background text-foreground flex flex-col overflow-hidden rounded-xl border p-8">
             <p className="font-display text-primary text-sm font-bold">

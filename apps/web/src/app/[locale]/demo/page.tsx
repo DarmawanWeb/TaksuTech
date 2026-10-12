@@ -62,7 +62,7 @@ export default async function DemoPage({ params }: Props) {
     <>
       <section className="pt-16 pb-6">
         <Container>
-          <SectionHeading as="h1" aksara="Démo" title={t('title')} intro={t('intro')} />
+          <SectionHeading as="h1" title={t('title')} intro={t('intro')} />
         </Container>
       </section>
 

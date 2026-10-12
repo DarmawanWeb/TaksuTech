@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: Props) {
     <>
       <section className="pt-16 pb-10">
         <Container>
-          <SectionHeading as="h1" aksara="Tentang Taksu Tech" title={t('title')} />
+          <SectionHeading as="h1" title={t('title')} />
         </Container>
       </section>
       <section className="py-10">

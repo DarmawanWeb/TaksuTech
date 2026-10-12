@@ -1,12 +1,6 @@
-import { AksaraText } from '@taksu/ui/brand/aksara-text';
 import { cn } from '@taksu/ui/lib/utils';
 
 export interface SectionHeadingProps {
-  /**
-   * Indonesian label transliterated into the Aksara Bali line above the heading,
-   * mirroring Balinese signage where the script sits above the Latin. Use é for taling.
-   */
-  aksara?: string;
   title: string;
   intro?: string;
   as?: 'h1' | 'h2';
@@ -14,7 +8,6 @@ export interface SectionHeadingProps {
 }
 
 export function SectionHeading({
-  aksara,
   title,
   intro,
   as: Heading = 'h2',
@@ -22,15 +15,12 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={cn('max-w-2xl', className)}>
-      {aksara ? (
-        <AksaraText latin={aksara} decorative className="text-primary block text-lg" />
-      ) : null}
       <Heading
         className={cn(
-          'font-semibold tracking-tight [font-stretch:90%]',
+          'font-semibold',
           Heading === 'h1'
-            ? 'text-4xl leading-[1.05] sm:text-5xl'
-            : 'text-3xl leading-tight sm:text-4xl',
+            ? 'text-[2.5rem] leading-[1.05] sm:text-5xl'
+            : 'text-[1.75rem] leading-tight sm:text-4xl',
         )}
       >
         {title}

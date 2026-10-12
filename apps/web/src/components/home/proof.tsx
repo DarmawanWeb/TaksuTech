@@ -16,7 +16,7 @@ export async function Proof() {
   return (
     <section className="border-border bg-surface border-y py-20">
       <Container>
-        <SectionHeading aksara="Kenapa Taksu Tech" title={t('title')} />
+        <SectionHeading title={t('title')} />
         <FeatureGrid
           className="mt-12 lg:grid-cols-4"
           items={items.map(({ key, icon }) => ({

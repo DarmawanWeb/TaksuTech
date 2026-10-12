@@ -12,7 +12,7 @@ export async function DemoShowcase({ locale }: { locale: Locale }) {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeading aksara="Coba démo" title={t('title')} intro={t('intro')} />
+        <SectionHeading title={t('title')} intro={t('intro')} />
         <ul className="divide-border border-border mt-10 divide-y border-y">
           {demos.map((demo) => (
             <li
