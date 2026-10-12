@@ -70,6 +70,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'sd-hindar',
+    robot: 'sd',
+    title: l('Putar balik di lorong buntu', 'Turn around in a dead end'),
+    brief: l(
+      'Robot masuk lorong yang buntu. Pakai jika-tidak: saat dinding dekat, mundur dan putar balik, lalu keluar.',
+      'The robot drives into a dead end. Use if-else: when the wall is close, back up and turn around, then drive out.',
+    ),
+  },
+  {
     id: 'sd-garis',
     robot: 'sd',
     title: l('Ikuti garis', 'Follow the line'),

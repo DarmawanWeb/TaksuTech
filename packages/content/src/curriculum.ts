@@ -245,6 +245,7 @@ const sd: Curriculum = {
           'If-else: avoiding',
           'Mundur dan belok saat ada halangan.',
           'Back up and turn when blocked.',
+          'sd-hindar',
         ),
         m(
           'Uji berbagai benda',
