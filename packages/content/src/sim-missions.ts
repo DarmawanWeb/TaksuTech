@@ -106,6 +106,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'smp-sistem',
+    robot: 'smp',
+    title: l('Satu sensor, satu aksi', 'One sensor, one action'),
+    brief: l(
+      'Input, proses, output dalam satu program. Baca jarak tangan, tulis di OLED, lalu bunyikan nada saat tangan sudah dekat.',
+      'Input, process, output in one program. Read how far the hand is, write it on the OLED, and play a tone once the hand is close.',
+    ),
+  },
+  {
     id: 'smp-pwm',
     robot: 'smp',
     title: l('Kendali gerak PWM', 'PWM motion control'),

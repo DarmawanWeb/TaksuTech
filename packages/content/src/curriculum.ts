@@ -402,6 +402,7 @@ const smp: Curriculum = {
           'Input, process, output',
           'Kelompokkan modul dan gambar diagram blok.',
           'Group the modules and draw a block diagram.',
+          'smp-sistem',
         ),
         m(
           'Daya dan keselamatan',
