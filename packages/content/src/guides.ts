@@ -48,8 +48,8 @@ export const guides: readonly Guide[] = [
         title: l('Isi daya', 'Charge'),
         steps: [
           l(
-            'Gunakan hanya charger yang disertakan. Isi di meja guru, bukan di meja siswa.',
-            'Use only the supplied charger. Charge on the teacher’s desk, not at student desks.',
+            'Gunakan hanya charger yang disertakan, dan isi daya di meja guru.',
+            'Use only the supplied charger, and charge on the teacher’s desk.',
           ),
           l(
             'Tunggu indikator penuh sebelum kelas dimulai.',
@@ -145,8 +145,8 @@ export const guides: readonly Guide[] = [
         title: l('Penilaian', 'Assessment'),
         steps: [
           l(
-            'Nilai proses, bukan hanya apakah program pertama langsung berhasil.',
-            'Assess the process, not only whether the first program worked.',
+            'Nilai juga prosesnya: prediksi, uji coba, dan perbaikan, selain hasil akhir program.',
+            'Score the process too: predictions, testing, and fixes, as well as the final program.',
           ),
           l(
             'Gunakan rubrik: prediksi, program, uji coba, penjelasan, kerja sama.',

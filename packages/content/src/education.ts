@@ -352,7 +352,10 @@ export const afterSales: ReadonlyArray<{ id: string; title: Localized; body: Loc
   {
     id: 'support',
     title: { id: 'Dukungan teknis', en: 'Technical support' },
-    body: { id: 'Bantuan cepat dan responsif.', en: 'Fast, responsive help.' },
+    body: {
+      id: 'Guru bisa bertanya lewat WhatsApp atau email saat menemui kendala.',
+      en: 'Teachers can ask over WhatsApp or email when something goes wrong.',
+    },
   },
   {
     id: 'docs',
@@ -367,7 +370,10 @@ export const afterSales: ReadonlyArray<{ id: string; title: Localized; body: Loc
   {
     id: 'updates',
     title: { id: 'Konten baru', en: 'New content' },
-    body: { id: 'Misi dan materi terus diperbarui.', en: 'Missions and lessons keep coming.' },
+    body: {
+      id: 'Misi simulator dan materi baru ditambahkan sepanjang tahun.',
+      en: 'New simulator missions and lessons are added through the year.',
+    },
   },
 ];
 
