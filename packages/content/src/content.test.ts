@@ -44,6 +44,29 @@ describe('curriculum', () => {
   });
 });
 
+describe('curriculum videos', () => {
+  const videos = Object.values(curricula).flatMap((curriculum) =>
+    curriculum.modules.flatMap((module) => (module.video ? [module.video] : [])),
+  );
+
+  it('uses well-formed YouTube ids', () => {
+    for (const video of videos) expect(video.youtube, video.title).toMatch(/^[\w-]{11}$/);
+  });
+
+  // Needs the internet, so it only runs on request: CHECK_VIDEOS=1 pnpm --filter @taksu/content test
+  it.runIf(process.env.CHECK_VIDEOS)(
+    'points at videos that still exist and can be embedded',
+    async () => {
+      for (const video of videos) {
+        const url = `https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=${video.youtube}`;
+        const response = await fetch(url);
+        expect(response.status, `${video.youtube} ${video.title}`).toBe(200);
+      }
+    },
+    60_000,
+  );
+});
+
 describe('reception catalogue', () => {
   it('compares every robot on every row', () => {
     for (const row of comparison) {

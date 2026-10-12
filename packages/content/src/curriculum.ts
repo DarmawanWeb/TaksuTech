@@ -8,6 +8,18 @@ export interface Meeting {
   sim?: string;
 }
 
+/** A YouTube video a teacher can play in class. Loaded from youtube-nocookie.com after a click. */
+export interface ModuleVideo {
+  youtube: string;
+  title: string;
+  channel: string;
+  /** Spoken language of the video. */
+  lang: 'id' | 'en';
+  minutes?: number;
+  /** When and how to use it in class. */
+  note: Localized;
+}
+
 export interface CurriculumModule {
   id: string;
   title: Localized;
@@ -15,6 +27,7 @@ export interface CurriculumModule {
   concepts: Localized[];
   evidence: Localized;
   meetings: Meeting[];
+  video?: ModuleVideo;
 }
 
 export interface Curriculum {
@@ -26,6 +39,14 @@ export interface Curriculum {
 }
 
 const l = (id: string, en: string): Localized => ({ id, en });
+/** An English-language video with a note on using it in class. */
+const en = (
+  youtube: string,
+  title: string,
+  channel: string,
+  note: Localized,
+  minutes?: number,
+): ModuleVideo => ({ youtube, title, channel, lang: 'en', note, ...(minutes ? { minutes } : {}) });
 /** Compact meeting row: title and activity in both languages, plus an optional simulator mission. */
 const m = (
   titleId: string,
@@ -65,6 +86,15 @@ const sd: Curriculum = {
       evidence: l(
         'Siswa menceritakan alur sensor, pengendali, lalu respons robot.',
         'Students describe the flow from sensor to controller to response.',
+      ),
+      video: en(
+        '8wHJjLMnikU',
+        'Real-Life Robots',
+        'SciShow Kids',
+        l(
+          'Putar di pertemuan 1. Jeda di tengah, lalu tanya: robot ini merasakan apa, dan apa yang ia lakukan?',
+          'Play it in meeting 1. Pause halfway and ask: what does this robot sense, and what does it do?',
+        ),
       ),
       meetings: [
         m(
@@ -109,6 +139,15 @@ const sd: Curriculum = {
       evidence: l(
         'Robot sampai di garis finis dan siswa menjelaskan perubahan yang dibuat.',
         'The robot reaches the finish and students explain what they changed.',
+      ),
+      video: en(
+        'Y_paSrH2ffw',
+        'Unplugged - Graph Paper Programming',
+        'Code.org',
+        l(
+          'Coba kegiatannya tanpa robot dulu: satu siswa jadi robot, temannya menulis urutan panah.',
+          'Try the activity without robots first: one student plays the robot while a partner writes the arrows.',
+        ),
       ),
       meetings: [
         m(
@@ -163,6 +202,15 @@ const sd: Curriculum = {
         'Program memakai blok ulangi dan siswa menjelaskan parameter yang diubah.',
         'The program uses a repeat block and students explain the parameter they changed.',
       ),
+      video: en(
+        'JoKTqHCni0M',
+        'Unplugged - Getting Loopy',
+        'Code.org',
+        l(
+          'Cocok sebelum pertemuan blok ulangi. Siswa menari mengikuti pola, lalu menuliskannya dengan ulangi.',
+          'Good before the repeat block meeting. Students dance a pattern, then write it down with repeat.',
+        ),
+      ),
       meetings: [
         m(
           'Kecepatan dan jarak',
@@ -212,6 +260,15 @@ const sd: Curriculum = {
       evidence: l(
         'Robot berhenti sebelum rintangan, menampilkan wajah waspada, dan siswa menjelaskan ambangnya.',
         'The robot stops before the obstacle, shows an alert face, and students explain the threshold.',
+      ),
+      video: en(
+        'q64T_lxw_bs',
+        'How do bats see in the dark?',
+        'SciShow Kids',
+        l(
+          'Kelelawar mengukur jarak dari pantulan suara. Sensor di wajah SD v1 bekerja dengan cara yang sama.',
+          'Bats judge distance from echoes. The sensor on the face of SD v1 works the same way.',
+        ),
       ),
       meetings: [
         m(
@@ -271,6 +328,15 @@ const sd: Curriculum = {
         'Robot menyelesaikan lintasan dan siswa menjelaskan kegagalan yang diperbaiki.',
         'The robot completes the track and students explain the failures they fixed.',
       ),
+      video: en(
+        'S6Z8rJB30M4',
+        'Line Follower: A Zippy Robot That Senses Where to Go',
+        'Science Buddies',
+        l(
+          'Setelah menonton, bandingkan sensor robot di video dengan dua sensor garis SD v1.',
+          'After watching, compare the sensors on the robot in the video with the two line sensors on SD v1.',
+        ),
+      ),
       meetings: [
         m(
           'Sensor garis kiri-kanan',
@@ -328,6 +394,16 @@ const sd: Curriculum = {
       evidence: l(
         'Misi berhasil, aturan dijelaskan, dan ada bukti uji coba serta perbaikan.',
         'The mission succeeds, rules are explained, and testing and fixes are shown.',
+      ),
+      video: en(
+        '9vJRopau0g0',
+        'The Super Mario Effect - Tricking Your Brain into Learning More',
+        'TEDx Talks',
+        l(
+          'Untuk guru atau kelas 5 dan 6, sebelum hari uji coba. Mark Rober bercerita kenapa gagal saat mencoba tidak perlu ditakuti.',
+          'For teachers or grades 5 and 6, before test day. Mark Rober explains why failing while you try is nothing to fear.',
+        ),
+        15,
       ),
       meetings: [
         m(
@@ -396,6 +472,15 @@ const smp: Curriculum = {
         'Siswa menjelaskan alur satu sensor ke satu aksi pada robot rakitannya.',
         'Students explain one sensor-to-action path on the robot they built.',
       ),
+      video: en(
+        'DKGZlaPlVLY',
+        'How Computers Work: CPU, Memory, Input & Output',
+        'Code.org',
+        l(
+          'Setelah menonton, siswa memetakan sensor, ESP32, dan aktuator SMP v1 ke input, proses, dan output.',
+          'After watching, students map the sensors, ESP32, and actuators of SMP v1 to input, process, and output.',
+        ),
+      ),
       meetings: [
         m(
           'Input, proses, output',
@@ -430,6 +515,15 @@ const smp: Curriculum = {
       evidence: l(
         'Siswa membandingkan hasil dan alasan setiap perubahan parameter.',
         'Students compare results and reasons for each parameter change.',
+      ),
+      video: en(
+        'YU17L650k3s',
+        'DC Motor Control with an H-Bridge and Arduino (Lesson #17)',
+        'Science Buddies',
+        l(
+          'Video memakai L293D, sedangkan SMP v1 memakai TB6612FNG. Cara kerjanya sama: dua pin arah dan satu PWM untuk tiap motor.',
+          'The video uses an L293D while SMP v1 uses a TB6612FNG. They work the same way: two direction pins and one PWM pin per motor.',
+        ),
       ),
       meetings: [
         m(
@@ -481,6 +575,16 @@ const smp: Curriculum = {
       evidence: l(
         'Robot menyelesaikan lintasan dan siswa menjelaskan kegagalannya.',
         'The robot completes the track and students explain its failures.',
+      ),
+      video: en(
+        'wkfEZmsQqiA',
+        'What Is PID Control?',
+        'MATLAB',
+        l(
+          'Untuk pertemuan koreksi proporsional. Bagian P sudah cukup; I dan D bisa jadi tantangan tambahan.',
+          'For the proportional correction meeting. The P part is enough; I and D make a good stretch goal.',
+        ),
+        11,
       ),
       meetings: [
         m(
@@ -534,6 +638,15 @@ const smp: Curriculum = {
         'Siswa membuat aturan berhenti atau memilih jalur dari data pindaian.',
         'Students build a stop or path-choice rule from scan data.',
       ),
+      video: en(
+        'n-gJ00GTsNg',
+        'HC-SR04 Ultrasonic Distance Sensor and Arduino (Lesson #9)',
+        'Science Buddies',
+        l(
+          'Perhatikan bagian pin Echo. Di ESP32, sinyal itu harus diturunkan dulu ke 3,3 V.',
+          'Watch the part about the Echo pin. On the ESP32 that signal has to be brought down to 3.3 V first.',
+        ),
+      ),
       meetings: [
         m(
           'HC-SR04 dan level sinyal',
@@ -582,6 +695,15 @@ const smp: Curriculum = {
         'Siswa mencatat data, kondisi uji, dan keterbatasan.',
         'Students log data, test conditions, and limitations.',
       ),
+      video: en(
+        '6IAkYpmA1DQ',
+        'How I2C Communication Works and How To Use It with Arduino',
+        'How To Mechatronics',
+        l(
+          'OLED dan AHT10 di SMP v1 berbagi dua kabel I2C yang sama. Video ini menjelaskan kenapa itu bisa.',
+          'The OLED and the AHT10 on SMP v1 share the same two I2C wires. This video explains how that works.',
+        ),
+      ),
       meetings: [
         m(
           'I2C dan AHT10',
@@ -621,6 +743,15 @@ const smp: Curriculum = {
       evidence: l(
         'Siswa membedakan peristiwa sederhana dari pengenalan ucapan.',
         'Students tell simple sound events apart from speech recognition.',
+      ),
+      video: en(
+        'bMs5J4bJOD0',
+        'How to Use a Microphone with Arduino (Lesson #12)',
+        'Science Buddies',
+        l(
+          'Setelah menonton, ukur tingkat suara kelas saat tenang dan saat ramai, lalu tentukan ambang tepuk tangan.',
+          'After watching, measure the class sound level when it is quiet and when it is noisy, then pick a clap threshold.',
+        ),
       ),
       meetings: [
         m(
@@ -666,6 +797,15 @@ const smp: Curriculum = {
         'Sistem tetap punya aktivitas lokal ketika Wi-Fi tidak tersedia.',
         'The system still works locally without Wi-Fi.',
       ),
+      video: en(
+        'ZhEf7e4kopM',
+        'The Internet: Wires, Cables & Wifi',
+        'Code.org',
+        l(
+          'Pengantar sebelum ESP32 disambungkan ke jaringan kelas.',
+          'An introduction before the ESP32 joins the class network.',
+        ),
+      ),
       meetings: [
         m(
           'Wi-Fi ESP32',
@@ -710,6 +850,15 @@ const smp: Curriculum = {
       evidence: l(
         'Siswa menunjukkan hasil, data uji, batasan, dan iterasi.',
         'Students show results, test data, limits, and iterations.',
+      ),
+      video: en(
+        'hFZFjoX2cGg',
+        'Building the Perfect Squirrel Proof Bird Feeder',
+        'Mark Rober',
+        l(
+          'Contoh rancang, uji, lalu rancang ulang. Ada bagian sponsor di tengah video yang bisa dilewati.',
+          'Design, test, redesign, on a real problem. There is a sponsor segment in the middle you can skip.',
+        ),
       ),
       meetings: [
         m(
