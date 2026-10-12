@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { curricula, meetingCount } from './curriculum';
+import { accessories, eduFaq, upgradePacks } from './edu-catalog';
 import { educationLevels } from './education';
 import { guides } from './guides';
 import { comparison, robots } from './reception';
@@ -39,5 +40,27 @@ describe('reception catalogue', () => {
 describe('guides', () => {
   it('uses unique slugs', () => {
     expect(new Set(guides.map((guide) => guide.slug)).size).toBe(guides.length);
+  });
+});
+
+describe('edu catalog', () => {
+  const kits = new Set(educationLevels.map((level) => level.slug));
+
+  it('fits every add-on to at least one existing kit', () => {
+    for (const item of [...upgradePacks, ...accessories]) {
+      expect(item.fits.length, item.id).toBeGreaterThan(0);
+      for (const level of item.fits) expect(kits.has(level), `${item.id}/${level}`).toBe(true);
+    }
+  });
+
+  it('uses unique ids within each list', () => {
+    for (const list of [[...upgradePacks, ...accessories], eduFaq]) {
+      const ids = list.map((item) => item.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
+  });
+
+  it('names each kit with its version', () => {
+    for (const level of educationLevels) expect(level.kit.endsWith(level.version)).toBe(true);
   });
 });
