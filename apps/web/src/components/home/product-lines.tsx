@@ -36,7 +36,7 @@ function Line({
           src={image}
           alt={imageAlt}
           placeholder="blur"
-          sizes="(min-width: 1152px) 576px, (min-width: 1024px) 50vw, 100vw"
+          sizes="(min-width: 1152px) 576px, (min-width: 768px) 50vw, 100vw"
           className="size-full object-cover"
         />
       </div>
@@ -51,7 +51,7 @@ function Line({
         <p className="text-muted-foreground mt-3 leading-relaxed">
           {pick(division.summary, locale)}
         </p>
-        <ul className="mt-5 flex flex-col gap-2 text-[0.9375rem]">
+        <ul className="mt-5 mb-8 flex flex-col gap-2 text-[0.9375rem]">
           {division.points.map((point) => (
             <li key={point.en} className="flex gap-3">
               <span aria-hidden className="bg-accent mt-[0.6em] size-1.5 shrink-0 rounded-full" />
@@ -59,7 +59,7 @@ function Line({
             </li>
           ))}
         </ul>
-        <Button asChild variant="outline" className="mt-8 self-start">
+        <Button asChild variant="outline" className="mt-auto self-start">
           <a href={href}>{cta}</a>
         </Button>
       </div>
@@ -74,7 +74,7 @@ export async function ProductLines({ locale }: { locale: Locale }) {
     <section id="produk" className="scroll-mt-16 py-20">
       <Container>
         <SectionHeading title={t('title')} intro={t('intro')} />
-        <div className="border-border divide-border mt-10 grid divide-y overflow-hidden rounded-lg border lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div className="border-border divide-border mt-10 grid divide-y overflow-hidden rounded-lg border md:grid-cols-2 md:divide-x md:divide-y-0">
           <Line
             division={divisions.reception}
             mark={
