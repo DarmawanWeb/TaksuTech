@@ -10,7 +10,8 @@
     "./components/*": "./src/components/*.tsx",
     "./brand/*": "./src/brand/*.tsx",
     "./lib/*": "./src/lib/*.ts",
-    "./theme.css": "./src/styles/theme.css"
+    "./theme.css": "./src/styles/theme.css",
+    "./base.css": "./src/styles/base.css"
   },
   "scripts": {
     "lint": "biome lint .",
