@@ -5,7 +5,6 @@ import { DemoShowcase } from '@/components/home/demo-showcase';
 import { Divisions } from '@/components/home/divisions';
 import { Hero } from '@/components/home/hero';
 import { Proof } from '@/components/home/proof';
-import { Values } from '@/components/home/values';
 import { CtaBand } from '@/components/shared/cta-band';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
 import { pageMetadata } from '@/lib/metadata';
@@ -31,7 +30,6 @@ const organizationJsonLd = {
 
 export default async function HomePage({ params }: Props) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations('Home');
   return (
     <>
       <script
@@ -43,7 +41,6 @@ export default async function HomePage({ params }: Props) {
       <Divisions locale={locale} />
       <Proof />
       <DemoShowcase locale={locale} />
-      <Values locale={locale} title={t('values.title')} intro={t('values.intro')} />
       <CtaBand />
     </>
   );

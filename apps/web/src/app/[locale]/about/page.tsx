@@ -3,7 +3,7 @@ import { AksaraText } from '@taksu/ui/brand/aksara-text';
 import { CandiBentarHalf } from '@taksu/ui/brand/ornaments';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Values } from '@/components/home/values';
+import { Principles } from '@/components/about/principles';
 import { Container } from '@/components/shared/container';
 import { CtaBand } from '@/components/shared/cta-band';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -57,7 +57,7 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </Container>
       </section>
-      <Values locale={locale} title={t('valuesTitle')} intro={t('valuesIntro')} />
+      <Principles locale={locale} title={t('principlesTitle')} />
       <section className="py-6">
         <Container>
           <div className="border-border bg-surface max-w-3xl rounded-xl border p-8">
