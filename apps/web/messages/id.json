@@ -32,12 +32,28 @@
   },
   "Home": {
     "hero": {
-      "title": "Robotika karya anak Bali",
-      "body": "Kami merancang robot resepsionis yang paham adat Bali dan kit robot edukasi untuk sekolah di seluruh Indonesia. Taksu Tech adalah bagian dari Ezra Robotics.",
-      "ctaReception": "Robot resepsionis Bali",
-      "ctaEducation": "Robot edukasi",
-      "imageAlt": "Robot Snow dan Timo edisi Bali berbusana adat di lobi hotel",
-      "caption": "Snow dan Timo edisi Bali, dimodifikasi oleh Taksu Tech"
+      "title": "Robot untuk lobi dan ruang kelas",
+      "body": "Taksu Tech merancang robot resepsionis, kios layanan, dan kit robot edukasi untuk sekolah. Elektronik, perangkat lunak, dan materi ajarnya kami kerjakan sendiri.",
+      "ctaProducts": "Lihat produk",
+      "ctaDemo": "Coba demo"
+    },
+    "board": {
+      "alt": "Papan kendali robot SMP v1 dengan modul ESP32, deretan konektor putih, dan regulator daya",
+      "caption": "Papan kendali robot SMP v1, kami rancang sendiri.",
+      "parts": {
+        "esp32": {
+          "name": "ESP32",
+          "role": "Pengendali dengan <nowrap>Wi-Fi</nowrap> dan Bluetooth"
+        },
+        "connectors": {
+          "name": "Konektor modul",
+          "role": "Sensor dan motor dipasang tanpa solder"
+        },
+        "power": {
+          "name": "Regulator daya",
+          "role": "Mengatur daya baterai untuk seluruh papan"
+        }
+      }
     },
     "divisions": {
       "title": "Dua lini produk",

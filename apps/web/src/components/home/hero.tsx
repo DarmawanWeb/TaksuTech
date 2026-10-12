@@ -1,54 +1,32 @@
-import { OM_SWASTIASTU } from '@taksu/bali';
-import { AksaraText } from '@taksu/ui/brand/aksara-text';
 import { Button } from '@taksu/ui/components/button';
-import Image from 'next/image';
-import { getLocale, getTranslations } from 'next-intl/server';
-import { images } from '@/lib/images';
-import { eduUrl, robotUrl } from '@/lib/links';
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import { Container } from '../shared/container';
+import { BoardFigure } from './board-figure';
 
 export async function Hero() {
-  const [t, common, locale] = await Promise.all([
-    getTranslations('Home.hero'),
-    getTranslations('Common'),
-    getLocale(),
-  ]);
+  const [t, common] = await Promise.all([getTranslations('Home.hero'), getTranslations('Common')]);
   return (
-    <section className="overflow-hidden">
-      <Container className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-20">
-        <div>
-          <AksaraText
-            aksara={OM_SWASTIASTU.aksara}
-            decorative
-            className="text-primary block pb-2 text-2xl"
-          />
-          <h1 className="text-[clamp(2.6rem,6vw,4.6rem)] leading-[1.02] font-bold tracking-tight [font-stretch:80%]">
+    <section>
+      <Container className="grid gap-12 pt-14 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:pb-24">
+        <div className="lg:col-span-5 lg:pt-4">
+          <h1 className="text-[clamp(2.6rem,5.4vw,4.25rem)] leading-[1.02] font-semibold tracking-[-0.03em]">
             {t('title')}
           </h1>
-          <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">{t('body')}</p>
+          <p className="text-muted-foreground mt-6 max-w-md text-lg leading-relaxed">{t('body')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
-              <a href={robotUrl(locale)}>{t('ctaReception')}</a>
+              <a href="#produk">{t('ctaProducts')}</a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href={eduUrl(locale)}>{t('ctaEducation')}</a>
+              <Link href="/demo">{t('ctaDemo')}</Link>
             </Button>
           </div>
-          <p className="text-muted-foreground mt-10 text-sm font-semibold">{common('partOf')}</p>
+          <p className="text-muted-foreground mt-10 text-sm">{common('partOf')}</p>
         </div>
-        <figure className="relative">
-          <div className="border-border overflow-hidden rounded-xl border shadow-2xl">
-            <Image
-              src={images.snowTimoBali}
-              alt={t('imageAlt')}
-              priority
-              placeholder="blur"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="h-auto w-full"
-            />
-          </div>
-          <figcaption className="text-muted-foreground mt-3 text-sm">{t('caption')}</figcaption>
-        </figure>
+        <div className="lg:col-span-7">
+          <BoardFigure />
+        </div>
       </Container>
     </section>
   );

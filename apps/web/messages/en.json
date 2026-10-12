@@ -32,12 +32,28 @@
   },
   "Home": {
     "hero": {
-      "title": "Robotics built by young Balinese engineers",
-      "body": "We design receptionist robots that understand Balinese custom and education robot kits for schools across Indonesia. Taksu Tech is part of Ezra Robotics.",
-      "ctaReception": "Bali receptionist robots",
-      "ctaEducation": "Education robots",
-      "imageAlt": "Snow and Timo Bali Edition robots in traditional dress in a hotel lobby",
-      "caption": "Snow and Timo Bali Edition, modified by Taksu Tech"
+      "title": "Robots for lobbies and classrooms",
+      "body": "Taksu Tech designs receptionist robots, service kiosks, and robot kits for schools. We make the electronics, the software, and the teaching materials ourselves.",
+      "ctaProducts": "See the products",
+      "ctaDemo": "Try the demos"
+    },
+    "board": {
+      "alt": "The SMP v1 robot controller board with the ESP32 module, a row of white connectors, and the power regulator",
+      "caption": "The SMP v1 robot controller board, designed in-house.",
+      "parts": {
+        "esp32": {
+          "name": "ESP32",
+          "role": "The controller, with <nowrap>Wi-Fi</nowrap> and Bluetooth"
+        },
+        "connectors": {
+          "name": "Module connectors",
+          "role": "Sensors and motors plug in without soldering"
+        },
+        "power": {
+          "name": "Power regulator",
+          "role": "Feeds battery power to the whole board"
+        }
+      }
     },
     "divisions": {
       "title": "Two product lines",
