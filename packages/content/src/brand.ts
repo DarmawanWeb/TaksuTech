@@ -111,39 +111,3 @@ export const principles: ReadonlyArray<{ id: string; title: Localized; body: Loc
     },
   },
 ];
-
-/** Tri Hita Karana: the Balinese philosophy of three sources of harmony, mapped to how we work. */
-export const values: ReadonlyArray<{
-  id: string;
-  name: string;
-  title: Localized;
-  body: Localized;
-}> = [
-  {
-    id: 'parahyangan',
-    name: 'Parahyangan',
-    title: { id: 'Teknologi yang tahu tempatnya', en: 'Technology that knows its place' },
-    body: {
-      id: 'Robot kami menghormati ruang suci, hari raya, dan tata krama setempat. Kalender Pawukon dan salam Bali sudah tertanam di perangkat lunaknya.',
-      en: 'Our robots respect sacred spaces, holy days, and local etiquette. The Pawukon calendar and Balinese greetings are built into the software.',
-    },
-  },
-  {
-    id: 'pawongan',
-    name: 'Pawongan',
-    title: { id: 'Membantu orang, bukan menggantikan', en: 'Helping people, not replacing them' },
-    body: {
-      id: 'Robot menangani pertanyaan berulang dan antrean, sehingga staf punya waktu untuk tamu yang butuh perhatian lebih. Di kelas, robot membantu guru, bukan menggantikannya.',
-      en: 'Robots handle repetitive questions and queues so staff have time for guests who need more attention. In class, robots support teachers rather than replace them.',
-    },
-  },
-  {
-    id: 'palemahan',
-    name: 'Palemahan',
-    title: { id: 'Dirawat agar awet', en: 'Maintained to last' },
-    body: {
-      id: 'Kit edukasi kami modular dan bisa ditingkatkan, jadi sekolah tidak membeli ulang setiap naik jenjang. Servis dan suku cadang tersedia di Bali.',
-      en: 'Our education kits are modular and upgradeable, so schools do not rebuy at every level. Service and spare parts are available in Bali.',
-    },
-  },
-];
