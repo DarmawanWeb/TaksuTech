@@ -107,11 +107,25 @@ export function ContactForm({ email }: { email: string }) {
         </p>
       ) : null}
       <div className="flex flex-wrap gap-3">
-        <Button type="submit" name="channel" value="whatsapp" size="lg" disabled={!hasWhatsapp}>
+        <Button
+          type="submit"
+          name="channel"
+          value="whatsapp"
+          size="lg"
+          disabled={!hasWhatsapp}
+          className="w-full px-4 sm:w-auto sm:px-7"
+        >
           <MessageCircle aria-hidden />
           {t('sendWhatsapp')}
         </Button>
-        <Button type="submit" name="channel" value="email" size="lg" variant="outline">
+        <Button
+          type="submit"
+          name="channel"
+          value="email"
+          size="lg"
+          variant="outline"
+          className="w-full px-4 sm:w-auto sm:px-7"
+        >
           <Mail aria-hidden />
           {t('sendEmail')}
         </Button>

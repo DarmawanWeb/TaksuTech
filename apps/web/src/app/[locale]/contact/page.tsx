@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: Props) {
       <Container>
         <SectionHeading as="h1" title={t('title')} intro={t('intro')} />
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
-          <div className="border-border bg-surface rounded-lg border p-6 sm:p-8">
+          <div className="border-border bg-surface rounded-lg border p-5 sm:p-8">
             <ContactForm email={brand.contact.email} />
           </div>
           <aside>
