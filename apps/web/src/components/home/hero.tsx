@@ -8,7 +8,7 @@ export async function Hero() {
   const [t, common] = await Promise.all([getTranslations('Home.hero'), getTranslations('Common')]);
   return (
     <section>
-      <Container className="grid gap-12 pt-14 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:pb-24">
+      <Container className="grid gap-12 pt-14 pb-6 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:pb-10">
         <div className="lg:col-span-5 lg:pt-4">
           <h1 className="text-[clamp(2.6rem,5.4vw,4.25rem)] leading-[1.02] font-semibold tracking-[-0.03em]">
             {t('title')}

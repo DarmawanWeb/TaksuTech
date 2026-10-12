@@ -80,8 +80,10 @@ export async function SiteFooter() {
           </ul>
         </div>
       </Container>
-      <Container className="border-border text-muted-foreground border-t py-6 text-xs">
-        {t('rights', { year: new Date().getFullYear() })}
+      <Container>
+        <p className="border-border text-muted-foreground border-t py-6 text-xs">
+          {t('rights', { year: new Date().getFullYear() })}
+        </p>
       </Container>
     </footer>
   );
