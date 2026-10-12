@@ -1,5 +1,5 @@
-import { eduAdvantages, type EduAdvantageIcon, type Locale } from '@taksu/content';
-import { BookOpen, Cpu, LifeBuoy, Monitor, Puzzle, Wrench, type LucideIcon } from 'lucide-react';
+import { type EduAdvantageIcon, eduAdvantages, type Locale } from '@taksu/content';
+import { BookOpen, Cpu, LifeBuoy, type LucideIcon, Monitor, Puzzle, Wrench } from 'lucide-react';
 import { FeatureGrid } from '../shared/feature-grid';
 
 const icons: Record<EduAdvantageIcon, LucideIcon> = {

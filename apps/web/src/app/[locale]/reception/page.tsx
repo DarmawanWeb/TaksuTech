@@ -1,4 +1,4 @@
-import { aksaraRegulation, receptionProcess, pick, type Locale } from '@taksu/content';
+import { aksaraRegulation, type Locale, pick, receptionProcess } from '@taksu/content';
 import { RobotFace } from '@taksu/ui/brand/robot-face';
 import { Button } from '@taksu/ui/components/button';
 import type { Metadata } from 'next';

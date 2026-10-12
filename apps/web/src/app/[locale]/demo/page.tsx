@@ -1,4 +1,4 @@
-import { demos, pick, type DemoEntry, type Locale } from '@taksu/content';
+import { type DemoEntry, demos, type Locale, pick } from '@taksu/content';
 import { RobotIllustration, type RobotIllustrationKind } from '@taksu/ui/brand/robot-illustration';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';

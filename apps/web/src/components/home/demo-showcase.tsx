@@ -1,4 +1,4 @@
-import { demos, pick, type Locale } from '@taksu/content';
+import { demos, type Locale, pick } from '@taksu/content';
 import { Badge } from '@taksu/ui/components/badge';
 import { getTranslations } from 'next-intl/server';
 import { demoUrl, kioskLauncherUrl } from '@/lib/links';

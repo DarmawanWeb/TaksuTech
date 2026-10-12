@@ -1,4 +1,4 @@
-import { pick, type Locale, type RobotSpec } from '@taksu/content';
+import { type Locale, pick, type RobotSpec } from '@taksu/content';
 import { cn } from '@taksu/ui/lib/utils';
 
 export function SpecList({

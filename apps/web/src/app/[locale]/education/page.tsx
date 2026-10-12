@@ -3,12 +3,12 @@ import {
   competitions,
   curricula,
   educationLevels,
+  type Locale,
   learningPath,
   meetingCount,
   pick,
   simMissions,
   upgradePath,
-  type Locale,
 } from '@taksu/content';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';

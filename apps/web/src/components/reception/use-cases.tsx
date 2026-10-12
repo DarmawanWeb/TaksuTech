@@ -1,6 +1,6 @@
-import { getRobot, pick, useCases, type Locale, type UseCase } from '@taksu/content';
+import { getRobot, type Locale, pick, type UseCase, useCases } from '@taksu/content';
 import { Badge } from '@taksu/ui/components/badge';
-import { Hospital, Hotel, Landmark, Plane, School, type LucideIcon } from 'lucide-react';
+import { Hospital, Hotel, Landmark, type LucideIcon, Plane, School } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { demoUrl } from '@/lib/links';
 import { ExternalButton } from '../shared/external-button';

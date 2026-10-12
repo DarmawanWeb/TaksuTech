@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@taksu/ui/compone
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
-import { NavLinks, type NavItem } from './nav-links';
+import { type NavItem, NavLinks } from './nav-links';
 
 export function MobileNav({
   items,

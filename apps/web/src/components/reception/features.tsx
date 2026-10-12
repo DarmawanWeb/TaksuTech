@@ -1,14 +1,14 @@
-import { receptionFeatures, type Locale, type ReceptionFeatureIcon } from '@taksu/content';
+import { type Locale, type ReceptionFeatureIcon, receptionFeatures } from '@taksu/content';
 import {
   BookOpen,
   CalendarDays,
+  type LucideIcon,
   Mic,
   Network,
   Printer,
   Puzzle,
   Route,
   ScrollText,
-  type LucideIcon,
 } from 'lucide-react';
 import { FeatureGrid } from '../shared/feature-grid';
 

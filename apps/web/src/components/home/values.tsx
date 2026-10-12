@@ -1,4 +1,4 @@
-import { pick, values, type Locale } from '@taksu/content';
+import { type Locale, pick, values } from '@taksu/content';
 import { AksaraText } from '@taksu/ui/brand/aksara-text';
 import { Container } from '../shared/container';
 import { SectionHeading } from '../shared/section-heading';

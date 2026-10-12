@@ -451,7 +451,14 @@ export const comparison: ReadonlyArray<{ label: Localized; values: Record<RobotS
   ];
 
 export type ReceptionFeatureIcon =
-  'aksara' | 'voice' | 'print' | 'guestbook' | 'route' | 'org' | 'calendar' | 'custom';
+  | 'aksara'
+  | 'voice'
+  | 'print'
+  | 'guestbook'
+  | 'route'
+  | 'org'
+  | 'calendar'
+  | 'custom';
 
 /** The Taksu kiosk software that runs on all three. */
 export const receptionFeatures: ReadonlyArray<{

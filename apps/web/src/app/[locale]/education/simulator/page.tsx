@@ -1,4 +1,4 @@
-import { pick, simMissions, type SimRobot } from '@taksu/content';
+import { pick, type SimRobot, simMissions } from '@taksu/content';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';
 import { Activity, Code2, Monitor, Radar, ScanLine, Thermometer } from 'lucide-react';

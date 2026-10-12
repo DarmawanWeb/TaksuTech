@@ -1,4 +1,4 @@
-import { educationLevels, pick, type LevelSlug, type Locale } from '@taksu/content';
+import { educationLevels, type LevelSlug, type Locale, pick } from '@taksu/content';
 import { RobotIllustration } from '@taksu/ui/brand/robot-illustration';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';

@@ -6,7 +6,7 @@ import { Label } from '@taksu/ui/components/label';
 import { Textarea } from '@taksu/ui/components/textarea';
 import { Mail, MessageCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState, type FormEvent } from 'react';
+import { type FormEvent, useState } from 'react';
 import { mailtoUrl, whatsappUrl } from '@/lib/links';
 
 type Channel = 'whatsapp' | 'email';

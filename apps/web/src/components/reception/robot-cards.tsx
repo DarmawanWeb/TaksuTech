@@ -1,4 +1,4 @@
-import { pick, robots, type Locale, type ReceptionRobot } from '@taksu/content';
+import { type Locale, pick, type ReceptionRobot, robots } from '@taksu/content';
 import { RobotIllustration } from '@taksu/ui/brand/robot-illustration';
 import { Badge } from '@taksu/ui/components/badge';
 import { Button } from '@taksu/ui/components/button';

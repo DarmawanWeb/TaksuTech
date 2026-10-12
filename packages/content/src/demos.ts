@@ -1,5 +1,5 @@
 import type { Localized } from './i18n';
-import { robots, type RobotSlug } from './reception';
+import { type RobotSlug, robots } from './reception';
 import { getSite } from './sites';
 
 export type DemoApp = 'kiosk' | 'sim';
