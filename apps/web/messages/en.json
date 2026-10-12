@@ -85,11 +85,9 @@
       }
     },
     "demos": {
-      "title": "Try it in your browser",
-      "intro": "Talk to a receptionist robot, print a visitor pass, or program a robot in the simulator.",
-      "kiosk": "Robot kiosk",
-      "sim": "Simulator",
-      "launcher": "Pick your own robot and sample venue"
+      "title": "Try them in your browser",
+      "intro": "The receptionist robots and the education simulator work without signing in. The venue data inside is sample data.",
+      "all": "See all demos"
     },
     "cta": {
       "title": "Want to see the robots in person?",

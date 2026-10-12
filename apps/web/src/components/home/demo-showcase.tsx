@@ -1,10 +1,15 @@
 import { demos, type Locale, pick } from '@taksu/content';
-import { Badge } from '@taksu/ui/components/badge';
 import { getTranslations } from 'next-intl/server';
-import { demoUrl, kioskLauncherUrl } from '@/lib/links';
+import { Link } from '@/i18n/navigation';
+import { demoUrl } from '@/lib/links';
 import { Container } from '../shared/container';
 import { ExternalButton } from '../shared/external-button';
 import { SectionHeading } from '../shared/section-heading';
+
+/** One demo per kind of product; the demo page lists the rest. */
+const featured = demos.filter(
+  (demo) => demo.robot === 'snow' || demo.id === 'kiosk-studio' || demo.app === 'sim',
+);
 
 export async function DemoShowcase({ locale }: { locale: Locale }) {
   const [t, common] = await Promise.all([getTranslations('Home.demos'), getTranslations('Common')]);
@@ -12,26 +17,29 @@ export async function DemoShowcase({ locale }: { locale: Locale }) {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeading title={t('title')} intro={t('intro')} />
-        <ul className="divide-border border-border mt-10 divide-y border-y">
-          {demos.map((demo) => (
-            <li
-              key={demo.id}
-              className="grid gap-3 py-6 sm:grid-cols-[9rem_1fr_auto] sm:items-center sm:gap-6"
-            >
-              <Badge
-                variant={demo.app === 'kiosk' ? 'gold' : 'muted'}
-                className="self-start sm:self-center"
-              >
-                {demo.app === 'kiosk' ? t('kiosk') : t('sim')}
-              </Badge>
-              <div>
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading title={t('title')} intro={t('intro')} />
+          <Link
+            href="/demo"
+            className="shrink-0 font-semibold underline decoration-1 underline-offset-4 hover:decoration-2"
+          >
+            {t('all')}
+          </Link>
+        </div>
+        <ul className="border-border bg-border mt-10 grid gap-px overflow-hidden rounded-lg border sm:grid-cols-2">
+          {featured.map((demo) => (
+            <li key={demo.id} className="bg-background flex flex-col gap-4 p-6 sm:p-7">
+              <div className="flex-1">
                 <h3 className="text-lg font-semibold">{pick(demo.title, locale)}</h3>
-                <p className="text-muted-foreground text-sm">{pick(demo.description, locale)}</p>
+                <p className="text-muted-foreground mt-1 text-[0.9375rem]">
+                  {pick(demo.description, locale)}
+                </p>
               </div>
               <ExternalButton
                 href={demoUrl(demo, locale)}
                 variant="outline"
+                size="sm"
+                className="self-start"
                 newTabLabel={common('newTab')}
               >
                 {common('openDemo')}
@@ -39,17 +47,6 @@ export async function DemoShowcase({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm">
-          <a
-            href={kioskLauncherUrl(locale)}
-            target="_blank"
-            rel="noopener"
-            className="text-primary font-semibold underline-offset-4 hover:underline"
-          >
-            {t('launcher')}
-            <span className="sr-only"> {common('newTab')}</span>
-          </a>
-        </p>
       </Container>
     </section>
   );

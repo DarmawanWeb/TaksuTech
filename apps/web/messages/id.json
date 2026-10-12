@@ -85,11 +85,9 @@
       }
     },
     "demos": {
-      "title": "Coba dulu di browser",
-      "intro": "Bicara dengan robot resepsionis, cetak kartu tamu, atau program robot di simulator.",
-      "kiosk": "Kios robot",
-      "sim": "Simulator",
-      "launcher": "Pilih robot dan contoh tempat sendiri"
+      "title": "Coba di browser",
+      "intro": "Robot resepsionis dan simulator robot edukasi bisa dicoba tanpa login. Data tempat di dalamnya adalah contoh.",
+      "all": "Lihat semua demo"
     },
     "cta": {
       "title": "Ingin melihat robotnya langsung?",
