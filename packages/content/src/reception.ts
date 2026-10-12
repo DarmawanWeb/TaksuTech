@@ -12,6 +12,8 @@ export interface ReceptionRobot {
   name: string;
   edition: Localized;
   kind: 'mobile' | 'static';
+  /** Standing height, used to draw the line-up to scale. */
+  heightCm: number;
   tagline: Localized;
   summary: Localized;
   appearance: Localized;
@@ -71,6 +73,7 @@ export const robots: readonly ReceptionRobot[] = [
     name: 'Snow',
     edition: { id: 'Edisi Bali', en: 'Bali Edition' },
     kind: 'mobile',
+    heightCm: 112,
     tagline: {
       id: 'Resepsionis berkarakter yang disukai keluarga',
       en: 'A character receptionist families love',
@@ -159,6 +162,7 @@ export const robots: readonly ReceptionRobot[] = [
     name: 'Timo',
     edition: { id: 'Edisi Bali', en: 'Bali Edition' },
     kind: 'mobile',
+    heightCm: 120,
     tagline: {
       id: 'Resepsionis setinggi mata tamu',
       en: 'A receptionist at your guests’ eye level',
@@ -243,6 +247,7 @@ export const robots: readonly ReceptionRobot[] = [
     name: 'Taksu Kiosk',
     edition: { id: 'Buatan Taksu Tech', en: 'Made by Taksu Tech' },
     kind: 'static',
+    heightCm: 165,
     tagline: {
       id: 'Kios resepsionis buatan Bali yang mencetak sendiri',
       en: 'A Bali-built reception kiosk with its own printer',

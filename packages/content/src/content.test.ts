@@ -31,6 +31,13 @@ describe('reception catalogue', () => {
     }
   });
 
+  it('gives every robot a plausible standing height', () => {
+    for (const robot of robots) {
+      expect(robot.heightCm).toBeGreaterThan(50);
+      expect(robot.heightCm).toBeLessThan(250);
+    }
+  });
+
   it('has exactly one static kiosk with a built-in printer', () => {
     const statics = robots.filter((robot) => robot.kind === 'static');
     expect(statics.map((robot) => robot.capabilities.printer)).toEqual(['built-in']);
