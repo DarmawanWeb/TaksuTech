@@ -1,4 +1,4 @@
-import { Logo } from '@taksu/ui/brand/logo';
+import { CompanyLogo } from '@taksu/ui/brand/company-logo';
 import { ThemeToggle } from '@taksu/ui/brand/theme-toggle';
 import { Button } from '@taksu/ui/components/button';
 import { getLocale, getTranslations } from 'next-intl/server';
@@ -19,12 +19,13 @@ export async function SiteHeader() {
   ];
 
   return (
-    <header className="border-border/70 bg-background/85 sticky top-0 z-40 border-b backdrop-blur-md">
+    <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-6 px-5 sm:px-8">
-        <Link href="/" className="shrink-0 rounded-md" aria-label={`Taksu Tech, ${t('home')}`}>
-          <Logo />
+        <Link href="/" className="shrink-0 rounded-sm" aria-label={`Taksu Tech, ${t('home')}`}>
+          <CompanyLogo />
         </Link>
-        <NavLinks items={items} className="hidden lg:block" />
+        {/* Product names are long; below 1100px they move into the menu. */}
+        <NavLinks items={items} className="hidden min-[1100px]:block" />
         <div className="ml-auto flex items-center gap-1">
           <LocaleSwitcher label={t('language')} />
           <ThemeToggle label={t('theme')} />

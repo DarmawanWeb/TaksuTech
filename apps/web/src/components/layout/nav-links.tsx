@@ -22,13 +22,15 @@ export function NavLinks({
   const pathname = usePathname();
   return (
     <nav className={className}>
-      <ul className="flex flex-col gap-1 lg:flex-row lg:items-center">
+      <ul className="flex flex-col gap-1 min-[1100px]:flex-row min-[1100px]:items-center min-[1100px]:gap-0">
         {items.map((item) => {
           const active =
             !item.external && (pathname === item.href || pathname.startsWith(`${item.href}/`));
           const className = cn(
-            'hover:bg-surface-muted block rounded-md px-3 py-2 text-sm font-semibold transition-colors',
-            active ? 'text-primary' : 'text-foreground/80',
+            'block rounded-sm px-3 py-2 text-[0.9375rem] font-medium whitespace-nowrap underline-offset-[0.45em] transition-colors',
+            active
+              ? 'text-foreground decoration-accent underline decoration-2'
+              : 'text-muted-foreground hover:text-foreground',
           );
           if (item.external) {
             return (

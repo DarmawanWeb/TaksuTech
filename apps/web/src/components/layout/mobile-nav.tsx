@@ -1,6 +1,6 @@
 'use client';
 
-import { Logo } from '@taksu/ui/brand/logo';
+import { CompanyLogo } from '@taksu/ui/brand/company-logo';
 import { Button } from '@taksu/ui/components/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@taksu/ui/components/sheet';
 import { Menu } from 'lucide-react';
@@ -20,14 +20,19 @@ export function MobileNav({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label={labels.menu}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="min-[1100px]:hidden"
+          aria-label={labels.menu}
+        >
           <Menu aria-hidden />
         </Button>
       </SheetTrigger>
       <SheetContent closeLabel={labels.close} aria-describedby={undefined}>
         <SheetTitle asChild>
           <div>
-            <Logo />
+            <CompanyLogo />
           </div>
         </SheetTitle>
         <NavLinks items={items} onNavigate={close} />
