@@ -18,17 +18,10 @@
     "theme": "Switch light or dark theme"
   },
   "Common": {
-    "tryDemo": "Try the demo",
     "openDemo": "Open demo",
-    "requestQuote": "Request a quote",
-    "viewDetails": "View details",
-    "backHome": "Back to home",
     "newTab": "(opens in a new tab)",
     "partOf": "Part of Ezra Robotics",
-    "whatsappGreeting": "Hello Taksu Tech",
-    "meetings": "{count} meetings",
-    "minutes": "{count} minutes",
-    "viewAll": "View all"
+    "whatsappGreeting": "Hello Taksu Tech"
   },
   "Home": {
     "hero": {

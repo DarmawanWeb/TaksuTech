@@ -18,17 +18,10 @@
     "theme": "Ganti tema terang atau gelap"
   },
   "Common": {
-    "tryDemo": "Coba demo",
     "openDemo": "Buka demo",
-    "requestQuote": "Minta penawaran",
-    "viewDetails": "Lihat detail",
-    "backHome": "Kembali ke beranda",
     "newTab": "(terbuka di tab baru)",
     "partOf": "Bagian dari Ezra Robotics",
-    "whatsappGreeting": "Halo Taksu Tech",
-    "meetings": "{count} pertemuan",
-    "minutes": "{count} menit",
-    "viewAll": "Lihat semua"
+    "whatsappGreeting": "Halo Taksu Tech"
   },
   "Home": {
     "hero": {
