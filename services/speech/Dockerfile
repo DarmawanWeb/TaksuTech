@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /srv
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --retries 10 --timeout 60 -r requirements.txt
 
 COPY app ./app
 RUN useradd --create-home --uid 10001 speech && mkdir -p /models && chown speech:speech /models
