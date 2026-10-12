@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { demoUrl, mailtoUrl, simulatorUrl, whatsappUrl } from './links';
+import { demoUrl, eduUrl, mailtoUrl, robotUrl, simulatorUrl, whatsappUrl } from './links';
 
 describe('links', () => {
   it('builds localized demo URLs for both demo apps', () => {
@@ -9,6 +9,11 @@ describe('links', () => {
     expect(demoUrl({ app: 'sim', path: '?robot=sd' }, 'id')).toBe(
       'http://localhost:3002/id?robot=sd',
     );
+  });
+
+  it('links out to the product sites', () => {
+    expect(eduUrl('id', '/kits/sd')).toBe('http://localhost:3003/id/kits/sd');
+    expect(robotUrl('en')).toBe('http://localhost:3004/en');
   });
 
   it('deep-links into simulator missions', () => {

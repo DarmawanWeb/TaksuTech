@@ -9,6 +9,16 @@ export function demoUrl(demo: Pick<DemoEntry, 'app' | 'path'>, locale: Locale): 
   return `${base}/${locale}${demo.path}`;
 }
 
+/** A page on the education site. */
+export function eduUrl(locale: Locale, path = ''): string {
+  return `${trimSlash(siteConfig.eduUrl)}/${locale}${path}`;
+}
+
+/** A page on the receptionist robot site. */
+export function robotUrl(locale: Locale, path = ''): string {
+  return `${trimSlash(siteConfig.robotUrl)}/${locale}${path}`;
+}
+
 export function kioskLauncherUrl(locale: Locale): string {
   return `${trimSlash(siteConfig.kioskUrl)}/${locale}`;
 }
