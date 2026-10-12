@@ -30,12 +30,22 @@ export interface CurriculumModule {
   video?: ModuleVideo;
 }
 
+/** One element of the elective subject Koding dan Kecerdasan Artifisial (KKA). */
+export interface KkaElement {
+  /** The element's official name. */
+  element: Localized;
+  /** Where this syllabus works on it. */
+  how: Localized;
+}
+
 export interface Curriculum {
   level: LevelSlug;
   minutesPerMeeting: number;
   modules: CurriculumModule[];
-  /** KKA (Koding dan Kecerdasan Artifisial) elements this level strengthens most. */
-  kka: Localized[];
+  /** KKA phase and grades this level lines up with. */
+  kkaPhase: Localized;
+  /** KKA elements this syllabus actually works on, in the subject's own words. */
+  kka: KkaElement[];
 }
 
 const l = (id: string, en: string): Localized => ({ id, en });
@@ -63,13 +73,25 @@ const m = (
 const sd: Curriculum = {
   level: 'sd',
   minutesPerMeeting: 70,
+  kkaPhase: l(
+    'Fase C, kelas 5 dan 6. Di kelas 1 sampai 4, modul yang sama bisa berjalan sebagai ekstrakurikuler.',
+    'Phase C, grades 5 and 6. In grades 1 to 4 the same modules can run as an after-school club.',
+  ),
   kka: [
-    l(
-      'Berpikir komputasional: urutan, pola, dan pengulangan',
-      'Computational thinking: sequence, pattern, and loops',
-    ),
-    l('Algoritma dan pemrograman blok', 'Algorithms and block programming'),
-    l('Literasi digital: sensor sebagai masukan data', 'Digital literacy: sensors as data inputs'),
+    {
+      element: l('Berpikir komputasional', 'Computational thinking'),
+      how: l(
+        'Urutan, pola, pengulangan, dan jika-maka di modul 2 sampai 6.',
+        'Sequences, patterns, loops, and if-then rules in modules 2 to 6.',
+      ),
+    },
+    {
+      element: l('Literasi digital', 'Digital literacy'),
+      how: l(
+        'Cara kerja perangkat: sensor sebagai masukan, pengendali, lalu keluaran (modul 1, 4, dan 5).',
+        'How a device works: sensors as input, a controller, then outputs (modules 1, 4, and 5).',
+      ),
+    },
   ],
   modules: [
     {
@@ -446,14 +468,29 @@ const sd: Curriculum = {
 const smp: Curriculum = {
   level: 'smp',
   minutesPerMeeting: 80,
+  kkaPhase: l('Fase D, kelas 7 sampai 9.', 'Phase D, grades 7 to 9.'),
   kka: [
-    l('Berpikir komputasional dan perancangan sistem', 'Computational thinking and system design'),
-    l('Analisis data dari sensor', 'Analysing sensor data'),
-    l(
-      'Literasi digital: jaringan, privasi, dan keamanan data',
-      'Digital literacy: networks, privacy, and data security',
-    ),
-    l('Algoritma dan pemrograman C++', 'Algorithms and C++ programming'),
+    {
+      element: l('Berpikir komputasional', 'Computational thinking'),
+      how: l(
+        'Aturan kemudi dari pola bacaan sensor, kendali proporsional, dan pemindaian tiga arah (modul 3 dan 4).',
+        'Steering rules from sensor patterns, proportional control, and three-way scans (modules 3 and 4).',
+      ),
+    },
+    {
+      element: l('Literasi digital', 'Digital literacy'),
+      how: l(
+        'Jaringan kelas, data apa yang boleh dikirim, dan mode luring (modul 7).',
+        'The class network, which data may be sent, and offline mode (module 7).',
+      ),
+    },
+    {
+      element: l('Literasi dan etika kecerdasan artifisial', 'AI literacy and ethics'),
+      how: l(
+        'Membedakan deteksi suara sederhana dari pengenalan ucapan (modul 6).',
+        'Telling simple sound detection apart from speech recognition (module 6).',
+      ),
+    },
   ],
   modules: [
     {
@@ -890,14 +927,53 @@ const smp: Curriculum = {
 const sma: Curriculum = {
   level: 'sma',
   minutesPerMeeting: 90,
+  kkaPhase: l('Fase E dan F, kelas 10 sampai 12.', 'Phases E and F, grades 10 to 12.'),
   kka: [
-    l(
-      'Pemanfaatan dan pengembangan kecerdasan artifisial',
-      'Using and developing artificial intelligence',
-    ),
-    l('Analisis data dan model sederhana', 'Data analysis and simple models'),
-    l('Literasi dan etika kecerdasan artifisial', 'AI literacy and ethics'),
-    l('Rekayasa sistem dan pemrograman lanjut', 'Systems engineering and advanced programming'),
+    {
+      element: l('Algoritma pemrograman', 'Algorithms and programming'),
+      how: l(
+        'Python dan C++ untuk sensor, motor, dan PID (modul 1 dan 2).',
+        'Python and C++ for sensors, motors, and PID (modules 1 and 2).',
+      ),
+    },
+    {
+      element: l('Berpikir komputasional', 'Computational thinking'),
+      how: l(
+        'Memecah robot menjadi node, topik, dan layanan ROS 2 (modul 3).',
+        'Breaking the robot into ROS 2 nodes, topics, and services (module 3).',
+      ),
+    },
+    {
+      element: l('Analisis data', 'Data analysis'),
+      how: l(
+        'Rekaman rosbag, dataset gambar, dan akurasi model (modul 3 dan 5).',
+        'Rosbag recordings, image datasets, and model accuracy (modules 3 and 5).',
+      ),
+    },
+    {
+      element: l(
+        'Pemanfaatan dan pengembangan kecerdasan artifisial',
+        'Using and developing artificial intelligence',
+      ),
+      how: l(
+        'Melatih dan menjalankan deteksi objek YOLO di robot (modul 5).',
+        'Training a YOLO object detector and running it on the robot (module 5).',
+      ),
+    },
+    {
+      element: l('Literasi dan etika kecerdasan artifisial', 'AI literacy and ethics'),
+      how: l(
+        'Kesalahan model, bias data, dan dampaknya (modul 5).',
+        'Model errors, data bias, and their effects (module 5).',
+      ),
+    },
+    {
+      element: l('Literasi digital', 'Digital literacy'),
+      how: l(
+        'Linux, jaringan, dan dasbor yang aksesnya dibatasi (modul 1 dan 7).',
+        'Linux, networking, and a dashboard with restricted access (modules 1 and 7).',
+      ),
+    },
   ],
   modules: [
     {
