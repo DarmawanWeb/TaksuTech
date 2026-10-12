@@ -111,15 +111,20 @@
   },
   "About": {
     "metaTitle": "Tentang Taksu Tech",
-    "metaDescription": "Taksu Tech adalah robotika karya anak Bali di bawah Ezra Robotics: robot resepsionis Bali dan robot edukasi.",
+    "metaDescription": "Taksu Tech adalah unit robotika di bawah Ezra Robotics yang merancang robot resepsionis, kios layanan, dan kit robot edukasi untuk sekolah.",
     "title": "Tentang Taksu Tech",
-    "meaningTitle": "Arti nama kami",
-    "storyTitle": "Cerita kami",
     "parentTitle": "Bagian dari Ezra Robotics",
-    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia. Taksu Tech adalah unitnya yang berbasis di Bali.",
+    "parentBody": "Ezra Robotics mengintegrasikan robot untuk inspeksi, keamanan, dan layanan komersial di Indonesia. Taksu Tech adalah unitnya untuk robot layanan dan robot edukasi.",
+    "nameTitle": "Nama kami",
     "principlesTitle": "Cara kami bekerja",
-    "aksaraTitle": "Tentang Aksara Bali di situs ini",
-    "aksaraBody": "Baris Aksara Bali dihasilkan otomatis oleh pustaka transliterasi kami. Untuk papan nama dan konten resmi, hasilnya kami tinjau bersama penutur dan penyuluh Bahasa Bali."
+    "facts": {
+      "title": "Data perusahaan",
+      "parent": "Induk usaha",
+      "lines": "Lini produk",
+      "office": "Kantor",
+      "person": "Narahubung",
+      "email": "Email"
+    }
   },
   "Contact": {
     "metaTitle": "Hubungi Taksu Tech",
