@@ -20,7 +20,7 @@ export async function SiteHeader() {
 
   return (
     <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-6 px-5 sm:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-4 px-5 sm:gap-6 sm:px-8">
         <Link href="/" className="shrink-0 rounded-sm" aria-label={`Taksu Tech, ${t('home')}`}>
           <CompanyLogo />
         </Link>
@@ -28,11 +28,15 @@ export async function SiteHeader() {
         <NavLinks items={items} className="hidden min-[1100px]:block" />
         <div className="ml-auto flex items-center gap-1">
           <LocaleSwitcher label={t('language')} />
-          <ThemeToggle label={t('theme')} />
+          {/* On phones the theme switch lives in the menu to keep the bar from overflowing. */}
+          <ThemeToggle label={t('theme')} className="hidden sm:inline-flex" />
           <Button asChild size="sm" className="ml-2 hidden md:inline-flex">
             <Link href="/contact">{t('cta')}</Link>
           </Button>
-          <MobileNav items={items} labels={{ menu: t('menu'), close: t('close'), cta: t('cta') }} />
+          <MobileNav
+            items={items}
+            labels={{ menu: t('menu'), close: t('close'), cta: t('cta'), theme: t('theme') }}
+          />
         </div>
       </div>
     </header>
