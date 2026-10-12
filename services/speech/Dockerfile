@@ -8,6 +8,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     SPEECH_MODELS_DIR=/models \
     HF_HOME=/models/hf
 
+# ffmpeg decodes browser recordings (webm/opus, mp4/aac, wav) before Whisper sees them.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ffmpeg \
+ && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /srv
 COPY requirements.txt .
 RUN pip install --retries 10 --timeout 60 -r requirements.txt

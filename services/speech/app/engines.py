@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import logging
+import subprocess
 import threading
 import urllib.request
 import wave
@@ -15,6 +16,7 @@ from .settings import Settings
 log = logging.getLogger("taksu.speech")
 
 VOICE_URL = "https://huggingface.co/rhasspy/piper-voices/resolve/main/{family}/{code}/{name}/{quality}/{voice}{suffix}"
+SAMPLE_RATE = 16_000
 
 
 class SpeechToText(Protocol):
@@ -32,6 +34,27 @@ class TextToSpeech(Protocol):
     def load(self) -> None: ...
 
     def synthesize(self, text: str, language: str) -> bytes: ...
+
+
+def decode_audio(audio: bytes):
+    """Any browser recording to mono 16 kHz float32 via the ffmpeg CLI.
+
+    Whisper accepts the array directly, so faster-whisper never calls PyAV, whose API
+    changed in v15 (``metadata_errors`` was removed).
+    """
+    import numpy as np
+
+    result = subprocess.run(
+        ["ffmpeg", "-nostdin", "-hide_banner", "-loglevel", "error", "-i", "pipe:0",
+         "-f", "s16le", "-ac", "1", "-ar", str(SAMPLE_RATE), "pipe:1"],
+        input=audio,
+        capture_output=True,
+        timeout=30,
+        check=False,
+    )
+    if result.returncode != 0 or not result.stdout:
+        raise ValueError(result.stderr.decode(errors="ignore").strip() or "ffmpeg produced no audio")
+    return np.frombuffer(result.stdout, np.int16).astype(np.float32) / 32768.0
 
 
 class WhisperEngine:
@@ -61,9 +84,10 @@ class WhisperEngine:
     def transcribe(self, audio: bytes, language: str) -> str:
         if self._model is None:
             raise RuntimeError("whisper model is not loaded")
+        samples = decode_audio(audio)
         with self._lock:
             segments, _info = self._model.transcribe(
-                io.BytesIO(audio),
+                samples,
                 language=language,
                 beam_size=1,
                 vad_filter=True,
