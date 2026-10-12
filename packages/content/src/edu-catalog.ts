@@ -100,7 +100,7 @@ export const upgradePacks: readonly UpgradePack[] = [
     id: 'vision',
     name: 'Vision Pack',
     icon: 'vision',
-    tagline: l('Kamera untuk robot SMP', 'A camera for the junior high robot'),
+    tagline: l('Kamera untuk SMP v1', 'A camera for SMP v1'),
     body: l(
       'Modul kamera yang mengirim gambar lewat Wi-Fi, untuk mengenali warna, membaca kode QR, dan memulai belajar AI.',
       'A camera module that streams over Wi-Fi, for recognising colours, reading QR codes, and a first step into AI.',

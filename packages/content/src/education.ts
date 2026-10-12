@@ -388,7 +388,7 @@ export const upgradePath: ReadonlyArray<{ id: string; title: Localized; body: Lo
   {
     id: 'starter',
     title: { id: 'Starter kit', en: 'Starter kit' },
-    body: { id: 'Mulai dari robot SD.', en: 'Start with the primary robot.' },
+    body: { id: 'Mulai dari SD v1.', en: 'Start with SD v1.' },
   },
   {
     id: 'sensors',

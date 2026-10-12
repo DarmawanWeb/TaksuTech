@@ -61,8 +61,8 @@ export const guides: readonly Guide[] = [
         title: l('Program pertama', 'First program'),
         steps: [
           l(
-            'Buka simulator, pilih Robot SD, lalu misi Kenalan dengan robot.',
-            'Open the simulator, choose the SD robot, then the Meet the robot mission.',
+            'Buka simulator, pilih SD v1, lalu misi Kenalan dengan robot.',
+            'Open the simulator, choose SD v1, then the Meet the robot mission.',
           ),
           l(
             'Susun blok: tampilkan wajah senang, bunyikan bip, maju 1 detik.',
@@ -322,8 +322,8 @@ export const guides: readonly Guide[] = [
         title: l('Mulai', 'Start'),
         steps: [
           l(
-            'Pilih Robot SD atau Robot SMP, lalu pilih misi.',
-            'Choose the SD or SMP robot, then pick a mission.',
+            'Pilih SD v1 atau SMP v1, lalu pilih misi.',
+            'Choose SD v1 or SMP v1, then pick a mission.',
           ),
           l(
             'Baca tujuan misi dan daftar cek di samping lintasan.',
@@ -382,8 +382,8 @@ export const guides: readonly Guide[] = [
         title: l('Komputer onboard', 'Onboard computer'),
         steps: [
           l(
-            'Flash image sistem Taksu ke kartu atau SSD sesuai paket.',
-            'Flash the Taksu system image to the card or SSD for your package.',
+            'Flash image sistem robot ke kartu atau SSD sesuai paket.',
+            'Flash the robot system image to the card or SSD for your package.',
           ),
           l(
             'Hubungkan ke Wi-Fi kelas dan catat alamat IP robot.',
