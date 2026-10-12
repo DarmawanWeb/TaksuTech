@@ -25,6 +25,7 @@
     "backHome": "Back to home",
     "newTab": "(opens in a new tab)",
     "partOf": "Part of Ezra Robotics",
+    "whatsappGreeting": "Hello Taksu Tech",
     "meetings": "{count} meetings",
     "minutes": "{count} minutes",
     "viewAll": "View all"
@@ -141,7 +142,7 @@
     }
   },
   "Footer": {
-    "tagline": "Robotics built by young Balinese engineers.",
+    "tagline": "Receptionist robots, service kiosks, and education robots for schools.",
     "explore": "Explore",
     "lines": "Product lines",
     "contact": "Contact",

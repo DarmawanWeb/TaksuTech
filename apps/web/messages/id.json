@@ -25,6 +25,7 @@
     "backHome": "Kembali ke beranda",
     "newTab": "(terbuka di tab baru)",
     "partOf": "Bagian dari Ezra Robotics",
+    "whatsappGreeting": "Halo Taksu Tech",
     "meetings": "{count} pertemuan",
     "minutes": "{count} menit",
     "viewAll": "Lihat semua"
@@ -141,7 +142,7 @@
     }
   },
   "Footer": {
-    "tagline": "Robotika karya anak Bali.",
+    "tagline": "Robot resepsionis, kios layanan, dan robot edukasi untuk sekolah.",
     "explore": "Jelajahi",
     "lines": "Lini produk",
     "contact": "Kontak",
