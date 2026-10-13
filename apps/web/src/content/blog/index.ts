@@ -1,5 +1,7 @@
 import type { Locale } from '@taksu/content';
 import type { MDXContent } from 'mdx/types';
+import * as aksaraEn from './aksara-di-layar/en.mdx';
+import * as aksaraId from './aksara-di-layar/id.mdx';
 import * as floorEn from './lantai-kelas/en.mdx';
 import * as floorId from './lantai-kelas/id.mdx';
 import * as kkaEn from './robot-di-mapel-kka/en.mdx';
@@ -31,6 +33,7 @@ const post = (slug: string, id: PostModule, en: PostModule): Post => ({
  * each exporting `meta`, then list it here.
  */
 export const posts: readonly Post[] = [
+  post('aksara-di-layar', aksaraId, aksaraEn),
   post('robot-di-mapel-kka', kkaId, kkaEn),
   post('simulator-dulu', simulatorId, simulatorEn),
   post('lantai-kelas', floorId, floorEn),
