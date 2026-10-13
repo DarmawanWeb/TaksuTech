@@ -7,5 +7,6 @@ export * from './guides';
 export * from './i18n';
 export * from './names';
 export * from './reception';
+export * from './services';
 export * from './sim-missions';
 export * from './sites';
