@@ -4,6 +4,7 @@ import { ThemeToggle } from '@taksu/ui/brand/theme-toggle';
 import { Button } from '@taksu/ui/components/button';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { images } from '@/lib/images';
 import { eduUrl, robotUrl } from '@/lib/links';
 import { LocaleSwitcher } from './locale-switcher';
 import { MobileNav } from './mobile-nav';
@@ -20,16 +21,22 @@ export async function SiteHeader() {
           href: robotUrl(locale),
           label: t('reception'),
           note: divisions.reception.name,
+          description: t('receptionMenu'),
+          brand: 'reception',
+          image: images.snowTimoBali,
           external: true,
         },
         {
           href: eduUrl(locale),
           label: t('education'),
           note: divisions.education.name,
+          description: t('educationMenu'),
+          brand: 'edu',
+          image: images.sdV1,
           external: true,
         },
       ],
-      after: [{ href: '/demo', label: t('demoLong') }],
+      after: [{ href: '/demo', label: t('demoLong'), note: t('demoNote') }],
     },
     { href: '/services', label: t('services') },
     { href: '/works', label: t('works') },

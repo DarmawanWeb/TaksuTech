@@ -1,14 +1,18 @@
 'use client';
 
+import { EduMark } from '@taksu/ui/brand/edu-wordmark';
+import { LogoMark } from '@taksu/ui/brand/logo';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@taksu/ui/components/dropdown-menu';
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@taksu/ui/components/navigation-menu';
 import { cn } from '@taksu/ui/lib/utils';
-import { ChevronDown } from 'lucide-react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 import { Link, usePathname } from '@/i18n/navigation';
 
 export interface NavLink {
@@ -16,13 +20,18 @@ export interface NavLink {
   label: string;
   /** A second line in menus, e.g. the product site's name. */
   note?: string;
+  /** What is behind the link, shown on the product cards. */
+  description?: string;
+  /** Product line, for its mark. */
+  brand?: 'reception' | 'edu';
+  image?: StaticImageData;
   /** Another site (the product lines). Rendered as a plain link, never marked active. */
   external?: boolean;
 }
 
 export interface NavGroup {
   label: string;
-  /** Links before the separator, then links after it. */
+  /** Shown as cards with photos, then the `after` links in a row below. */
   items: NavLink[];
   after?: NavLink[];
 }
@@ -37,90 +46,135 @@ export function useIsActive() {
     !link.external && (pathname === link.href || pathname.startsWith(`${link.href}/`));
 }
 
+/** The product line's own mark, in its own colour. */
+export function BrandMark({
+  brand,
+  className,
+}: {
+  brand: 'reception' | 'edu';
+  className?: string;
+}) {
+  return brand === 'reception' ? (
+    <span data-brand="reception" className={cn('text-primary inline-flex', className)}>
+      <LogoMark className="size-5" />
+    </span>
+  ) : (
+    <span data-brand="edu" className={cn('inline-flex', className)}>
+      <EduMark className="size-5" />
+    </span>
+  );
+}
+
 const linkClass = (active: boolean) =>
   cn(
     'block rounded-sm px-3 py-2 text-[0.9375rem] font-medium whitespace-nowrap underline-offset-[0.45em] transition-colors',
     active
       ? 'text-foreground decoration-accent underline decoration-2'
-      : 'text-muted-foreground hover:text-foreground',
+      : 'text-muted-foreground hover:text-foreground data-[state=open]:text-foreground',
   );
 
-function MenuLink({ link, active }: { link: NavLink; active: boolean }) {
-  const body = (
-    <span className="flex flex-col">
-      <span className="font-medium">{link.label}</span>
-      {link.note ? <span className="text-muted-foreground text-xs">{link.note}</span> : null}
-    </span>
-  );
+function ProductCard({ link }: { link: NavLink }) {
   return (
-    <DropdownMenuItem asChild className={cn('px-3 py-2.5', active && 'bg-surface-muted')}>
-      {link.external ? (
-        <a href={link.href}>{body}</a>
-      ) : (
-        <Link href={link.href} aria-current={active ? 'page' : undefined}>
-          {body}
-        </Link>
-      )}
-    </DropdownMenuItem>
+    <NavigationMenuLink asChild>
+      <a
+        href={link.href}
+        className="hover:bg-surface-muted focus-visible:bg-surface-muted flex h-full flex-col rounded-md p-2 transition-colors"
+      >
+        {link.image ? (
+          <span className="bg-surface-muted relative block aspect-[16/9] overflow-hidden rounded-sm">
+            <Image src={link.image} alt="" fill sizes="18rem" className="object-cover" />
+          </span>
+        ) : null}
+        <span className="text-muted-foreground mt-3 flex items-center gap-2 text-[0.8125rem] font-semibold">
+          {link.brand ? <BrandMark brand={link.brand} /> : null}
+          {link.note}
+          <ArrowUpRight aria-hidden className="ml-auto size-4" />
+        </span>
+        <span className="mt-1.5 font-semibold">{link.label}</span>
+        {link.description ? (
+          <span className="text-muted-foreground mt-0.5 text-sm leading-snug">
+            {link.description}
+          </span>
+        ) : null}
+      </a>
+    </NavigationMenuLink>
   );
 }
 
-/** The header's links on wide screens; a group opens as a small menu. */
+/** The header's links on wide screens; the product group opens as a panel with both lines. */
 export function NavLinks({ entries, className }: { entries: NavEntry[]; className?: string }) {
   const isActive = useIsActive();
   return (
-    <nav className={className}>
-      <ul className="flex items-center">
+    <NavigationMenu className={className}>
+      <NavigationMenuList className="flex items-center">
         {entries.map((entry) => {
           if (isGroup(entry)) {
-            const links = [...entry.items, ...(entry.after ?? [])];
-            const active = links.some(isActive);
+            const active = [...entry.items, ...(entry.after ?? [])].some(isActive);
             return (
-              <li key={entry.label}>
-                <DropdownMenu modal={false}>
-                  <DropdownMenuTrigger
-                    className={cn(linkClass(active), 'group flex items-center gap-1')}
-                  >
-                    {entry.label}
-                    <ChevronDown
-                      aria-hidden
-                      className="size-4 transition-transform group-data-[state=open]:rotate-180"
-                    />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="min-w-60">
+              <NavigationMenuItem key={entry.label}>
+                <NavigationMenuTrigger
+                  className={cn(linkClass(active), 'group flex items-center gap-1')}
+                >
+                  {entry.label}
+                  <ChevronDown
+                    aria-hidden
+                    className="size-4 transition-transform group-data-[state=open]:rotate-180"
+                  />
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="w-[37rem] p-2">
+                  <ul className="grid grid-cols-2 gap-1">
                     {entry.items.map((link) => (
-                      <MenuLink key={link.href} link={link} active={isActive(link)} />
+                      <li key={link.href}>
+                        <ProductCard link={link} />
+                      </li>
                     ))}
-                    {entry.after?.length ? <DropdownMenuSeparator /> : null}
-                    {entry.after?.map((link) => (
-                      <MenuLink key={link.href} link={link} active={isActive(link)} />
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li>
+                  </ul>
+                  {entry.after?.length ? (
+                    <ul className="border-border mt-2 border-t pt-2">
+                      {entry.after.map((link) => (
+                        <li key={link.href}>
+                          <NavigationMenuLink asChild active={isActive(link)}>
+                            <Link
+                              href={link.href}
+                              className="hover:bg-surface-muted focus-visible:bg-surface-muted flex items-baseline justify-between gap-4 rounded-md px-2 py-2.5 transition-colors"
+                            >
+                              <span className="font-semibold">{link.label}</span>
+                              {link.note ? (
+                                <span className="text-muted-foreground text-sm">{link.note}</span>
+                              ) : null}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
             );
           }
           const active = isActive(entry);
           return (
-            <li key={entry.href}>
-              {entry.external ? (
-                <a href={entry.href} className={linkClass(false)}>
-                  {entry.label}
-                </a>
-              ) : (
-                <Link
-                  href={entry.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={linkClass(active)}
-                >
-                  {entry.label}
-                </Link>
-              )}
-            </li>
+            <NavigationMenuItem key={entry.href}>
+              <NavigationMenuLink asChild active={active}>
+                {entry.external ? (
+                  <a href={entry.href} className={linkClass(false)}>
+                    {entry.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={entry.href}
+                    aria-current={active ? 'page' : undefined}
+                    className={linkClass(active)}
+                  >
+                    {entry.label}
+                  </Link>
+                )}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           );
         })}
-      </ul>
-    </nav>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 
@@ -135,9 +189,19 @@ export function NavList({ entries, onNavigate }: { entries: NavEntry[]; onNaviga
     );
     const body = (
       <>
-        {link.label}
+        <span className="flex items-center gap-2.5">
+          {link.brand ? <BrandMark brand={link.brand} /> : null}
+          {link.label}
+        </span>
         {link.note ? (
-          <span className="text-muted-foreground text-sm font-normal">{link.note}</span>
+          <span
+            className={cn(
+              'text-muted-foreground text-sm font-normal',
+              link.brand && 'pl-[1.875rem]',
+            )}
+          >
+            {link.note}
+          </span>
         ) : null}
       </>
     );
