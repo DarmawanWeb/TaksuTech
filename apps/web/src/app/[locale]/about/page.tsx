@@ -1,6 +1,7 @@
 import { brand, divisions, pick } from '@taksu/content';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { InHouse } from '@/components/about/in-house';
 import { Principles } from '@/components/about/principles';
 import { Container } from '@/components/shared/container';
 import { CtaBand } from '@/components/shared/cta-band';
@@ -78,6 +79,9 @@ export default async function AboutPage({ params }: Props) {
         </Container>
       </section>
 
+      <div className="mt-10">
+        <InHouse />
+      </div>
       <Principles locale={locale} title={t('principlesTitle')} />
       <CtaBand />
     </>

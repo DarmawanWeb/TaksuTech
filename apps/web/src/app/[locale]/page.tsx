@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { DemoShowcase } from '@/components/home/demo-showcase';
 import { Hero } from '@/components/home/hero';
-import { InHouse } from '@/components/home/in-house';
+import { OtherServices } from '@/components/home/other-services';
 import { ProductLines } from '@/components/home/product-lines';
 import { CtaBand } from '@/components/shared/cta-band';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
@@ -47,7 +47,7 @@ export default async function HomePage({ params }: Props) {
       />
       <Hero />
       <ProductLines locale={locale} />
-      <InHouse />
+      <OtherServices locale={locale} />
       <DemoShowcase locale={locale} />
       <CtaBand />
     </>

@@ -55,6 +55,14 @@
       "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
       "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
     },
+    "services": {
+      "title": "Beyond the two lines",
+      "intro": "The same team also takes on custom projects, as long as they are close to what we do every day.",
+      "more": "See service details",
+      "otherTitle": "Another IT problem?",
+      "otherBody": "Tell us about it. If it is outside our field, we will point you to someone who can help.",
+      "otherCta": "Describe the problem"
+    },
     "demos": {
       "title": "Try the products in your browser",
       "intro": "The receptionist robot demos and the education simulator open without signing in. The venues in them are examples.",
@@ -64,28 +72,6 @@
       "title": "Want to see the robots in person?",
       "body": "We can visit your office, hotel, or school for a demo.",
       "button": "Book a demo"
-    },
-    "inHouse": {
-      "title": "What we make ourselves",
-      "intro": "We make these parts ourselves, so the products can be adapted to each place and repaired by our own team.",
-      "areas": {
-        "hardware": {
-          "title": "Electronics and mechanics",
-          "body": "Custom PCBs and modular frames for the education kits, and body modifications for the receptionist robots."
-        },
-        "software": {
-          "title": "Software",
-          "body": "The kiosk app with voice conversation, queues, and ticket printing, and a robot simulator that runs in the browser."
-        },
-        "content": {
-          "title": "Lessons and content",
-          "body": "Meeting-by-meeting curricula, teacher guides, and the robot conversation scripts for each venue."
-        },
-        "service": {
-          "title": "Service",
-          "body": "Site surveys, installation, staff and teacher training, servicing, and spare parts."
-        }
-      }
     }
   },
   "Services": {
@@ -125,6 +111,28 @@
     "parentTitle": "Part of Ezra Robotics",
     "parentBody": "Ezra Robotics integrates robots for inspection, security, and commercial services in Indonesia.",
     "nameTitle": "Our name",
+    "inHouse": {
+      "title": "What we make ourselves",
+      "intro": "We make these parts ourselves, so the products can be adapted to each place and repaired by our own team.",
+      "areas": {
+        "hardware": {
+          "title": "Electronics and mechanics",
+          "body": "Custom PCBs and modular frames for the education kits, and body modifications for the receptionist robots."
+        },
+        "software": {
+          "title": "Software",
+          "body": "The kiosk app with voice conversation, queues, and ticket printing, and a robot simulator that runs in the browser."
+        },
+        "content": {
+          "title": "Lessons and content",
+          "body": "Meeting-by-meeting curricula, teacher guides, and the robot conversation scripts for each venue."
+        },
+        "service": {
+          "title": "Service",
+          "body": "Site surveys, installation, staff and teacher training, servicing, and spare parts."
+        }
+      }
+    },
     "principlesTitle": "How we work",
     "facts": {
       "title": "Company details",

@@ -6,7 +6,7 @@ const areas = ['hardware', 'software', 'content', 'service'] as const;
 
 /** What the team makes itself, set out like the rows of a spec sheet. */
 export async function InHouse() {
-  const t = await getTranslations('Home.inHouse');
+  const t = await getTranslations('About.inHouse');
   return (
     <section className="bg-surface-muted py-20">
       <Container className="grid gap-10 lg:grid-cols-12">
