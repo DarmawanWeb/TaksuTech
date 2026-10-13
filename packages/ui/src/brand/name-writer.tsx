@@ -12,6 +12,8 @@ export interface NameWriterProps {
   initialValue?: string;
   size?: 'md' | 'lg';
   className?: string;
+  /** Called with the Latin text as the visitor types. */
+  onValueChange?: (value: string) => void;
 }
 
 /** Live Latin → Aksara Bali converter for names and short phrases. */
@@ -23,6 +25,7 @@ export function NameWriter({
   initialValue = '',
   size = 'md',
   className,
+  onValueChange,
 }: NameWriterProps) {
   const inputId = useId();
   const hintId = useId();
@@ -42,7 +45,10 @@ export function NameWriter({
         spellCheck={false}
         placeholder={placeholder}
         aria-describedby={hintId}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => {
+          setValue(event.target.value);
+          onValueChange?.(event.target.value);
+        }}
         className={cn(
           'border-border bg-surface text-foreground placeholder:text-muted-foreground w-full rounded-md border px-4 font-semibold placeholder:font-normal',
           size === 'lg' ? 'h-16 text-2xl' : 'h-12 text-lg',
