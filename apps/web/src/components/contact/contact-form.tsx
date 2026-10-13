@@ -5,13 +5,17 @@ import { Input } from '@taksu/ui/components/input';
 import { Label } from '@taksu/ui/components/label';
 import { Textarea } from '@taksu/ui/components/textarea';
 import { Mail, MessageCircle } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type FormEvent, useState } from 'react';
 import { mailtoUrl, whatsappUrl } from '@/lib/links';
 
 type Channel = 'whatsapp' | 'email';
-const interests = ['reception', 'education', 'other'] as const;
+const interests = ['reception', 'education', 'custom', 'other'] as const;
 type Interest = (typeof interests)[number];
+
+const isInterest = (value: string | null): value is Interest =>
+  (interests as readonly string[]).includes(value ?? '');
 
 /**
  * Composes the enquiry client-side and hands it to WhatsApp or the mail app,
@@ -21,10 +25,14 @@ export function ContactForm({ email }: { email: string }) {
   const t = useTranslations('Contact.form');
   const [error, setError] = useState<string | null>(null);
   const hasWhatsapp = whatsappUrl('test') !== null;
+  // Links such as /contact?topic=custom open the form with that interest already chosen.
+  const topic = useSearchParams().get('topic');
+  const initialInterest: Interest = isInterest(topic) ? topic : 'reception';
 
   const interestLabel: Record<Interest, string> = {
     reception: t('interestOptions.reception'),
     education: t('interestOptions.education'),
+    custom: t('interestOptions.custom'),
     other: t('interestOptions.other'),
   };
 
@@ -74,7 +82,7 @@ export function ContactForm({ email }: { email: string }) {
       <fieldset className="flex flex-col gap-2">
         <legend className="mb-2 text-sm font-semibold">{t('interest')}</legend>
         <div className="flex flex-wrap gap-2">
-          {interests.map((interest, index) => (
+          {interests.map((interest) => (
             <label
               key={interest}
               className="border-border bg-surface has-[:checked]:border-primary has-[:checked]:text-primary flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm"
@@ -83,7 +91,7 @@ export function ContactForm({ email }: { email: string }) {
                 type="radio"
                 name="interest"
                 value={interest}
-                defaultChecked={index === 0}
+                defaultChecked={interest === initialInterest}
                 className="accent-primary"
               />
               {interestLabel[interest]}

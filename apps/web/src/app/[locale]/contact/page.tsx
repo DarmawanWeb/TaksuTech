@@ -1,6 +1,7 @@
 import { brand } from '@taksu/content';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 import { ContactForm } from '@/components/contact/contact-form';
 import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -32,7 +33,10 @@ export default async function ContactPage({ params }: Props) {
         <SectionHeading as="h1" title={t('title')} intro={t('intro')} />
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
           <div className="border-border bg-surface rounded-lg border p-5 sm:p-8">
-            <ContactForm email={brand.contact.email} />
+            {/* The form reads ?topic= on the client; Suspense keeps the page static. */}
+            <Suspense fallback={null}>
+              <ContactForm email={brand.contact.email} />
+            </Suspense>
           </div>
           <aside>
             <h2 className="text-xl font-semibold">{t('direct.title')}</h2>

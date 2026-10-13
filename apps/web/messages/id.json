@@ -147,6 +147,7 @@
       "interestOptions": {
         "reception": "Robot resepsionis",
         "education": "Robot edukasi",
+        "custom": "Proyek kustom atau IT",
         "other": "Lainnya"
       },
       "message": "Pesan",

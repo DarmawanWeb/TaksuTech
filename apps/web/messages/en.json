@@ -147,6 +147,7 @@
       "interestOptions": {
         "reception": "Receptionist robots",
         "education": "Education robots",
+        "custom": "A custom project or IT",
         "other": "Something else"
       },
       "message": "Message",
