@@ -55,6 +55,16 @@
       "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
       "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
     },
+    "demos": {
+      "title": "Coba produknya di browser",
+      "intro": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka tanpa login. Tempat di dalam demo hanya contoh.",
+      "all": "Lihat semua demo"
+    },
+    "cta": {
+      "title": "Ingin melihat robotnya langsung?",
+      "body": "Kami bisa datang ke kantor, hotel, atau sekolah Anda untuk demo.",
+      "button": "Jadwalkan demo"
+    },
     "inHouse": {
       "title": "Yang kami kerjakan sendiri",
       "intro": "Bagian-bagian ini kami kerjakan sendiri, sehingga produk bisa disesuaikan untuk tiap tempat dan diperbaiki oleh tim kami.",
@@ -76,16 +86,22 @@
           "body": "Survei lokasi, pemasangan, pelatihan staf dan guru, servis, dan suku cadang."
         }
       }
-    },
-    "demos": {
-      "title": "Coba produknya di browser",
-      "intro": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka tanpa login. Tempat di dalam demo hanya contoh.",
-      "all": "Lihat semua demo"
-    },
+    }
+  },
+  "Services": {
+    "metaTitle": "Proyek kustom dan bantuan IT",
+    "metaDescription": "Robot dan PCB kustom, IoT dan sistem tertanam, serta aplikasi web dan dashboard dari tim Taksu Tech.",
+    "title": "Proyek kustom dan bantuan IT",
+    "intro": "Dua lini produk tetap pekerjaan utama kami. Di luar itu, tim yang sama menerima proyek yang dekat dengan keahliannya: robot dan PCB, IoT, serta aplikasi web.",
+    "examplesTitle": "Contoh pekerjaan",
+    "otherTitle": "Masalah IT lain?",
+    "otherBody": "Jaringan kantor yang sering putus, server, atau perangkat yang bermasalah: ceritakan saja. Kalau di luar bidang kami, kami bantu arahkan ke pihak yang tepat.",
+    "otherCta": "Ceritakan masalahnya",
+    "processTitle": "Cara kerjanya",
     "cta": {
-      "title": "Ingin melihat robotnya langsung?",
-      "body": "Kami bisa datang ke kantor, hotel, atau sekolah Anda untuk demo.",
-      "button": "Jadwalkan demo"
+      "title": "Punya proyek yang ingin dibicarakan?",
+      "body": "Ceritakan kebutuhannya. Kami balas dengan pertanyaan atau usulan awal.",
+      "button": "Ceritakan proyek Anda"
     }
   },
   "Demo": {

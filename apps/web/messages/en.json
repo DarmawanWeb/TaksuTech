@@ -55,6 +55,16 @@
       "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
       "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
     },
+    "demos": {
+      "title": "Try the products in your browser",
+      "intro": "The receptionist robot demos and the education simulator open without signing in. The venues in them are examples.",
+      "all": "See all demos"
+    },
+    "cta": {
+      "title": "Want to see the robots in person?",
+      "body": "We can visit your office, hotel, or school for a demo.",
+      "button": "Book a demo"
+    },
     "inHouse": {
       "title": "What we make ourselves",
       "intro": "We make these parts ourselves, so the products can be adapted to each place and repaired by our own team.",
@@ -76,16 +86,22 @@
           "body": "Site surveys, installation, staff and teacher training, servicing, and spare parts."
         }
       }
-    },
-    "demos": {
-      "title": "Try the products in your browser",
-      "intro": "The receptionist robot demos and the education simulator open without signing in. The venues in them are examples.",
-      "all": "See all demos"
-    },
+    }
+  },
+  "Services": {
+    "metaTitle": "Custom projects and IT help",
+    "metaDescription": "Custom robots and PCBs, IoT and embedded systems, and web apps and dashboards from the Taksu Tech team.",
+    "title": "Custom projects and IT help",
+    "intro": "The two product lines remain our main work. Beyond them, the same team takes on projects close to its skills: robots and PCBs, IoT, and web apps.",
+    "examplesTitle": "Typical work",
+    "otherTitle": "Another IT problem?",
+    "otherBody": "An office network that keeps dropping, a server, or a misbehaving device: tell us about it. If it is outside our field, we will point you to someone who can help.",
+    "otherCta": "Describe the problem",
+    "processTitle": "How it works",
     "cta": {
-      "title": "Want to see the robots in person?",
-      "body": "We can visit your office, hotel, or school for a demo.",
-      "button": "Book a demo"
+      "title": "Have a project in mind?",
+      "body": "Tell us what you need. We will reply with questions or a first proposal.",
+      "button": "Tell us about your project"
     }
   },
   "Demo": {
