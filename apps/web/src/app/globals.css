@@ -3,6 +3,11 @@
 
 @source '../../../../packages/ui/src';
 
+/* Screenshots and cut-out product shots sit on Alloy in both themes, like on a light table. */
+@theme {
+  --color-lightbox: #eef3f3;
+}
+
 /* The board figure on the home page: leader lines draw in, then balloons and dots appear. */
 @layer components {
   .callout-line {

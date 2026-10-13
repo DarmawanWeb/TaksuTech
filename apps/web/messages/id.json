@@ -91,6 +91,23 @@
       "button": "Ceritakan proyek Anda"
     }
   },
+  "Works": {
+    "metaTitle": "Karya Taksu Tech",
+    "metaDescription": "Robot, papan sirkuit, kios, dan aplikasi yang kami rancang dan buat sendiri.",
+    "title": "Yang sudah kami buat",
+    "intro": "Semua di halaman ini kami rancang dan kerjakan sendiri, dari papan sirkuit dan rangka kios sampai aplikasinya. Sebagian bisa langsung dicoba di browser.",
+    "index": "Daftar karya",
+    "groups": {
+      "hardware": "Robot dan perangkat keras",
+      "software": "Aplikasi"
+    },
+    "related": "{count, plural, other {Layanan terkait:}}",
+    "cta": {
+      "title": "Butuh robot, papan, atau aplikasi seperti ini?",
+      "body": "Ceritakan kebutuhannya. Kami kerjakan dengan cara yang sama seperti produk kami sendiri.",
+      "button": "Ceritakan kebutuhan Anda"
+    }
+  },
   "Blog": {
     "metaTitle": "Blog: catatan dari tim Taksu Tech",
     "metaDescription": "Tulisan pendek tentang robot resepsionis, kelas robotik, dan cara kami membangun keduanya.",

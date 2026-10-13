@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { demoUrl, eduUrl, mailtoUrl, robotUrl, simulatorUrl, whatsappUrl } from './links';
+import {
+  demoUrl,
+  eduUrl,
+  mailtoUrl,
+  robotUrl,
+  simulatorUrl,
+  whatsappUrl,
+  workLinkUrl,
+} from './links';
 
 describe('links', () => {
   it('builds localized demo URLs for both demo apps', () => {
@@ -14,6 +22,19 @@ describe('links', () => {
   it('links out to the product sites', () => {
     expect(eduUrl('id', '/kits/sd')).toBe('http://localhost:3003/id/kits/sd');
     expect(robotUrl('en')).toBe('http://localhost:3004/en');
+  });
+
+  it('sends work links to the right product site', () => {
+    const label = { id: '', en: '' };
+    expect(workLinkUrl({ site: 'kiosk', path: '/kiosk/kantor-layanan/preview', label }, 'id')).toBe(
+      'http://localhost:3001/id/kiosk/kantor-layanan/preview',
+    );
+    expect(workLinkUrl({ site: 'sim', path: '?robot=smp', label }, 'en')).toBe(
+      'http://localhost:3002/en?robot=smp',
+    );
+    expect(workLinkUrl({ site: 'edu', path: '/lab', label }, 'en')).toBe(
+      'http://localhost:3003/en/lab',
+    );
   });
 
   it('deep-links into simulator missions', () => {

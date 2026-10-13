@@ -1,4 +1,4 @@
-import type { DemoEntry, Locale } from '@taksu/content';
+import type { DemoEntry, Locale, WorkLink } from '@taksu/content';
 import { siteConfig } from './site-config';
 
 const trimSlash = (url: string) => url.replace(/\/+$/, '');
@@ -44,4 +44,15 @@ export function whatsappUrl(
 
 export function mailtoUrl(to: string, subject: string, body: string): string {
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/** Where a work entry's link goes: one of our product sites or demo apps. */
+export function workLinkUrl(link: WorkLink, locale: Locale): string {
+  const base = {
+    robot: siteConfig.robotUrl,
+    edu: siteConfig.eduUrl,
+    kiosk: siteConfig.kioskUrl,
+    sim: siteConfig.simUrl,
+  }[link.site];
+  return `${trimSlash(base)}/${locale}${link.path}`;
 }

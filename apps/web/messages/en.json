@@ -91,6 +91,23 @@
       "button": "Tell us about your project"
     }
   },
+  "Works": {
+    "metaTitle": "Work by Taksu Tech",
+    "metaDescription": "Robots, circuit boards, kiosks, and apps we design and build ourselves.",
+    "title": "What we have built",
+    "intro": "We designed and built everything on this page ourselves, from circuit boards and kiosk frames to the apps that run on them. Some of it you can try in your browser right now.",
+    "index": "List of work",
+    "groups": {
+      "hardware": "Robots and hardware",
+      "software": "Software"
+    },
+    "related": "{count, plural, one {Related service:} other {Related services:}}",
+    "cta": {
+      "title": "Need a robot, a board, or an app like these?",
+      "body": "Tell us what you need. We build it the same way we build our own products.",
+      "button": "Tell us what you need"
+    }
+  },
   "Blog": {
     "metaTitle": "Blog: notes from the Taksu Tech team",
     "metaDescription": "Short pieces about receptionist robots, robotics classes, and how we build both.",

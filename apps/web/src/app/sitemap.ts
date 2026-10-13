@@ -3,7 +3,7 @@ import { posts } from '@/content/blog';
 import { routing } from '@/i18n/routing';
 import { siteConfig } from '@/lib/site-config';
 
-const staticPaths = ['', '/services', '/blog', '/demo', '/about', '/contact'];
+const staticPaths = ['', '/services', '/works', '/blog', '/demo', '/about', '/contact'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [...staticPaths, ...posts.map((post) => `/blog/${post.slug}`)];
