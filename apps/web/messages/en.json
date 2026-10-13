@@ -65,36 +65,45 @@
     },
     "why": {
       "title": "Plenty of companies sell robots. Here is how we differ.",
-      "intro": "If you are comparing suppliers, these six things usually decide it.",
-      "reasons": {
+      "intro": "Six things that usually decide it when you compare suppliers, and our answer to each.",
+      "caption": "How Taksu Tech compares with what you often get from other suppliers",
+      "topic": "Topic",
+      "often": "What you often get",
+      "rows": {
         "build": {
-          "title": "We build it ourselves",
-          "body": "Circuit boards, firmware, kiosk frames, and the apps on them are made by our team. When something needs changing for your venue, we change it at the source instead of waiting on a factory.",
+          "topic": "Who makes it",
+          "often": "Sold as it leaves the factory. Even small changes have to wait on them.",
+          "us": "Circuit boards, firmware, kiosk frames, and the apps are made by our team, so they can be changed at the source for your venue.",
           "link": "See what we have built"
         },
         "team": {
-          "title": "The team is close by",
-          "body": "Installation, staff and teacher training, servicing, and spare parts are handled by the same team in Bali. No waiting for a technician from overseas.",
+          "topic": "After installation",
+          "often": "Servicing goes through a distributor, and parts are ordered from overseas.",
+          "us": "Installation, staff and teacher training, servicing, and spare parts are handled by the same team in Bali.",
           "link": "Meet the team"
         },
         "try": {
-          "title": "Try it before you decide",
-          "body": "The receptionist demo and the education simulator run in your browser with no sign-up. Schools can start with a pilot programme.",
+          "topic": "Before you buy",
+          "often": "A brochure and a promo video, then straight to the purchase.",
+          "us": "The receptionist demo and the education simulator open in your browser with no sign-up. Schools can start with a one-class pilot.",
           "link": "Open the demos"
         },
         "local": {
-          "title": "Local language, local rules",
-          "body": "The robots speak Indonesian and English. Signage uses Aksara Bali as Bali’s Pergub 80/2018 requires, and the curriculum is mapped to the Coding and Artificial Intelligence subject.",
+          "topic": "Language and rules",
+          "often": "English menus or machine translation.",
+          "us": "Speaks Indonesian and English. Signage uses Aksara Bali as Pergub Bali 80/2018 requires, and the curriculum maps to the Coding and Artificial Intelligence subject.",
           "link": "Aksara Bali on the kiosk screen"
         },
         "offline": {
-          "title": "Keeps working when the internet drops",
-          "body": "Speech is processed on a local server, and the assistant still answers from the venue’s own data when the connection is lost. Guests are not left waiting.",
+          "topic": "When the internet drops",
+          "often": "Depends on a cloud service. Once the connection goes, the robot goes quiet too.",
+          "us": "Speech is processed on a local server, and the assistant keeps answering from the venue’s own data when the connection drops.",
           "link": "When the server is busy"
         },
         "honest": {
-          "title": "Specs as they are",
-          "body": "Anything still being tested is called a design. We state the TKDN percentage only once the certificate is issued. Better a small promise kept.",
+          "topic": "Specifications",
+          "often": "Brochure numbers, including features that are not finished.",
+          "us": "Anything still in testing is called a design. We state the TKDN percentage only once the certificate is issued.",
           "link": "What we left out of SD v1"
         }
       }

@@ -65,36 +65,45 @@
     },
     "why": {
       "title": "Banyak yang jual robot. Ini bedanya kami.",
-      "intro": "Kalau Anda sedang membandingkan penyedia, enam hal ini biasanya yang menentukan.",
-      "reasons": {
+      "intro": "Enam hal yang biasanya menentukan saat Anda membandingkan penyedia, dan jawaban kami untuk masing-masing.",
+      "caption": "Perbandingan Taksu Tech dengan yang sering ditemui pada penyedia lain",
+      "topic": "Hal",
+      "often": "Yang sering ditemui",
+      "rows": {
         "build": {
-          "title": "Kami yang membuatnya",
-          "body": "Papan sirkuit, firmware, rangka kios, dan aplikasinya dikerjakan tim kami. Kalau perlu diubah untuk tempat Anda, kami ubah dari sumbernya, bukan menunggu pabrik.",
+          "topic": "Siapa yang membuat",
+          "often": "Dijual apa adanya dari pabrik. Perubahan kecil pun harus menunggu mereka.",
+          "us": "Papan sirkuit, firmware, rangka kios, dan aplikasinya dibuat tim kami, jadi bisa diubah dari sumbernya untuk tempat Anda.",
           "link": "Lihat yang sudah kami buat"
         },
         "team": {
-          "title": "Timnya dekat",
-          "body": "Pemasangan, pelatihan staf dan guru, servis, dan suku cadang ditangani tim yang sama dari Bali. Tidak perlu menunggu teknisi dari luar negeri.",
+          "topic": "Setelah terpasang",
+          "often": "Servis lewat distributor, dan suku cadang dipesan dari luar negeri.",
+          "us": "Pemasangan, pelatihan staf dan guru, servis, dan suku cadang ditangani tim yang sama dari Bali.",
           "link": "Kenali timnya"
         },
         "try": {
-          "title": "Coba dulu, baru putuskan",
-          "body": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka di browser tanpa daftar. Sekolah bisa mulai dari program pilot.",
+          "topic": "Sebelum membeli",
+          "often": "Brosur dan video promosi, lalu langsung diminta membeli.",
+          "us": "Demo robot resepsionis dan simulator robot edukasi terbuka di browser tanpa daftar. Sekolah bisa mulai dari program pilot satu kelas.",
           "link": "Buka demonya"
         },
         "local": {
-          "title": "Bahasa dan aturan setempat",
-          "body": "Robot bicara bahasa Indonesia dan Inggris. Papan namanya memakai Aksara Bali sesuai Pergub Bali 80/2018, dan kurikulumnya dipetakan ke mapel Koding dan Kecerdasan Artifisial.",
+          "topic": "Bahasa dan aturan",
+          "often": "Menu berbahasa Inggris atau hasil terjemahan mesin.",
+          "us": "Bicara bahasa Indonesia dan Inggris. Papan nama memakai Aksara Bali sesuai Pergub Bali 80/2018, dan kurikulumnya dipetakan ke mapel Koding dan Kecerdasan Artifisial.",
           "link": "Aksara Bali di layar kios"
         },
         "offline": {
-          "title": "Tetap jalan saat internet putus",
-          "body": "Suara diproses di server lokal, dan asisten tetap menjawab dari data tempat itu kalau koneksi hilang. Tamu tidak dibiarkan menunggu.",
+          "topic": "Saat internet putus",
+          "often": "Bergantung pada layanan cloud. Begitu koneksi hilang, robotnya ikut diam.",
+          "us": "Suara diproses di server lokal, dan asisten tetap menjawab dari data tempat itu saat koneksi hilang.",
           "link": "Saat server sedang sibuk"
         },
         "honest": {
-          "title": "Spesifikasi apa adanya",
-          "body": "Yang masih diuji kami sebut rancangan. Persentase TKDN baru kami tulis setelah sertifikatnya keluar. Lebih baik janji kecil yang ditepati.",
+          "topic": "Spesifikasi",
+          "often": "Angka brosur, termasuk fitur yang belum selesai dibuat.",
+          "us": "Yang masih diuji kami sebut rancangan. Persentase TKDN baru kami tulis setelah sertifikatnya keluar.",
           "link": "Yang kami buang dari SD v1"
         }
       }
