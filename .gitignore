@@ -29,3 +29,6 @@ infra/.env
 __pycache__/
 .pytest_cache/
 infra/ollama/.Modelfile.tmp
+
+# Lab data in development (SQLite and uploaded photos)
+.lab-data/
