@@ -18,22 +18,24 @@ export function LogoMark({ className, ...props }: React.ComponentProps<'svg'>) {
 export interface LogoProps extends React.ComponentProps<'span'> {
   /** Show the Aksara Bali line above the wordmark, as on Balinese signage. */
   withAksara?: boolean;
+  /** The name next to the mark, written again in Aksara Bali above it. */
+  name?: string;
 }
 
-export function Logo({ className, withAksara = true, ...props }: LogoProps) {
+export function Logo({ className, withAksara = true, name = 'Taksu Tech', ...props }: LogoProps) {
   return (
     <span className={cn('inline-flex items-center gap-2.5', className)} {...props}>
       <LogoMark className="text-primary" />
       <span className="flex flex-col leading-none">
         {withAksara ? (
           <AksaraText
-            latin="Taksu Tech"
+            latin={name}
             decorative
             className="text-muted-foreground text-[0.7rem] leading-[1.4]"
           />
         ) : null}
         <span className="font-display text-lg font-bold tracking-tight [font-stretch:88%]">
-          Taksu Tech
+          {name}
         </span>
       </span>
     </span>
