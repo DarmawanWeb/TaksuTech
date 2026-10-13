@@ -62,3 +62,30 @@ export function DropdownMenuRadioItem({
     </DropdownMenuPrimitive.RadioItem>
   );
 }
+
+export function DropdownMenuItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Item>) {
+  return (
+    <DropdownMenuPrimitive.Item
+      className={cn(
+        'data-[highlighted]:bg-surface-muted flex cursor-pointer rounded-sm px-3 py-2 text-sm outline-none select-none',
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export function DropdownMenuSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
+  return (
+    <DropdownMenuPrimitive.Separator
+      className={cn('bg-border -mx-1 my-1 h-px', className)}
+      {...props}
+    />
+  );
+}
