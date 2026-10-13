@@ -5,6 +5,7 @@ import { Button } from '@taksu/ui/components/button';
 import Image, { type StaticImageData } from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
+import { Link } from '@/i18n/navigation';
 import { images } from '@/lib/images';
 import { eduUrl, robotUrl } from '@/lib/links';
 import { Container } from '../shared/container';
@@ -73,7 +74,15 @@ export async function ProductLines({ locale }: { locale: Locale }) {
   return (
     <section id="produk" className="scroll-mt-16 py-20">
       <Container>
-        <SectionHeading title={t('title')} intro={t('intro')} />
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading title={t('title')} intro={t('intro')} />
+          <Link
+            href="/works"
+            className="shrink-0 font-semibold underline decoration-1 underline-offset-4 hover:decoration-2"
+          >
+            {t('more')}
+          </Link>
+        </div>
         <div className="border-border divide-border mt-10 grid divide-y overflow-hidden rounded-lg border md:grid-cols-2 md:divide-x md:divide-y-0">
           <Line
             division={divisions.reception}

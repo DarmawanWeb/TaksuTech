@@ -56,6 +56,7 @@
     "lines": {
       "title": "Dua lini produk",
       "intro": "Setiap lini memiliki situs sendiri dengan detail produk dan demonya.",
+      "more": "Lihat semua yang kami buat",
       "visit": "Kunjungi situs {brand}",
       "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
       "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
@@ -72,6 +73,11 @@
       "title": "Coba produknya di browser",
       "intro": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka tanpa login. Tempat di dalam demo hanya contoh.",
       "all": "Lihat semua demo"
+    },
+    "posts": {
+      "title": "Tulisan terbaru",
+      "intro": "Catatan tim tentang robot resepsionis, kelas robotik, dan cara kami membangun keduanya.",
+      "all": "Baca semua tulisan"
     },
     "cta": {
       "title": "Ingin melihat robotnya langsung?",

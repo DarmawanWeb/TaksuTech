@@ -56,6 +56,7 @@
     "lines": {
       "title": "Two product lines",
       "intro": "Each line has its own site with product details and demos.",
+      "more": "See everything we have built",
       "visit": "Visit the {brand} site",
       "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
       "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
@@ -72,6 +73,11 @@
       "title": "Try the products in your browser",
       "intro": "The receptionist robot demos and the education simulator open without signing in. The venues in them are examples.",
       "all": "See all demos"
+    },
+    "posts": {
+      "title": "Latest writing",
+      "intro": "Notes from the team on receptionist robots, robotics classes, and how we build both.",
+      "all": "Read all posts"
     },
     "cta": {
       "title": "Want to see the robots in person?",
