@@ -1,3 +1,4 @@
+import { divisions } from '@taksu/content';
 import { CompanyLogo } from '@taksu/ui/brand/company-logo';
 import { ThemeToggle } from '@taksu/ui/brand/theme-toggle';
 import { Button } from '@taksu/ui/components/button';
@@ -6,14 +7,33 @@ import { Link } from '@/i18n/navigation';
 import { eduUrl, robotUrl } from '@/lib/links';
 import { LocaleSwitcher } from './locale-switcher';
 import { MobileNav } from './mobile-nav';
-import { NavLinks } from './nav-links';
+import { type NavEntry, NavLinks } from './nav-links';
 
 export async function SiteHeader() {
   const [t, locale] = await Promise.all([getTranslations('Nav'), getLocale()]);
-  const items = [
-    { href: robotUrl(locale), label: t('reception'), external: true },
-    { href: eduUrl(locale), label: t('education'), external: true },
-    { href: '/demo', label: t('demo') },
+  // The two product lines live on their own sites; the menu groups them with the demos.
+  const entries: NavEntry[] = [
+    {
+      label: t('products'),
+      items: [
+        {
+          href: robotUrl(locale),
+          label: t('reception'),
+          note: divisions.reception.name,
+          external: true,
+        },
+        {
+          href: eduUrl(locale),
+          label: t('education'),
+          note: divisions.education.name,
+          external: true,
+        },
+      ],
+      after: [{ href: '/demo', label: t('demoLong') }],
+    },
+    { href: '/services', label: t('services') },
+    { href: '/works', label: t('works') },
+    { href: '/blog', label: t('blog') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },
   ];
@@ -24,8 +44,7 @@ export async function SiteHeader() {
         <Link href="/" className="shrink-0 rounded-sm" aria-label={`Taksu Tech, ${t('home')}`}>
           <CompanyLogo />
         </Link>
-        {/* Product names are long; below 1100px they move into the menu. */}
-        <NavLinks items={items} className="hidden min-[1100px]:block" />
+        <NavLinks entries={entries} className="hidden lg:block" />
         <div className="ml-auto flex items-center gap-1">
           <LocaleSwitcher label={t('language')} />
           {/* On phones the theme switch lives in the menu to keep the bar from overflowing. */}
@@ -34,7 +53,7 @@ export async function SiteHeader() {
             <Link href="/contact">{t('cta')}</Link>
           </Button>
           <MobileNav
-            items={items}
+            entries={entries}
             labels={{ menu: t('menu'), close: t('close'), cta: t('cta'), theme: t('theme') }}
           />
         </div>

@@ -6,9 +6,13 @@
   "Nav": {
     "skip": "Skip to content",
     "home": "Home",
+    "products": "Products",
     "education": "Education robots",
     "reception": "Receptionist robots",
     "demo": "Demo",
+    "demoLong": "Demos in the browser",
+    "services": "Services",
+    "works": "Work",
     "about": "About",
     "contact": "Contact",
     "cta": "Request a quote",

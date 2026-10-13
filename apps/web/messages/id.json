@@ -6,9 +6,13 @@
   "Nav": {
     "skip": "Langsung ke konten",
     "home": "Beranda",
+    "products": "Produk",
     "education": "Robot edukasi",
     "reception": "Robot resepsionis",
     "demo": "Demo",
+    "demoLong": "Demo di browser",
+    "services": "Layanan",
+    "works": "Karya",
     "about": "Tentang",
     "contact": "Kontak",
     "cta": "Minta penawaran",
