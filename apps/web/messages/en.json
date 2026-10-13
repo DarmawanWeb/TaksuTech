@@ -64,6 +64,42 @@
       "receptionImageAlt": "Snow and Timo, Bali edition, in a hotel lobby",
       "educationImageAlt": "The SD v1 robot with its OLED face, distance sensor, and yellow wheels"
     },
+    "why": {
+      "title": "Plenty of companies sell robots. Here is how we differ.",
+      "intro": "If you are comparing suppliers, these six things usually decide it.",
+      "reasons": {
+        "build": {
+          "title": "We build it ourselves",
+          "body": "Circuit boards, firmware, kiosk frames, and the apps on them are made by our team. When something needs changing for your venue, we change it at the source instead of waiting on a factory.",
+          "link": "See what we have built"
+        },
+        "team": {
+          "title": "The team is close by",
+          "body": "Installation, staff and teacher training, servicing, and spare parts are handled by the same team in Bali. No waiting for a technician from overseas.",
+          "link": "Meet the team"
+        },
+        "try": {
+          "title": "Try it before you decide",
+          "body": "The receptionist demo and the education simulator run in your browser with no sign-up. Schools can start with a pilot programme.",
+          "link": "Open the demos"
+        },
+        "local": {
+          "title": "Local language, local rules",
+          "body": "The robots speak Indonesian and English. Signage uses Aksara Bali as Bali’s Pergub 80/2018 requires, and the curriculum is mapped to the Coding and Artificial Intelligence subject.",
+          "link": "Aksara Bali on the kiosk screen"
+        },
+        "offline": {
+          "title": "Keeps working when the internet drops",
+          "body": "Speech is processed on a local server, and the assistant still answers from the venue’s own data when the connection is lost. Guests are not left waiting.",
+          "link": "When the server is busy"
+        },
+        "honest": {
+          "title": "Specs as they are",
+          "body": "Anything still being tested is called a design. We state the TKDN percentage only once the certificate is issued. Better a small promise kept.",
+          "link": "What we left out of SD v1"
+        }
+      }
+    },
     "services": {
       "title": "Beyond the two lines",
       "intro": "The same team also takes on custom projects, as long as they are close to what we do every day.",

@@ -64,6 +64,42 @@
       "receptionImageAlt": "Robot Snow dan Timo edisi Bali di lobi hotel",
       "educationImageAlt": "Robot SD v1 dengan wajah OLED, sensor jarak, dan roda kuning"
     },
+    "why": {
+      "title": "Banyak yang jual robot. Ini bedanya kami.",
+      "intro": "Kalau Anda sedang membandingkan penyedia, enam hal ini biasanya yang menentukan.",
+      "reasons": {
+        "build": {
+          "title": "Kami yang membuatnya",
+          "body": "Papan sirkuit, firmware, rangka kios, dan aplikasinya dikerjakan tim kami. Kalau perlu diubah untuk tempat Anda, kami ubah dari sumbernya, bukan menunggu pabrik.",
+          "link": "Lihat yang sudah kami buat"
+        },
+        "team": {
+          "title": "Timnya dekat",
+          "body": "Pemasangan, pelatihan staf dan guru, servis, dan suku cadang ditangani tim yang sama dari Bali. Tidak perlu menunggu teknisi dari luar negeri.",
+          "link": "Kenali timnya"
+        },
+        "try": {
+          "title": "Coba dulu, baru putuskan",
+          "body": "Demo robot resepsionis dan simulator robot edukasi bisa dibuka di browser tanpa daftar. Sekolah bisa mulai dari program pilot.",
+          "link": "Buka demonya"
+        },
+        "local": {
+          "title": "Bahasa dan aturan setempat",
+          "body": "Robot bicara bahasa Indonesia dan Inggris. Papan namanya memakai Aksara Bali sesuai Pergub Bali 80/2018, dan kurikulumnya dipetakan ke mapel Koding dan Kecerdasan Artifisial.",
+          "link": "Aksara Bali di layar kios"
+        },
+        "offline": {
+          "title": "Tetap jalan saat internet putus",
+          "body": "Suara diproses di server lokal, dan asisten tetap menjawab dari data tempat itu kalau koneksi hilang. Tamu tidak dibiarkan menunggu.",
+          "link": "Saat server sedang sibuk"
+        },
+        "honest": {
+          "title": "Spesifikasi apa adanya",
+          "body": "Yang masih diuji kami sebut rancangan. Persentase TKDN baru kami tulis setelah sertifikatnya keluar. Lebih baik janji kecil yang ditepati.",
+          "link": "Yang kami buang dari SD v1"
+        }
+      }
+    },
     "services": {
       "title": "Di luar dua lini itu",
       "intro": "Tim yang sama juga mengerjakan proyek kustom, selama masih dekat dengan pekerjaan kami sehari-hari.",

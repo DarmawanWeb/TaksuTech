@@ -6,6 +6,7 @@ import { Hero } from '@/components/home/hero';
 import { LatestPosts } from '@/components/home/latest-posts';
 import { OtherServices } from '@/components/home/other-services';
 import { ProductLines } from '@/components/home/product-lines';
+import { WhyUs } from '@/components/home/why-us';
 import { CtaBand } from '@/components/shared/cta-band';
 import { localeFromParams, resolveLocale } from '@/lib/locale';
 import { pageMetadata } from '@/lib/metadata';
@@ -48,6 +49,7 @@ export default async function HomePage({ params }: Props) {
       />
       <Hero />
       <ProductLines locale={locale} />
+      <WhyUs />
       <OtherServices locale={locale} />
       <DemoShowcase locale={locale} />
       <LatestPosts locale={locale} />
