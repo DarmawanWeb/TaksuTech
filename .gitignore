@@ -32,3 +32,6 @@ infra/ollama/.Modelfile.tmp
 
 # Lab data in development (SQLite and uploaded photos)
 .lab-data/
+
+# Lab backups made by infra/scripts/lab-backup.sh
+backups/
