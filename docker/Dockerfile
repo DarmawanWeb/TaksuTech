@@ -36,7 +36,8 @@ FROM node:${NODE_VERSION} AS runner
 ARG APP
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0 APP=${APP}
 WORKDIR /app
-RUN addgroup -S -g 1001 nodejs && adduser -S -u 1001 -G nodejs nextjs
+RUN addgroup -S -g 1001 nodejs && adduser -S -u 1001 -G nodejs nextjs \
+ && mkdir -p /data && chown nextjs:nodejs /data
 COPY --from=builder --chown=nextjs:nodejs /repo/apps/${APP}/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /repo/apps/${APP}/.next/static ./apps/${APP}/.next/static
 COPY --from=builder --chown=nextjs:nodejs /repo/apps/${APP}/public ./apps/${APP}/public
