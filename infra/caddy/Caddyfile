@@ -34,6 +34,10 @@ http://{$WEB_HOST} {
 http://{$EDU_HOST} {
 	import common
 	header Permissions-Policy "camera=(), microphone=(), geolocation=()"
+	# Lab submissions carry up to four photos of 8 MB each.
+	request_body {
+		max_size 40MB
+	}
 	reverse_proxy edu:3000
 }
 
