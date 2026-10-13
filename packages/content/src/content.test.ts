@@ -5,7 +5,10 @@ import { educationLevels } from './education';
 import { guides } from './guides';
 import { forumCategories, labChallenges } from './lab';
 import { comparison, robots } from './reception';
+import { services } from './services';
 import { getSimMission, missionPlace, simMissions } from './sim-missions';
+import { getSite } from './sites';
+import { workKinds, works } from './works';
 
 describe('curriculum', () => {
   it('matches the advertised meeting count per level', () => {
@@ -95,7 +98,7 @@ describe('guides', () => {
 });
 
 describe('edu catalog', () => {
-  const kits = new Set(educationLevels.map((level) => level.slug));
+  const kits = new Set<string>(educationLevels.map((level) => level.slug));
 
   it('fits every add-on to at least one existing kit', () => {
     for (const item of [...upgradePacks, ...accessories]) {
@@ -129,5 +132,44 @@ describe('lab', () => {
     expect(new Set(challengeIds).size).toBe(challengeIds.length);
     const categoryIds = forumCategories.map((category) => category.id);
     expect(new Set(categoryIds).size).toBe(categoryIds.length);
+  });
+});
+
+describe('works', () => {
+  it('has unique ids and both languages filled in', () => {
+    expect(new Set(works.map((work) => work.id)).size).toBe(works.length);
+    for (const work of works) {
+      for (const text of [work.name, work.lead, work.body, work.imageAlt]) {
+        expect(text.id.trim(), work.id).not.toBe('');
+        expect(text.en.trim(), work.id).not.toBe('');
+      }
+      expect(work.facts.length, work.id).toBeGreaterThan(0);
+      expect(work.links.length, work.id).toBeGreaterThan(0);
+    }
+  });
+
+  it('only points at services that exist', () => {
+    const ids = new Set(services.map((service) => service.id));
+    for (const work of works) {
+      for (const service of work.services) expect(ids.has(service), work.id).toBe(true);
+    }
+  });
+
+  it('opens real robots, kits, and kiosk venues', () => {
+    const robotSlugs = new Set<string>(robots.map((robot) => robot.slug));
+    const kits = new Set<string>(educationLevels.map((level) => level.slug));
+    for (const work of works) {
+      for (const link of work.links) {
+        if (link.site === 'robot') expect(robotSlugs.has(link.path.slice(1)), link.path).toBe(true);
+        if (link.path.startsWith('/kits/'))
+          expect(kits.has(link.path.slice(6)), link.path).toBe(true);
+        const venue = link.path.match(/^\/[a-z]+\/([a-z-]+)\/preview$/)?.[1];
+        if (link.site === 'kiosk' && venue) expect(getSite(venue), link.path).toBeDefined();
+      }
+    }
+  });
+
+  it('fills every group', () => {
+    for (const kind of workKinds) expect(works.some((work) => work.kind === kind)).toBe(true);
   });
 });

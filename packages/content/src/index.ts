@@ -11,3 +11,4 @@ export * from './reception';
 export * from './services';
 export * from './sim-missions';
 export * from './sites';
+export * from './works';
