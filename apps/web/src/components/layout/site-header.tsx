@@ -1,7 +1,6 @@
 import { divisions } from '@taksu/content';
 import { CompanyLogo } from '@taksu/ui/brand/company-logo';
 import { ThemeToggle } from '@taksu/ui/brand/theme-toggle';
-import { Button } from '@taksu/ui/components/button';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { images } from '@/lib/images';
@@ -56,12 +55,9 @@ export async function SiteHeader() {
           <LocaleSwitcher label={t('language')} />
           {/* On phones the theme switch lives in the menu to keep the bar from overflowing. */}
           <ThemeToggle label={t('theme')} className="hidden sm:inline-flex" />
-          <Button asChild size="sm" className="ml-2 hidden md:inline-flex">
-            <Link href="/contact">{t('cta')}</Link>
-          </Button>
           <MobileNav
             entries={entries}
-            labels={{ menu: t('menu'), close: t('close'), cta: t('cta'), theme: t('theme') }}
+            labels={{ menu: t('menu'), close: t('close'), theme: t('theme') }}
           />
         </div>
       </div>
