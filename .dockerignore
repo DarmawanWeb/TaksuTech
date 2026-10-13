@@ -5,3 +5,4 @@
 .git
 .env*
 !.env.example
+**/.lab-data
