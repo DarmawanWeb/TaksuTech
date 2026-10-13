@@ -22,7 +22,8 @@ const kioskDemos: DemoEntry[] = robots.flatMap((robot) => {
     {
       id: `${robot.slug}-${site.slug}`,
       app: 'kiosk' as const,
-      path: `/${robot.slug}/${site.slug}`,
+      // The totem opens standing in its frame, so a laptop shows its real portrait layout.
+      path: `/${robot.slug}/${site.slug}${robot.kind === 'static' ? '/preview' : ''}`,
       robot: robot.slug,
       title: { id: `${robot.name} di ${site.name}`, en: `${robot.name} at ${site.name}` },
       description: site.tagline,
