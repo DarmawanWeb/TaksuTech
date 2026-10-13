@@ -1,0 +1,43 @@
+export const meta = {
+  title: 'When the server is busy',
+  summary:
+    'A robot that goes quiet in front of a guest looks broken. How we built the receptionist robot’s voice and answers so something always comes out, even when the language model is full.',
+  date: '2026-10-13',
+  minutes: 5,
+  topic: 'engineering',
+  tags: ['assistant', 'voice'],
+};
+
+A visitor who asks the robot a question usually waits two or three seconds. After that they repeat it, tap the screen, or walk to the front desk. A silent robot looks broken, even when the server behind it is working hard.
+
+One conversation with our receptionist robot goes through three stages. The visitor’s voice becomes text, the text gets an answer, and the answer is spoken. Any stage can be slow or fail, so every stage has a fallback.
+
+## Listening
+
+In our current installation, speech is turned into text by Whisper running on our own server. If that speech service is not ready, for example while its model is still downloading after a restart, the kiosk uses the browser’s built-in speech recognition.
+
+If neither is available, visitors can still type. The question box is always on screen.
+
+## Answering
+
+Answers come from a language model that also runs on our server, through Ollama. Models like that are heavy, so we limit how many calls may run at once. The default is two.
+
+A third visitor asking at the same moment is not told to wait. They get an answer from simple rules that read the venue data: a room they mentioned, the queue, or a thank-you. If the question names a room, the robot offers to walk them there straight away. If nothing is recognised, the robot lists what it can help with and suggests asking a member of staff.
+
+The same rules answer when the model fails or has not been set up at all. The answers are stiffer, but never empty.
+
+## Speaking
+
+The answer is spoken by Piper, also on our server, with Indonesian and English voices. The mouth on the robot’s face follows the loudness of that voice.
+
+If Piper does not respond, the kiosk uses the device’s built-in voice. If that is missing too, the robot shows its answer as text in the speech bubble, and its mouth still moves for a moment so the visitor knows it is replying.
+
+## Why our own server
+
+Visitors’ questions often include people’s names, the purpose of a visit, and phone numbers. With the model and the speech services on our own server, those conversations are not sent to a third-party service, and the cost does not rise with every question.
+
+The price is maintenance. The server needs watching, the models need updating, and the first question after a quiet spell can be a little slower while the model loads back into memory. We carry that as part of after-sales service.
+
+You can try the conversation in the receptionist robot demo. The venue data is a sample, but the flow is the same as in an installation.
+
+<KioskDemo path="/kiosk/kantor-layanan?view=voice" label="Talk to Taksu Kiosk" />

@@ -6,6 +6,8 @@ import * as floorEn from './lantai-kelas/en.mdx';
 import * as floorId from './lantai-kelas/id.mdx';
 import * as kkaEn from './robot-di-mapel-kka/en.mdx';
 import * as kkaId from './robot-di-mapel-kka/id.mdx';
+import * as busyEn from './saat-server-sibuk/en.mdx';
+import * as busyId from './saat-server-sibuk/id.mdx';
 import * as simulatorEn from './simulator-dulu/en.mdx';
 import * as simulatorId from './simulator-dulu/id.mdx';
 import type { PostMeta, PostTopic } from './types';
@@ -34,6 +36,7 @@ const post = (slug: string, id: PostModule, en: PostModule): Post => ({
  */
 export const posts: readonly Post[] = [
   post('aksara-di-layar', aksaraId, aksaraEn),
+  post('saat-server-sibuk', busyId, busyEn),
   post('robot-di-mapel-kka', kkaId, kkaEn),
   post('simulator-dulu', simulatorId, simulatorEn),
   post('lantai-kelas', floorId, floorEn),
