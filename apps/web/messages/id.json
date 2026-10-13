@@ -15,7 +15,8 @@
     "menu": "Buka menu",
     "close": "Tutup",
     "language": "Bahasa",
-    "theme": "Ganti tema terang atau gelap"
+    "theme": "Ganti tema terang atau gelap",
+    "blog": "Blog"
   },
   "Common": {
     "openDemo": "Buka demo",
@@ -89,6 +90,29 @@
       "body": "Ceritakan kebutuhannya. Kami balas dengan pertanyaan atau usulan awal.",
       "button": "Ceritakan proyek Anda"
     }
+  },
+  "Blog": {
+    "metaTitle": "Blog: catatan dari tim Taksu Tech",
+    "metaDescription": "Tulisan pendek tentang robot resepsionis, kelas robotik, dan cara kami membangun keduanya.",
+    "title": "Catatan dari tim kami",
+    "intro": "Tulisan pendek tentang robot resepsionis, kelas robotik, dan cara kami membangun keduanya. Apa yang berhasil, apa yang belum, dan alasannya.",
+    "all": "Semua",
+    "filter": "Saring menurut topik",
+    "topics": {
+      "education": "Edukasi",
+      "reception": "Resepsionis",
+      "engineering": "Teknik",
+      "company": "Perusahaan"
+    },
+    "readingTime": "{count} menit baca",
+    "team": "Tim {brand}",
+    "breadcrumb": "Lokasi halaman",
+    "more": "Tulisan lain",
+    "rss": "Ikuti lewat RSS",
+    "feedTitle": "Blog {brand}",
+    "mission": "Misi simulator",
+    "module": "modul {n}",
+    "openMission": "Buka misi ini di simulator"
   },
   "Demo": {
     "metaTitle": "Demo robot resepsionis dan simulator",

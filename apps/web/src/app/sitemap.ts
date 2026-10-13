@@ -1,11 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { posts } from '@/content/blog';
 import { routing } from '@/i18n/routing';
 import { siteConfig } from '@/lib/site-config';
 
-const staticPaths = ['', '/services', '/demo', '/about', '/contact'];
+const staticPaths = ['', '/services', '/blog', '/demo', '/about', '/contact'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return staticPaths.flatMap((path) =>
+  const paths = [...staticPaths, ...posts.map((post) => `/blog/${post.slug}`)];
+  return paths.flatMap((path) =>
     routing.locales.map((locale) => ({
       url: `${siteConfig.url}/${locale}${path}`,
       alternates: {

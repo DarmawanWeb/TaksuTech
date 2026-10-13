@@ -15,7 +15,8 @@
     "menu": "Open menu",
     "close": "Close",
     "language": "Language",
-    "theme": "Switch light or dark theme"
+    "theme": "Switch light or dark theme",
+    "blog": "Blog"
   },
   "Common": {
     "openDemo": "Open demo",
@@ -89,6 +90,29 @@
       "body": "Tell us what you need. We will reply with questions or a first proposal.",
       "button": "Tell us about your project"
     }
+  },
+  "Blog": {
+    "metaTitle": "Blog: notes from the Taksu Tech team",
+    "metaDescription": "Short pieces about receptionist robots, robotics classes, and how we build both.",
+    "title": "Notes from our team",
+    "intro": "Short pieces about receptionist robots, robotics classes, and how we build both. What works, what does not yet, and why.",
+    "all": "All",
+    "filter": "Filter by topic",
+    "topics": {
+      "education": "Education",
+      "reception": "Reception",
+      "engineering": "Engineering",
+      "company": "Company"
+    },
+    "readingTime": "{count} min read",
+    "team": "The {brand} team",
+    "breadcrumb": "Breadcrumb",
+    "more": "More posts",
+    "rss": "Follow via RSS",
+    "feedTitle": "{brand} blog",
+    "mission": "Simulator mission",
+    "module": "module {n}",
+    "openMission": "Open this mission in the simulator"
   },
   "Demo": {
     "metaTitle": "Receptionist robot and simulator demos",
