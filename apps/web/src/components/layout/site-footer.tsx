@@ -14,6 +14,9 @@ export async function SiteFooter() {
   ]);
   const whatsapp = whatsappUrl(common('whatsappGreeting'));
   const explore = [
+    { href: '/services', label: nav('services') },
+    { href: '/works', label: nav('works') },
+    { href: '/blog', label: nav('blog') },
     { href: '/demo', label: nav('demo') },
     { href: '/about', label: nav('about') },
     { href: '/contact', label: nav('contact') },
