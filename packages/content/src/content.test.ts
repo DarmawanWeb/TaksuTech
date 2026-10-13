@@ -3,8 +3,9 @@ import { curricula, meetingCount } from './curriculum';
 import { accessories, eduFaq, upgradePacks } from './edu-catalog';
 import { educationLevels } from './education';
 import { guides } from './guides';
+import { forumCategories, labChallenges } from './lab';
 import { comparison, robots } from './reception';
-import { missionPlace, simMissions } from './sim-missions';
+import { getSimMission, missionPlace, simMissions } from './sim-missions';
 
 describe('curriculum', () => {
   it('matches the advertised meeting count per level', () => {
@@ -112,5 +113,21 @@ describe('edu catalog', () => {
 
   it('names each kit with its version', () => {
     for (const level of educationLevels) expect(level.kit.endsWith(level.version)).toBe(true);
+  });
+});
+
+describe('lab', () => {
+  it('points challenges at missions for the same kit', () => {
+    for (const challenge of labChallenges) {
+      if (!challenge.mission) continue;
+      expect(getSimMission(challenge.mission)?.robot, challenge.id).toBe(challenge.kit);
+    }
+  });
+
+  it('uses unique challenge and forum category ids', () => {
+    const challengeIds = labChallenges.map((challenge) => challenge.id);
+    expect(new Set(challengeIds).size).toBe(challengeIds.length);
+    const categoryIds = forumCategories.map((category) => category.id);
+    expect(new Set(categoryIds).size).toBe(categoryIds.length);
   });
 });
