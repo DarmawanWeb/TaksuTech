@@ -43,7 +43,8 @@ services:
       SIM_HOST: ${SIM_HOST:-taksu-sim.agus-darmawan.com}
       GRAFANA_HOST: ${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
     volumes:
-      - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # The folder, not the file: an edited Caddyfile gets a new inode, which a file mount never sees.
+      - ./infra/caddy:/etc/caddy:ro
       - caddy_data:/data
       - caddy_config:/config
     depends_on: [web, edu, robot, kiosk, sim]

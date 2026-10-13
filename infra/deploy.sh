@@ -20,6 +20,9 @@ fi
 
 log "Building images and starting containers"
 compose up -d --build --remove-orphans
+# Caddy keeps running across deploys, so load the current Caddyfile explicitly.
+compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile >/dev/null ||
+  die "Caddy rejected infra/caddy/Caddyfile"
 
 probe() {
   local host="$1" path="$2"
