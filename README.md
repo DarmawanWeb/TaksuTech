@@ -100,9 +100,9 @@ ENV_FILE=~/web/taksu-tech.env infra/scripts/lab-restore.sh backups/lab-2026-10-1
 
 ## Simulator dan kurikulum
 
-- Robot di arena digambar seperti kit aslinya. SD v1: pelat merah, roda kuning, wajah biru dengan sensor ultrasonik di atasnya, dua sensor garis di bawah wajah. SMP v1: rangka merah, bar IR 5-in-1, HC-SR04 di atas servo, ESP32, TB6612FNG, AHT10, mikrofon. Roda berputar sesuai motor, lensa IR menyala saat melihat lakban, sonar tampil sebagai kerucut, buzzer sebagai gelombang suara. Tombol "Ikuti robot" memperbesar arena di sekitar robot.
+- Robot di arena digambar seperti kit aslinya. SD v1: bodi merah bergaris putih, visor hitam dengan mata OLED, sensor ultrasonik di bumper depan, dua sensor garis di bawahnya, dan lampu sein oranye di kedua sudut depan. SMP v1: rangka merah, bar IR 5-in-1, HC-SR04 di atas servo, ESP32, TB6612FNG, AHT10, mikrofon. Roda berputar sesuai motor, lensa IR menyala saat melihat lakban, sonar tampil sebagai kerucut, buzzer sebagai gelombang suara, dan lampu sein berkedip dengan bunyi tik seperti di mobil. Tombol "Ikuti robot" memperbesar arena di sekitar robot.
 - Setiap misi terhubung ke pertemuan tertentu di silabus (`m(..., 'id-misi')` di `curriculum.ts`). Simulator menampilkan "Modul n, pertemuan x" dan tautan balik ke silabus; halaman silabus menampilkan "Coba di simulator" di baris pertemuannya. Misi yang selesai diingat di browser.
-- Ada 17 misi: 9 untuk SD v1 dan 8 untuk SMP v1, termasuk input-proses-output dengan tangan yang mendekat (SMP modul 1) dan telemetri Wi-Fi dengan dasbor lokal dan mode luring (SMP modul 7).
+- Ada 18 misi: 10 untuk SD v1 dan 8 untuk SMP v1, termasuk lampu sein sebelum belok (SD modul 2), input-proses-output dengan tangan yang mendekat (SMP modul 1) dan telemetri Wi-Fi dengan dasbor lokal dan mode luring (SMP modul 7).
 - Setiap modul SD dan SMP punya satu video YouTube dengan catatan cara memakainya di kelas. Video baru dimuat dari youtube-nocookie.com setelah diklik. ID video dicek lewat halaman kanal dan daftar resminya, belum lewat oEmbed; jalankan `CHECK_VIDEOS=1 pnpm --filter @taksu/content test` sekali dari jaringan biasa.
 - Pemetaan KKA memakai nama elemen resmi mapel Koding dan Kecerdasan Artifisial dan fasenya (C, D, E dan F).
 - Silabus bisa dicetak dari tombol "Cetak silabus"; versi cetak selalu hitam di atas putih.
