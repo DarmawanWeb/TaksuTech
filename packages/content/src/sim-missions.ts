@@ -52,6 +52,15 @@ export const simMissions: readonly SimMissionInfo[] = [
     ),
   },
   {
+    id: 'sd-sein',
+    robot: 'sd',
+    title: l('Sein sebelum belok', 'Signal before you turn'),
+    brief: l(
+      'Nyalakan sein kiri, tunggu sebentar, belok di tikungan, lalu matikan sein dan berhenti di finis.',
+      'Switch the left signal on, wait a moment, turn at the corner, then switch it off and stop at the finish.',
+    ),
+  },
+  {
     id: 'sd-kotak',
     robot: 'sd',
     title: l('Kotak dan kembali', 'Square and return'),

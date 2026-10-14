@@ -187,10 +187,11 @@ const sd: Curriculum = {
           'sd-belok',
         ),
         m(
-          'Tebak, jalankan, amati',
-          'Predict, run, observe',
-          'Catat prediksi dan hasil di lembar kerja.',
-          'Record predictions and results on a worksheet.',
+          'Lampu sein sebelum belok',
+          'Signal before you turn',
+          'Tebak kapan sein harus menyala, jalankan, lalu catat hasilnya di lembar kerja.',
+          'Predict when the signal should come on, run it, and record the result on a worksheet.',
+          'sd-sein',
         ),
         m(
           'Kotak dan kembali',
