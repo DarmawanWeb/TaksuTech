@@ -61,8 +61,8 @@ export const labChallenges: readonly LabChallenge[] = [
     kit: 'sd',
     title: l('Tari robot satu menit', 'One-minute robot dance'),
     brief: l(
-      'Susun tarian 30 sampai 60 detik dari gerak, bunyi buzzer, dan ekspresi wajah, di dalam area satu meter persegi.',
-      'Make a 30 to 60 second dance from moves, buzzer notes, and faces, inside one square metre.',
+      'Susun tarian 30 sampai 60 detik dari gerak, lampu sein, bunyi buzzer, dan ekspresi wajah, di dalam area satu meter persegi.',
+      'Make a 30 to 60 second dance from moves, turn signals, buzzer notes, and faces, inside one square metre.',
     ),
     doneWhen: [
       l('Paling sedikit tiga gerakan berbeda', 'At least three different moves'),

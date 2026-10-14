@@ -146,8 +146,8 @@ export const works: readonly Work[] = [
       en: 'A ready-to-use 2WD robot for primary school children.',
     },
     body: {
-      id: 'Datang sudah dirakit dan diuji. Anak memprogramnya dengan blok, lalu melihat robot bergerak, membaca garis dan jarak, dan berekspresi lewat wajah OLED-nya. Baterainya tertutup dan berproteksi, jadi aman dipakai di kelas.',
-      en: 'It arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, and show expressions on its OLED face. The battery is enclosed and protected, so it is safe in a classroom.',
+      id: 'Datang sudah dirakit dan diuji. Anak memprogramnya dengan blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED-nya, dan menyalakan lampu sein sebelum berbelok. Baterainya tertutup dan berproteksi, jadi aman dipakai di kelas.',
+      en: 'It arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, and switch on a turn signal before it turns. The battery is enclosed and protected, so it is safe in a classroom.',
     },
     facts: [
       {
@@ -165,12 +165,16 @@ export const works: readonly Work[] = [
         label: { id: 'Wajah', en: 'Face' },
         value: { id: 'OLED 128×64 dengan ekspresi', en: '128×64 OLED with expressions' },
       },
+      {
+        label: { id: 'Lampu dan bunyi', en: 'Lights and sound' },
+        value: { id: 'Dua lampu sein LED, buzzer', en: 'Two LED turn signals, a buzzer' },
+      },
     ],
     image: 'sdV1',
     fit: 'cover',
     imageAlt: {
-      id: 'Robot SD v1 dengan roda kuning dan wajah OLED',
-      en: 'The SD v1 robot with yellow wheels and an OLED face',
+      id: 'Robot SD v1 merah bergaris putih dengan wajah OLED dan dua lampu sein',
+      en: 'The red, white-striped SD v1 robot with an OLED face and two turn signals',
     },
     links: [
       { site: 'edu', path: '/kits/sd', label: { id: 'Lihat kit SD v1', en: 'See the SD v1 kit' } },

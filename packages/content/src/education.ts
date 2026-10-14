@@ -45,8 +45,8 @@ export const educationLevels: readonly EducationLevel[] = [
       en: 'Predict, build the program, run, observe, repeat',
     },
     summary: {
-      id: 'Robot 2WD yang sudah dirakit dan diuji. Anak memprogram lewat blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED, dan berbunyi.',
-      en: 'A 2WD robot that arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, and beep.',
+      id: 'Robot 2WD yang sudah dirakit dan diuji. Anak memprogram lewat blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED, menyalakan lampu sein, dan berbunyi.',
+      en: 'A 2WD robot that arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, flash its turn signals, and beep.',
     },
     build: {
       label: { id: 'Siap pakai', en: 'Ready to use' },
@@ -64,6 +64,10 @@ export const educationLevels: readonly EducationLevel[] = [
       {
         id: 'Sensor garis kiri-kanan dan sensor jarak depan',
         en: 'Left and right line sensors plus a front distance sensor',
+      },
+      {
+        id: 'Lampu sein kiri-kanan dan buzzer untuk memberi tanda sebelum berbelok',
+        en: 'Left and right turn signals and a buzzer to signal before turning',
       },
       {
         id: 'Blok berbahasa anak, unggah program tanpa urusan pin',
@@ -97,6 +101,10 @@ export const educationLevels: readonly EducationLevel[] = [
         group: { id: 'Umpan balik', en: 'Feedback' },
         items: [
           { id: 'OLED 128×64 untuk wajah', en: '128×64 OLED face' },
+          {
+            id: 'Dua lampu sein LED oranye di depan',
+            en: 'Two orange LED turn signals at the front',
+          },
           { id: 'Buzzer aktif', en: 'Active buzzer' },
         ],
       },

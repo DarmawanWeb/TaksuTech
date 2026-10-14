@@ -343,8 +343,8 @@ export const guides: readonly Guide[] = [
             'Press Run. The running block lights up.',
           ),
           l(
-            'Pantau panel sensor: garis, jarak, wajah OLED, dan bunyi.',
-            'Watch the sensor panel: line, distance, OLED face, and sound.',
+            'Pantau panel sensor: garis, jarak, wajah OLED, lampu sein, dan bunyi.',
+            'Watch the sensor panel: line, distance, OLED face, turn signals, and sound.',
           ),
         ],
       },
