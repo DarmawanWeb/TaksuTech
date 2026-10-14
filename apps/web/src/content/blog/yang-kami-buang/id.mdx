@@ -1,9 +1,10 @@
+import sdNow from '@/assets/education/sd-v1.webp';
 import sdHero from '@/assets/education/sd-v1-concept.webp';
 
 export const meta = {
   title: 'Yang kami buang dari SD v1',
   summary:
-    'Gambar konsep pertama punya lampu status, tombol, dan sensor cahaya. Versi yang sekarang tidak. Ini alasannya, dan apa yang masih kami uji.',
+    'Gambar konsep pertama punya lampu status, tombol, dan sensor cahaya. Versi yang sekarang tidak. Ini alasannya, apa yang kembali, dan apa yang masih kami uji.',
   date: '2026-09-16',
   minutes: 4,
   topic: 'education',
@@ -39,3 +40,17 @@ Bagian ini masih kami uji di prototipe: suhu setelah dipakai lama, berapa lama r
 Arduino Nano di SD v1 duduk di carrier yang terlindung dan bisa dicabut. Kalau rusak, guru tinggal menggantinya tanpa menyolder. Robot sekolah dipakai bertahun-tahun oleh banyak angkatan, jadi kemudahan servis sama pentingnya dengan fitur.
 
 Kalau SD v1 terlihat lebih sederhana dibanding kit lain di pasaran, itu disengaja. Setiap komponen di dalam kotak dipilih karena ada pertemuan yang memakainya.
+
+## Yang kembali: lampu sein
+
+Satu hal dari gambar konsep akhirnya masuk lagi, kali ini dengan tugas yang jelas. SD v1 sekarang punya dua lampu sein LED oranye di sudut depan, dan buzzer-nya berbunyi tik selama lampu berkedip, seperti mobil yang akan berbelok.
+
+<Photo
+  src={sdNow}
+  alt="SD v1 versi sekarang: bodi merah bergaris putih, wajah OLED, sensor jarak di bumper depan, dan dua lampu oranye di sudutnya"
+  caption="SD v1 versi sekarang. Dua lampu oranye di sudut depan adalah lampu sein."
+/>
+
+Aturannya tidak berubah. Lampu status dulu tidak punya pertemuan, lampu sein punya. Di modul kedua, saat belajar membuat robot bergerak, anak menyalakan sein kiri, menunggu sebentar, baru berbelok, lalu mematikannya lagi. Itu latihan urutan yang terasa nyata, karena mereka melihat hal yang sama di jalan setiap hari. Misinya juga sudah ada di simulator.
+
+Jadi keluarannya sekarang tiga: wajah OLED, buzzer, dan lampu sein.
