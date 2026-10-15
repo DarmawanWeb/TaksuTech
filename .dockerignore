@@ -1,8 +1,0 @@
-**/node_modules
-**/.next
-**/.turbo
-**/coverage
-.git
-.env*
-!.env.example
-**/.lab-data
