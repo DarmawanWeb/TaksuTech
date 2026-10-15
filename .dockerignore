@@ -3,6 +3,7 @@
 **/.turbo
 **/coverage
 **/.git
-.env*
-!.env.example
+**/.env*
+!**/.env.example
 infra/.env
+apps/sim/public/blockly-media
