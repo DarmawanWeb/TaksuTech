@@ -1,0 +1,71 @@
+# ULIK on the Mac mini: the store (web), the block simulator (sim), and Caddy in front.
+# Only Caddy publishes a port, on the loopback, for the existing cloudflared tunnel.
+#   cp infra/.env.example infra/.env && infra/deploy.sh
+name: ulik
+
+x-logging: &logging
+  driver: json-file
+  options: { max-size: '10m', max-file: '3' }
+
+# Inlined into the client bundles at build time; rebuild after changing any of them.
+x-public: &public
+  NEXT_PUBLIC_WEB_URL: https://${WEB_HOST:-ulik.agus-darmawan.com}
+  NEXT_PUBLIC_SIM_URL: https://${SIM_HOST:-ulik-sim.agus-darmawan.com}
+  NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-}
+  NEXT_PUBLIC_EMAIL: ${CONTACT_EMAIL:-}
+  NEXT_PUBLIC_TOKOPEDIA_URL: ${TOKOPEDIA_URL:-}
+  NEXT_PUBLIC_SHOPEE_URL: ${SHOPEE_URL:-}
+
+x-next-app: &next-app
+  restart: unless-stopped
+  networks: [ulik]
+  logging: *logging
+  environment:
+    NODE_ENV: production
+  healthcheck:
+    test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/id']
+    interval: 30s
+    timeout: 5s
+    retries: 3
+    start_period: 20s
+
+services:
+  caddy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:${CADDY_PORT:-4490}:80'
+    environment:
+      WEB_HOST: ${WEB_HOST:-ulik.agus-darmawan.com}
+      SIM_HOST: ${SIM_HOST:-ulik-sim.agus-darmawan.com}
+    volumes:
+      # The folder, not the file: an edited Caddyfile gets a new inode, which a file mount never sees.
+      - ./infra/caddy:/etc/caddy:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [web, sim]
+    networks: [ulik]
+    logging: *logging
+
+  web:
+    <<: *next-app
+    image: ulik/web:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: web, <<: *public }
+
+  sim:
+    <<: *next-app
+    image: ulik/sim:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: sim, <<: *public }
+
+networks:
+  ulik:
+
+volumes:
+  caddy_data:
+  caddy_config:

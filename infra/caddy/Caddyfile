@@ -1,0 +1,38 @@
+# TLS ends at Cloudflare; cloudflared on the Mac talks plain HTTP to this Caddy on 127.0.0.1.
+{
+	auto_https off
+	admin localhost:2019
+	servers {
+		trusted_proxies static private_ranges
+		client_ip_headers Cf-Connecting-Ip X-Forwarded-For
+	}
+}
+
+(common) {
+	encode zstd gzip
+	header {
+		-Server
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options SAMEORIGIN
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+	}
+	log {
+		output stdout
+		format json
+	}
+}
+
+http://{$WEB_HOST} {
+	import common
+	reverse_proxy web:3000
+}
+
+http://{$SIM_HOST} {
+	import common
+	reverse_proxy sim:3000
+}
+
+:80 {
+	respond "Not found" 404
+}
