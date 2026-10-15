@@ -52,7 +52,7 @@ describe('catalogue', () => {
 
   it('formats rupiah the Indonesian way', () => {
     expect(formatRupiah(1_750_000, 'id')).toBe('Rp1.750.000');
-    expect(formatRupiah(1_750_000, 'en')).toBe('IDR1,750,000');
+    expect(formatRupiah(1_750_000, 'en')).toBe('IDR 1,750,000');
   });
 });
 

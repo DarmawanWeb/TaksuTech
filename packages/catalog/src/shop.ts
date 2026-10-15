@@ -26,7 +26,7 @@ export const marketplaceNames: Record<Marketplace, string> = {
 /** A product's own listing on each marketplace, once it is listed. */
 export type MarketplaceLinks = Partial<Record<Marketplace, string>>;
 
-/** Rupiah without decimals, e.g. "Rp1.750.000" (id) or "IDR 1,750,000" (en). */
+/** Rupiah without decimals: "Rp1.750.000" in Indonesian, "IDR 1,750,000" in English. */
 export function formatRupiah(amount: number, locale: Locale): string {
   return new Intl.NumberFormat(locale === 'id' ? 'id-ID' : 'en-US', {
     style: 'currency',
@@ -34,7 +34,7 @@ export function formatRupiah(amount: number, locale: Locale): string {
     maximumFractionDigits: 0,
   })
     .format(amount)
-    .replace(/ /g, '');
+    .replace(/\u00a0/g, locale === 'id' ? '' : ' ');
 }
 
 export type ProductKind = 'upgrade' | 'arena' | 'aksesori' | 'sekolah';
