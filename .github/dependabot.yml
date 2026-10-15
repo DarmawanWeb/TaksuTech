@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      next-react:
+        patterns: ['next', 'react', 'react-dom', '@types/react*', 'next-intl']
+      blockly:
+        patterns: ['blockly', '@blockly/*']
+      tooling:
+        patterns: ['@biomejs/biome', 'typescript*', 'vitest', 'vite', 'turbo', '@commitlint/*']
+    commit-message:
+      prefix: 'chore'
+      include: scope
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: 'ci'

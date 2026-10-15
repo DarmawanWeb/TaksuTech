@@ -1,0 +1,28 @@
+name: Deploy to Mac mini
+
+# Runs on a self-hosted runner on the Mac mini. Manual for now: once a runner is registered for
+# this repository, add a workflow_run trigger on CI (as in the Taksu repo) to deploy every green main.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-macmini-ulik
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+
+      # Compose bind-mounts the Caddyfile, so deploy from the folder the stack already runs
+      # from (~/web/ulik), not the runner workspace. Its .git and env stay put.
+      - name: Sync to ~/web/ulik
+        run: |
+          mkdir -p "$HOME/web/ulik"
+          rsync -a --delete --exclude .git --exclude node_modules --exclude '.next' --exclude '.turbo' \
+            --exclude 'infra/.env' ./ "$HOME/web/ulik/"
+
+      - name: Deploy with Docker Compose
+        run: ENV_FILE="$HOME/web/ulik.env" "$HOME/web/ulik/infra/deploy.sh"
