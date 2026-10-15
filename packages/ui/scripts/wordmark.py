@@ -80,7 +80,7 @@ def main(name: str) -> None:
     if dot is None:
         sys.exit('The name needs an "i" for the signal light.')
     cx, cy, height = dot
-    radius = height / 2 * 1.3
+    radius = height / 2 * 1.6
     top = -max(ascent, cy + radius) - 20
     view_box = f'-30 {top:.0f} {x + 60:.0f} {-top + 30:.0f}'
     with open(OUT, 'w') as file:
