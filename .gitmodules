@@ -1,3 +1,6 @@
 [submodule "sim"]
 	path = apps/sim
 	url = ../education-robot-sim.git
+[submodule "web"]
+	path = apps/web
+	url = ../education-robot-web.git
