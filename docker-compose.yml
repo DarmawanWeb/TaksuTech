@@ -1,7 +1,6 @@
-# Taksu Tech on the Mac mini: three Next.js apps, the speech service, and Caddy in front.
-# web is the company profile, robot the reception robot site, kiosk the robots' screen app.
-# The education robots run as their own stack from education-robot; Caddy here only sends the
-# old education hosts there.
+# Taksu Tech on the Mac mini: five Next.js apps, the speech service, and Caddy in front.
+# web is the company profile, robot and kiosk the reception robots' site and screen app, edu and
+# sim the education robots' store and block simulator.
 # Only Caddy publishes a port, on the loopback, for the existing cloudflared tunnel.
 #   cp infra/.env.example infra/.env && infra/deploy.sh
 name: taksu
@@ -17,6 +16,11 @@ x-public-urls: &public-urls
   NEXT_PUBLIC_KIOSK_URL: https://${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
   NEXT_PUBLIC_SIM_URL: https://${SIM_HOST:-taksu-sim.agus-darmawan.com}
   NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-}
+  # The store calls its own address WEB_URL, and the simulator links back to it with the same name.
+  NEXT_PUBLIC_WEB_URL: https://${EDU_HOST:-taksu-edu.agus-darmawan.com}
+  NEXT_PUBLIC_EMAIL: ${CONTACT_EMAIL:-}
+  NEXT_PUBLIC_TOKOPEDIA_URL: ${TOKOPEDIA_URL:-}
+  NEXT_PUBLIC_SHOPEE_URL: ${SHOPEE_URL:-}
 
 x-next-app: &next-app
   restart: unless-stopped
@@ -43,15 +47,13 @@ services:
       ROBOT_HOST: ${ROBOT_HOST:-taksu-robot.agus-darmawan.com}
       KIOSK_HOST: ${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
       SIM_HOST: ${SIM_HOST:-taksu-sim.agus-darmawan.com}
-      EDUCATION_HOST: ${EDUCATION_HOST:-education-robot.agus-darmawan.com}
-      EDUCATION_SIM_HOST: ${EDUCATION_SIM_HOST:-education-robot-sim.agus-darmawan.com}
       GRAFANA_HOST: ${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
     volumes:
       # The folder, not the file: an edited Caddyfile gets a new inode, which a file mount never sees.
       - ./infra/caddy:/etc/caddy:ro
       - caddy_data:/data
       - caddy_config:/config
-    depends_on: [web, robot, kiosk]
+    depends_on: [web, robot, kiosk, edu, sim]
     networks: [taksu]
     logging: *logging
 
@@ -97,6 +99,22 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       args: { APP: robot, <<: *public-urls }
+
+  edu:
+    <<: *next-app
+    image: taksu/edu:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: edu, <<: *public-urls }
+
+  sim:
+    <<: *next-app
+    image: taksu/sim:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args: { APP: sim, <<: *public-urls }
 
   speech:
     image: taksu/speech:local

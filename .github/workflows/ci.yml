@@ -35,8 +35,7 @@ jobs:
     name: Biome, typecheck, test, build
     runs-on: ubuntu-latest
     steps:
-      # The apps are submodules: the workspace is incomplete without them. education-robot has its
-      # own workspace and CI, so its submodules stay out.
+      # The apps are submodules: the workspace is incomplete without them.
       - uses: actions/checkout@v5
         with:
           submodules: true
@@ -81,6 +80,5 @@ jobs:
           -e WEB_HOST=taksu.example.com -e ROBOT_HOST=robot.example.com
           -e KIOSK_HOST=kiosk.example.com -e GRAFANA_HOST=grafana.example.com
           -e EDU_HOST=edu.example.com -e SIM_HOST=sim.example.com
-          -e EDUCATION_HOST=store.example.com -e EDUCATION_SIM_HOST=store-sim.example.com
           caddy:2.10-alpine caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
       - run: shellcheck -x infra/deploy.sh infra/scripts/*.sh infra/ollama/setup.sh

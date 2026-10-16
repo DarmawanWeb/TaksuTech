@@ -14,8 +14,7 @@ load_env
 # Every commit here pins one commit of each app and of the speech service; build exactly those.
 # A clone without --recursive, or a pull without --recurse-submodules, leaves them behind. The
 # deploy workflow copies a full checkout over this folder without .git, so it is already in step.
-# education-robot deploys itself (its own infra/deploy.sh), so it is left alone here.
-apps=(apps/web apps/robot apps/kiosk services/speech)
+apps=(apps/web apps/robot apps/kiosk apps/edu apps/sim services/speech)
 if [[ -e "$ROOT/.git" ]] && git -C "$ROOT" submodule status -- "${apps[@]}" | grep -q '^[-+]'; then
   log "Checking out the pinned apps and speech service"
   git -C "$ROOT" submodule update --init -- "${apps[@]}"
@@ -53,18 +52,12 @@ probe "$ROBOT_HOST" /id
 probe "$ROBOT_HOST" /en/snow
 probe "$KIOSK_HOST" /api/health
 probe "$KIOSK_HOST" /id/kiosk/kantor-layanan/preview
-
-# The old education hosts send visitors to the education-robot stack.
-probe_redirect() {
-  local host="$1" path="$2" target="$3" location
-  location="$(curl -fsS -o /dev/null -w '%{redirect_url}' -H "Host: $host" "http://127.0.0.1:$CADDY_PORT$path")" ||
-    die "$host$path did not answer through Caddy"
-  [[ "$location" == "$target" ]] || die "$host$path redirects to '$location' instead of $target"
-  ok "$host$path -> $target"
-}
-probe_redirect "$EDU_HOST" /id "https://$EDUCATION_HOST/id"
-probe_redirect "$EDU_HOST" /en/kits/sd "https://$EDUCATION_HOST/en"
-probe_redirect "$SIM_HOST" /id "https://$EDUCATION_SIM_HOST/id"
+probe "$EDU_HOST" /id
+probe "$EDU_HOST" /en/robot/ciko
+probe "$EDU_HOST" /id/belajar/ciko
+probe "$EDU_HOST" /id/keranjang
+probe "$SIM_HOST" /id
+probe "$SIM_HOST" /en
 
 log "Assistant smoke test"
 curl -fsS -H "Host: $KIOSK_HOST" -H 'content-type: application/json' \

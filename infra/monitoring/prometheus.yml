@@ -21,6 +21,10 @@ scrape_configs:
         labels: { service: web }
       - targets: ['http://robot:3000/id']
         labels: { service: robot }
+      - targets: ['http://edu:3000/id']
+        labels: { service: edu }
+      - targets: ['http://sim:3000/id']
+        labels: { service: sim }
       - targets: ['http://kiosk:3000/api/health']
         labels: { service: kiosk }
       - targets: ['http://speech:8000/health']

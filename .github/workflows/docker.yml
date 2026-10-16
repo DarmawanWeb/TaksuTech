@@ -3,8 +3,7 @@ name: Docker images
 # Continuous delivery: every push to main (and every v* tag) publishes one image per app to
 # GHCR, named after the app's repository. The public URLs are inlined at build time and default to
 # the hosts in docker-compose.yml; repository variables COMPANY_URL, EDU_URL, ROBOT_URL,
-# KIOSK_URL, SIM_URL, and WHATSAPP_NUMBER override them. The education robots publish theirs
-# from education-robot.
+# KIOSK_URL, SIM_URL, WHATSAPP_NUMBER, CONTACT_EMAIL, TOKOPEDIA_URL, and SHOPEE_URL override them.
 on:
   push:
     branches: [main]
@@ -26,6 +25,8 @@ jobs:
           - { app: web, image: company-profile }
           - { app: robot, image: reception-robot-web }
           - { app: kiosk, image: reception-robot-kiosk }
+          - { app: edu, image: education-robot-web }
+          - { app: sim, image: education-robot-sim }
     steps:
       # The apps are submodules; the image needs the app it builds and the shared packages.
       - uses: actions/checkout@v5
@@ -60,5 +61,9 @@ jobs:
             NEXT_PUBLIC_KIOSK_URL=${{ vars.KIOSK_URL || 'https://taksu-kiosk.agus-darmawan.com' }}
             NEXT_PUBLIC_SIM_URL=${{ vars.SIM_URL || 'https://taksu-sim.agus-darmawan.com' }}
             NEXT_PUBLIC_WHATSAPP_NUMBER=${{ vars.WHATSAPP_NUMBER }}
+            NEXT_PUBLIC_WEB_URL=${{ vars.EDU_URL || 'https://taksu-edu.agus-darmawan.com' }}
+            NEXT_PUBLIC_EMAIL=${{ vars.CONTACT_EMAIL }}
+            NEXT_PUBLIC_TOKOPEDIA_URL=${{ vars.TOKOPEDIA_URL }}
+            NEXT_PUBLIC_SHOPEE_URL=${{ vars.SHOPEE_URL }}
           cache-from: type=gha,scope=${{ matrix.app }}
           cache-to: type=gha,mode=max,scope=${{ matrix.app }}
