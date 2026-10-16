@@ -23,15 +23,7 @@ next-env.d.ts
 *.log
 .vercel
 
-# generated at build time from node_modules/blockly/media
-apps/sim/public/blockly-media/
 infra/.env
 __pycache__/
 .pytest_cache/
 infra/ollama/.Modelfile.tmp
-
-# Lab data in development (SQLite and uploaded photos)
-.lab-data/
-
-# Lab backups made by infra/scripts/lab-backup.sh
-backups/

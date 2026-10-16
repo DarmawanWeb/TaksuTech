@@ -2,7 +2,8 @@
 **/.next
 **/.turbo
 **/coverage
-.git
+**/.git
 .env*
 !.env.example
-**/.lab-data
+# The education robots build from their own repository.
+education-robot

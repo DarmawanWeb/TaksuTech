@@ -9,7 +9,6 @@ require docker
 require curl
 load_env
 [[ "${MONITORING:-1}" != "1" || -n "${GRAFANA_ADMIN_PASSWORD:-}" ]] || die "Set GRAFANA_ADMIN_PASSWORD (or MONITORING=0)."
-[[ -n "${LAB_ADMIN_PASSWORD:-}" ]] || warn "LAB_ADMIN_PASSWORD is empty: the Lab takes posts, but nobody can approve them."
 
 # The port must be free, or already held by our own Caddy container.
 if command -v lsof >/dev/null 2>&1 && lsof -nP -iTCP:"$CADDY_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
@@ -39,14 +38,22 @@ probe() {
 probe "$WEB_HOST" /id
 probe "$WEB_HOST" /en/about
 probe "$WEB_HOST" /id/works
-probe "$EDU_HOST" /id
-probe "$EDU_HOST" /en/kits/sd
-probe "$EDU_HOST" /id/lab
 probe "$ROBOT_HOST" /id
 probe "$ROBOT_HOST" /en/snow
 probe "$KIOSK_HOST" /api/health
 probe "$KIOSK_HOST" /id/kiosk/kantor-layanan/preview
-probe "$SIM_HOST" /id
+
+# The old education hosts send visitors to the education-robot stack.
+probe_redirect() {
+  local host="$1" path="$2" target="$3" location
+  location="$(curl -fsS -o /dev/null -w '%{redirect_url}' -H "Host: $host" "http://127.0.0.1:$CADDY_PORT$path")" ||
+    die "$host$path did not answer through Caddy"
+  [[ "$location" == "$target" ]] || die "$host$path redirects to '$location' instead of $target"
+  ok "$host$path -> $target"
+}
+probe_redirect "$EDU_HOST" /id "https://$EDUCATION_HOST/id"
+probe_redirect "$EDU_HOST" /en/kits/sd "https://$EDUCATION_HOST/en"
+probe_redirect "$SIM_HOST" /id "https://$EDUCATION_SIM_HOST/id"
 
 log "Assistant smoke test"
 curl -fsS -H "Host: $KIOSK_HOST" -H 'content-type: application/json' \

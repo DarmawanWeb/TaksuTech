@@ -31,14 +31,16 @@ http://{$WEB_HOST} {
 	reverse_proxy web:3000
 }
 
+# The education robots moved to education-robot, a stack of its own. Old links to the education
+# site and its simulator land on the new store and simulator, in the visitor's language.
 http://{$EDU_HOST} {
 	import common
-	header Permissions-Policy "camera=(), microphone=(), geolocation=()"
-	# Lab submissions carry up to four photos of 8 MB each.
-	request_body {
-		max_size 40MB
+	handle /en* {
+		redir https://{$EDUCATION_HOST}/en
 	}
-	reverse_proxy edu:3000
+	handle {
+		redir https://{$EDUCATION_HOST}/id
+	}
 }
 
 http://{$ROBOT_HOST} {
@@ -59,8 +61,12 @@ http://{$KIOSK_HOST} {
 
 http://{$SIM_HOST} {
 	import common
-	header Permissions-Policy "camera=(), microphone=(), geolocation=()"
-	reverse_proxy sim:3000
+	handle /en* {
+		redir https://{$EDUCATION_SIM_HOST}/en
+	}
+	handle {
+		redir https://{$EDUCATION_SIM_HOST}/id
+	}
 }
 
 # Gate this hostname with Cloudflare Access as well as Grafana's own login.

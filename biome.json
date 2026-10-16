@@ -12,7 +12,8 @@
       "!**/.turbo",
       "!**/coverage",
       "!**/next-env.d.ts",
-      "!pnpm-lock.yaml"
+      "!pnpm-lock.yaml",
+      "!education-robot"
     ]
   },
   "formatter": {

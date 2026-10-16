@@ -1,5 +1,7 @@
-# Taksu Tech on the Mac mini: five Next.js apps, the speech service, and Caddy in front.
-# web is the company profile, edu and robot are the two product sites, kiosk and sim the demos.
+# Taksu Tech on the Mac mini: three Next.js apps, the speech service, and Caddy in front.
+# web is the company profile, robot the reception robot site, kiosk the robots' screen app.
+# The education robots run as their own stack from education-robot; Caddy here only sends the
+# old education hosts there.
 # Only Caddy publishes a port, on the loopback, for the existing cloudflared tunnel.
 #   cp infra/.env.example infra/.env && infra/deploy.sh
 name: taksu
@@ -41,13 +43,15 @@ services:
       ROBOT_HOST: ${ROBOT_HOST:-taksu-robot.agus-darmawan.com}
       KIOSK_HOST: ${KIOSK_HOST:-taksu-kiosk.agus-darmawan.com}
       SIM_HOST: ${SIM_HOST:-taksu-sim.agus-darmawan.com}
+      EDUCATION_HOST: ${EDUCATION_HOST:-education-robot.agus-darmawan.com}
+      EDUCATION_SIM_HOST: ${EDUCATION_SIM_HOST:-education-robot-sim.agus-darmawan.com}
       GRAFANA_HOST: ${GRAFANA_HOST:-taksu-grafana.agus-darmawan.com}
     volumes:
       # The folder, not the file: an edited Caddyfile gets a new inode, which a file mount never sees.
       - ./infra/caddy:/etc/caddy:ro
       - caddy_data:/data
       - caddy_config:/config
-    depends_on: [web, edu, robot, kiosk, sim]
+    depends_on: [web, robot, kiosk]
     networks: [taksu]
     logging: *logging
 
@@ -85,32 +89,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
-
-  sim:
-    <<: *next-app
-    image: taksu/sim:local
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-      args: { APP: sim, <<: *public-urls }
-
-  edu:
-    <<: *next-app
-    image: taksu/edu:local
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-      args: { APP: edu, <<: *public-urls }
-    environment:
-      NODE_ENV: production
-      # The Lab (class builds and forum) keeps its SQLite database and photos on the edu_lab
-      # volume, so redeploys keep them. Back it up with infra/scripts/lab-backup.sh.
-      LAB_DATA_DIR: /data/lab
-      LAB_ADMIN_PASSWORD: ${LAB_ADMIN_PASSWORD:-}
-      LAB_SECRET: ${LAB_SECRET:-}
-      LAB_NOTIFY_URL: ${LAB_NOTIFY_URL:-}
-    volumes:
-      - edu_lab:/data
 
   robot:
     <<: *next-app
@@ -216,7 +194,6 @@ networks:
 
 volumes:
   caddy_data:
-  edu_lab:
   caddy_config:
   speech_models:
   prometheus_data:

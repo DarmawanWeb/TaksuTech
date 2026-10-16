@@ -1,7 +1,7 @@
 {
   "name": "taksu-tech",
   "private": true,
-  "description": "Taksu Tech monorepo: company profile, Bali receptionist kiosk with voice, education simulator, and Docker deployment.",
+  "description": "Taksu Tech: the company profile, the reception robots (site, kiosk, speech), and the education robots (education-robot), with the Docker stack that runs them.",
   "packageManager": "pnpm@10.34.6",
   "engines": {
     "node": ">=22.12"
@@ -9,7 +9,6 @@
   "scripts": {
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@taksu/web",
-    "dev:edu": "turbo run dev --filter=@taksu/edu",
     "dev:robot": "turbo run dev --filter=@taksu/robot",
     "dev:kiosk": "turbo run dev --filter=@taksu/kiosk",
     "build": "turbo run build",
@@ -21,7 +20,6 @@
     "format:check": "biome format .",
     "commitlint": "commitlint",
     "prepare": "husky",
-    "dev:sim": "turbo run dev --filter=@taksu/sim",
     "test:speech": "cd services/speech && python3 -m pytest -q",
     "deploy": "infra/deploy.sh",
     "biome": "biome"

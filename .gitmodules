@@ -10,3 +10,6 @@
 [submodule "speech"]
 	path = services/speech
 	url = ../reception-robot-speech.git
+[submodule "education-robot"]
+	path = education-robot
+	url = ../education-robot.git
