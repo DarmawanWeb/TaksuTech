@@ -18,9 +18,10 @@ jobs:
     runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          submodules: true
 
       # Compose bind-mounts config files, so deploy from the same folder the stack already
       # runs from (~/web/taksu-tech), not the runner workspace. Its .git and env stay put.

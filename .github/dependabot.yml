@@ -18,3 +18,10 @@ updates:
       interval: monthly
     commit-message:
       prefix: 'ci'
+  # Opens a pull request when an app, the speech service, or education-robot has new commits on main.
+  - package-ecosystem: gitsubmodule
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: 'chore'
