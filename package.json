@@ -1,5 +1,6 @@
 {
   "name": "education-robot",
+  "version": "2.0.0",
   "private": true,
   "description": "Taksu education robots: robot bernama (Ciko, Momo, Garu), toko, simulator blok, dan deploy Docker.",
   "packageManager": "pnpm@10.34.6",
