@@ -7,6 +7,8 @@ updates:
     groups:
       next-react:
         patterns: ['next', 'react', 'react-dom', '@types/react*', 'next-intl']
+      blockly:
+        patterns: ['blockly', '@blockly/*']
       tooling:
         patterns: ['@biomejs/biome', 'typescript*', 'vitest', 'vite', 'turbo', '@commitlint/*']
     commit-message:
@@ -18,7 +20,7 @@ updates:
       interval: monthly
     commit-message:
       prefix: 'ci'
-  # Opens a pull request when an app, the speech service, or education-robot has new commits on main.
+  # Opens a pull request when an app or the speech service has new commits on main.
   - package-ecosystem: gitsubmodule
     directory: /
     schedule:

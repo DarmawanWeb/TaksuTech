@@ -2,7 +2,7 @@
   "name": "taksu-tech",
   "private": true,
   "version": "2.0.0",
-  "description": "Taksu Tech: the company profile, the reception robots (site, kiosk, speech), and the education robots (education-robot), with the Docker stack that runs them.",
+  "description": "Taksu Tech: the company profile, the reception robots (site, kiosk, speech), and the education robots (store, simulator), with the Docker stack that runs them.",
   "packageManager": "pnpm@10.34.6",
   "engines": {
     "node": ">=22.12"
@@ -12,6 +12,8 @@
     "dev:web": "turbo run dev --filter=@taksu/web",
     "dev:robot": "turbo run dev --filter=@taksu/robot",
     "dev:kiosk": "turbo run dev --filter=@taksu/kiosk",
+    "dev:edu": "turbo run dev --filter=@taksu/edu",
+    "dev:sim": "turbo run dev --filter=@taksu/sim",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
@@ -20,7 +22,7 @@
     "format": "biome format --write .",
     "format:check": "biome format .",
     "commitlint": "commitlint",
-    "prepare": "husky && (git submodule foreach --quiet 'test \"$sm_path\" = education-robot || git config core.hooksPath \"$toplevel/.husky/_\"' >/dev/null 2>&1 || true)",
+    "prepare": "husky && (git submodule foreach --quiet 'git config core.hooksPath \"$toplevel/.husky/_\"' >/dev/null 2>&1 || true)",
     "test:speech": "cd services/speech && python3 -m pytest -q",
     "deploy": "infra/deploy.sh",
     "biome": "biome"

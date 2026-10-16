@@ -27,6 +27,67 @@ importers:
         specifier: ^2.11.7
         version: 2.11.7
 
+  apps/edu:
+    dependencies:
+      '@fontsource-variable/anybody':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource-variable/atkinson-hyperlegible-next':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@taksu/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
+      '@taksu/edu-ui':
+        specifier: workspace:*
+        version: link:../../packages/edu-ui
+      lucide-react:
+        specifier: ^1.52.0
+        version: 1.52.0(@types/react@19.3.0)(react@19.3.0)
+      next:
+        specifier: ^16.3.8
+        version: 16.3.8(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next-intl:
+        specifier: ^4.14.9
+        version: 4.14.9(@swc/helpers@0.5.23)(@types/react@19.3.0)(next@16.3.8(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+      sharp:
+        specifier: ^0.35.5
+        version: 0.35.5(@types/node@22.20.5)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.3.3
+        version: 4.3.3
+      '@taksu/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^22.20.5
+        version: 22.20.5
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      tailwindcss:
+        specifier: ^4.3.3
+        version: 4.3.3
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.3
+        version: 8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1)
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
+
   apps/kiosk:
     dependencies:
       '@fontsource-variable/bricolage-grotesque':
@@ -170,6 +231,73 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
 
+  apps/sim:
+    dependencies:
+      '@fontsource-variable/anybody':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource-variable/atkinson-hyperlegible-mono':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource-variable/atkinson-hyperlegible-next':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@taksu/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
+      '@taksu/edu-ui':
+        specifier: workspace:*
+        version: link:../../packages/edu-ui
+      blockly:
+        specifier: ^13.3.0
+        version: 13.4.0(jsdom@29.1.1)
+      lucide-react:
+        specifier: ^1.52.0
+        version: 1.52.0(@types/react@19.3.0)(react@19.3.0)
+      next:
+        specifier: ^16.3.8
+        version: 16.3.8(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next-intl:
+        specifier: ^4.14.9
+        version: 4.14.9(@swc/helpers@0.5.23)(@types/react@19.3.0)(next@16.3.8(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.3.3
+        version: 4.3.3
+      '@taksu/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^22.20.5
+        version: 22.20.5
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      tailwindcss:
+        specifier: ^4.3.3
+        version: 4.3.3
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.3
+        version: 8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1)
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
+
   apps/web:
     dependencies:
       '@fontsource-variable/hubot-sans':
@@ -261,6 +389,24 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
 
+  packages/catalog:
+    devDependencies:
+      '@taksu/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^22.20.5
+        version: 22.20.5
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.3
+        version: 8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1)
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
+
   packages/content:
     devDependencies:
       '@taksu/typescript-config':
@@ -278,6 +424,49 @@ importers:
       vitest:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@22.20.5)(jsdom@29.1.1)(vite@8.3.3(@types/node@22.20.5)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/edu-ui:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-react:
+        specifier: ^1.52.0
+        version: 1.52.0(@types/react@19.3.0)(react@19.3.0)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      radix-ui:
+        specifier: ^1.7.0
+        version: 1.7.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      tailwind-merge:
+        specifier: ^3.7.0
+        version: 3.7.0
+    devDependencies:
+      '@fontsource-variable/anybody':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@taksu/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
 
   packages/typescript-config: {}
 
@@ -570,6 +759,15 @@ packages:
 
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
+
+  '@fontsource-variable/anybody@5.3.0':
+    resolution: {integrity: sha512-3u/FSV3mGv9xW3x+CdK9lAZYT1Y3NaRA1bexeoIuk9s5QE8sD8OOTcofvpPx0Z6M0Fq1WAJ06ZAw8hivdRQWHQ==}
+
+  '@fontsource-variable/atkinson-hyperlegible-mono@5.3.0':
+    resolution: {integrity: sha512-0IbthhO18EEpLe69h+cmrsxCkl4yk80gMk+fAN3+9M5zQvoR1JlkzoJRR6U9/UXLYpVBGEXu+Md2LO8TIp30dw==}
+
+  '@fontsource-variable/atkinson-hyperlegible-next@5.3.0':
+    resolution: {integrity: sha512-UnLzNUy1RWoLDfydAatP4NaRm99X/WbQEph7q/PymJnCFIOOwKOx3pBmp5ys8trO0dM+CKGuJgeZP9fAR4mQpA==}
 
   '@fontsource-variable/bricolage-grotesque@5.3.0':
     resolution: {integrity: sha512-TLi9Q4hJjS2UvoTMRSS2nHu6c4R56lAw60NR9QYtVRCHn0XtsFpiEhNffZ8Glsoxu6wEEwLKBP8lb94J52PNBA==}
@@ -2091,6 +2289,12 @@ packages:
   bidi-js@1.1.0:
     resolution: {integrity: sha512-fX1Onk0tdVPC7obPWB5EbJ1z7NVhLq4m2xZLq2YXBkxzMXIGRpNMU88n0EPgWseKl12J7zXs7qrDxPK4sRs2fg==}
 
+  blockly@13.4.0:
+    resolution: {integrity: sha512-cWZJV5nocL+VWOG9Vfm6j8shdOLGyvKkyoGOS2bk9u6PKb4qqLp50NeL8YoNMTEi7fHmY37eBYT1yC6Y7/yZ7w==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      jsdom: '>=27.4.0 <31.0.0'
+
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
@@ -3344,7 +3548,6 @@ snapshots:
       '@csstools/css-color-parser': 4.2.6(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-    optional: true
 
   '@asamuzakjp/dom-selector@7.1.1':
     dependencies:
@@ -3353,13 +3556,10 @@ snapshots:
       bidi-js: 1.1.0
       css-tree: 3.2.1
       is-potential-custom-element-name: 1.0.1
-    optional: true
 
-  '@asamuzakjp/generational-cache@1.0.1':
-    optional: true
+  '@asamuzakjp/generational-cache@1.0.1': {}
 
-  '@asamuzakjp/nwsapi@2.3.9':
-    optional: true
+  '@asamuzakjp/nwsapi@2.3.9': {}
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -3407,7 +3607,6 @@ snapshots:
   '@bramus/specificity@2.4.3':
     dependencies:
       css-tree: 3.2.1
-    optional: true
 
   '@commitlint/cli@21.2.3(@types/node@22.20.5)(conventional-commits-parser@7.1.3)(typescript@6.0.3)':
     dependencies:
@@ -3528,14 +3727,12 @@ snapshots:
 
   '@conventional-changelog/template@1.4.0': {}
 
-  '@csstools/color-helpers@6.1.2':
-    optional: true
+  '@csstools/color-helpers@6.1.2': {}
 
   '@csstools/css-calc@3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-    optional: true
 
   '@csstools/css-color-parser@4.2.6(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)':
     dependencies:
@@ -3543,20 +3740,16 @@ snapshots:
       '@csstools/css-calc': 3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-    optional: true
 
   '@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2)':
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-    optional: true
 
   '@csstools/css-syntax-patches-for-csstree@1.1.15(css-tree@3.2.1)':
     optionalDependencies:
       css-tree: 3.2.1
-    optional: true
 
-  '@csstools/css-tokenizer@4.0.2':
-    optional: true
+  '@csstools/css-tokenizer@4.0.2': {}
 
   '@eloqnt/config@0.1.1': {}
 
@@ -3574,8 +3767,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@exodus/bytes@1.16.0':
-    optional: true
+  '@exodus/bytes@1.16.0': {}
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -3593,6 +3785,12 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
 
   '@floating-ui/utils@0.2.12': {}
+
+  '@fontsource-variable/anybody@5.3.0': {}
+
+  '@fontsource-variable/atkinson-hyperlegible-mono@5.3.0': {}
+
+  '@fontsource-variable/atkinson-hyperlegible-next@5.3.0': {}
 
   '@fontsource-variable/bricolage-grotesque@5.3.0': {}
 
@@ -3622,8 +3820,7 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
 
-  '@img/colour@1.1.0':
-    optional: true
+  '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.35.5':
     optionalDependencies:
@@ -4944,7 +5141,10 @@ snapshots:
   bidi-js@1.1.0:
     dependencies:
       require-from-string: 2.0.2
-    optional: true
+
+  blockly@13.4.0(jsdom@29.1.1):
+    dependencies:
+      jsdom: 29.1.1
 
   callsites@3.1.0: {}
 
@@ -5029,7 +5229,6 @@ snapshots:
     dependencies:
       mdn-data: 2.27.1
       source-map-js: 1.2.2
-    optional: true
 
   csstype@3.2.3: {}
 
@@ -5039,7 +5238,6 @@ snapshots:
       whatwg-url: 16.0.1
     transitivePeerDependencies:
       - '@noble/hashes'
-    optional: true
 
   debug@4.4.3:
     dependencies:
@@ -5047,8 +5245,7 @@ snapshots:
 
   decamelize@1.2.0: {}
 
-  decimal.js@10.6.0:
-    optional: true
+  decimal.js@10.6.0: {}
 
   decode-named-character-reference@1.3.0:
     dependencies:
@@ -5075,8 +5272,7 @@ snapshots:
       graceful-fs: 4.2.11
       tapable: 2.3.3
 
-  entities@8.1.0:
-    optional: true
+  entities@8.1.0: {}
 
   env-paths@2.2.1: {}
 
@@ -5219,7 +5415,6 @@ snapshots:
       '@exodus/bytes': 1.16.0
     transitivePeerDependencies:
       - '@noble/hashes'
-    optional: true
 
   husky@9.1.7: {}
 
@@ -5264,8 +5459,7 @@ snapshots:
 
   is-plain-obj@4.1.0: {}
 
-  is-potential-custom-element-name@1.0.1:
-    optional: true
+  is-potential-custom-element-name@1.0.1: {}
 
   jiti@2.6.1: {}
 
@@ -5302,7 +5496,6 @@ snapshots:
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - '@noble/hashes'
-    optional: true
 
   json-parse-even-better-errors@2.3.1: {}
 
@@ -5422,8 +5615,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lru-cache@11.5.3:
-    optional: true
+  lru-cache@11.5.3: {}
 
   lucide-react@1.52.0(@types/react@19.3.0)(react@19.3.0):
     dependencies:
@@ -5542,8 +5734,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  mdn-data@2.27.1:
-    optional: true
+  mdn-data@2.27.1: {}
 
   micromark-core-commonmark@2.0.4:
     dependencies:
@@ -5854,7 +6045,6 @@ snapshots:
   parse5@8.0.1:
     dependencies:
       entities: 8.1.0
-    optional: true
 
   path-exists@4.0.0: {}
 
@@ -5880,8 +6070,7 @@ snapshots:
 
   property-information@7.2.0: {}
 
-  punycode@2.3.1:
-    optional: true
+  punycode@2.3.1: {}
 
   qrcode@1.5.4:
     dependencies:
@@ -6081,7 +6270,6 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
-    optional: true
 
   scheduler@0.28.0: {}
 
@@ -6121,7 +6309,6 @@ snapshots:
       '@img/sharp-win32-ia32': 0.35.5
       '@img/sharp-win32-x64': 0.35.5
       '@types/node': 22.20.5
-    optional: true
 
   source-map-js@1.2.2: {}
 
@@ -6176,8 +6363,7 @@ snapshots:
       client-only: 0.0.1
       react: 19.3.0
 
-  symbol-tree@3.2.4:
-    optional: true
+  symbol-tree@3.2.4: {}
 
   tailwind-merge@3.7.0: {}
 
@@ -6194,23 +6380,19 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
 
-  tldts-core@7.4.16:
-    optional: true
+  tldts-core@7.4.16: {}
 
   tldts@7.4.16:
     dependencies:
       tldts-core: 7.4.16
-    optional: true
 
   tough-cookie@6.0.2:
     dependencies:
       tldts: 7.4.16
-    optional: true
 
   tr46@6.0.0:
     dependencies:
       punycode: 2.3.1
-    optional: true
 
   trim-lines@3.0.1: {}
 
@@ -6231,8 +6413,7 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici@7.30.0:
-    optional: true
+  undici@7.30.0: {}
 
   unified@11.0.5:
     dependencies:
@@ -6346,13 +6527,10 @@ snapshots:
   w3c-xmlserializer@5.0.0:
     dependencies:
       xml-name-validator: 5.0.0
-    optional: true
 
-  webidl-conversions@8.0.1:
-    optional: true
+  webidl-conversions@8.0.1: {}
 
-  whatwg-mimetype@5.0.0:
-    optional: true
+  whatwg-mimetype@5.0.0: {}
 
   whatwg-url@16.0.1:
     dependencies:
@@ -6361,7 +6539,6 @@ snapshots:
       webidl-conversions: 8.0.1
     transitivePeerDependencies:
       - '@noble/hashes'
-    optional: true
 
   which-module@2.0.1: {}
 
@@ -6379,11 +6556,9 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.2.0
 
-  xml-name-validator@5.0.0:
-    optional: true
+  xml-name-validator@5.0.0: {}
 
-  xmlchars@2.2.0:
-    optional: true
+  xmlchars@2.2.0: {}
 
   y18n@4.0.3: {}
 

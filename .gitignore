@@ -24,6 +24,8 @@ next-env.d.ts
 .vercel
 
 infra/.env
+# generated at build time from node_modules/blockly/media
+apps/sim/public/blockly-media/
 __pycache__/
 .pytest_cache/
 infra/ollama/.Modelfile.tmp
