@@ -1,128 +1,228 @@
+<div align="center">
+
+<img src="docs/logo.svg" width="112" alt="Taksu Tech logo">
+
 # Taksu Tech
 
-Monorepo **Taksu Tech** di bawah **Ezra Robotics**: satu company profile dan dua lini produk, masing-masing dengan situs sendiri karena pasarnya berbeda.
+**Robots made in Bali by Taksu Tech, part of Ezra Robotics: the company profile, the reception
+robots for Balinese offices and resorts (their site, the screen app they run, and its speech
+service), and the education robots, with the Docker stack that runs them all on a Mac mini.**
 
-- **Company profile** (`apps/web`): siapa kami, dua lini produk, layanan kustom (robot dan PCB, IoT, aplikasi web), karya, blog, demo, kontak. Umum dan polos, tanpa ornamen Bali; nuansa Bali hanya ada di situs robot resepsionis dan layar kios.
-- **NAMA Robot** (`apps/robot`, khusus Bali): Snow dan Timo **Edisi Bali** plus **Taksu Kiosk** buatan sendiri. Aksara Bali sesuai Pergub Bali 80/2018, cetak tiket dan kartu tamu, bisa diajak bicara.
-- **NAMA Edu** (`apps/edu`, untuk sekolah di seluruh Indonesia, tanpa unsur Bali): kit **SD v1**, **SMP v1**, **SMA v1**, upgrade pack dan aksesori, simulator gratis, kurikulum per pertemuan dengan video dan silabus yang bisa dicetak, panduan, dan Lab (karya kelas, tantangan, forum yang dimoderasi).
+[![CI](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/TaksuTech/ci.yml?branch=main&label=ci&logo=github)](https://github.com/DarmawanWeb/TaksuTech/actions/workflows/ci.yml)
+[![web](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/company-profile/ci.yml?branch=main&label=web&logo=github)](https://github.com/DarmawanWeb/company-profile/actions/workflows/ci.yml)
+[![robot](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-web/ci.yml?branch=main&label=robot&logo=github)](https://github.com/DarmawanWeb/reception-robot-web/actions/workflows/ci.yml)
+[![kiosk](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-kiosk/ci.yml?branch=main&label=kiosk&logo=github)](https://github.com/DarmawanWeb/reception-robot-kiosk/actions/workflows/ci.yml)
+[![speech](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-speech/ci.yml?branch=main&label=speech&logo=github)](https://github.com/DarmawanWeb/reception-robot-speech/actions/workflows/ci.yml)
+[![education](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/education-robot/ci.yml?branch=main&label=education&logo=github)](https://github.com/DarmawanWeb/education-robot/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/DarmawanWeb/TaksuTech?label=release&color=12343b)](https://github.com/DarmawanWeb/TaksuTech/releases)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-6%20strict-3178C6?logo=typescript&logoColor=white)
+![Python](https://img.shields.io/badge/speech-Python%203.12-3776AB?logo=python&logoColor=white)
+![Docker](https://img.shields.io/badge/deploy-Docker%20Compose-2496ED?logo=docker&logoColor=white)
+![Languages](https://img.shields.io/badge/UI-Indonesia%20%7C%20English-1fb0cf)
+[![License](https://img.shields.io/badge/license-proprietary-12343b)](LICENSE)
 
-Nama "NAMA Edu" dan "NAMA Robot" masih placeholder. Semua situs membacanya dari `packages/content/src/names.ts`, jadi mengganti nama cukup satu baris di sana.
+[Repositories](#repositories) · [Features](#features) · [System](#system) · [Run it](#run-it) ·
+[Deploy](#deploy-on-the-mac-mini) · [Releases](#releases) · [Documentation](#documentation) ·
+[Develop](#develop)
 
-| App / layanan     | Dev port | Isi                                                                                                      |
-| ----------------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| `apps/web`        | 3000     | Company profile, ID/EN: layanan, karya, blog (MDX + RSS), demo. Alamat lama dialihkan ke situs produk    |
-| `apps/kiosk`      | 3001     | Layar robot dan totem 24 inci tegak: suara, antrean, buku tamu, rute, cetak 80 mm, Studio, pratinjau     |
-| `apps/sim`        | 3002     | Simulator SD v1 dan SMP v1 (gerak, sensor garis, sonar, servo, suhu, suara, Wi-Fi) + Blockly + C++      |
-| `apps/edu`        | 3003     | Situs edukasi: kit, upgrade, kurikulum, panduan, Lab (SQLite + foto), simulator, program sekolah        |
-| `apps/robot`      | 3004     | Situs robot resepsionis: line-up sesuai tinggi asli, detail robot, perbandingan, Aksara Bali, demo       |
-| `services/speech` | 8000     | FastAPI: Whisper (faster-whisper) untuk STT, Piper untuk TTS Bahasa Indonesia dan Inggris                |
-| `infra/`          | 4480     | Docker Compose, Caddy, Prometheus, Loki, Alloy, Grafana, skrip cloudflared dan Ollama                    |
+</div>
 
+---
+
+Taksu Tech sells two lines of robots, each with its own site because the markets differ:
+reception robots made for Bali (Snow and Timo in a Bali Edition, and Taksu Kiosk, a totem built
+in-house) and education robots sold across Indonesia. This repository is the **deployment root**:
+the infrastructure and the shared packages at the top level, every app in its own repository,
+pinned here as a submodule.
+
+## Repositories
+
+| Path | Repository | |
+|---|---|---|
+| `apps/web` | [company-profile](https://github.com/DarmawanWeb/company-profile) | the company profile: services, works, blog, demos, contact |
+| `apps/robot` | [reception-robot-web](https://github.com/DarmawanWeb/reception-robot-web) | the reception robot site: line-up, robot pages, comparison, Aksara Bali, demos |
+| `apps/kiosk` | [reception-robot-kiosk](https://github.com/DarmawanWeb/reception-robot-kiosk) | the screen app on Snow, Timo, and the Taksu Kiosk totem |
+| `services/speech` | [reception-robot-speech](https://github.com/DarmawanWeb/reception-robot-speech) | Whisper and Piper for the kiosk, on CPU |
+| `education-robot` | [education-robot](https://github.com/DarmawanWeb/education-robot) | the education robots: a workspace of its own with the store ([education-robot-web](https://github.com/DarmawanWeb/education-robot-web)) and the simulator ([education-robot-sim](https://github.com/DarmawanWeb/education-robot-sim)) |
+
+## Features
+
+**Company**
+- The company profile in Indonesian and English: both product lines, custom robots, PCBs, IoT,
+  and web apps, the works page, an MDX blog with RSS, demos, and a contact form that hands the
+  message to WhatsApp or email.
+
+**Reception robots**
+- A site with the line-up drawn to the robots' real heights, a page and a demo per robot, a
+  comparison, the Aksara Bali regulation with a live sign, and today's Pawukon day.
+- One screen app for the 13.3-inch screens on Snow and Timo and the 24-inch portrait totem: queue
+  tickets, a guest book, directions on the floor plan, the venue's organisation, Balinese customs,
+  and Aksara Bali above the Latin on every sign.
+- An assistant that answers from the venue's data, offline or through Ollama (native on the Mac
+  mini), Anthropic, or any OpenAI-compatible API; Whisper and Piper for listening and speaking,
+  with the robot's mouth following the voice; tickets and passes on 80 mm thermal paper.
+
+**Education robots**
+- Named robots, their store, learning paths, and the block simulator live in
+  [education-robot](https://github.com/DarmawanWeb/education-robot), which runs as its own stack.
+  The old education hosts here redirect to it.
+
+**Operate**
+- One Docker image per app, the speech service, and Caddy behind the existing Cloudflare Tunnel;
+  Prometheus, Loki, Alloy, and Grafana with a ready dashboard; CI here and in every app's
+  repository; images on GHCR.
+
+## System
+
+```mermaid
+flowchart LR
+    U[Visitors, venues,<br/>robot screens] --> T[Cloudflare Tunnel]
+    T --> C[Caddy<br/>127.0.0.1:4480]
+    C --> W[web<br/>company profile]
+    C --> R[robot<br/>reception robot site]
+    C --> K[kiosk<br/>screen app]
+    K --> S[speech<br/>Whisper, Piper]
+    K --> O[Ollama<br/>native on macOS]
+    C -. old education hosts redirect .-> E[education-robot<br/>its own stack, 127.0.0.1:4490]
+    W & R & K --> P[(packages<br/>content, ui, bali)]
 ```
-taksu-tech/
-├── apps/{web,edu,robot,kiosk,sim}
-├── packages/
-│   ├── content/      # satu sumber data: nama brand, robot, kit, upgrade pack, kurikulum, panduan, misi
-│   ├── ui/           # komponen bersama + tiga tema: company.css, theme.css (resepsionis, Bali), edu.css
-│   ├── bali/         # transliterasi Aksara Bali + kalender Pawukon
-│   └── typescript-config
-├── services/speech/  # Python, diuji dengan engine palsu
-└── infra/            # caddy/, monitoring/, ollama/, scripts/, deploy.sh, .env.example
-```
 
-## Jalankan untuk pengembangan
+| Path | |
+|---|---|
+| `packages/content/` | every fact the sites show: brand and names, both product lines, robots, venues, works, demos |
+| `packages/ui/` | shared components and three themes: `company.css`, `theme.css` (the reception line, Bali), `edu.css` |
+| `packages/bali/` | Aksara Bali transliteration, Balinese numerals, greetings, the Pawukon calendar |
+| `packages/typescript-config/` | shared TypeScript settings |
+| `docker/Dockerfile` | one standalone Next.js image per app |
+| `docker-compose.yml`, `infra/caddy/` | the stack: web, robot, kiosk, speech, and Caddy on the loopback |
+| `infra/monitoring/`, `infra/ollama/` | Prometheus, Loki, Alloy, Grafana; the `taksu-asisten` model |
+| `infra/deploy.sh`, `infra/scripts/` | deploy with a smoke test, and the cloudflared hostnames |
+
+## Run it
 
 ```bash
-pnpm install
-pnpm dev                     # web :3000, kiosk :3001, sim :3002, edu :3003, robot :3004
-pnpm dev:edu                 # satu app saja
-pnpm check                   # Biome, typecheck, test
-pnpm test:speech
+git clone --recursive https://github.com/DarmawanWeb/TaksuTech.git && cd TaksuTech
+pnpm install        # also installs the commit hooks, here and in each app and the speech service
+pnpm dev            # web :3000, kiosk :3001, robot :3004
+pnpm check          # Biome, typecheck, tests
+pnpm test:speech    # the speech service's tests (Python, ffmpeg)
 ```
 
-Format dan lint memakai [Biome](https://biomejs.dev) (`biome.json` di root). Hook pre-commit merapikan file yang di-stage, dan commitlint memeriksa pesan commit.
+Without the speech service the kiosk listens and speaks through the browser; to try Whisper and
+Piper, run it on port 8000 and set `SPEECH_URL=http://localhost:8000` in `apps/kiosk/.env.local`
+([how](https://github.com/DarmawanWeb/reception-robot-speech#develop)). The education robots have
+their own workspace: `cd education-robot && pnpm install`.
 
-Tanpa service suara, kiosk otomatis memakai suara dan pengenalan suara bawaan browser. Untuk mencoba Whisper dan Piper di laptop:
+## Deploy on the Mac mini
 
-```bash
-cd services/speech && pip install -r requirements.txt
-SPEECH_MODELS_DIR=./models uvicorn app.main:app --port 8000
-# apps/kiosk/.env.local
-SPEECH_URL=http://localhost:8000
-```
-
-## Deploy di Mac mini (Docker + Caddy + cloudflared)
-
-Semua app dan layanan berjalan di Docker. Hanya Caddy yang membuka port, yaitu `127.0.0.1:4480`. Port 80 (sudah terpakai), 8080 (cAdvisor), 3000, 3100, 5432, 9090, dan 9100 tidak disentuh. Ollama tetap native di macOS agar memakai GPU Metal; kontainer menjangkaunya lewat `host.docker.internal:11434`.
+Everything runs in Docker; only Caddy opens a port, `127.0.0.1:4480`. Ollama stays native on
+macOS to use the Metal GPU, and the containers reach it at `host.docker.internal:11434`.
 
 ```bash
+git clone --recursive https://github.com/DarmawanWeb/TaksuTech.git ~/web/taksu-tech
 cd ~/web/taksu-tech
-cp infra/.env.example ~/web/taksu-tech.env          # isi domain, CLOUDFLARE_TUNNEL, GRAFANA_ADMIN_PASSWORD, LAB_*
-infra/ollama/setup.sh                                # sekali: membuat model taksu-asisten
-ENV_FILE=~/web/taksu-tech.env infra/deploy.sh        # build, start, smoke test lewat Caddy
+cp infra/.env.example ~/web/taksu-tech.env     # hosts, CLOUDFLARE_TUNNEL, GRAFANA_ADMIN_PASSWORD
+infra/ollama/setup.sh                           # once: the taksu-asisten model
+ENV_FILE=~/web/taksu-tech.env infra/deploy.sh   # pinned apps, build, start, smoke test
 ENV_FILE=~/web/taksu-tech.env CLOUDFLARED_CONFIG=~/.cloudflared/config.yml infra/scripts/cloudflare-ingress.sh
 ```
 
-| Hostname                          | Ke                                         |
-| --------------------------------- | ------------------------------------------ |
-| `taksu.agus-darmawan.com`         | web (company profile)                      |
-| `taksu-edu.agus-darmawan.com`     | edu (situs edukasi)                        |
-| `taksu-robot.agus-darmawan.com`   | robot (situs robot resepsionis)            |
-| `taksu-kiosk.agus-darmawan.com`   | kiosk (mikrofon diizinkan)                 |
-| `taksu-sim.agus-darmawan.com`     | simulator                                  |
-| `taksu-grafana.agus-darmawan.com` | Grafana, lindungi dengan Cloudflare Access |
+The education robots run next to it as a second Compose project from the same clone:
+`ENV_FILE=~/web/education-robot.env education-robot/infra/deploy.sh` (see
+[education-robot](https://github.com/DarmawanWeb/education-robot#deploy-on-the-mac-mini)).
+`.github/workflows/deploy-macmini.yml` deploys every green `main` from a self-hosted runner.
 
-Hostname diatur lewat `WEB_HOST`, `EDU_HOST`, `ROBOT_HOST`, `KIOSK_HOST`, `SIM_HOST`, dan `GRAFANA_HOST` di file env; yang tidak diisi memakai nilai di atas. Semua hostname di cloudflared mengarah ke satu target `http://127.0.0.1:4480`; Caddy yang memilah per domain. Skrip ingress membuat cadangan `config.yml`, menyisipkan aturan sebelum `http_status:404`, memvalidasi, membuat CNAME, lalu me-restart cloudflared.
+<details>
+<summary><b>Hostnames and configuration</b></summary>
 
-Deploy otomatis: `.github/workflows/deploy-macmini.yml` berjalan di runner self-hosted setelah CI hijau, menyalin repo ke `~/web/taksu-tech`, lalu menjalankan `infra/deploy.sh` dengan `~/web/taksu-tech.env`.
+| Hostname (default) | Goes to |
+|---|---|
+| `taksu.agus-darmawan.com` | web, the company profile |
+| `taksu-robot.agus-darmawan.com` | robot, the reception robot site |
+| `taksu-kiosk.agus-darmawan.com` | kiosk, with the microphone allowed |
+| `taksu-edu.agus-darmawan.com` | a redirect to the education-robot store |
+| `taksu-sim.agus-darmawan.com` | a redirect to the education-robot simulator |
+| `taksu-grafana.agus-darmawan.com` | Grafana; protect it with Cloudflare Access |
 
-### Suara
+Every hostname points cloudflared at the one target `http://127.0.0.1:4480`, and Caddy routes by
+host. The ingress script backs up `config.yml`, inserts the rules before `http_status:404`,
+validates, creates the CNAMEs, and restarts cloudflared.
 
-Saat pertama start, service speech mengunduh model Whisper `small` dan suara Piper `id_ID-news_tts-medium` serta `en_US-lessac-medium` ke volume `speech_models`. Selama itu `/api/speech/health` bernilai false dan kiosk memakai suara browser. Audio dari browser diubah ke 16 kHz mono dengan ffmpeg sebelum masuk Whisper. Setelah siap, mulut robot bergerak mengikuti suara asli (lip-sync). Ganti ke `WHISPER_MODEL=base` bila ingin lebih cepat.
+| Variable (`infra/.env`) | What it does |
+|---|---|
+| `WEB_HOST`, `ROBOT_HOST`, `KIOSK_HOST`, `GRAFANA_HOST` | the hostnames above |
+| `EDU_HOST`, `SIM_HOST` | the old education hosts, which now redirect |
+| `EDUCATION_HOST`, `EDUCATION_SIM_HOST` | where they redirect: education-robot's store and simulator |
+| `CADDY_PORT` | Caddy on the loopback, 4480; never 80 or 8080 on this Mac mini |
+| `MONITORING` | `1` also runs Prometheus, Loki, Alloy, blackbox, and Grafana |
+| `CLOUDFLARE_TUNNEL` | the existing tunnel, for the ingress script |
+| `WHATSAPP_NUMBER` | where enquiries go; empty means email only |
+| `AI_*`, `ASSISTANT_RATE_LIMIT` | the kiosk's assistant: provider, model, timeouts, concurrency, rate limit |
+| `WHISPER_*`, `PIPER_VOICE_*` | the speech service's model and voices |
+| `GRAFANA_ADMIN_USER`, `GRAFANA_ADMIN_PASSWORD` | Grafana's own login |
 
-### Lab di situs edukasi
+Public values are inlined into the images at build time, so change them and deploy again. On the
+first start the speech service downloads Whisper `small` and the Piper voices into the
+`speech_models` volume; until then the kiosk uses the browser's voice. With `MONITORING=1`,
+Prometheus scrapes Caddy and probes web, robot, kiosk, speech, and Ollama; Alloy ships every
+container's log in the `taksu` project to Loki; Grafana opens on the **Taksu Tech: layanan**
+dashboard.
 
-Lab menyimpan karya kelas, topik forum, dan foto di SQLite pada volume `edu_lab` (`/data/lab` di kontainer edu), jadi tetap ada setelah deploy ulang. Semua kiriman menunggu persetujuan di `/id/lab/admin`.
+</details>
 
-- `LAB_ADMIN_PASSWORD` membuka halaman moderasi. Tanpa ini halaman moderasi terkunci dan tidak ada kiriman yang terbit.
-- `LAB_SECRET` menandatangani cookie sesi moderator. Buat dengan `openssl rand -hex 32`.
-- `LAB_NOTIFY_URL` (opsional) menerima pesan singkat setiap ada kiriman baru, misalnya topik ntfy.
-- Foto diubah ke WebP (1600 px dan 640 px) dan data lokasinya dibuang saat diunggah. Caddy menerima unggahan sampai 40 MB.
+## Releases
+
+| Version | |
+|---|---|
+| [v2.0.0](https://github.com/DarmawanWeb/TaksuTech/releases/tag/v2.0.0) | Taksu Tech in repositories: the company profile, the reception robot site, the kiosk, and the speech service each in their own, pinned here; the education line rebuilt as named robots in education-robot v2.0.0, with the old education hosts redirecting there. |
+| [v1.0.0](https://github.com/DarmawanWeb/TaksuTech/releases/tag/v1.0.0) | The MVP as one monorepo: the company profile and blog, Taksu Edu with kits per school level and a curriculum, the reception robot site and the kiosk with a voice assistant, the simulator, Aksara Bali, Docker and monitoring. |
+
+The first 274 commits are that monorepo, unchanged; every app's repository carries its own part of
+that history. `refactor: split the company profile, robot site, kiosk, and speech service into
+repositories` starts v2.
+
+## Documentation
+
+| For | Document |
+|---|---|
+| Contributors | [CONTRIBUTING.md](CONTRIBUTING.md): working with the submodules, house rules, blog posts, works |
+| Company profile | [company-profile/docs](https://github.com/DarmawanWeb/company-profile/tree/main/docs): architecture, development |
+| Reception robot site | [reception-robot-web/docs](https://github.com/DarmawanWeb/reception-robot-web/tree/main/docs): architecture, development |
+| Kiosk | [reception-robot-kiosk/docs](https://github.com/DarmawanWeb/reception-robot-kiosk/tree/main/docs): screens, assistant, voice, printing, venues |
+| Speech service | [reception-robot-speech/docs](https://github.com/DarmawanWeb/reception-robot-speech/tree/main/docs): engines, API, voices |
+| Education robots | [education-robot](https://github.com/DarmawanWeb/education-robot): its README and contributing guide |
+
+## Develop
 
 ```bash
-ENV_FILE=~/web/taksu-tech.env infra/scripts/lab-backup.sh                 # backups/lab-YYYY-MM-DD-HHMM.tgz
-ENV_FILE=~/web/taksu-tech.env infra/scripts/lab-restore.sh backups/lab-2026-10-13-0900.tgz
+git submodule update --init --recursive
+pnpm install        # husky here, and the same hooks inside each app and the speech service
 ```
 
-### Monitoring
+Change an app inside its submodule and push it there, then commit the new pointer here
+(`chore: update kiosk`); Dependabot opens that pull request weekly too. The `ci` workflow checks
+out the submodules and runs Biome, the typecheck, the tests, the builds, and the speech tests, and
+validates the compose file, the Caddyfile, and the shell scripts; each app's repository has its
+own CI. `docker.yml` publishes `ghcr.io/darmawanweb/company-profile`, `reception-robot-web`, and
+`reception-robot-kiosk` on `main` and `v*` tags.
 
-`MONITORING=1` menjalankan profil `monitoring`: Prometheus (scrape Caddy dan probe blackbox ke web, edu, robot, kiosk, sim, speech, Ollama), Loki + Alloy (log semua kontainer proyek `taksu`), dan Grafana dengan dasbor **Taksu Tech: layanan** yang langsung terpasang. Jika ingin memakai stack monitoring yang sudah ada di `~/apps/monitoring`, set `MONITORING=0` lalu tambahkan target probe dari `infra/monitoring/prometheus.yml`.
+<details>
+<summary><b>Brand</b></summary>
 
-## Simulator dan kurikulum
+- **Names:** `packages/content/src/names.ts`. The reception line's own name is still to be
+  decided, so every site reads it from there; public copy carries the Taksu Tech label only, with
+  no OEM names.
+- **Company profile:** `company.css`, plain on purpose: white and petrol `#12343b`, cyan
+  `#1fb0cf` for small accents, Hubot Sans and Mona Sans. The mark is a T drawn as a PCB trace that
+  turns at 45° and ends in a via.
+- **Reception line:** `theme.css`, made for Bali: Paras stone, Endek indigo, Malam night, Prada
+  gold, Subak water; Aksara Bali above the Latin, as Pergub Bali 80/2018 asks. It is generated, so
+  official signage is reviewed by a Balinese language adviser.
+- **Claims:** no TKDN percentage for Taksu Kiosk before certification. `piper-tts` is GPL-3.0 and
+  runs as its own service; check each voice's licence before commercial use.
 
-- Robot di arena digambar seperti kit aslinya. SD v1: bodi merah bergaris putih, visor hitam dengan mata OLED, sensor ultrasonik di bumper depan, dua sensor garis di bawahnya, dan lampu sein oranye di kedua sudut depan. SMP v1: rangka merah, bar IR 5-in-1, HC-SR04 di atas servo, ESP32, TB6612FNG, AHT10, mikrofon. Roda berputar sesuai motor, lensa IR menyala saat melihat lakban, sonar tampil sebagai kerucut, buzzer sebagai gelombang suara, dan lampu sein berkedip dengan bunyi tik seperti di mobil. Tombol "Ikuti robot" memperbesar arena di sekitar robot.
-- Setiap misi terhubung ke pertemuan tertentu di silabus (`m(..., 'id-misi')` di `curriculum.ts`). Simulator menampilkan "Modul n, pertemuan x" dan tautan balik ke silabus; halaman silabus menampilkan "Coba di simulator" di baris pertemuannya. Misi yang selesai diingat di browser.
-- Ada 18 misi: 10 untuk SD v1 dan 8 untuk SMP v1, termasuk lampu sein sebelum belok (SD modul 2), input-proses-output dengan tangan yang mendekat (SMP modul 1) dan telemetri Wi-Fi dengan dasbor lokal dan mode luring (SMP modul 7).
-- Setiap modul SD dan SMP punya satu video YouTube dengan catatan cara memakainya di kelas. Video baru dimuat dari youtube-nocookie.com setelah diklik. ID video dicek lewat halaman kanal dan daftar resminya, belum lewat oEmbed; jalankan `CHECK_VIDEOS=1 pnpm --filter @taksu/content test` sekali dari jaringan biasa.
-- Pemetaan KKA memakai nama elemen resmi mapel Koding dan Kecerdasan Artifisial dan fasenya (C, D, E dan F).
-- Silabus bisa dicetak dari tombol "Cetak silabus"; versi cetak selalu hitam di atas putih.
-- Blog pindah ke company profile (`apps/web/src/content/blog`); alamat blog lama di situs edukasi dialihkan ke sana. Cara menambah tulisan ada di `CONTRIBUTING.md`. Tanggal tulisan contoh perlu disesuaikan saat benar-benar terbit.
+</details>
 
-## Layar kios
-
-- Satu aplikasi untuk tiga layar. Ukurannya mengikuti sisi pendek layar: 16 px di layar 13,3 inci Snow dan Timo (mendatar), 24 px di totem 24 inci (tegak). Di layar tegak, papan nama, wajah, dan isi ada di atas; tombol menu, bahasa, dan suara di bawah agar terjangkau.
-- Papan nama digital memakai Aksara Bali di atas huruf Latin. Layar tunggu berdiri di antara dua belahan candi bentar dan bisa langsung dimulai dalam bahasa Indonesia atau Inggris. Ganti bahasa di tengah tugas tidak mengembalikan ke layar awal.
-- Tiket, kartu tamu, slip rute, dan kenang-kenangan nama dicetak untuk kertas termal 80 mm (lebar cetak 72 mm).
-- Pratinjau totem untuk demo di laptop: `/id/kiosk/kantor-layanan/preview`. Di HP yang tegak, pratinjau langsung membuka layar kios.
-
-## Catatan konten
-
-- Company profile memakai tema `company.css`: putih dan petrol (#12343b) dengan cyan (#1fb0cf) hanya untuk aksen kecil, font Hubot Sans untuk judul dan Mona Sans untuk teks. Logonya huruf T dari jalur PCB yang berbelok 45° dan berakhir di via. Foto hero adalah papan kendali SMP v1 dengan keterangan bagian; koordinatnya ada di `apps/web/src/components/home/board-figure.tsx`.
-- Situs edukasi sengaja tanpa unsur Bali (pasarnya nasional): tema `edu.css`, font Archivo dan Atkinson Hyperlegible, simulator ikut tema yang sama.
-- Kit diberi nama per jenjang dan versi (`SD v1`, `SMP v1`, `SMA v1`). Upgrade pack dan aksesori ditandai "Segera" sampai siap dijual.
-- Materi publik hanya memakai label Taksu Tech, tanpa nama OEM.
-- Halaman Karya (`/works`) hanya memuat produk buatan sendiri, datanya di `packages/content/src/works.ts`. Tangkapan layar di `apps/web/src/assets/works` diambil dari demo yang sedang berjalan.
-- Persentase TKDN Taksu Kiosk tidak diklaim sebelum ada sertifikat; situs menulis "disiapkan untuk sertifikasi TKDN".
-- Aksara Bali dihasilkan otomatis. Papan nama resmi tetap ditinjau penyuluh Bahasa Bali.
-- Spesifikasi kit SD dan SMP mengikuti dokumen konsep (tahap validasi prototipe). Gambar produk adalah render konsep milik Taksu Tech.
-- `piper-tts` 1.3 berlisensi GPL-3.0 dan berjalan sebagai layanan terpisah. Periksa lisensi tiap suara Piper di model card-nya sebelum dipakai komersial.
+Proprietary. Copyright (c) 2026 Taksu Tech, part of Ezra Robotics. All rights reserved.
