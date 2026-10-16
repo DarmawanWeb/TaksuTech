@@ -19,7 +19,7 @@
     "format": "biome format --write .",
     "format:check": "biome format .",
     "commitlint": "commitlint",
-    "prepare": "husky",
+    "prepare": "husky && (git submodule foreach --quiet 'test \"$sm_path\" = education-robot || git config core.hooksPath \"$toplevel/.husky/_\"' >/dev/null 2>&1 || true)",
     "test:speech": "cd services/speech && python3 -m pytest -q",
     "deploy": "infra/deploy.sh",
     "biome": "biome"
