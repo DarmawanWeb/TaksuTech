@@ -1,12 +1,12 @@
 name: Deploy to Mac mini
 
 # Runs on a self-hosted runner on the Mac mini. Manual for now: once a runner is registered for
-# this repository, add a workflow_run trigger on CI (as in the Taksu repo) to deploy every green main.
+# this repository, add a workflow_run trigger on CI (as in TaksuTech) to deploy every green main.
 on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-macmini-ulik
+  group: deploy-macmini-education-robot
   cancel-in-progress: false
 
 jobs:
@@ -17,12 +17,12 @@ jobs:
       - uses: actions/checkout@v5
 
       # Compose bind-mounts the Caddyfile, so deploy from the folder the stack already runs
-      # from (~/web/ulik), not the runner workspace. Its .git and env stay put.
-      - name: Sync to ~/web/ulik
+      # from (~/web/education-robot), not the runner workspace. Its .git and env stay put.
+      - name: Sync to ~/web/education-robot
         run: |
-          mkdir -p "$HOME/web/ulik"
+          mkdir -p "$HOME/web/education-robot"
           rsync -a --delete --exclude .git --exclude node_modules --exclude '.next' --exclude '.turbo' \
-            --exclude 'infra/.env' ./ "$HOME/web/ulik/"
+            --exclude 'infra/.env' ./ "$HOME/web/education-robot/"
 
       - name: Deploy with Docker Compose
-        run: ENV_FILE="$HOME/web/ulik.env" "$HOME/web/ulik/infra/deploy.sh"
+        run: ENV_FILE="$HOME/web/education-robot.env" "$HOME/web/education-robot/infra/deploy.sh"

@@ -8,10 +8,13 @@ export interface WordmarkProps {
 }
 
 /**
- * The brand name in Anybody, drawn as outlines. The dot on the i is an amber turn signal that
- * flashes three times when the logo's link is hovered or focused (a `group` on the link).
+ * The brand name in Anybody, drawn as outlines, with an amber turn signal for its dot (the full
+ * stop of "taksu.") that flashes three times when the logo's link is hovered or focused.
  */
-export function Wordmark({ className, title = wordmarkName.toUpperCase() }: WordmarkProps) {
+export function Wordmark({
+  className,
+  title = wordmarkName.charAt(0).toUpperCase() + wordmarkName.slice(1),
+}: WordmarkProps) {
   return (
     <svg
       viewBox={wordmarkViewBox}

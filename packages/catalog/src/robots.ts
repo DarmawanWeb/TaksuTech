@@ -104,8 +104,8 @@ export const robots: readonly Robot[] = [
     },
     controller: 'Arduino Nano',
     programming: l(
-      'Blok di simulator ULIK, lalu Arduino C++ saat sudah siap',
-      'Blocks in the ULIK simulator, then Arduino C++ when you are ready',
+      'Blok di simulator Taksu, lalu Arduino C++ saat sudah siap',
+      'Blocks in the Taksu simulator, then Arduino C++ when you are ready',
     ),
     inBox: [
       l('Robot Ciko, sudah dirakit dan diuji', 'Ciko, assembled and tested'),
@@ -219,8 +219,8 @@ export const robots: readonly Robot[] = [
     },
     controller: 'ESP32-WROOM',
     programming: l(
-      'Blok di simulator ULIK, lalu C++ di Arduino IDE',
-      'Blocks in the ULIK simulator, then C++ in the Arduino IDE',
+      'Blok di simulator Taksu, lalu C++ di Arduino IDE',
+      'Blocks in the Taksu simulator, then C++ in the Arduino IDE',
     ),
     inBox: [
       l(

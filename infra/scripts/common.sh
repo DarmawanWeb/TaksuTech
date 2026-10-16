@@ -22,8 +22,8 @@ load_env() {
   set +a
   CADDY_PORT="${CADDY_PORT:-4490}"
   # Same defaults as docker-compose.yml, so an env file without them keeps working.
-  WEB_HOST="${WEB_HOST:-ulik.agus-darmawan.com}"
-  SIM_HOST="${SIM_HOST:-ulik-sim.agus-darmawan.com}"
+  WEB_HOST="${WEB_HOST:-education-robot.agus-darmawan.com}"
+  SIM_HOST="${SIM_HOST:-education-robot-sim.agus-darmawan.com}"
   case "$CADDY_PORT" in
     80 | 8080 | 4480)
       die "CADDY_PORT=$CADDY_PORT is taken on this Mac mini (80, 8080 is cAdvisor, 4480 is Taksu's Caddy)."

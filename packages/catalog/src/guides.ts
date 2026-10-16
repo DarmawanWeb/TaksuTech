@@ -64,8 +64,8 @@ export const guides: readonly Guide[] = [
         title: l('Program pertama', 'First program'),
         steps: [
           l(
-            'Buka simulator ULIK, pilih Ciko, lalu misi Kenalan dengan robot.',
-            'Open the ULIK simulator, choose Ciko, then the Meet the robot mission.',
+            'Buka simulator Taksu, pilih Ciko, lalu misi Kenalan dengan robot.',
+            'Open the Taksu simulator, choose Ciko, then the Meet the robot mission.',
           ),
           l(
             'Susun blok: tampilkan wajah senang, bunyikan bip, maju 1 detik.',
@@ -184,7 +184,7 @@ export const guides: readonly Guide[] = [
   },
   {
     slug: 'memakai-simulator',
-    title: l('Memakai simulator ULIK', 'Using the ULIK simulator'),
+    title: l('Memakai simulator Taksu', 'Using the Taksu simulator'),
     summary: l(
       'Pilih robot dan misi, susun blok, baca panel sensor, lalu lihat kode C++-nya.',
       'Pick a robot and a mission, snap blocks together, read the sensor panel, then see the C++.',
@@ -408,8 +408,8 @@ export const guides: readonly Guide[] = [
     ],
   },
   {
-    slug: 'mengajar-dengan-ulik',
-    title: l('Memakai robot ULIK di kelas', 'Running a class with ULIK robots'),
+    slug: 'mengajar-di-kelas',
+    title: l('Memakai robot Taksu di kelas', 'Running a class with Taksu robots'),
     summary: l(
       'Untuk pengajar sekolah, kursus, dan ekstrakurikuler: persiapan, alur satu sesi, dan penyimpanan.',
       'For school, course, and club instructors: preparation, the flow of one session, and storage.',

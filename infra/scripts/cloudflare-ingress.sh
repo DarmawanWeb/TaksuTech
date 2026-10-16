@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Adds the ULIK hostnames to the existing cloudflared config, both pointing at ULIK's Caddy.
+# Adds the store and simulator hostnames to the existing cloudflared config, both pointing
+# at this stack's Caddy.
 # Caddy routes by Host, so cloudflared only ever needs one target.
 # shellcheck source=infra/scripts/common.sh
 source "$(dirname "$0")/common.sh"

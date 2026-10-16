@@ -1,9 +1,9 @@
 """Draws the brand name as SVG outlines in Anybody, so the logo never depends on a web font.
 
-The i keeps its stem but loses its dot: the logo draws an amber signal light there instead.
-Run it again after renaming the brand, then commit the regenerated file:
+The amber signal light is the dot of the first i, or, for a name without one (taksu), a full stop
+after the name. Run it again after renaming the brand, then commit the regenerated file:
 
-    python3 packages/ui/scripts/wordmark.py ulik
+    python3 packages/ui/scripts/wordmark.py taksu
 
 Needs fontTools and brotli (pip install fonttools brotli) and `pnpm install` for the font.
 """
@@ -78,9 +78,16 @@ def main(name: str) -> None:
         x += glyphs[glyph].width
 
     if dot is None:
-        sys.exit('The name needs an "i" for the signal light.')
-    cx, cy, height = dot
-    radius = height / 2 * 1.6
+        # No i: the signal light becomes a full stop, sitting on the baseline after the name.
+        bounds_pen = BoundsPen(glyphs)
+        glyphs[cmap[ord('.')]].draw(bounds_pen)
+        left, bottom, right, top_ = bounds_pen.bounds
+        radius = (top_ - bottom) / 2 * 1.6
+        cx, cy = x + left + radius, radius
+        x = cx + radius
+    else:
+        cx, cy, height = dot
+        radius = height / 2 * 1.6
     top = -max(ascent, cy + radius) - 20
     view_box = f'-30 {top:.0f} {x + 60:.0f} {-top + 30:.0f}'
     with open(OUT, 'w') as file:
@@ -95,4 +102,4 @@ def main(name: str) -> None:
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else 'ulik')
+    main(sys.argv[1] if len(sys.argv) > 1 else 'taksu')

@@ -1,15 +1,15 @@
 {
-  "name": "ulik",
+  "name": "education-robot",
   "private": true,
-  "description": "ULIK: toko robot bernama (Ciko, Momo, Garu), simulator blok, dan deploy Docker.",
+  "description": "Taksu education robots: robot bernama (Ciko, Momo, Garu), toko, simulator blok, dan deploy Docker.",
   "packageManager": "pnpm@10.34.6",
   "engines": {
     "node": ">=22.12"
   },
   "scripts": {
     "dev": "turbo run dev",
-    "dev:web": "turbo run dev --filter=@ulik/web",
-    "dev:sim": "turbo run dev --filter=@ulik/sim",
+    "dev:web": "turbo run dev --filter=@taksu/web",
+    "dev:sim": "turbo run dev --filter=@taksu/sim",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",

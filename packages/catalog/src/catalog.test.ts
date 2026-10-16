@@ -137,8 +137,8 @@ describe('copy', () => {
     }
   });
 
-  it('never mentions the old kit names', () => {
+  it('never mentions the old kit names or the working name', () => {
     const text = JSON.stringify([robots, products, guides, learnPaths, simMissions, faq]);
-    expect(text).not.toMatch(/SD v1|SMP v1|SMA v1|Taksu/);
+    expect(text).not.toMatch(/SD v1|SMP v1|SMA v1|ULIK/);
   });
 });

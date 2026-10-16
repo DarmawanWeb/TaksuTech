@@ -22,7 +22,7 @@
 - **Honest copy.** We sell robots, not classes: the learning paths are free and self-paced, and
   bulk orders come with training for instructors. No invented reviews or testimonials. Anything
   still in development says so (`availability: 'soon'`, `priceNote`).
-- **Design tokens, not hex codes.** Use the tokens in `packages/ui/src/styles/ulik.css`
+- **Design tokens, not hex codes.** Use the tokens in `packages/ui/src/styles/taksu.css`
   (`bg-primary`, `bg-ink`, `asphalt`, `bg-robot-ciko`, `type-display`, `type-number`). Raw colours
   only inside illustrations and the dark bands.
 - **Accessibility.** Keep keyboard focus visible, respect `prefers-reduced-motion`, give every
@@ -31,7 +31,7 @@
 ## Selling something new
 
 - **A robot:** add it to `robots` in `packages/catalog/src/robots.ts` with the next number,
-  add its colour to `ulik.css` and `apps/web/src/lib/robot-style.ts`, its photo to
+  add its colour to `taksu.css` and `apps/web/src/lib/robot-style.ts`, its photo to
   `apps/web/src/assets/robots/` and `apps/web/src/lib/images.ts`, and a learning path to
   `learn.ts`. Render its social cards (below).
 - **An accessory or upgrade pack:** add it to `products` in `shop.ts`. It goes on sale once it

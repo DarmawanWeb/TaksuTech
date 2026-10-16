@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Build and (re)start ULIK, then smoke-test it through Caddy.
+# Build and (re)start the education robot stack, then smoke-test it through Caddy.
 #   infra/deploy.sh                 # uses infra/.env
-#   ENV_FILE=~/web/ulik.env infra/deploy.sh
+#   ENV_FILE=~/web/education-robot.env infra/deploy.sh
 # shellcheck source=infra/scripts/common.sh
 source "$(dirname "$0")/scripts/common.sh"
 
@@ -12,7 +12,7 @@ load_env
 
 # The port must be free, or already held by our own Caddy container.
 if command -v lsof >/dev/null 2>&1 && lsof -nP -iTCP:"$CADDY_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
-  if ! docker ps --filter "name=ulik-caddy" --filter "publish=$CADDY_PORT" --format '{{.Names}}' | grep -q caddy; then
+  if ! docker ps --filter "name=education-robot-caddy" --filter "publish=$CADDY_PORT" --format '{{.Names}}' | grep -q caddy; then
     die "Port $CADDY_PORT is used by another process. Pick another CADDY_PORT."
   fi
 fi

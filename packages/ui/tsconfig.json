@@ -1,4 +1,4 @@
 {
-  "extends": "@ulik/typescript-config/react-library.json",
+  "extends": "@taksu/typescript-config/react-library.json",
   "include": ["src"]
 }

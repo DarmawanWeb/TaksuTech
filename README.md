@@ -1,8 +1,7 @@
-# ULIK
+# Taksu
 
 Named, numbered robots for children, teenagers, and competition teams, each sold with a free
-online learning path. ULIK comes from the Indonesian *mengulik*: to tinker with something until
-you understand how it works.
+online learning path.
 
 | #  | Robot | Starts at | For                                            | Status            |
 | -- | ----- | --------- | ---------------------------------------------- | ----------------- |
@@ -23,7 +22,7 @@ apps/
 packages/
   catalog/    every product fact: brand, robots, prices, accessories, Drops, learning paths,
               guides, FAQ, business offers. The apps never hard-code these.
-  ui/         the ULIK theme (ulik.css), wordmark, race-number plate, and shared components
+  ui/         the Taksu theme (taksu.css), wordmark, race-number plate, and shared components
   typescript-config/
 docker/       one Dockerfile for both apps
 infra/        Caddy, deploy and tunnel scripts for the Mac mini
@@ -78,13 +77,13 @@ The simulator only needs `NEXT_PUBLIC_WEB_URL`, for its links back to the store.
 
 ## Deploy on the Mac mini
 
-The stack runs next to Taksu as its own Compose project (`ulik`): `web`, `sim`, and a Caddy that
+The stack runs next to Taksu as its own Compose project (`education-robot`): `web`, `sim`, and a Caddy that
 listens on `127.0.0.1:4490` for the existing cloudflared tunnel.
 
 ```bash
-cp infra/.env.example ~/web/ulik.env        # fill in WHATSAPP_NUMBER and the hosts
-ENV_FILE=~/web/ulik.env infra/deploy.sh     # builds, starts, and smoke-tests through Caddy
-ENV_FILE=~/web/ulik.env infra/scripts/cloudflare-ingress.sh   # once: adds both hostnames
+cp infra/.env.example ~/web/education-robot.env        # fill in WHATSAPP_NUMBER and the hosts
+ENV_FILE=~/web/education-robot.env infra/deploy.sh     # builds, starts, and smoke-tests through Caddy
+ENV_FILE=~/web/education-robot.env infra/scripts/cloudflare-ingress.sh   # once: adds both hostnames
 ```
 
 CI runs Biome, typecheck, tests, and builds on every push. `docker.yml` publishes images to GHCR;
@@ -105,4 +104,4 @@ Prices, ages, and the policies in the FAQ are starting points: review them in
 
 ## Licence
 
-Proprietary. Copyright (c) 2026 ULIK. All rights reserved.
+Proprietary. Copyright (c) 2026 Taksu. All rights reserved.

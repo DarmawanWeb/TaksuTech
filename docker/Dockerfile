@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 # Builds one app of the monorepo (web or sim) as a small standalone Next.js image.
-#   docker build -f docker/Dockerfile --build-arg APP=web -t ulik-web .
+#   docker build -f docker/Dockerfile --build-arg APP=web -t education-robot-web .
 ARG NODE_VERSION=22-alpine
 
 FROM node:${NODE_VERSION} AS base
@@ -11,7 +11,7 @@ WORKDIR /repo
 FROM base AS pruner
 ARG APP
 COPY . .
-RUN pnpm dlx turbo@2.11.8 prune @ulik/${APP} --docker
+RUN pnpm dlx turbo@2.11.8 prune @taksu/${APP} --docker
 
 FROM base AS builder
 ARG APP
@@ -31,7 +31,7 @@ ENV NEXT_PUBLIC_WEB_URL=$NEXT_PUBLIC_WEB_URL \
 COPY --from=pruner /repo/out/json/ .
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY --from=pruner /repo/out/full/ .
-RUN pnpm turbo run build --filter=@ulik/${APP}
+RUN pnpm turbo run build --filter=@taksu/${APP}
 
 FROM node:${NODE_VERSION} AS runner
 ARG APP
