@@ -1,5 +1,26 @@
 # Contributing
 
+## Three repositories
+
+This repository is the workspace; the store and the simulator are submodules with their own
+history, CI, and releases:
+
+| Path | Repository |
+|---|---|
+| `apps/web` | [education-robot-web](https://github.com/DarmawanWeb/education-robot-web) |
+| `apps/sim` | [education-robot-sim](https://github.com/DarmawanWeb/education-robot-sim) |
+
+Clone with `--recursive` (or run `git submodule update --init --recursive`), then `pnpm install`,
+which also points each submodule's git hooks at this repository's. A change to an app is a commit
+in its submodule: branch, commit, and open the pull request there. Once it is merged, commit the
+new pointer here (`git add apps/web`, `chore: update web`), so every commit of this repository
+pins the exact apps it deploys. A change that spans a package and an app lands in both: the app
+first, then the package and the pointer here in one commit.
+
+[TaksuTech](https://github.com/DarmawanWeb/TaksuTech) pins this repository in turn, at
+`education-robot`: once a change here is on `main`, commit the new pointer there as well
+(`git add education-robot`, `chore: update education-robot`).
+
 ## Workflow
 
 1. Branch from `main`: `feat/web-drop-05`, `fix/sim-signal-timing`, `docs/readme-deploy`.
@@ -10,7 +31,7 @@
    feat(catalog): price the Remote Pack
    fix(web): keep the cart total on one line
    ```
-3. Run `pnpm check` before pushing. CI also builds both apps.
+3. Run `pnpm check` before pushing. CI also builds both apps, here and in each submodule.
 4. Open a PR with the template.
 
 ## House rules
