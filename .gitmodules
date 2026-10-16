@@ -1,0 +1,12 @@
+[submodule "web"]
+	path = apps/web
+	url = ../company-profile.git
+[submodule "robot"]
+	path = apps/robot
+	url = ../reception-robot-web.git
+[submodule "kiosk"]
+	path = apps/kiosk
+	url = ../reception-robot-kiosk.git
+[submodule "speech"]
+	path = services/speech
+	url = ../reception-robot-speech.git
