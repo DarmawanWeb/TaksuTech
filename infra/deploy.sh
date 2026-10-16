@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 # Build and (re)start the whole Taksu stack, then smoke-test it through Caddy.
 #   infra/deploy.sh                 # uses infra/.env
-#   ENV_FILE=~/apps/taksu-tech/.env infra/deploy.sh
+#   ENV_FILE=~/web/taksu-tech.env infra/deploy.sh
 # shellcheck source=infra/scripts/common.sh
 source "$(dirname "$0")/scripts/common.sh"
 
 require docker
 require curl
+require git
 load_env
 [[ "${MONITORING:-1}" != "1" || -n "${GRAFANA_ADMIN_PASSWORD:-}" ]] || die "Set GRAFANA_ADMIN_PASSWORD (or MONITORING=0)."
+
+# Every commit here pins one commit of each app and of the speech service; build exactly those.
+# A clone without --recursive, or a pull without --recurse-submodules, leaves them behind. The
+# deploy workflow copies a full checkout over this folder without .git, so it is already in step.
+# education-robot deploys itself (its own infra/deploy.sh), so it is left alone here.
+apps=(apps/web apps/robot apps/kiosk services/speech)
+if [[ -e "$ROOT/.git" ]] && git -C "$ROOT" submodule status -- "${apps[@]}" | grep -q '^[-+]'; then
+  log "Checking out the pinned apps and speech service"
+  git -C "$ROOT" submodule update --init -- "${apps[@]}"
+fi
 
 # The port must be free, or already held by our own Caddy container.
 if command -v lsof >/dev/null 2>&1 && lsof -nP -iTCP:"$CADDY_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
