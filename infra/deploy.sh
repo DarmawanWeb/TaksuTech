@@ -7,7 +7,16 @@ source "$(dirname "$0")/scripts/common.sh"
 
 require docker
 require curl
+require git
 load_env
+
+# Every commit here pins one commit of the web app and one of the simulator; build exactly those.
+# A clone without --recursive, or a pull without --recurse-submodules, leaves them behind. The
+# deploy workflow copies a full checkout over this folder without .git, so it is already in step.
+if [[ -e "$ROOT/.git" ]] && git -C "$ROOT" submodule status --recursive | grep -q '^[-+]'; then
+  log "Checking out the pinned web app and simulator"
+  git -C "$ROOT" submodule update --init --recursive
+fi
 [[ -n "${WHATSAPP_NUMBER:-}" ]] || warn "WHATSAPP_NUMBER is empty: orders and questions go by email only."
 
 # The port must be free, or already held by our own Caddy container.
