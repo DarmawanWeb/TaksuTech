@@ -15,6 +15,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v5
+        with:
+          submodules: recursive
 
       # Compose bind-mounts the Caddyfile, so deploy from the folder the stack already runs
       # from (~/web/education-robot), not the runner workspace. Its .git and env stay put.

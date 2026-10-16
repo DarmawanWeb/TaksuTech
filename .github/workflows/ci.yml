@@ -22,6 +22,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          submodules: recursive
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
@@ -34,7 +35,10 @@ jobs:
     name: Biome, typecheck, test, build
     runs-on: ubuntu-latest
     steps:
+      # The web app and the simulator are submodules: the workspace is incomplete without them.
       - uses: actions/checkout@v5
+        with:
+          submodules: recursive
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
@@ -44,3 +48,17 @@ jobs:
       - run: pnpm biome ci .
       - run: pnpm turbo run typecheck test
       - run: pnpm turbo run build
+
+  validate:
+    name: Compose, Caddy, shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: cp infra/.env.example infra/.env
+      - run: docker compose --env-file infra/.env config --quiet
+      - name: Caddyfile
+        run: >-
+          docker run --rm -v "$PWD/infra/caddy:/etc/caddy:ro"
+          -e WEB_HOST=robots.example.com -e SIM_HOST=sim.example.com
+          caddy:2.10-alpine caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+      - run: shellcheck -x infra/deploy.sh infra/scripts/*.sh
