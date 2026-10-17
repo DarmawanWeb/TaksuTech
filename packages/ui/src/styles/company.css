@@ -1,7 +1,7 @@
 /*
  * Company profile theme. Plain on purpose: the product lines carry their own identities
- * (theme.css for the Bali reception line, edu.css for schools), so the company site stays
- * quiet and lets their photos do the talking.
+ * (theme.css for the Bali reception line, taksu.css in packages/edu-ui for the education
+ * robots), so the company site stays quiet and lets their photos do the talking.
  *
  *   Paper   #ffffff  page
  *   Petrol  #12343b  type, primary actions, the closing band
@@ -90,8 +90,4 @@
 
 .dark [data-brand='reception'] {
   --primary: #e6bd52;
-}
-
-[data-brand='edu'] {
-  --primary: #ff5a1f;
 }

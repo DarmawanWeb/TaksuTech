@@ -1,7 +1,7 @@
 import type * as React from 'react';
 import { cn } from '../lib/utils';
 
-export type RobotIllustrationKind = 'timo' | 'snow' | 'kiosk' | 'sd' | 'smp' | 'sma';
+export type RobotIllustrationKind = 'timo' | 'snow' | 'kiosk' | 'ciko' | 'momo' | 'garu';
 
 export interface RobotIllustrationProps extends Omit<React.ComponentProps<'svg'>, 'children'> {
   kind: RobotIllustrationKind;
@@ -24,9 +24,9 @@ export function RobotIllustration({ kind, label, className, ...props }: RobotIll
       {kind === 'timo' ? <Timo /> : null}
       {kind === 'snow' ? <Snow /> : null}
       {kind === 'kiosk' ? <Kiosk /> : null}
-      {kind === 'sd' ? <PrimaryBot /> : null}
-      {kind === 'smp' ? <ModularBot /> : null}
-      {kind === 'sma' ? <AdvancedBot /> : null}
+      {kind === 'ciko' ? <Ciko /> : null}
+      {kind === 'momo' ? <Momo /> : null}
+      {kind === 'garu' ? <Garu /> : null}
     </>
   );
   return label ? (
@@ -102,56 +102,79 @@ function Wheel({ cx, cy, r, hub }: { cx: number; cy: number; r: number; hub: str
   );
 }
 
-function PrimaryBot() {
+/**
+ * Ciko from the front: the red shell and white racing stripe, the visor face with its cyan eyes,
+ * the distance sensor in the bumper, and a turn signal at each corner.
+ */
+function Ciko() {
   return (
     <g>
       <Shadow cy={190} rx={88} />
-      <rect x="92" y="28" width="56" height="34" rx="10" {...body} />
-      <circle cx="108" cy="45" r="9" fill="var(--illus-line)" />
-      <circle cx="132" cy="45" r="9" fill="var(--illus-line)" />
-      <rect x="48" y="58" width="144" height="104" rx="30" {...body} />
-      <rect x="48" y="132" width="144" height="10" fill="var(--level-sd)" />
-      <rect x="70" y="74" width="100" height="50" rx="18" fill="#0b1030" />
-      <circle cx="100" cy="99" r="9" fill="#7fe0ff" />
-      <circle cx="140" cy="99" r="9" fill="#7fe0ff" />
-      <Wheel cx={60} cy={160} r={26} hub="var(--level-sd)" />
-      <Wheel cx={180} cy={160} r={26} hub="var(--level-sd)" />
+      <Wheel cx={60} cy={160} r={26} hub="#f4f5f7" />
+      <Wheel cx={180} cy={160} r={26} hub="#f4f5f7" />
+      <rect x="44" y="44" width="152" height="118" rx="34" fill="#e3262d" />
+      <rect x="106" y="44" width="28" height="118" fill="#ffffff" />
+      <rect x="44" y="44" width="152" height="118" rx="34" fill="none" {...line} />
+      <rect x="66" y="62" width="108" height="50" rx="16" fill="#1f2228" />
+      <rect x="86" y="74" width="20" height="26" rx="6" fill="#44ddeb" />
+      <rect x="134" y="74" width="20" height="26" rx="6" fill="#44ddeb" />
+      <circle cx="102" cy="138" r="10" fill="#d7dbe6" {...line} />
+      <circle cx="138" cy="138" r="10" fill="#d7dbe6" {...line} />
+      <rect x="54" y="128" width="20" height="12" rx="4" fill="#ffb020" {...line} />
+      <rect x="166" y="128" width="20" height="12" rx="4" fill="#ffb020" {...line} />
     </g>
   );
 }
 
-function ModularBot() {
+/**
+ * Momo from the front: two red plates with its green control board between them, the OLED face,
+ * the ultrasonic sensor on top, the jumper wires, and its yellow wheels.
+ */
+function Momo() {
   return (
     <g>
       <Shadow cy={190} rx={96} />
-      <rect x="26" y="112" width="188" height="22" rx="6" fill="var(--illus-line)" />
-      <rect x="58" y="80" width="104" height="32" rx="4" fill="var(--subak)" {...line} />
-      <rect x="72" y="88" width="22" height="16" rx="2" fill="var(--illus-line)" />
-      <rect x="104" y="90" width="44" height="6" rx="3" fill="var(--accent)" />
+      {[50, 190].map((cx) => (
+        <g key={cx}>
+          <circle cx={cx} cy="150" r="30" fill="#f2b705" {...line} />
+          <circle cx={cx} cy="150" r="10" fill="var(--illus-line)" />
+        </g>
+      ))}
       <path
-        d="M90 80c6-26 40-26 52-10"
+        d="M68 96C56 74 62 52 86 40"
         fill="none"
         stroke="#e5484d"
         strokeWidth="4"
         strokeLinecap="round"
       />
       <path
-        d="M100 80c10-34 56-30 66-6"
+        d="M172 96C184 74 178 52 154 40"
         fill="none"
-        stroke="var(--level-sd)"
+        stroke="#f2b705"
         strokeWidth="4"
         strokeLinecap="round"
       />
-      <rect x="162" y="66" width="62" height="28" rx="6" fill="var(--primary)" {...line} />
-      <circle cx="180" cy="80" r="9" fill="#d7dbe6" {...line} />
-      <circle cx="206" cy="80" r="9" fill="#d7dbe6" {...line} />
-      <Wheel cx={62} cy={146} r={30} hub="var(--level-sd)" />
-      <Wheel cx={178} cy={146} r={30} hub="var(--level-sd)" />
+      <rect x="44" y="118" width="152" height="20" rx="5" fill="#e3262d" {...line} />
+      <rect x="62" y="96" width="116" height="22" rx="3" fill="#1f6f5c" {...line} />
+      <rect x="72" y="101" width="22" height="12" rx="2" fill="var(--illus-line)" />
+      {[106, 122, 138, 154].map((x) => (
+        <rect key={x} x={x} y="102" width="10" height="10" rx="1.5" fill="#ffffff" />
+      ))}
+      <rect x="52" y="82" width="136" height="14" rx="4" fill="#e3262d" {...line} />
+      <rect x="88" y="48" width="64" height="34" rx="7" fill="#1f2228" {...line} />
+      <rect x="102" y="56" width="12" height="16" rx="3" fill="#44ddeb" />
+      <rect x="126" y="56" width="12" height="16" rx="3" fill="#44ddeb" />
+      <rect x="82" y="18" width="76" height="24" rx="4" fill="#2f6fd6" {...line} />
+      <circle cx="104" cy="30" r="11" fill="#d7dbe6" {...line} />
+      <circle cx="136" cy="30" r="11" fill="#d7dbe6" {...line} />
+      <circle cx="104" cy="30" r="4.5" fill="#8a93a6" />
+      <circle cx="136" cy="30" r="4.5" fill="#8a93a6" />
     </g>
   );
 }
 
-function AdvancedBot() {
+/** Garu: tracks, the onboard computer, a camera mast, and the robot arm. */
+function Garu() {
   return (
     <g>
       <Shadow cy={194} rx={100} />
@@ -160,8 +183,8 @@ function AdvancedBot() {
         <circle key={cx} cx={cx} cy="168" r="11" fill="#5b6182" />
       ))}
       <rect x="38" y="106" width="164" height="46" rx="8" {...body} />
-      <rect x="38" y="138" width="164" height="7" fill="var(--level-sma)" />
-      <rect x="72" y="90" width="72" height="18" rx="3" fill="var(--subak)" {...line} />
+      <rect x="38" y="138" width="164" height="7" fill="#3a6ea5" />
+      <rect x="72" y="90" width="72" height="18" rx="3" fill="#1f6f5c" {...line} />
       <rect x="58" y="48" width="9" height="60" fill="var(--illus-line)" />
       <rect x="44" y="30" width="38" height="24" rx="6" fill="var(--illus-line)" />
       <circle cx="63" cy="42" r="7" fill="#7fe0ff" />

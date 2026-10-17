@@ -12,7 +12,8 @@ export interface DemoEntry {
   title: Localized;
   description: Localized;
   robot?: RobotSlug;
-  track?: 'sd' | 'smp';
+  /** The education robot a simulator demo opens. */
+  track?: 'ciko' | 'momo';
 }
 
 const kioskDemos: DemoEntry[] = robots.flatMap((robot) => {
@@ -43,25 +44,25 @@ const extraDemos: DemoEntry[] = [
     },
   },
   {
-    id: 'sim-sd',
+    id: 'sim-ciko',
     app: 'sim',
-    path: '?robot=sd',
-    track: 'sd',
-    title: { id: 'Simulator SD v1', en: 'SD v1 simulator' },
+    path: '?robot=ciko',
+    track: 'ciko',
+    title: { id: 'Ciko di simulator', en: 'Ciko in the simulator' },
     description: {
-      id: 'Misi gerak, rintangan, dan ikuti garis dengan blok berbahasa anak.',
-      en: 'Motion, obstacle, and line-following missions with child-friendly blocks.',
+      id: 'Maju, belok dengan lampu sein, hindari rintangan, dan ikuti garis dengan blok berbahasa anak.',
+      en: 'Drive, turn with the signal on, dodge obstacles, and follow a line with child-friendly blocks.',
     },
   },
   {
-    id: 'sim-smp',
+    id: 'sim-momo',
     app: 'sim',
-    path: '?robot=smp',
-    track: 'smp',
-    title: { id: 'Simulator SMP v1', en: 'SMP v1 simulator' },
+    path: '?robot=momo',
+    track: 'momo',
+    title: { id: 'Momo di simulator', en: 'Momo in the simulator' },
     description: {
-      id: 'Sensor garis 5-in-1, radar servo, suhu, suara, dan pratinjau kode C++.',
-      en: '5-in-1 line array, servo radar, temperature, sound, and a C++ code preview.',
+      id: 'Sensor garis 5-in-1, radar servo, suhu, suara, telemetri Wi-Fi, dan kode Arduino C++ dari blok.',
+      en: '5-in-1 line array, servo radar, temperature, sound, Wi-Fi telemetry, and the Arduino C++ behind the blocks.',
     },
   },
 ];

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Single source of truth for brand, product catalog, education levels, and kiosk use-case samples.",
+  "description": "Every fact the company profile, the reception robot site, and the kiosk show: brand and names, both product lines, the reception robots, works, demos, and kiosk venues.",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
@@ -14,6 +14,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@taksu/catalog": "workspace:*",
     "@taksu/typescript-config": "workspace:*",
     "@types/node": "^22.20.5",
     "typescript": "~6.0.3",

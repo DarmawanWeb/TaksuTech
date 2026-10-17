@@ -1,75 +1,10 @@
+import { robots as eduRobots, getSimMission, learnPaths } from '@taksu/catalog';
 import { describe, expect, it } from 'vitest';
-import { curricula, meetingCount } from './curriculum';
-import { accessories, eduFaq, upgradePacks } from './edu-catalog';
-import { educationLevels } from './education';
-import { guides } from './guides';
-import { forumCategories, labChallenges } from './lab';
+import { demos } from './demos';
 import { comparison, robots } from './reception';
 import { services } from './services';
-import { getSimMission, missionPlace, simMissions } from './sim-missions';
 import { getSite } from './sites';
 import { workKinds, works } from './works';
-
-describe('curriculum', () => {
-  it('matches the advertised meeting count per level', () => {
-    for (const level of educationLevels) {
-      expect(meetingCount(curricula[level.slug]), level.slug).toBe(level.meetings);
-    }
-  });
-
-  it('sends meetings only to simulator missions for the same kit', () => {
-    const robots = new Map(simMissions.map((mission) => [mission.id, mission.robot]));
-    for (const [level, curriculum] of Object.entries(curricula)) {
-      for (const module of curriculum.modules) {
-        for (const meeting of module.meetings) {
-          if (meeting.sim) expect(robots.get(meeting.sim), `${level}/${module.id}`).toBe(level);
-        }
-      }
-    }
-  });
-
-  it('places every simulator mission in exactly one module', () => {
-    for (const mission of simMissions) {
-      const modules = curricula[mission.robot].modules.filter((module) =>
-        module.meetings.some((meeting) => meeting.sim === mission.id),
-      );
-      expect(modules.length, mission.id).toBe(1);
-      expect(missionPlace(mission)?.moduleId).toBe(modules[0]?.id);
-    }
-  });
-
-  it('lists missions in the order the syllabus reaches them', () => {
-    for (const robot of ['sd', 'smp'] as const) {
-      const firstMeetings = simMissions
-        .filter((mission) => mission.robot === robot)
-        .map((mission) => missionPlace(mission)?.meetings[0] ?? 0);
-      expect(firstMeetings, robot).toEqual([...firstMeetings].sort((a, b) => a - b));
-    }
-  });
-});
-
-describe('curriculum videos', () => {
-  const videos = Object.values(curricula).flatMap((curriculum) =>
-    curriculum.modules.flatMap((module) => (module.video ? [module.video] : [])),
-  );
-
-  it('uses well-formed YouTube ids', () => {
-    for (const video of videos) expect(video.youtube, video.title).toMatch(/^[\w-]{11}$/);
-  });
-
-  // Needs the internet, so it only runs on request: CHECK_VIDEOS=1 pnpm --filter @taksu/content test
-  it.runIf(process.env.CHECK_VIDEOS)(
-    'points at videos that still exist and can be embedded',
-    async () => {
-      for (const video of videos) {
-        const url = `https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=${video.youtube}`;
-        const response = await fetch(url);
-        expect(response.status, `${video.youtube} ${video.title}`).toBe(200);
-      }
-    },
-    60_000,
-  );
-});
 
 describe('reception catalogue', () => {
   it('compares every robot on every row', () => {
@@ -91,47 +26,22 @@ describe('reception catalogue', () => {
   });
 });
 
-describe('guides', () => {
-  it('uses unique slugs', () => {
-    expect(new Set(guides.map((guide) => guide.slug)).size).toBe(guides.length);
-  });
-});
+/** The robot (and mission) a simulator link opens, checked against the catalogue. */
+function expectSimLink(query: string, where: string) {
+  const params = new URLSearchParams(query.replace(/^\?/, ''));
+  const robot = params.get('robot');
+  const mission = params.get('mission');
+  if (robot) expect(['ciko', 'momo'], where).toContain(robot);
+  if (mission) expect(getSimMission(mission)?.robot, where).toBe(robot);
+}
 
-describe('edu catalog', () => {
-  const kits = new Set<string>(educationLevels.map((level) => level.slug));
-
-  it('fits every add-on to at least one existing kit', () => {
-    for (const item of [...upgradePacks, ...accessories]) {
-      expect(item.fits.length, item.id).toBeGreaterThan(0);
-      for (const level of item.fits) expect(kits.has(level), `${item.id}/${level}`).toBe(true);
+describe('demos', () => {
+  it('opens each simulator demo on its own robot', () => {
+    for (const demo of demos.filter((entry) => entry.app === 'sim')) {
+      expect(demo.track, demo.id).toBeDefined();
+      expect(demo.path, demo.id).toBe(`?robot=${demo.track}`);
+      expectSimLink(demo.path, demo.id);
     }
-  });
-
-  it('uses unique ids within each list', () => {
-    for (const list of [[...upgradePacks, ...accessories], eduFaq]) {
-      const ids = list.map((item) => item.id);
-      expect(new Set(ids).size).toBe(ids.length);
-    }
-  });
-
-  it('names each kit with its version', () => {
-    for (const level of educationLevels) expect(level.kit.endsWith(level.version)).toBe(true);
-  });
-});
-
-describe('lab', () => {
-  it('points challenges at missions for the same kit', () => {
-    for (const challenge of labChallenges) {
-      if (!challenge.mission) continue;
-      expect(getSimMission(challenge.mission)?.robot, challenge.id).toBe(challenge.kit);
-    }
-  });
-
-  it('uses unique challenge and forum category ids', () => {
-    const challengeIds = labChallenges.map((challenge) => challenge.id);
-    expect(new Set(challengeIds).size).toBe(challengeIds.length);
-    const categoryIds = forumCategories.map((category) => category.id);
-    expect(new Set(categoryIds).size).toBe(categoryIds.length);
   });
 });
 
@@ -155,16 +65,22 @@ describe('works', () => {
     }
   });
 
-  it('opens real robots, kits, and kiosk venues', () => {
-    const robotSlugs = new Set<string>(robots.map((robot) => robot.slug));
-    const kits = new Set<string>(educationLevels.map((level) => level.slug));
+  it('opens real robots, store pages, missions, and kiosk venues', () => {
+    const receptionSlugs = new Set<string>(robots.map((robot) => robot.slug));
+    const eduSlugs = new Set<string>(eduRobots.map((robot) => robot.slug));
+    const pathSlugs = new Set<string>(learnPaths.map((path) => path.robot));
     for (const work of works) {
       for (const link of work.links) {
-        if (link.site === 'robot') expect(robotSlugs.has(link.path.slice(1)), link.path).toBe(true);
-        if (link.path.startsWith('/kits/'))
-          expect(kits.has(link.path.slice(6)), link.path).toBe(true);
+        const where = `${work.id} ${link.site}${link.path}`;
+        if (link.site === 'robot') expect(receptionSlugs.has(link.path.slice(1)), where).toBe(true);
+        if (link.site === 'edu') {
+          const [, page, slug] = link.path.split('/');
+          if (page === 'robot' && slug) expect(eduSlugs.has(slug), where).toBe(true);
+          if (page === 'belajar' && slug) expect(pathSlugs.has(slug), where).toBe(true);
+        }
+        if (link.site === 'sim') expectSimLink(link.path, where);
         const venue = link.path.match(/^\/[a-z]+\/([a-z-]+)\/preview$/)?.[1];
-        if (link.site === 'kiosk' && venue) expect(getSite(venue), link.path).toBeDefined();
+        if (link.site === 'kiosk' && venue) expect(getSite(venue), where).toBeDefined();
       }
     }
   });

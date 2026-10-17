@@ -315,9 +315,15 @@ importers:
       '@next/mdx':
         specifier: ^16.3.8
         version: 16.3.8(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.0))
+      '@taksu/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
       '@taksu/content':
         specifier: workspace:*
         version: link:../../packages/content
+      '@taksu/edu-ui':
+        specifier: workspace:*
+        version: link:../../packages/edu-ui
       '@taksu/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -409,6 +415,9 @@ importers:
 
   packages/content:
     devDependencies:
+      '@taksu/catalog':
+        specifier: workspace:*
+        version: link:../catalog
       '@taksu/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

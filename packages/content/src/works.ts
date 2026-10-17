@@ -6,17 +6,17 @@ export type WorkKind = 'hardware' | 'software';
 /** Image keys the company site maps to its own assets. */
 export type WorkImage =
   | 'taksuKiosk'
-  | 'smpBoard'
-  | 'sdV1'
+  | 'momoBoard'
+  | 'ciko'
   | 'snowTimoBali'
   | 'kioskApp'
   | 'simulator'
-  | 'lab';
+  | 'store';
 
 export interface WorkLink {
   /** Which of our sites the link opens. */
   site: 'robot' | 'edu' | 'kiosk' | 'sim';
-  /** Path after the locale, or a query string for the simulator. */
+  /** Path after the locale (the store's routes for `edu`), or a query string for the simulator. */
   path: string;
   label: Localized;
 }
@@ -89,16 +89,16 @@ export const works: readonly Work[] = [
     services: ['custom-robots', 'web'],
   },
   {
-    id: 'smp-board',
+    id: 'momo-board',
     kind: 'hardware',
-    name: { id: 'Papan kendali SMP v1', en: 'SMP v1 control board' },
+    name: { id: 'Papan kendali Momo', en: 'Momo’s control board' },
     lead: {
-      id: 'PCB dua lapis yang menjadi pusat robot SMP v1.',
-      en: 'The two-layer PCB at the heart of the SMP v1 robot.',
+      id: 'PCB dua lapis yang menjadi pusat Momo, robot nomor 02.',
+      en: 'The two-layer PCB at the heart of Momo, robot number 02.',
     },
     body: {
-      id: 'Siswa memasang sensor, motor, dan layar lewat konektor, tanpa menyolder. Satu papan bisa dirakit ulang menjadi pengikut garis, penghindar rintangan, robot kendali suara, atau stasiun pemantau suhu.',
-      en: 'Students plug in sensors, motors, and the display through connectors, with no soldering. One board can be rebuilt as a line follower, an obstacle avoider, a sound-controlled robot, or a temperature station.',
+      id: 'Sensor, motor, dan layar dipasang lewat konektor, tanpa menyolder. Satu papan bisa dirakit ulang menjadi pengikut garis, penghindar rintangan, robot kendali suara, atau stasiun pemantau suhu.',
+      en: 'Sensors, motors, and the display plug in through connectors, with no soldering. One board can be rebuilt as a line follower, an obstacle avoider, a sound-controlled robot, or a temperature station.',
     },
     facts: [
       {
@@ -117,37 +117,33 @@ export const works: readonly Work[] = [
         },
       },
     ],
-    image: 'smpBoard',
+    image: 'momoBoard',
     fit: 'cover',
     imageAlt: {
-      id: 'Papan kendali SMP v1 dengan ESP32 dan deretan konektor modul',
-      en: 'The SMP v1 control board with its ESP32 and a row of module connectors',
+      id: 'Papan kendali Momo dengan ESP32 dan deretan konektor modul',
+      en: 'Momo’s control board with its ESP32 and a row of module connectors',
     },
     links: [
-      {
-        site: 'edu',
-        path: '/kits/smp',
-        label: { id: 'Lihat kit SMP v1', en: 'See the SMP v1 kit' },
-      },
+      { site: 'edu', path: '/robot/momo', label: { id: 'Lihat Momo', en: 'See Momo' } },
       {
         site: 'sim',
-        path: '?robot=smp',
+        path: '?robot=momo',
         label: { id: 'Coba di simulator', en: 'Try it in the simulator' },
       },
     ],
     services: ['custom-robots', 'iot'],
   },
   {
-    id: 'sd-v1',
+    id: 'ciko',
     kind: 'hardware',
-    name: { id: 'Robot SD v1', en: 'SD v1 robot' },
+    name: { id: 'Ciko', en: 'Ciko' },
     lead: {
-      id: 'Robot 2WD siap pakai untuk anak sekolah dasar.',
-      en: 'A ready-to-use 2WD robot for primary school children.',
+      id: 'Robot nomor 01: mobil robot 2WD siap pakai untuk anak mulai 7 tahun.',
+      en: 'Robot number 01: a ready-to-use 2WD robot car for children from age 7.',
     },
     body: {
-      id: 'Datang sudah dirakit dan diuji. Anak memprogramnya dengan blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED-nya, dan menyalakan lampu sein sebelum berbelok. Baterainya tertutup dan berproteksi, jadi aman dipakai di kelas.',
-      en: 'It arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, and switch on a turn signal before it turns. The battery is enclosed and protected, so it is safe in a classroom.',
+      id: 'Datang sudah dirakit dan diuji. Anak memprogramnya dengan blok, lalu melihat robot bergerak, membaca garis dan jarak, berekspresi lewat wajah OLED-nya, dan menyalakan lampu sein sebelum berbelok. Baterainya tertutup dan berproteksi, jadi aman dipakai di rumah maupun di kelas.',
+      en: 'It arrives assembled and tested. Children program it with blocks, then watch it move, read lines and distance, show expressions on its OLED face, and switch on a turn signal before it turns. The battery is enclosed and protected, so it is safe at home and in class.',
     },
     facts: [
       {
@@ -170,17 +166,17 @@ export const works: readonly Work[] = [
         value: { id: 'Dua lampu sein LED, buzzer', en: 'Two LED turn signals, a buzzer' },
       },
     ],
-    image: 'sdV1',
+    image: 'ciko',
     fit: 'cover',
     imageAlt: {
-      id: 'Robot SD v1 merah bergaris putih dengan wajah OLED dan dua lampu sein',
-      en: 'The red, white-striped SD v1 robot with an OLED face and two turn signals',
+      id: 'Ciko, robot merah bergaris putih dengan wajah OLED dan dua lampu sein',
+      en: 'Ciko, the red, white-striped robot with an OLED face and two turn signals',
     },
     links: [
-      { site: 'edu', path: '/kits/sd', label: { id: 'Lihat kit SD v1', en: 'See the SD v1 kit' } },
+      { site: 'edu', path: '/robot/ciko', label: { id: 'Lihat Ciko', en: 'See Ciko' } },
       {
         site: 'sim',
-        path: '?robot=sd',
+        path: '?robot=ciko',
         label: { id: 'Coba di simulator', en: 'Try it in the simulator' },
       },
     ],
@@ -278,25 +274,25 @@ export const works: readonly Work[] = [
   {
     id: 'simulator',
     kind: 'software',
-    name: { id: 'Simulator robot edukasi', en: 'Education robot simulator' },
+    name: { id: 'Simulator blok', en: 'Block simulator' },
     lead: {
-      id: 'Program robot SD v1 dan SMP v1 langsung di browser.',
-      en: 'Program the SD v1 and SMP v1 robots right in the browser.',
+      id: 'Program Ciko dan Momo langsung di browser.',
+      en: 'Program Ciko and Momo right in the browser.',
     },
     body: {
-      id: 'Siswa menyusun blok, menjalankannya di arena, lalu melihat robot bergerak dan membaca sensor seperti robot aslinya. Misinya mengikuti urutan kurikulum, dan untuk SMP v1 ada pratinjau kode C++ dari blok yang disusun. Sekolah bisa mencoba sebelum membeli kit.',
-      en: 'Students stack blocks, run them in the arena, and watch the robot move and read its sensors like the real one. The missions follow the curriculum, and for SMP v1 there is a C++ preview of the blocks. Schools can try it before buying a kit.',
+      id: 'Susun blok, jalankan di arena, lalu lihat robot bergerak dan membaca sensor seperti robot aslinya. Tiap misi adalah satu langkah di jalur belajar robotnya, dan setiap program juga tampil sebagai kode Arduino C++. Bisa dicoba sebelum robotnya datang, atau sebelum membeli.',
+      en: 'Stack blocks, run them in the arena, and watch the robot move and read its sensors like the real one. Every mission is a step on the robot’s learning path, and every program also shows as Arduino C++. Try it before the robot arrives, or before buying.',
     },
     facts: [
       {
         label: { id: 'Robot', en: 'Robots' },
-        value: { id: 'SD v1 dan SMP v1', en: 'SD v1 and SMP v1' },
+        value: { id: 'Ciko dan Momo, 18 misi', en: 'Ciko and Momo, 18 missions' },
       },
       {
         label: { id: 'Pemrograman', en: 'Programming' },
         value: {
-          id: 'Blok, dengan pratinjau C++ untuk SMP v1',
-          en: 'Blocks, with a C++ preview for SMP v1',
+          id: 'Blok, dengan kode Arduino C++',
+          en: 'Blocks, with the Arduino C++',
         },
       },
       {
@@ -307,50 +303,58 @@ export const works: readonly Work[] = [
     image: 'simulator',
     fit: 'contain',
     imageAlt: {
-      id: 'Simulator dengan blok program di kiri dan arena robot SD v1 di kanan',
-      en: 'The simulator with program blocks on the left and the SD v1 arena on the right',
+      id: 'Simulator dengan blok program dan arena tempat Ciko mengikuti garis',
+      en: 'The simulator with the program blocks and the arena where Ciko follows a line',
     },
     links: [
-      { site: 'sim', path: '?robot=sd', label: { id: 'Buka simulator', en: 'Open the simulator' } },
+      {
+        site: 'sim',
+        path: '?robot=ciko',
+        label: { id: 'Buka simulator', en: 'Open the simulator' },
+      },
     ],
     services: ['web'],
   },
   {
-    id: 'lab',
+    id: 'store',
     kind: 'software',
-    name: { id: 'Lab robot sekolah', en: 'School robot Lab' },
+    name: { id: 'Toko robot edukasi', en: 'Education robot store' },
     lead: {
-      id: 'Tempat sekolah memamerkan robot buatan kelasnya dan bertanya di forum.',
-      en: 'Where schools show the robots their classes built and ask questions in a forum.',
+      id: 'Tempat memilih robot, memahami jalur belajarnya, dan memesan lewat WhatsApp.',
+      en: 'Where people choose a robot, see its learning path, and order over WhatsApp.',
     },
     body: {
-      id: 'Guru mengirim foto dan cerita robot yang dirakit atau diubah siswa, mengikuti tantangan, atau bertanya di forum. Semua kiriman kami periksa dulu sebelum tampil. Foto dikecilkan dan data lokasinya dihapus otomatis, karena yang tampil adalah karya anak sekolah.',
-      en: 'Teachers send photos and the story of robots their students built or changed, take on challenges, or ask in the forum. We review every post before it appears. Photos are resized and their location data removed automatically, because these are schoolchildren’s work.',
+      id: 'Robot dipilih menurut usia dan tujuan, lengkap dengan paket, aksesori, upgrade pack, dan arena. Keranjangnya mengubah pesanan dan alamat menjadi satu pesan WhatsApp atau email, tanpa pembayaran di situs. Setiap robot punya jalur belajar gratis, dan sekolah bisa meminta penawaran partai atau OEM.',
+      en: 'Robots are chosen by age and goal, with packages, accessories, upgrade packs, and arenas. The cart turns the order and the address into one WhatsApp message or email, with no payment on the site. Every robot has a free learning path, and schools can ask for a bulk or OEM quote.',
     },
     facts: [
       {
-        label: { id: 'Isi', en: 'Inside' },
-        value: { id: 'Karya kelas, tantangan, forum', en: 'Class builds, challenges, a forum' },
+        label: { id: 'Robot', en: 'Robots' },
+        value: { id: 'Ciko, Momo, Garu, dan Drop', en: 'Ciko, Momo, Garu, and the Drops' },
       },
       {
-        label: { id: 'Moderasi', en: 'Moderation' },
-        value: {
-          id: 'Setiap kiriman diperiksa sebelum tampil',
-          en: 'Every post is reviewed before it appears',
-        },
+        label: { id: 'Pesan', en: 'Ordering' },
+        value: { id: 'WhatsApp atau email', en: 'WhatsApp or email' },
       },
       {
-        label: { id: 'Foto', en: 'Photos' },
-        value: { id: 'Data lokasi dihapus otomatis', en: 'Location data removed automatically' },
+        label: { id: 'Belajar', en: 'Learning' },
+        value: { id: 'Jalur belajar gratis per robot', en: 'A free learning path per robot' },
       },
     ],
-    image: 'lab',
+    image: 'store',
     fit: 'contain',
     imageAlt: {
-      id: 'Halaman Lab dengan ajakan memamerkan robot buatan kelas dan tiga langkah ikut serta',
-      en: 'The Lab page inviting classes to show their robots, with three steps to take part',
+      id: 'Beranda toko dengan Ciko, Momo, dan Garu berjajar dengan nomornya',
+      en: 'The store home with Ciko, Momo, and Garu lined up with their numbers',
     },
-    links: [{ site: 'edu', path: '/lab', label: { id: 'Buka Lab', en: 'Open the Lab' } }],
+    links: [
+      { site: 'edu', path: '', label: { id: 'Buka toko', en: 'Open the store' } },
+      {
+        site: 'edu',
+        path: '/belajar',
+        label: { id: 'Lihat jalur belajar', en: 'See the learning paths' },
+      },
+    ],
     services: ['web'],
   },
 ];

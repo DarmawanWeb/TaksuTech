@@ -12,8 +12,7 @@
     "./lib/*": "./src/lib/*.ts",
     "./theme.css": "./src/styles/theme.css",
     "./base.css": "./src/styles/base.css",
-    "./company.css": "./src/styles/company.css",
-    "./edu.css": "./src/styles/edu.css"
+    "./company.css": "./src/styles/company.css"
   },
   "scripts": {
     "lint": "biome lint .",

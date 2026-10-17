@@ -19,13 +19,13 @@ export const services: readonly Service[] = [
     id: 'custom-robots',
     title: { id: 'Robot dan PCB kustom', en: 'Custom robots and PCBs' },
     summary: {
-      id: 'Robot dan papan sirkuit yang dirancang untuk kebutuhan Anda, dengan cara kerja yang sama seperti kit edukasi kami.',
-      en: 'Robots and circuit boards designed for your needs, built the same way as our education kits.',
+      id: 'Robot dan papan sirkuit yang dirancang untuk kebutuhan Anda, dengan cara kerja yang sama seperti robot edukasi kami.',
+      en: 'Robots and circuit boards designed for your needs, built the same way as our education robots.',
     },
     examples: [
       {
-        id: 'Kit robot kustom untuk sekolah, kampus, atau tempat kursus',
-        en: 'Custom robot kits for schools, universities, or course providers',
+        id: 'Robot kustom untuk sekolah, kampus, atau tempat kursus, termasuk OEM dari robot edukasi kami',
+        en: 'Custom robots for schools, universities, or course providers, including OEM versions of our education robots',
       },
       {
         id: 'Robot untuk lomba robotik, termasuk pendampingan tim',

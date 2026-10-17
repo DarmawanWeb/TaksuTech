@@ -1,6 +1,7 @@
 /*
  * Reception line theme, used by the receptionist robot site and the kiosk. The company
- * profile has its own plain theme (company.css), and schools get edu.css.
+ * profile has its own plain theme (company.css), and the education robots have taksu.css in
+ * packages/edu-ui.
  *
  * Palette, named after Balinese materials:
  *   Paras   #eef0eb  carved volcanic stone, light background

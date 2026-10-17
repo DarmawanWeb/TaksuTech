@@ -14,8 +14,8 @@ export const brand = {
     en: 'Taksu is a Balinese word for the quality that makes a piece of work feel alive to the people who see it.',
   },
   story: {
-    id: 'Taksu Tech adalah unit Ezra Robotics untuk robot layanan dan robot edukasi. Kami menyediakan robot resepsionis dan kios layanan, merancang kit robot untuk sekolah, lalu tetap mendampingi pemakainya setelah robot terpasang: melatih staf dan guru, memperbarui perangkat lunak, dan menyiapkan suku cadang.',
-    en: 'Taksu Tech is the Ezra Robotics unit for service and education robots. We supply receptionist robots and service kiosks, design robot kits for schools, and keep supporting customers after installation: training staff and teachers, updating the software, and supplying spare parts.',
+    id: 'Taksu Tech adalah unit Ezra Robotics untuk robot layanan dan robot edukasi. Kami menyediakan robot resepsionis dan kios layanan, merancang robot edukasi bernama dengan jalur belajar gratis, lalu tetap mendampingi pemakainya: melatih staf dan pengajar, memperbarui perangkat lunak, dan menyiapkan suku cadang.',
+    en: 'Taksu Tech is the Ezra Robotics unit for service and education robots. We supply receptionist robots and service kiosks, design named education robots with free learning paths, and keep supporting customers afterwards: training staff and instructors, updating the software, and supplying spare parts.',
   },
   contact: {
     person: 'Darmawan',
@@ -39,7 +39,7 @@ interface Division {
   points: readonly Localized[];
 }
 
-/** The two product lines. Reception has a Bali edition; Edu is for schools anywhere. */
+/** The two product lines. Reception has a Bali edition; the education robots sell nationwide. */
 export const divisions = {
   reception: {
     name: names.robot,
@@ -65,21 +65,24 @@ export const divisions = {
   },
   education: {
     name: names.edu,
-    title: { id: 'Robot edukasi SD sampai SMA', en: 'Education robots for primary to senior high' },
+    title: { id: 'Robot edukasi bernama', en: 'Named education robots' },
     summary: {
-      id: 'Kit robot untuk sekolah, kurikulum 32 sampai 36 pertemuan, panduan guru, dan simulator gratis untuk mencoba sebelum membeli.',
-      en: 'Robot kits for schools, a curriculum of 32 to 36 meetings, teacher guides, and a free simulator to try before buying.',
+      id: 'Ciko, Momo, dan Garu: robot bernama dan bernomor untuk anak, remaja, dan tim lomba. Setiap robot punya jalur belajar online gratis dengan misi di simulator, dan bisa dibeli satuan, partai untuk sekolah, atau sebagai OEM.',
+      en: 'Ciko, Momo, and Garu: named, numbered robots for children, teenagers, and competition teams. Each has a free online learning path with simulator missions, and sells singly, in bulk for schools, or as OEM.',
     },
     points: [
       {
-        id: 'SD v1 dan SMP v1 untuk program pilot, SMA v1 menyusul',
-        en: 'SD v1 and SMP v1 for pilot programmes, SMA v1 to follow',
+        id: 'Ciko mulai 7 tahun, Momo mulai 11 tahun, Garu mulai 15 tahun',
+        en: 'Ciko from age 7, Momo from 11, Garu from 15',
       },
       {
-        id: 'Dipetakan ke mata pelajaran Koding dan Kecerdasan Artifisial',
-        en: 'Mapped to the Coding and Artificial Intelligence subject',
+        id: 'Jalur belajar gratis: video, panduan, dan misi simulator',
+        en: 'Free learning paths: videos, guides, and simulator missions',
       },
-      { id: 'Pelatihan guru dan servis purnajual', en: 'Teacher training and after-sales service' },
+      {
+        id: 'Pembelian partai dengan pelatihan pengajar, dan OEM dengan merek Anda',
+        en: 'Bulk orders with instructor training, and OEM under your brand',
+      },
     ],
   },
 } as const satisfies Record<'reception' | 'education', Division>;
@@ -106,8 +109,8 @@ export const principles: ReadonlyArray<{ id: string; title: Localized; body: Loc
     id: 'lasting',
     title: { id: 'Dirancang untuk dipakai lama', en: 'Designed for long use' },
     body: {
-      id: 'Kit edukasi kami modular, sehingga modul yang rusak bisa diganti satu per satu. Servis dan suku cadang kami tangani sendiri.',
-      en: 'Our education kits are modular, so a broken module can be replaced on its own. We handle servicing and spare parts ourselves.',
+      id: 'Robot edukasi kami modular, sehingga bagian yang rusak bisa diganti satu per satu. Servis dan suku cadang kami tangani sendiri.',
+      en: 'Our education robots are modular, so a broken part can be replaced on its own. We handle servicing and spare parts ourselves.',
     },
   },
 ];
