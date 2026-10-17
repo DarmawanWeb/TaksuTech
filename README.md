@@ -6,14 +6,16 @@
 
 **Robots made in Bali by Taksu Tech, part of Ezra Robotics: the company profile, the reception
 robots for Balinese offices and resorts (their site, the screen app they run, and its speech
-service), and the education robots, with the Docker stack that runs them all on a Mac mini.**
+service), and the education robots (their store and block simulator), with the Docker stack that
+runs them all on a Mac mini.**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/TaksuTech/ci.yml?branch=main&label=ci&logo=github)](https://github.com/DarmawanWeb/TaksuTech/actions/workflows/ci.yml)
 [![web](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/company-profile/ci.yml?branch=main&label=web&logo=github)](https://github.com/DarmawanWeb/company-profile/actions/workflows/ci.yml)
 [![robot](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-web/ci.yml?branch=main&label=robot&logo=github)](https://github.com/DarmawanWeb/reception-robot-web/actions/workflows/ci.yml)
 [![kiosk](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-kiosk/ci.yml?branch=main&label=kiosk&logo=github)](https://github.com/DarmawanWeb/reception-robot-kiosk/actions/workflows/ci.yml)
 [![speech](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/reception-robot-speech/ci.yml?branch=main&label=speech&logo=github)](https://github.com/DarmawanWeb/reception-robot-speech/actions/workflows/ci.yml)
-[![education](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/education-robot/ci.yml?branch=main&label=education&logo=github)](https://github.com/DarmawanWeb/education-robot/actions/workflows/ci.yml)
+[![edu](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/education-robot-web/ci.yml?branch=main&label=edu&logo=github)](https://github.com/DarmawanWeb/education-robot-web/actions/workflows/ci.yml)
+[![sim](https://img.shields.io/github/actions/workflow/status/DarmawanWeb/education-robot-sim/ci.yml?branch=main&label=sim&logo=github)](https://github.com/DarmawanWeb/education-robot-sim/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/DarmawanWeb/TaksuTech?label=release&color=12343b)](https://github.com/DarmawanWeb/TaksuTech/releases)
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
@@ -44,8 +46,9 @@ pinned here as a submodule.
 | `apps/web` | [company-profile](https://github.com/DarmawanWeb/company-profile) | the company profile: services, works, blog, demos, contact |
 | `apps/robot` | [reception-robot-web](https://github.com/DarmawanWeb/reception-robot-web) | the reception robot site: line-up, robot pages, comparison, Aksara Bali, demos |
 | `apps/kiosk` | [reception-robot-kiosk](https://github.com/DarmawanWeb/reception-robot-kiosk) | the screen app on Snow, Timo, and the Taksu Kiosk totem |
+| `apps/edu` | [education-robot-web](https://github.com/DarmawanWeb/education-robot-web) | the education robots' store: robots, Drops, accessories, learning paths, business |
+| `apps/sim` | [education-robot-sim](https://github.com/DarmawanWeb/education-robot-sim) | the block simulator for Ciko and Momo, with Arduino C++ output |
 | `services/speech` | [reception-robot-speech](https://github.com/DarmawanWeb/reception-robot-speech) | Whisper and Piper for the kiosk, on CPU |
-| `education-robot` | [education-robot](https://github.com/DarmawanWeb/education-robot) | the education robots: a workspace of its own with the store ([education-robot-web](https://github.com/DarmawanWeb/education-robot-web)) and the simulator ([education-robot-sim](https://github.com/DarmawanWeb/education-robot-sim)) |
 
 ## Features
 
@@ -65,9 +68,20 @@ pinned here as a submodule.
   with the robot's mouth following the voice; tickets and passes on 80 mm thermal paper.
 
 **Education robots**
-- Named robots, their store, learning paths, and the block simulator live in
-  [education-robot](https://github.com/DarmawanWeb/education-robot), which runs as its own stack.
-  The old education hosts here redirect to it.
+
+| # | Robot | Starts at | For | Status |
+|---|---|---|---|---|
+| 01 | Ciko | age 7 | a first robot car, ready to program | pre-order |
+| 02 | Momo | age 11 | a modular ESP32 robot that rebuilds four ways | pre-order |
+| 03 | Garu | age 15 | a ROS 2 rover with a camera, LiDAR, and an arm | coming soon |
+| 04 | ?? | | the next **Drop** from the R&D bench | revealed at launch |
+
+- A store with a page per robot, packages and add-ons, accessories, upgrade packs, arenas, and
+  the Drops; a cart that turns the order into one WhatsApp message or email, with no payment on
+  the site; bulk orders, training, and OEM for schools and teams.
+- A free learning path per robot, each step one idea with a simulator mission or a guide, and a
+  block simulator for Ciko and Momo with real sensors, 18 missions, and the Arduino C++ each
+  program becomes.
 
 **Operate**
 - One Docker image per app, the speech service, and Caddy behind the existing Cloudflare Tunnel;
@@ -85,18 +99,23 @@ flowchart LR
     C --> K[kiosk<br/>screen app]
     K --> S[speech<br/>Whisper, Piper]
     K --> O[Ollama<br/>native on macOS]
-    C -. old education hosts redirect .-> E[education-robot<br/>its own stack, 127.0.0.1:4490]
+    C --> E[edu<br/>education robot store]
+    C --> M[sim<br/>block simulator]
+    E -- open the mission --> M
     W & R & K --> P[(packages<br/>content, ui, bali)]
+    E & M --> Q[(packages<br/>catalog, edu-ui)]
 ```
 
 | Path | |
 |---|---|
 | `packages/content/` | every fact the sites show: brand and names, both product lines, robots, venues, works, demos |
-| `packages/ui/` | shared components and three themes: `company.css`, `theme.css` (the reception line, Bali), `edu.css` |
+| `packages/ui/` | shared components and two themes: `company.css` (the company profile) and `theme.css` (the reception line and the kiosk, Bali) |
 | `packages/bali/` | Aksara Bali transliteration, Balinese numerals, greetings, the Pawukon calendar |
+| `packages/catalog/` | every fact the education robots' store and simulator show: robots, prices, accessories, Drops, learning paths, guides, missions |
+| `packages/edu-ui/` | the education robots' theme (`taksu.css`), wordmark, race-number plate, components |
 | `packages/typescript-config/` | shared TypeScript settings |
 | `docker/Dockerfile` | one standalone Next.js image per app |
-| `docker-compose.yml`, `infra/caddy/` | the stack: web, robot, kiosk, speech, and Caddy on the loopback |
+| `docker-compose.yml`, `infra/caddy/` | the stack: web, robot, kiosk, edu, sim, speech, and Caddy on the loopback |
 | `infra/monitoring/`, `infra/ollama/` | Prometheus, Loki, Alloy, Grafana; the `taksu-asisten` model |
 | `infra/deploy.sh`, `infra/scripts/` | deploy with a smoke test, and the cloudflared hostnames |
 
@@ -105,15 +124,15 @@ flowchart LR
 ```bash
 git clone --recursive https://github.com/DarmawanWeb/TaksuTech.git && cd TaksuTech
 pnpm install        # also installs the commit hooks, here and in each app and the speech service
-pnpm dev            # web :3000, kiosk :3001, robot :3004
+pnpm dev            # web :3000, kiosk :3001, sim :3002, edu :3003, robot :3004
 pnpm check          # Biome, typecheck, tests
 pnpm test:speech    # the speech service's tests (Python, ffmpeg)
 ```
 
 Without the speech service the kiosk listens and speaks through the browser; to try Whisper and
 Piper, run it on port 8000 and set `SPEECH_URL=http://localhost:8000` in `apps/kiosk/.env.local`
-([how](https://github.com/DarmawanWeb/reception-robot-speech#develop)). The education robots have
-their own workspace: `cd education-robot && pnpm install`.
+([how](https://github.com/DarmawanWeb/reception-robot-speech#develop)). Set
+`NEXT_PUBLIC_WHATSAPP_NUMBER` in `apps/edu/.env.local` to try the store's WhatsApp orders.
 
 ## Deploy on the Mac mini
 
@@ -129,9 +148,6 @@ ENV_FILE=~/web/taksu-tech.env infra/deploy.sh   # pinned apps, build, start, smo
 ENV_FILE=~/web/taksu-tech.env CLOUDFLARED_CONFIG=~/.cloudflared/config.yml infra/scripts/cloudflare-ingress.sh
 ```
 
-The education robots run next to it as a second Compose project from the same clone:
-`ENV_FILE=~/web/education-robot.env education-robot/infra/deploy.sh` (see
-[education-robot](https://github.com/DarmawanWeb/education-robot#deploy-on-the-mac-mini)).
 `.github/workflows/deploy-macmini.yml` deploys every green `main` from a self-hosted runner.
 
 <details>
@@ -142,8 +158,8 @@ The education robots run next to it as a second Compose project from the same cl
 | `taksu.agus-darmawan.com` | web, the company profile |
 | `taksu-robot.agus-darmawan.com` | robot, the reception robot site |
 | `taksu-kiosk.agus-darmawan.com` | kiosk, with the microphone allowed |
-| `taksu-edu.agus-darmawan.com` | a redirect to the education-robot store |
-| `taksu-sim.agus-darmawan.com` | a redirect to the education-robot simulator |
+| `taksu-edu.agus-darmawan.com` | edu, the education robots' store |
+| `taksu-sim.agus-darmawan.com` | sim, the block simulator |
 | `taksu-grafana.agus-darmawan.com` | Grafana; protect it with Cloudflare Access |
 
 Every hostname points cloudflared at the one target `http://127.0.0.1:4480`, and Caddy routes by
@@ -152,13 +168,13 @@ validates, creates the CNAMEs, and restarts cloudflared.
 
 | Variable (`infra/.env`) | What it does |
 |---|---|
-| `WEB_HOST`, `ROBOT_HOST`, `KIOSK_HOST`, `GRAFANA_HOST` | the hostnames above |
-| `EDU_HOST`, `SIM_HOST` | the old education hosts, which now redirect |
-| `EDUCATION_HOST`, `EDUCATION_SIM_HOST` | where they redirect: education-robot's store and simulator |
+| `WEB_HOST`, `ROBOT_HOST`, `KIOSK_HOST`, `EDU_HOST`, `SIM_HOST`, `GRAFANA_HOST` | the hostnames above |
 | `CADDY_PORT` | Caddy on the loopback, 4480; never 80 or 8080 on this Mac mini |
 | `MONITORING` | `1` also runs Prometheus, Loki, Alloy, blackbox, and Grafana |
 | `CLOUDFLARE_TUNNEL` | the existing tunnel, for the ingress script |
-| `WHATSAPP_NUMBER` | where enquiries go; empty means email only |
+| `WHATSAPP_NUMBER` | where enquiries and store orders go; empty means email only |
+| `CONTACT_EMAIL` | the store's email orders; defaults to `brand.contact.email` in `packages/catalog` |
+| `TOKOPEDIA_URL`, `SHOPEE_URL` | the store's marketplace pages; each button hides while empty |
 | `AI_*`, `ASSISTANT_RATE_LIMIT` | the kiosk's assistant: provider, model, timeouts, concurrency, rate limit |
 | `WHISPER_*`, `PIPER_VOICE_*` | the speech service's model and voices |
 | `GRAFANA_ADMIN_USER`, `GRAFANA_ADMIN_PASSWORD` | Grafana's own login |
@@ -166,8 +182,8 @@ validates, creates the CNAMEs, and restarts cloudflared.
 Public values are inlined into the images at build time, so change them and deploy again. On the
 first start the speech service downloads Whisper `small` and the Piper voices into the
 `speech_models` volume; until then the kiosk uses the browser's voice. With `MONITORING=1`,
-Prometheus scrapes Caddy and probes web, robot, kiosk, speech, and Ollama; Alloy ships every
-container's log in the `taksu` project to Loki; Grafana opens on the **Taksu Tech: layanan**
+Prometheus scrapes Caddy and probes web, robot, kiosk, edu, sim, speech, and Ollama; Alloy ships
+every container's log in the `taksu` project to Loki; Grafana opens on the **Taksu Tech: layanan**
 dashboard.
 
 </details>
@@ -176,12 +192,13 @@ dashboard.
 
 | Version | |
 |---|---|
-| [v2.0.0](https://github.com/DarmawanWeb/TaksuTech/releases/tag/v2.0.0) | Taksu Tech in repositories: the company profile, the reception robot site, the kiosk, and the speech service each in their own, pinned here; the education line rebuilt as named robots in education-robot v2.0.0, with the old education hosts redirecting there. |
+| [v2.0.0](https://github.com/DarmawanWeb/TaksuTech/releases/tag/v2.0.0) | Taksu Tech in repositories, every app pinned here side by side; the education line rebuilt as named robots (Ciko, Momo, Garu) with a store, Drops, learning paths, and a simulator, built under the working name ULIK; the company profile tells the new line. |
 | [v1.0.0](https://github.com/DarmawanWeb/TaksuTech/releases/tag/v1.0.0) | The MVP as one monorepo: the company profile and blog, Taksu Edu with kits per school level and a curriculum, the reception robot site and the kiosk with a voice assistant, the simulator, Aksara Bali, Docker and monitoring. |
 
 The first 274 commits are that monorepo, unchanged; every app's repository carries its own part of
 that history. `refactor: split the company profile, robot site, kiosk, and speech service into
-repositories` starts v2.
+repositories` starts v2, and the education robots' rebuild joins it through the merge
+`refactor: bring the store and the simulator into apps, next to the other apps`.
 
 ## Documentation
 
@@ -192,7 +209,8 @@ repositories` starts v2.
 | Reception robot site | [reception-robot-web/docs](https://github.com/DarmawanWeb/reception-robot-web/tree/main/docs): architecture, development |
 | Kiosk | [reception-robot-kiosk/docs](https://github.com/DarmawanWeb/reception-robot-kiosk/tree/main/docs): screens, assistant, voice, printing, venues |
 | Speech service | [reception-robot-speech/docs](https://github.com/DarmawanWeb/reception-robot-speech/tree/main/docs): engines, API, voices |
-| Education robots | [education-robot](https://github.com/DarmawanWeb/education-robot): its README and contributing guide |
+| Education store | [education-robot-web/docs](https://github.com/DarmawanWeb/education-robot-web/tree/main/docs): architecture, development |
+| Simulator | [education-robot-sim/docs](https://github.com/DarmawanWeb/education-robot-sim/tree/main/docs): architecture, development |
 
 ## Develop
 
@@ -205,8 +223,8 @@ Change an app inside its submodule and push it there, then commit the new pointe
 (`chore: update kiosk`); Dependabot opens that pull request weekly too. The `ci` workflow checks
 out the submodules and runs Biome, the typecheck, the tests, the builds, and the speech tests, and
 validates the compose file, the Caddyfile, and the shell scripts; each app's repository has its
-own CI. `docker.yml` publishes `ghcr.io/darmawanweb/company-profile`, `reception-robot-web`, and
-`reception-robot-kiosk` on `main` and `v*` tags.
+own CI. `docker.yml` publishes `ghcr.io/darmawanweb/company-profile`, `reception-robot-web`,
+`reception-robot-kiosk`, `education-robot-web`, and `education-robot-sim` on `main` and `v*` tags.
 
 <details>
 <summary><b>Brand</b></summary>
@@ -220,6 +238,10 @@ own CI. `docker.yml` publishes `ghcr.io/darmawanweb/company-profile`, `reception
 - **Reception line:** `theme.css`, made for Bali: Paras stone, Endek indigo, Malam night, Prada
   gold, Subak water; Aksara Bali above the Latin, as Pergub Bali 80/2018 asks. It is generated, so
   official signage is reviewed by a Balinese language adviser.
+- **Education robots:** `taksu.css` in `packages/edu-ui`, Ciko's livery: red `#e3262d` for actions,
+  asphalt `#1f2228`, chalk `#f4f5f7`, eye cyan `#44ddeb` for learning, signal amber `#ffb020` for
+  Drops; Anybody for headlines and race numbers, Atkinson Hyperlegible Next for text.
+  `python3 packages/edu-ui/scripts/wordmark.py <name>` redraws the wordmark.
 - **Claims:** no TKDN percentage for Taksu Kiosk before certification. `piper-tts` is GPL-3.0 and
   runs as its own service; check each voice's licence before commercial use.
 
