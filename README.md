@@ -124,7 +124,7 @@ flowchart LR
 ```bash
 git clone --recursive https://github.com/DarmawanWeb/TaksuTech.git && cd TaksuTech
 pnpm install        # also installs the commit hooks, here and in each app and the speech service
-pnpm dev            # web :3000, kiosk :3001, sim :3002, edu :3003, robot :3004
+pnpm dev            # web :3100, kiosk :3101, sim :3102, edu :3103, robot :3104
 pnpm check          # Biome, typecheck, tests
 pnpm test:speech    # the speech service's tests (Python, ffmpeg)
 ```
