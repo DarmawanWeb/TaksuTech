@@ -68,4 +68,11 @@ curl -fsS -H "Host: $KIOSK_HOST" "http://127.0.0.1:$CADDY_PORT/api/speech/health
 
 docker image prune -f >/dev/null
 compose ps
-ok "Deployed. Point cloudflared at http://127.0.0.1:$CADDY_PORT (infra/scripts/cloudflare-ingress.sh)."
+if [[ "${PUBLIC_SCHEME:-https}" == "http" ]]; then
+  ok "Deployed locally:"
+  for host in "$WEB_HOST" "$ROBOT_HOST" "$KIOSK_HOST" "$EDU_HOST" "$SIM_HOST"; do
+    printf '  http://%s:%s\n' "$host" "$CADDY_PORT"
+  done
+else
+  ok "Deployed. Point cloudflared at http://127.0.0.1:$CADDY_PORT (infra/scripts/cloudflare-ingress.sh)."
+fi

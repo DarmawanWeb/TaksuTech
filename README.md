@@ -26,8 +26,8 @@ runs them all on a Mac mini.**
 [![License](https://img.shields.io/badge/license-proprietary-12343b)](LICENSE)
 
 [Repositories](#repositories) · [Features](#features) · [System](#system) · [Run it](#run-it) ·
-[Deploy](#deploy-on-the-mac-mini) · [Releases](#releases) · [Documentation](#documentation) ·
-[Develop](#develop)
+[Locally](#run-the-stack-locally) · [Deploy](#deploy-on-the-mac-mini) · [Releases](#releases) ·
+[Documentation](#documentation) · [Develop](#develop)
 
 </div>
 
@@ -133,6 +133,28 @@ Without the speech service the kiosk listens and speaks through the browser; to 
 Piper, run it on port 8000 and set `SPEECH_URL=http://localhost:8000` in `apps/kiosk/.env.local`
 ([how](https://github.com/DarmawanWeb/reception-robot-speech#develop)). Set
 `NEXT_PUBLIC_WHATSAPP_NUMBER` in `apps/edu/.env.local` to try the store's WhatsApp orders.
+
+## Run the stack locally
+
+The same Docker stack runs on a laptop without the tunnel, next to other local stacks:
+
+```bash
+cp infra/.env.local.example infra/.env
+infra/deploy.sh     # then open http://taksu.localhost:4480
+```
+
+The sites answer on `taksu.localhost`, `robot.`, `kiosk.`, `edu.`, and `sim.taksu.localhost`, all
+through Caddy on `127.0.0.1:4480`. Nothing else is published and nothing listens on the LAN; the
+speech service, Grafana, and the apps stay inside the `taksu` Docker network. Ports this stack
+uses, so it does not collide with the others:
+
+| Port | Used by |
+|---|---|
+| `127.0.0.1:4480` | Caddy, the only published port (`CADDY_PORT`) |
+| `3100` to `3104` | `pnpm dev` only: web, kiosk, sim, edu, robot |
+| `11434` | Ollama, native on macOS, shared; set `AI_BASE_URL` if another stack runs its own |
+
+Stop it with `docker compose -p taksu down` (add `-v` to drop the speech models and data).
 
 ## Deploy on the Mac mini
 
